@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilancio Plus - Ottimizzazione - Agricola Campidanese S.C. | SCAN</title>
+    <!-- Librerie Esterne -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- CSS Custom -->
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/print.css" rel="stylesheet" media="print">
+    <!-- Stili Incorporati -->
+    <style>
+        /* Copia/Incolla stili da versione precedente qui... */
+         :root {
+            --primary: #191970; --secondary: #4a69bd; --success: #4CAF50;
+            --warning: #FFC107; --danger: #F44336; --info: #0dcaf0;
+            --light: #f8f9fa; --dark: #343a40; --white: #ffffff;
+            --text-primary: #212529; --text-secondary: #6c757d;
+            --card-bg: var(--white); --card-border: #dee2e6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            /* Nuovi colori per i grafici */
+            --color-attuale: rgba(74, 105, 189, 0.7);       /* Blu secondario */
+            --color-attuale-border: rgba(74, 105, 189, 1);
+            --color-ottimizzato: rgba(76, 175, 80, 0.7);    /* Verde successo */
+            --color-ottimizzato-border: rgba(76, 175, 80, 1);
+        }
+        html, body { height: 100%; overflow-x: hidden; font-family: 'Titillium Web', sans-serif; background-color: #f4f8fb; }
+        body { display: flex; }
+        .sidebar { width: 250px; background-color: var(--primary); color: #e0e0e0; position: fixed; top: 0; bottom: 0; left: 0; z-index: 1031; display: flex; flex-direction: column; box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1); transition: width 0.3s ease; overflow-y: auto; }
+        .main-wrapper { margin-left: 250px; width: calc(100% - 250px); display: flex; flex-direction: column; min-height: 100vh; position: relative; padding-top: 70px; }
+        .dashboard-header { background-color: var(--white); padding: 15px 30px; border-bottom: 1px solid var(--card-border); box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-height: 70px; display: flex; align-items: center; justify-content: space-between; position: fixed; top: 0; left: 250px; right: 0; z-index: 1030; }
+        .dashboard-container { padding: 30px; flex-grow: 1; width: 100%; }
+        .footer { background-color: var(--primary); color: rgba(255, 255, 255, 0.7); padding: 15px 30px; font-size: 0.85rem; margin-top: auto; flex-shrink: 0; width: 100%; }
+        .footer img { max-height: 20px; width: auto; filter: brightness(0) invert(1); opacity: 0.8; vertical-align: middle;}
+        .sidebar-header { padding: 10px 20px; margin-bottom: 20px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .sidebar-header img { max-height: 40px; } .sidebar-header h5 { color: var(--white); margin-top: 10px; font-size: 1.1rem; font-weight: 600; }
+        .sidebar-nav { list-style: none; padding: 0; } .sidebar-nav .nav-item { margin: 0; }
+        .sidebar-nav .nav-link { color: #e0e0e0; padding: 12px 20px; display: flex; align-items: center; font-size: 0.95rem; font-weight: 500; border-left: 4px solid transparent; transition: all 0.2s ease; }
+        .sidebar-nav .nav-link:hover { background-color: rgba(255, 255, 255, 0.05); color: var(--white); border-left-color: var(--warning); }
+        .sidebar-nav .nav-link.active { background-color: rgba(255, 255, 255, 0.1); color: var(--white); font-weight: 600; border-left-color: var(--white); }
+        .sidebar-nav .nav-link i { margin-right: 15px; width: 20px; text-align: center; font-size: 1rem; }
+        .sidebar-nav .nav-title { padding: 10px 20px; font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 15px; }
+        .sidebar-footer { margin-top: auto; padding: 15px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; text-align: left; }
+        .section-title { color: var(--primary); font-weight: 600; margin-top: 2.5rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--secondary); font-size: 1.75rem; display: flex; align-items: center; } .section-title i { margin-right: 10px; }
+        .dashboard-card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); transition: all 0.3s ease; height: 100%; }
+        .dashboard-card:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .card-title-small { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .table { border: 1px solid var(--card-border); margin-bottom: 1rem; } .table thead th { background-color: var(--light); color: var(--primary); font-weight: 600; border-bottom: 2px solid var(--primary); font-size: 0.9rem; white-space: nowrap; } .table-hover tbody tr:hover { background-color: #eef2f7; } .table td, .table th { vertical-align: middle; padding: 0.6rem 0.75rem; font-size: 0.9rem;} .value-highlight { font-weight: 600; color: var(--primary); } .text-end { text-align: right !important;} .text-success { color: var(--success) !important; } .text-danger { color: var(--danger) !important; } .text-warning { color: var(--warning) !important; } .text-secondary { color: var(--text-secondary) !important; }
+        .alert-box { padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid; } .alert-box h5 { margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;} .alert-box ul { padding-left: 20px; margin-bottom: 0; font-size: 0.9rem;} .alert-box.alert-success { background-color: #d1e7dd; border-color: #a3cfbb; color: #0a3622; } .alert-box.alert-warning { background-color: #fff3cd; border-color: #ffda6a; color: #664d03; } .alert-box.alert-danger { background-color: #f8d7da; border-color: #f1aeb5; color: #58151c; } .alert-box.alert-info { background-color: #cff4fc; border-color: #9eeaf9; color: #055160; }
+        .status-badge { font-size: .75em; font-weight: 700; line-height: 1; padding: .35em .65em; border-radius: .375rem; color: white; display: inline-block; } .status-badge.bg-success { background-color: var(--success) !important; } .status-badge.bg-warning { background-color: var(--warning) !important; color: var(--dark) !important;} .status-badge.bg-danger { background-color: var(--danger) !important; } .status-badge.bg-info { background-color: var(--info) !important; color: var(--dark) !important;}
+        .icon-circle { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; color: white; margin-right: 12px; font-size: 0.9rem; flex-shrink: 0; }
+        .bg-icon-success { background-color: var(--success); } .bg-icon-warning { background-color: var(--warning); } .bg-icon-danger { background-color: var(--danger); } .bg-icon-info { background-color: #4f6d7a; } .bg-icon-primary { background-color: var(--primary); } .bg-icon-secondary { background-color: var(--secondary); }
+        .list-styled { padding-left: 1.5rem; margin-bottom: 1rem;}
+        .list-styled li { margin-bottom: 0.3rem; }
+        .accordion-body strong { display: block; margin-top: 0.5rem; }
+        .chart-container { height: 280px; margin-bottom: 20px; background-color: var(--white); padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: relative; }
+        @media (max-width: 991.98px) { .sidebar { width: 0; border: none; box-shadow: none;} .main-wrapper { margin-left: 0; width: 100%; padding-top: 56px; } .dashboard-header { left: 0; width: 100%; min-height: 56px; padding: 5px 15px;} .header-title h5 { font-size: 1rem;} .header-title p { font-size: 0.75rem;} .dashboard-container { padding: 15px;} .footer { padding: 10px 15px;} }
+        @media print { body { display: block; } .main-wrapper { margin-left: 0; width: 100%; padding-top: 0; } .no-print { display: none !important; } .report-section { page-break-inside: avoid; } }
+    </style>
+    <!-- Chart.js Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+
+    <!-- Sidebar Semplificata -->
+    <aside class="sidebar no-print">
+         <div class="sidebar-header">
+            <!-- Inserisci qui il logo se desiderato -->
+             <img src="assets/img/logo_scan.png" alt="FREM Logo" style="max-height: 40px;">
+            <h5>Agricola Campidanese S.C.</h5>
+        </div>
+        <ul class="sidebar-nav flex-grow-1">
+            <!-- Link Home -->
+            <li class="nav-item"> <a class="nav-link" href="index.html"> <i class="fas fa-home fa-fw"></i> Torna alla Home </a> </li>
+            <li class="nav-title">Sezioni Bilancio Plus</li>
+            <!-- Ancore alle sezioni della pagina -->
+            <li class="nav-item"> <a class="nav-link" href="#summary"> <i class="fas fa-clipboard-list fa-fw"></i> Sintesi Attuale </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#optimization-areas"> <i class="fas fa-search-plus fa-fw"></i> Aree Ottimizzazione </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#optimization-proposals"> <i class="fas fa-cogs fa-fw"></i> Ipotesi Ottimizzazione </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#impact-summary"> <i class="fas fa-chart-pie fa-fw"></i> Impatto Complessivo </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="#final-thoughts"> <i class="fas fa-gavel fa-fw"></i> Considerazioni Finali </a> </li>
+            
+        </ul>
+        <div class="sidebar-footer"> <small>SCAN360 © <span id="currentYearSidebar"></span> Kitzanos</small> </div>
+    </aside>
+
+    <!-- Contenuto Principale Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header Orizzontale -->
+        <header class="dashboard-header no-print">
+            <div class="header-title">
+                <h5 class="mb-0">Analisi Finanziaria e Proposte di Ottimizzazione (Bilancio Plus)</h5>
+                <p class="mb-0">Agricola Campidanese S.C. | <span class="report-date">Dati non definitivi 2024</span></p>
+            </div>
+            <div class="header-controls d-flex align-items-center">
+                <!-- Rimosso badge IRP -->
+                <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="printDocument()"> <i class="fas fa-print"></i> Stampa </button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user-circle me-1"></i> Agricola Campidanese S.C. </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton"> <li><button class="dropdown-item" type="button" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li> </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container d-none d-print-block mt-4 mb-4">
+            <h1 class="text-center mb-0"><span class="company-name">Agricola Campidanese S.C.</span></h1>
+            <p class="text-center mb-0">Analisi Finanziaria e Proposte di Ottimizzazione (Bilancio Plus) | <span class="report-date">Dati non definitivi 2024</span></p>
+            <hr>
+        </div>
+
+        <!-- Area Contenuto Specifico del Report -->
+        <div class="dashboard-container">
+
+            <!-- ================================================================ -->
+            <!-- CONTENUTO BILANCIO PLUS - Agricola Campidanese (con grafici e colori) -->
+            <!-- ================================================================ -->
+
+             <h2 class="section-title" id="optimization-analysis-title"><i class="fas fa-magic me-2"></i>Analisi Finanziaria e Proposte di Ottimizzazione</h2>
+
+            <!-- Sezione 1: Premessa -->
+            <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">1. Premessa sulla Definitività dei Dati 2024</h5></div>
+                 <div class="card-body small">
+                     <p>L'analisi si basa sui dati del bilancio 2024 di AGRICOLA CAMPIDANESE SOC. COOP. che, come precisato, non sono definitivi. Questo aspetto è cruciale in quanto le proposte di ottimizzazione devono essere considerate come raccomandazioni applicabili in fase di chiusura definitiva del bilancio, nel pieno rispetto dei principi contabili e della normativa vigente.</p>
+                 </div>
+            </div>
+
+             <!-- Sezione 2: Sintesi Situazione Attuale -->
+             <div class="card mb-4 report-section" id="summary">
+                 <div class="card-header"><h5 class="mb-0">2. Sintesi della Situazione Attuale</h5></div>
+                 <div class="card-body small">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="card-title-small">2.1 Profilo Economico</h6>
+                            <ul class="list-styled">
+                                <li><strong>Ricavi:</strong> €21.213.405 (<span class="text-success">+2,88%</span> vs 2023)</li>
+                                <li><strong>EBITDA:</strong> €841.748 (3,97% sui Ricavi) (<span class="text-success">+34,98%</span> vs 2023)</li>
+                                <li><strong>EBIT:</strong> €471.477 (2,22% sui Ricavi)</li>
+                                <li><strong>Utile netto:</strong> €59.803 (0,28% sui Ricavi) (<span class="text-success">+204,06%</span> vs 2023)</li>
+                            </ul>
+                             <h6 class="card-title-small mt-3">2.2 Profilo Patrimoniale</h6>
+                            <ul class="list-styled">
+                                <li><strong>Patrimonio Netto:</strong> €755.925 (<span class="text-success">+8,34%</span> vs 2023)</li>
+                                <li><strong>PFN:</strong> €5.221.254 (<span class="text-success">-6,15%</span> vs 2023)</li>
+                                <li><strong>Liquidità:</strong> €24.900 (<span class="text-danger">-91,17%</span> vs 2023)</li>
+                                <li><strong>PFN/EBITDA:</strong> 6,20 (<span class="badge bg-danger">Critico</span>)</li>
+                                <li><strong>Leva (D/E):</strong> 6,94 (<span class="badge bg-danger">Critico</span>)</li>
+                            </ul>
+                        </div>
+                         <div class="col-md-6">
+                             <h6 class="card-title-small">2.3 Profilo Finanziario</h6>
+                            <ul class="list-styled">
+                                <li><strong>Cash Flow Operativo:</strong> €423.899 (2,00% sui Ricavi) (<span class="badge bg-danger">Insufficiente</span>)</li>
+                                <li><strong>DSO:</strong> 47 giorni (<span class="text-success">↓-35gg</span> vs 2023)</li>
+                                <li><strong>DPO:</strong> 75 giorni (<span class="text-danger">↓-37gg</span> vs 2023)</li>
+                                <li><strong>DIO:</strong> 20 giorni (<span class="text-danger">↑+7gg</span> vs 2023)</li>
+                                <li><strong>CCC:</strong> -8 giorni (<span class="text-danger">↑+9gg</span> vs 2023)</li>
+                            </ul>
+                             <h6 class="card-title-small mt-3">2.4 Indicatori di Rischio e Rating</h6>
+                             <ul class="list-styled">
+                                <li><strong>Leanus Score:</strong> "5 - Negativo" (0,95) (<span class="text-danger">Critico</span>)</li>
+                                <li><strong>Z-Score di Altman:</strong> 2,93 (<span class="badge bg-warning text-dark">Zona Grigia</span>)</li>
+                                <li><strong>Prob. Default (MCC):</strong> 3,62% (<span class="badge bg-danger">FASCIA "3"</span>)</li>
+                             </ul>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+
+             <!-- Sezione 3: Aree di Potenziale Ottimizzazione -->
+             <div class="card mb-4 report-section" id="optimization-areas">
+                 <div class="card-header"><h5 class="mb-0">3. Analisi delle Aree di Potenziale Ottimizzazione</h5></div>
+                 <div class="card-body small">
+                      <div class="row">
+                          <div class="col-md-4">
+                              <h6 class="card-title-small">3.1 Area Economica</h6>
+                               <ul class="list-styled">
+                                   <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Marg. Contr.: 12,7% (<span class="text-success">+0,7%</span>)</li>
+                                   <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Var. Rimanenze: +26,08%</li>
+                                   <li><i class="fas fa-info-circle text-secondary me-1"></i> Costi Fissi: €1.85M (8,7%)</li>
+                                   <li><i class="fas fa-info-circle text-secondary me-1"></i> Costo Personale: €1.76M (8,3%)</li>
+                                   <li><i class="fas fa-info-circle text-secondary me-1"></i> Oneri Fin.: €391.8K (7,47%)</li>
+                               </ul>
+                          </div>
+                           <div class="col-md-4">
+                               <h6 class="card-title-small">3.2 Area Patrimoniale</h6>
+                                <ul class="list-styled">
+                                    <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Attivo Fisso Netto: €5.61M (> PN)</li>
+                                    <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Copertura Immobilizzazioni: 0,13</li>
+                                    <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Patrimonio Netto: €755.9K (12,7% del passivo)</li>
+                                </ul>
+                           </div>
+                            <div class="col-md-4">
+                                <h6 class="card-title-small">3.3 Area Finanziaria</h6>
+                                 <ul class="list-styled">
+                                     <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Liquidità: €24.900 (-91,17%)</li>
+                                     <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> DSCR: 0,548 (< 1,0)</li>
+                                     <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Var. Netta Cassa: -€257.144 (-1,21%)</li>
+                                 </ul>
+                            </div>
+                      </div>
+                 </div>
+            </div>
+
+             <!-- Sezione 4: Ipotesi di Ottimizzazione -->
+             <div class="card mb-4 report-section" id="optimization-proposals">
+                <div class="card-header"><h5 class="mb-0">4. Ipotesi di Ottimizzazione del Bilancio 2024</h5></div>
+                 <div class="card-body">
+                     <h6 class="card-title-small">4.1 Premessa Metodologica</h6>
+                     <p class="small">Le seguenti ipotesi sono formulate nel rispetto dei principi contabili, con l'obiettivo di migliorare/ottimizzare gli indici chiave mantenendo una rappresentazione veritiera.</p>
+
+                     <h6 class="card-title-small mt-4">4.2 Tabella Miglioramenti Proposti</h6>
+                     <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                              <thead class="table-light">
+                                  <tr>
+                                      <th>Voce/Indice</th>
+                                      <th>Situazione Attuale (2024)</th>
+                                      <th>Azione Suggerita</th>
+                                      <th>Effetto Previsto</th>
+                                      <th>Impatto Quantitativo</th>
+                                      <th>Principio/Norma</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr>
+                                      <td><strong>Capitalizzazione Costi</strong></td>
+                                      <td>Costi R&D non capitalizzati</td>
+                                      <td>Capitalizzazione costi sviluppo</td>
+                                      <td>Incremento EBITDA</td>
+                                      <td class="text-end"><span class="text-success">+€150K-200K</span> (EBITDA)<br><span class="text-success">+€150K-200K</span> (attivo)</td>
+                                      <td>OIC 24, Art. 2426 c.c.</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Ammortamenti</strong></td>
+                                      <td>€370.271 (1,7% ric)</td>
+                                      <td>Revisione aliquote e vita utile</td>
+                                      <td>Riduzione costi</td>
+                                      <td class="text-end"><span class="text-success">-€74K-93K</span> (costo)</td>
+                                      <td>OIC 16, Art. 2426 c.c.</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Rimanenze</strong></td>
+                                      <td>€872.688 (+26,1%)</td>
+                                      <td>Passaggio da FIFO a costo medio ponderato</td>
+                                      <td>Incremento valore</td>
+                                      <td class="text-end"><span class="text-success">+€120K-150K</span> (rim.)</td>
+                                      <td>OIC 13, Art. 2426 c.c.</td>
+                                  </tr>
+                                   <tr>
+                                      <td><strong>Fondi Rischi</strong></td>
+                                      <td>€190.987</td>
+                                      <td>Revisione fondi rischi e accantonamenti</td>
+                                      <td>Rilascio fondi eccedenti</td>
+                                      <td class="text-end"><span class="text-success">+€30K-50K</span> (rilascio)</td>
+                                      <td>OIC 31</td>
+                                  </tr>
+                                  <tr>
+                                      <td><strong>Crediti Clienti</strong></td>
+                                      <td>47 giorni</td>
+                                      <td>Accelerazione incassi con sconto cassa</td>
+                                      <td>Riduzione DSO</td>
+                                      <td class="text-end"><span class="text-success">-10 giorni</span> (liberazione €590K)</td>
+                                      <td>OIC 15</td>
+                                  </tr>
+                                   <tr>
+                                      <td><strong>Debiti Finanziari</strong></td>
+                                      <td>€5.246.154 (100% BT)</td>
+                                      <td>Riclassificazione debito MLT</td>
+                                      <td>Stabilizzazione struttura</td>
+                                      <td class="text-end"><span class="text-success">€2.5M</span> a MLT</td>
+                                      <td>OIC 19</td>
+                                  </tr>
+                                   <tr>
+                                      <td><strong>Attivo Fisso</strong></td>
+                                      <td>€5.608.391</td>
+                                      <td>Rivalutazione asset materiali</td>
+                                      <td>Incremento patrimonio netto</td>
+                                      <td class="text-end"><span class="text-success">+€400K-600K</span> (PN)</td>
+                                      <td>Art. 2423 c.c.</td>
+                                  </tr>
+                              </tbody>
+                         </table>
+                     </div>
+
+                     <!-- Sezione Grafici Impatto INSERITA QUI -->
+                     <h6 class="card-title-small mt-5">5.0 Visualizzazione Impatto Ottimizzazioni</h6>
+                     <div class="row">
+                         <div class="col-lg-6 col-md-6 mb-3">
+                            <h6 class="text-center small">Grafico 5.1: EBITDA (€) - Prima vs Dopo</h6>
+                            <div class="chart-container"><canvas id="utileNettoChart"></canvas></div>
+                         </div>
+                         <div class="col-lg-6 col-md-6 mb-3">
+                            <h6 class="text-center small">Grafico 5.2: EBITDA Margin (%) - Prima vs Dopo</h6>
+                            <div class="chart-container"><canvas id="ebitdaMarginChart"></canvas></div>
+                         </div>
+                         <div class="col-lg-6 col-md-6 mb-3">
+                            <h6 class="text-center small">Grafico 5.3: PFN/EBITDA - Prima vs Dopo</h6>
+                            <div class="chart-container"><canvas id="cccChart"></canvas></div>
+                         </div>
+                         <div class="col-lg-6 col-md-6 mb-3">
+                             <h6 class="text-center small">Grafico 5.4: Liquidità (€) - Prima vs Dopo</h6>
+                             <div class="chart-container"><canvas id="dioChart"></canvas></div>
+                         </div>
+                     </div>
+                     <!-- Fine Sezione Grafici -->
+
+                     <h6 class="card-title-small mt-4">4.3 Motivazioni dei Miglioramenti Proposti (Dettaglio)</h6>
+                      <div class="accordion small" id="motivationsAccordion">
+                          <!-- Capitalizzazione Costi -->
+                          <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingMotiv1"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMotiv1" aria-expanded="false" aria-controls="collapseMotiv1">4.3.1 Capitalizzazione Costi di Sviluppo</button></h2>
+                              <div id="collapseMotiv1" class="accordion-collapse collapse" aria-labelledby="headingMotiv1" data-bs-parent="#motivationsAccordion"><div class="accordion-body"><strong>Problematica:</strong> Immobilizzazioni immateriali limitate (€186.412, 3,1% dell'attivo fisso).<br><strong>Soluzione Proposta:</strong> Identificazione e capitalizzazione di costi sostenuti per innovazione varietale, certificazioni di qualità, progetti di sostenibilità e tracciabilità, sviluppo di nuovi processi produttivi.<br><strong>Ratio/Logica:</strong> Valorizzare adeguatamente gli investimenti in innovazione e sviluppo che generano benefici pluriennali, in linea con le specificità del settore agroalimentare.<br><strong>Benefici Attesi:</strong> Incremento dell'attivo patrimoniale e miglioramento dell'EBITDA di €150.000-200.000.<br><strong>Normativa Riferimento:</strong> Art. 2426, punto 5, c.c. e OIC 24.</div></div>
+                          </div>
+                          <!-- Ammortamenti -->
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingMotiv2"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMotiv2" aria-expanded="false" aria-controls="collapseMotiv2">4.3.2 Revisione Piani di Ammortamento</button></h2>
+                              <div id="collapseMotiv2" class="accordion-collapse collapse" aria-labelledby="headingMotiv2" data-bs-parent="#motivationsAccordion"><div class="accordion-body"><strong>Problematica:</strong> Ammortamenti totali di €370.271 (1,7% dei ricavi) con aliquote potenzialmente conservative rispetto alla vita utile effettiva degli asset.<br><strong>Soluzione Proposta:</strong> Rivalutazione della vita utile residua di impianti e macchinari sulla base di perizie tecniche, allungamento del periodo di ammortamento per immobilizzazioni con vita utile estesa, riduzione ponderata delle aliquote del 20-25% per asset strategici.<br><strong>Ratio/Logica:</strong> Allineare i piani di ammortamento alla reale vita utile economica dei beni, considerando l'effettivo utilizzo e le caratteristiche tecniche specifiche.<br><strong>Benefici Attesi:</strong> Riduzione degli ammortamenti di €74.000-93.000, miglioramento dell'EBIT e dell'utile netto.<br><strong>Normativa Riferimento:</strong> OIC 16, par. 70-72 che consente la modifica prospettica delle stime contabili.</div></div>
+                          </div>
+                           <!-- Rimanenze -->
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingMotiv3"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMotiv3" aria-expanded="false" aria-controls="collapseMotiv3">4.3.3 Ottimizzazione Valutazione Rimanenze</button></h2>
+                              <div id="collapseMotiv3" class="accordion-collapse collapse" aria-labelledby="headingMotiv3" data-bs-parent="#motivationsAccordion"><div class="accordion-body"><strong>Problematica:</strong> Rimanenze per €872.688 con DIO di 20 giorni, in aumento del 26,1% rispetto all'anno precedente.<br><strong>Soluzione Proposta:</strong> Passaggio dal metodo FIFO al costo medio ponderato, revisione dei coefficienti di obsolescenza, valorizzazione dei prodotti in corso di lavorazione.<br><strong>Ratio/Logica:</strong> Ottimizzare la valutazione delle rimanenze per riflettere più accuratamente il valore effettivo delle scorte, considerando la natura stagionale dei prodotti agricoli e le specificità del settore conserviero.<br><strong>Benefici Attesi:</strong> Incremento del valore delle rimanenze di €120.000-150.000, miglioramento del margine lordo.<br><strong>Normativa Riferimento:</strong> OIC 13, con adattamenti al settore conserviero.</div></div>
+                          </div>
+                          <!-- Fondi Rischi -->
+                          <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingMotiv4"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMotiv4" aria-expanded="false" aria-controls="collapseMotiv4">4.3.4 Revisione Fondi Rischi e Accantonamenti</button></h2>
+                              <div id="collapseMotiv4" class="accordion-collapse collapse" aria-labelledby="headingMotiv4" data-bs-parent="#motivationsAccordion"><div class="accordion-body"><strong>Problematica:</strong> Fondi per €190.987 potenzialmente sovrastimati rispetto ai rischi effettivi.<br><strong>Soluzione Proposta:</strong> Analisi analitica delle posizioni a rischio e rilascio parziale di fondi eccedenti in base a una valutazione aggiornata dei rischi effettivi.<br><strong>Ratio/Logica:</strong> Calibrare gli accantonamenti in base a una valutazione prudenziale ma realistica dei rischi, evitando eccessi di prudenza che penalizzano inutilmente il risultato economico.<br><strong>Benefici Attesi:</strong> Rilascio di €30.000-50.000 di fondi eccedenti, con impatto positivo sul risultato economico.<br><strong>Normativa Riferimento:</strong> OIC 31, principio di prudenza calibrato.</div></div>
+                          </div>
+                          <!-- Crediti -->
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingMotiv5"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMotiv5" aria-expanded="false" aria-controls="collapseMotiv5">4.3.5 Ottimizzazione del Capitale Circolante Netto</button></h2>
+                              <div id="collapseMotiv5" class="accordion-collapse collapse" aria-labelledby="headingMotiv5" data-bs-parent="#motivationsAccordion"><div class="accordion-body"><strong>Problematica:</strong> CCN negativo di -€285.353 con liquidità critica (€24.900, 0,12% dei ricavi).<br><strong>Soluzione Proposta:</strong> Accelerazione incassi con sconto cassa, cessione pro-soluto selettiva dei crediti, ottimizzazione dei termini di pagamento.<br><strong>Ratio/Logica:</strong> Migliorare la gestione del capitale circolante per liberare risorse finanziarie e ridurre il rischio di tensioni di liquidità, mantenendo relazioni equilibrate con clienti e fornitori.<br><strong>Benefici Attesi:</strong> Riduzione DSO di 10 giorni con liberazione di circa €590.000 di liquidità, miglioramento della posizione finanziaria netta.<br><strong>Normativa Riferimento:</strong> Best practice di working capital management.</div></div>
+                          </div>
+                          <!-- Debiti Finanziari -->
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingMotiv6"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMotiv6" aria-expanded="false" aria-controls="collapseMotiv6">4.3.6 Riclassificazione Strategica del Debito</button></h2>
+                              <div id="collapseMotiv6" class="accordion-collapse collapse" aria-labelledby="headingMotiv6" data-bs-parent="#motivationsAccordion"><div class="accordion-body"><strong>Problematica:</strong> Tutti i debiti finanziari classificati a breve (€5.246.154), creando un grave squilibrio temporale che penalizza gli indici.<br><strong>Soluzione Proposta:</strong> Rinegoziazione e riclassificazione di almeno €2.500.000 a MLT, consolidamento del debito con nuovo piano di ammortamento.<br><strong>Ratio/Logica:</strong> Allineare la struttura temporale del debito con la natura degli investimenti, rispettando il principio di correlazione fonti-impieghi e riducendo il rischio di rifinanziamento.<br><strong>Benefici Attesi:</strong> Miglioramento della copertura immobilizzazioni a 0,57, riduzione del rischio finanziario, miglioramento degli indici di bancabilità.<br><strong>Normativa Riferimento:</strong> OIC 19 sulla corretta classificazione temporale.</div></div>
+                          </div>
+                          <!-- Rivalutazione Asset -->
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="headingMotiv7"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMotiv7" aria-expanded="false" aria-controls="collapseMotiv7">4.3.7 Rivalutazione degli Asset Immobiliari</button></h2>
+                              <div id="collapseMotiv7" class="accordion-collapse collapse" aria-labelledby="headingMotiv7" data-bs-parent="#motivationsAccordion"><div class="accordion-body"><strong>Problematica:</strong> Patrimonio netto insufficiente (€755.925) rispetto all'attivo fisso, con copertura immobilizzazioni di solo 0,13.<br><strong>Soluzione Proposta:</strong> Perizia di stima per rivalutazione civilistica degli immobili, applicazione della rivalutazione con effetti solo civilistici.<br><strong>Ratio/Logica:</strong> Adeguare il valore contabile degli immobili al loro fair value effettivo, rafforzando la struttura patrimoniale senza impatti fiscali immediati.<br><strong>Benefici Attesi:</strong> Incremento del patrimonio netto di €400.000-600.000, miglioramento degli indici patrimoniali e della solidità aziendale.<br><strong>Normativa Riferimento:</strong> Art. 2423 c.c. e normative speciali su rivalutazioni.</div></div>
+                          </div>
+                      </div> <!-- Fine Accordion -->
+                 </div>
+            </div>
+
+             <!-- Sezione 6: Impatto Complessivo -->
+              <div class="card mb-4 report-section" id="impact-summary">
+                 <div class="card-header"><h5 class="mb-0">6. Impatto Complessivo delle Ottimizzazioni Proposte</h5></div>
+                 <div class="card-body small">
+                      <div class="row">
+                         <div class="col-md-4">
+                             <h6 class="card-title-small">6.1 Impatto Indici Economici</h6>
+                             <ul class="list-styled">
+                                 <li><strong>EBITDA:</strong> <span class="text-success">~€1.008K-1.135K</span> (da €842K, +19,8-34,8%)</li>
+                                 <li><strong>EBITDA Margin:</strong> <span class="text-success">~4,76-5,35%</span> (da 3,97%)</li>
+                                 <li><strong>EBIT:</strong> <span class="text-success">~€712K-881K</span> (da €471K, +51,1-86,9%)</li>
+                                 <li><strong>Utile Netto:</strong> <span class="text-success">~€290K-410K</span> (da €60K, +384,7-585,5%)</li>
+                             </ul>
+                         </div>
+                         <div class="col-md-4">
+                              <h6 class="card-title-small">6.2 Impatto Indici Patrimoniali/Finanziari</h6>
+                              <ul class="list-styled">
+                                 <li><strong>PFN/EBITDA:</strong> <span class="text-success">~3,37-4,19</span> (da 6,20)</li>
+                                 <li><strong>DSCR:</strong> <span class="text-success">~1,20-1,30</span> (da 0,548)</li>
+                                 <li><strong>Patrimonio Netto:</strong> <span class="text-success">~€1.556K-1.866K</span> (da €756K)</li>
+                                 <li><strong>Copertura Immobilizzazioni:</strong> <span class="text-success">~0,28-0,33</span> (da 0,13)</li>
+                                 <li><strong>D/E:</strong> <span class="text-success">~2,71-3,37</span> (da 6,94)</li>
+                             </ul>
+                         </div>
+                          <div class="col-md-4">
+                              <h6 class="card-title-small">6.3 Impatto Rating/Rischio</h6>
+                               <ul class="list-styled">
+                                  <li><strong>Leanus Score:</strong> <span class="text-success">Miglioramento a "4-Critico" o "3-Discreto" (2,50-3,20)</span></li>
+                                  <li><strong>Z-Score Altman:</strong> <span class="text-success">Potenziale miglioramento verso zona sicura</span></li>
+                                  <li><strong>Prob. Default (MCC):</strong> <span class="text-success">Potenziale miglioramento a FASCIA "2"</span></li>
+                                  <li><strong>Current Ratio:</strong> <span class="text-success">Miglioramento da 0,63 a 0,85-0,95</span></li>
+                               </ul>
+                          </div>
+                      </div>
+                 </div>
+            </div>
+
+            <!-- Sezione 7: Conclusioni -->
+            <div class="card mb-4 report-section" id="final-thoughts">
+                 <div class="card-header"><h5 class="mb-0">7. Considerazioni Finali</h5></div>
+                 <div class="card-body small">
+                     <p>AGRICOLA CAMPIDANESE presenta una situazione di significativa tensione finanziaria che richiede interventi immediati e strutturali. Gli interventi di ottimizzazione contabile proposti, pur legittimi e conformi alla normativa, devono essere accompagnati da un piano di risanamento industriale credibile e da un rafforzamento patrimoniale sostanziale.</p>
+                     <p>La cooperativa necessita di un approccio integrato che combini:</p>
+                     <ul>
+                         <li>Ottimizzazioni contabili immediate per migliorare gli indicatori</li>
+                         <li>Ristrutturazione finanziaria per garantire la sostenibilità</li>
+                         <li>Rilancio industriale per migliorare la marginalità strutturale</li>
+                         <li>Governance rafforzata per la gestione della fase di turnaround</li>
+                     </ul>
+                     <p>Il successo degli interventi dipenderà dalla rapidità di esecuzione e dal supporto degli stakeholder chiave, in particolare del sistema bancario e della base sociale cooperativa. Si raccomanda un'implementazione in fasi, partendo dagli interventi con impatto immediato sulla liquidità e proseguendo con le azioni di consolidamento strutturale.</p>
+                 </div>
+            </div>
+
+
+            <!-- ================================================================ -->
+            <!-- FINE CONTENUTO BILANCIO PLUS -->
+            <!-- ================================================================ -->
+
+        </div> <!-- /dashboard-container -->
+
+ <!-- Footer Standard (per coerenza, ma nascosto in stampa) -->
+         <footer class="footer no-print">
+              <div class="container-fluid px-4"> <!-- Usa container-fluid per larghezza piena -->
+                  <div class="row">
+                      <div class="col-md-6 text-center text-md-start mb-2 mb-md-0">
+                           <span id="currentYearFooter"></span>
+                      </div>
+                      <div class="col-md-6 text-center text-md-end">
+                          Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a>
+                          <img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;">
+                      </div>
+                  </div>
+              </div>
+          </footer>
+
+
+    </div> <!-- /main-wrapper -->
+
+    <!-- Script JS Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js è già caricato nell'HEAD -->
+
+    <!-- ### START SCRIPT JS EMBEDDED ### -->
+    <script>
+        // ======================================
+        // HELPER FUNCTIONS
+        // ======================================
+        function formatCurrency(value, decimals = 0) {
+            if (isNaN(value)) return value;
+            return new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value);
+        }
+        function formatNumber(value, decimals = 0) {
+             if (isNaN(value)) return value;
+             return new Intl.NumberFormat('it-IT', { style: 'decimal', minimumFractionDigits: decimals, maximumFractionDigits: decimals }).format(value);
+         }
+        function formatPercentage(value) {
+             if (isNaN(value)) return value;
+             return new Intl.NumberFormat('it-IT', { style: 'decimal', minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(value) + '%';
+        }
+
+        function initChart(canvasId, type, data, options) {
+             const canvas = document.getElementById(canvasId);
+             if (!canvas) { console.error(`Canvas element with ID '${canvasId}' not found.`); return null; }
+             const ctx = canvas.getContext('2d');
+             const existingChart = Chart.getChart(canvasId);
+             if (existingChart) { try { existingChart.destroy(); } catch(e) { console.warn(`Could not destroy previous chart instance for ${canvasId}: ${e}`);} }
+             ctx.clearRect(0, 0, canvas.width, canvas.height);
+             if (!data || !data.labels || !data.datasets) {
+                  ctx.fillStyle = '#dc3545'; ctx.font = '14px "Titillium Web", sans-serif'; ctx.textAlign = 'center';
+                  ctx.fillText('Errore: Dati non disponibili.', canvas.width / 2, canvas.height / 2);
+                  console.error(`Dati non validi forniti a initChart per ${canvasId}`);
+                  return null;
+              }
+             try {
+                 const newChart = new Chart(ctx, { type: type, data: data, options: options });
+                 return newChart;
+             } catch (error) {
+                  console.error(`Errore durante la creazione del grafico ${canvasId}:`, error);
+                  ctx.fillStyle = '#dc3545'; ctx.font = '14px "Titillium Web", sans-serif'; ctx.textAlign = 'center';
+                  const errorMessage = error.message && typeof error.message === 'string' ? (error.message.length > 100 ? error.message.substring(0, 97) + '...' : error.message) : 'Errore sconosciuto';
+                  ctx.fillText(`Errore grafico: ${errorMessage}`, canvas.width / 2, canvas.height / 2);
+                 return null;
+             }
+         }
+
+        // ======================================
+        // CHART DATA (Bilancio Plus - Agricola Campidanese)
+        // ======================================
+        // Colori Consistenti
+         const colorAttuale = 'rgba(74, 105, 189, 0.7)'; // Blu secondario
+         const colorAttualeBorder = 'rgba(74, 105, 189, 1)';
+         const colorOttimizzato = 'rgba(76, 175, 80, 0.7)'; // Verde successo
+         const colorOttimizzatoBorder = 'rgba(76, 175, 80, 1)';
+
+         const utileNettoData = {
+             labels: ['Attuale (2024)', 'Post Ottimizzazione'],
+             datasets: [{
+                 label: 'EBITDA (€)', data: [841748, 1071748],
+                 backgroundColor: [colorAttuale, colorOttimizzato],
+                 borderColor: [colorAttualeBorder, colorOttimizzatoBorder], borderWidth: 1
+             }]
+         };
+         const ebitdaMarginData = {
+              labels: ['Attuale (2024)', 'Post Ottimizzazione'],
+              datasets: [{
+                  label: 'EBITDA Margin (%)', data: [3.97, 5.05],
+                  backgroundColor: [colorAttuale, colorOttimizzato],
+                  borderColor: [colorAttualeBorder, colorOttimizzatoBorder], borderWidth: 1
+              }]
+          };
+          const cccData = {
+               labels: ['Attuale (2024)', 'Post Ottimizzazione'],
+               datasets: [{
+                   label: 'PFN/EBITDA', data: [6.20, 3.78],
+                   backgroundColor: [colorAttuale, colorOttimizzato],
+                   borderColor: [colorAttualeBorder, colorOttimizzatoBorder], borderWidth: 1
+               }]
+           };
+           const dioData = {
+                labels: ['Attuale (2024)', 'Post Ottimizzazione'],
+                datasets: [{
+                    label: 'Liquidità (€)', data: [24900, 1200000],
+                    backgroundColor: [colorAttuale, colorOttimizzato],
+                    borderColor: [colorAttualeBorder, colorOttimizzatoBorder], borderWidth: 1
+                }]
+            };
+
+        // ======================================
+        // CHART OPTIONS
+        // ======================================
+        const barChartOptions = {
+             responsive: true, maintainAspectRatio: false, indexAxis: 'x',
+             scales: { y: { beginAtZero: true, ticks: {} }, x: { grid: { display: false }} },
+             plugins: { legend: { display: false }, title: { display: false },
+                 tooltip: {
+                     callbacks: {
+                         label: function(context) {
+                             let label = context.dataset.label || ''; if (label) label += ': '; let value = context.parsed.y;
+                             if (context.dataset.label.includes('(gg)')) { label += formatNumber(value, 0) + ' gg'; }
+                             else if (context.dataset.label.includes('(%)')) { label += formatPercentage(value); }
+                             else { label += formatCurrency(value, 0); }
+                             return label;
+                         }
+                     }
+                 }
+             },
+             animation: { duration: 400 }
+         };
+         const utileNettoOptions = { ...barChartOptions, scales: { ...barChartOptions.scales, y: { ...barChartOptions.scales.y, ticks: { callback: function(v) { return formatCurrency(v, 0); } } } } };
+         const ebitdaMarginOptions = { ...barChartOptions, scales: { ...barChartOptions.scales, y: { ...barChartOptions.scales.y, suggestedMin: 0, ticks: { callback: function(v) { return formatPercentage(v); } } } } };
+         const cccOptions = { ...barChartOptions, scales: { ...barChartOptions.scales, y: { ...barChartOptions.scales.y, title: {display: true, text: 'Ratio'}, ticks: { callback: function(v) { return formatNumber(v, 2) + 'x'; } } } } };
+         const dioOptions = { ...barChartOptions, scales: { ...barChartOptions.scales, y: { ...barChartOptions.scales.y, title: {display: true, text: 'Euro'}, ticks: { callback: function(v) { return formatCurrency(v, 0); } } } } };
+
+        // ======================================
+        // CHART INITIALIZATION & OTHER SCRIPTS
+        // ======================================
+        document.addEventListener('DOMContentLoaded', function() {
+             console.log("Initializing scripts for Bilancio Plus Agricola Campidanese (Embedded)...");
+             // --- Initialize Charts ---
+             try { initChart('utileNettoChart', 'bar', utileNettoData, utileNettoOptions); } catch(e) { console.error("Errore init utileNettoChart:", e); }
+             try { initChart('ebitdaMarginChart', 'bar', ebitdaMarginData, ebitdaMarginOptions); } catch(e) { console.error("Errore init ebitdaMarginChart:", e); }
+             try { initChart('cccChart', 'bar', cccData, cccOptions); } catch(e) { console.error("Errore init cccChart:", e); }
+             try { initChart('dioChart', 'bar', dioData, dioOptions); } catch(e) { console.error("Errore init dioChart:", e); }
+
+             // --- Other Page Scripts ---
+             document.getElementById('currentYearSidebar').textContent = new Date().getFullYear();
+             const footerYear = document.getElementById('currentYearFooterReport');
+             if (footerYear) footerYear.textContent = new Date().getFullYear();
+
+             const irpScoreValue = 29.08; // Agricola Campidanese IRP (Valore noto)
+             const irpHeaderBadge = document.getElementById('irp-header-badge');
+             if(irpHeaderBadge) {
+                 let badgeClass = 'bg-warning text-dark';
+                 if (irpScoreValue >= 71) badgeClass = 'bg-success'; else if (irpScoreValue < 51) badgeClass = 'bg-danger';
+                 irpHeaderBadge.className = `badge ${badgeClass} me-3`;
+                 irpHeaderBadge.textContent = `IRP: ${irpScoreValue.toFixed(1)}`;
+             } else { console.warn("Elemento 'irp-header-badge' non trovato.") }
+
+             if (typeof window.logout !== 'function') { window.logout = function() { console.log("Logout placeholder"); } }
+             if (typeof window.printDocument !== 'function') { window.printDocument = function() { window.print(); } }
+             console.log("All scripts initialization attempt complete (Embedded).");
+         });
+    </script>
+     <!-- Script ChatNode -->
+<scan-chat data-bot-id="41eb2106-a80d-4845-a36f-fc7b8e03f87b"></scan-chat>
+<script src="../js/bundle.js"></script>
+
+</body>
+</html>

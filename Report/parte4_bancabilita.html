@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bancabilità e Sostenibilità Debito - Agricola Campidanese | SCAN V11</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/print.css" rel="stylesheet" media="print">
+     <style>
+        /* Stili IRP V6/V7 */
+        .irp-visual-section { background: linear-gradient(135deg, var(--white) 0%, #f0f4f8 100%); border-radius: 12px; padding: 2rem; box-shadow: var(--shadow); margin-bottom: 2.5rem; border: 1px solid var(--card-border); }
+        .irp-main-title { color: var(--primary); font-weight: 700; margin-bottom: 1.5rem; border-bottom: 2px solid var(--secondary); padding-bottom: 0.8rem; }
+        .irp-gradient-bar-container { margin-bottom: 0.5rem; }
+        .irp-gradient-bar { height: 20px; border-radius: 10px; overflow: hidden; position: relative; background: linear-gradient(to right, #d62246 0%, #d98c00 35%, #ffc107 55%, #4CAF50 80%, #191970 100%); border: 1px solid #bdc3c7; }
+        .irp-marker { position: absolute; top: -5px; bottom: -5px; width: 6px; background-color: #ffffff; border: 2px solid #343a40; transform: translateX(-50%); box-shadow: 0 0 8px rgba(0,0,0,0.5); z-index: 2; border-radius: 3px; }
+        .irp-marker::after { content: ''; position: absolute; bottom: -7px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-top: 8px solid #343a40; }
+        .irp-scale-labels { font-size: 0.8rem; color: #6c757d; font-weight: 500; padding: 0 5px;}
+        .irp-score-circle { width: 140px; height: 140px; border-radius: 50%; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; box-shadow: 0 8px 20px rgba(0,0,0,0.25); background: var(--warning); border: 6px solid rgba(255, 255, 255, 0.5); }
+        .irp-score-circle.risk-low { background: radial-gradient(circle, #6bc571, #4CAF50); }
+        .irp-score-circle.risk-medium { background: radial-gradient(circle, #ffd54f, #FFC107); }
+        .irp-score-circle.risk-high { background: radial-gradient(circle, #f6685e, #F44336); }
+        .irp-score-value { font-size: 3.5rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
+        .irp-score-max { font-size: 0.9rem; opacity: 0.8; display: block; line-height: 1;}
+        .irp-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
+        .irp-category-text .status-badge { font-size: 0.85rem; vertical-align: middle; margin-left: 8px;}
+        .other-ratings { font-size: 0.85rem; } .other-ratings strong { color: var(--dark); } .other-ratings .badge { margin-left: 5px; }
+        .stable-badge { background-color: var(--warning); color: var(--dark); border-radius: 8px; padding: 3px 8px; font-weight: 600; font-size: 0.8rem;} /* Adjusted name and color */
+        /* Stili Matching Card */
+        .matching-card { margin-bottom: 1rem; border-left-width: 4px; }
+        .matching-card-header { font-weight: 600; display: flex; align-items: center;}
+        .matching-card-header i { margin-right: 8px;}
+        .matching-card.adequate { border-left-color: var(--warning); }
+        .matching-card.good { border-left-color: var(--success); }
+        .matching-card.optimal { border-left-color: var(--primary); } /* Optimal changed to Primary color */
+        .matching-card.excellent { border-left-color: var(--success); } /* Added Excellent style */
+         /* Altri stili V9/V11 */
+         :root {
+            --primary: #191970; --secondary: #4a69bd; --success: #4CAF50;
+            --warning: #FFC107; --danger: #F44336; --info: #0dcaf0;
+            --light: #f8f9fa; --dark: #343a40; --white: #ffffff;
+            --text-primary: #212529; --text-secondary: #6c757d;
+            --card-bg: var(--white); --card-border: #dee2e6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        html, body { height: 100%; overflow-x: hidden; font-family: 'Titillium Web', sans-serif; background-color: #f4f8fb; }
+        body { display: flex; }
+        .sidebar { width: 250px; background-color: var(--primary); color: #e0e0e0; position: fixed; top: 0; bottom: 0; left: 0; z-index: 1031; display: flex; flex-direction: column; box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1); transition: width 0.3s ease; overflow-y: auto; }
+        .main-wrapper { margin-left: 250px; width: calc(100% - 250px); display: flex; flex-direction: column; min-height: 100vh; position: relative; padding-top: 70px; }
+        .dashboard-header { background-color: var(--white); padding: 15px 30px; border-bottom: 1px solid var(--card-border); box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-height: 70px; display: flex; align-items: center; justify-content: space-between; position: fixed; top: 0; left: 250px; right: 0; z-index: 1030; }
+        .dashboard-container { padding: 30px; flex-grow: 1; width: 100%; }
+        .footer { background-color: var(--primary); color: rgba(255, 255, 255, 0.7); padding: 15px 30px; font-size: 0.85rem; margin-top: auto; flex-shrink: 0; width: 100%; }
+        .footer img { max-height: 20px; width: auto; filter: brightness(0) invert(1); opacity: 0.8; vertical-align: middle;}
+        .sidebar-header { padding: 10px 20px; margin-bottom: 20px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .sidebar-header img { max-height: 40px; } .sidebar-header h5 { color: var(--white); margin-top: 10px; font-size: 1.1rem; font-weight: 600; }
+        .sidebar-nav { list-style: none; padding: 0; } .sidebar-nav .nav-item { margin: 0; }
+        .sidebar-nav .nav-link { color: #e0e0e0; padding: 12px 20px; display: flex; align-items: center; font-size: 0.95rem; font-weight: 500; border-left: 4px solid transparent; transition: all 0.2s ease; }
+        .sidebar-nav .nav-link:hover { background-color: rgba(255, 255, 255, 0.05); color: var(--white); border-left-color: var(--warning); }
+        .sidebar-nav .nav-link.active { background-color: rgba(255, 255, 255, 0.1); color: var(--white); font-weight: 600; border-left-color: var(--white); }
+        .sidebar-nav .nav-link i { margin-right: 15px; width: 20px; text-align: center; font-size: 1rem; }
+        .sidebar-nav .nav-title { padding: 10px 20px; font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 15px; }
+        .sidebar-footer { margin-top: auto; padding: 15px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; text-align: left; }
+        .section-title { color: var(--primary); font-weight: 600; margin-top: 2.5rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--secondary); font-size: 1.75rem; display: flex; align-items: center; } .section-title i { margin-right: 10px; }
+        .dashboard-card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); transition: all 0.3s ease; height: 100%; }
+        .dashboard-card:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .card-title-small { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .table { border: 1px solid var(--card-border); margin-bottom: 1rem; } .table thead th { background-color: var(--light); color: var(--primary); font-weight: 600; border-bottom: 2px solid var(--primary); font-size: 0.9rem; white-space: nowrap; } .table-hover tbody tr:hover { background-color: #eef2f7; } .table td, .table th { vertical-align: middle; padding: 0.6rem 0.75rem; font-size: 0.9rem;} .value-highlight { font-weight: 600; color: var(--primary); } .text-end { text-align: right !important;} .text-success { color: var(--success) !important; } .text-danger { color: var(--danger) !important; } .text-warning { color: var(--warning) !important; } .text-secondary { color: var(--text-secondary) !important; }
+        .alert-box { padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid; } .alert-box h5 { margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;} .alert-box ul { padding-left: 20px; margin-bottom: 0; font-size: 0.9rem;} .alert-box.alert-success { background-color: #d1e7dd; border-color: #a3cfbb; color: #0a3622; } .alert-box.alert-warning { background-color: #fff3cd; border-color: #ffda6a; color: #664d03; } .alert-box.alert-danger { background-color: #f8d7da; border-color: #f1aeb5; color: #58151c; } .alert-box.alert-info { background-color: #cff4fc; border-color: #9eeaf9; color: #055160; }
+        .status-badge { font-size: .75em; font-weight: 700; line-height: 1; padding: .35em .65em; border-radius: .375rem; color: white; display: inline-block; } .status-badge.bg-success { background-color: var(--success) !important; } .status-badge.bg-warning { background-color: var(--warning) !important; color: var(--dark) !important;} .status-badge.bg-danger { background-color: var(--danger) !important; } .status-badge.bg-info { background-color: var(--info) !important; color: var(--dark) !important;}
+        .chart-container { height: 300px; margin-bottom: 20px; background-color: var(--white); padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: relative; }
+        .icon-circle { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; color: white; margin-right: 12px; font-size: 0.9rem; flex-shrink: 0; }
+        .bg-icon-success { background-color: var(--success); } .bg-icon-warning { background-color: var(--warning); } .bg-icon-danger { background-color: var(--danger); } .bg-icon-info { background-color: #4f6d7a; } .bg-icon-primary { background-color: var(--primary); } .bg-icon-secondary { background-color: var(--secondary); }
+        @media (max-width: 991.98px) { .sidebar { width: 0; border: none; box-shadow: none;} .main-wrapper { margin-left: 0; width: 100%; padding-top: 56px; } .dashboard-header { left: 0; width: 100%; min-height: 56px; padding: 5px 15px;} .header-title h5 { font-size: 1rem;} .header-title p { font-size: 0.75rem;} .dashboard-container { padding: 15px;} .footer { padding: 10px 15px;} }
+        @media print { body { display: block; } .main-wrapper { margin-left: 0; width: 100%; padding-top: 0; } .no-print { display: none !important; } .report-section { page-break-inside: avoid; } }
+     </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+    <aside class="sidebar no-print">
+        <div class="sidebar-header"> <img src="../assets/img/logo_scan.png" alt="SCAN Logo" style="max-height: 40px;"> <h5>Agricola Campidanese</h5> </div>
+        <ul class="sidebar-nav flex-grow-1">
+            <li class="nav-item"> <a class="nav-link" href="../dashboard_v2.html"> <i class="fas fa-tachometer-alt fa-fw"></i> Dashboard </a> </li>
+            <li class="nav-title">Analisi Dettagliata</li>
+            <li class="nav-item"> <a class="nav-link" href="parte1_sintesi.html"> <i class="fas fa-file-alt fa-fw"></i> Sintesi e Profilo </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte2_economico.html"> <i class="fas fa-balance-scale fa-fw"></i> Analisi Economica </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte3_patrimoniale.html"> <i class="fas fa-landmark fa-fw"></i> Analisi Patrimoniale </a> </li>
+            <li class="nav-item"> <a class="nav-link active" href="parte4_bancabilita.html"> <i class="fas fa-university fa-fw"></i> Bancabilità </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte5_circolante-flussi.html"> <i class="fas fa-sync-alt fa-fw"></i> Circolante e Flussi </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte6_rischi-raccomandazioni.html"> <i class="fas fa-exclamation-triangle fa-fw"></i> Rischi e Azioni </a> </li>
+            <li class="nav-title">Approfondimenti</li>
+            <li class="nav-item"> <a class="nav-link" href="irp_dettaglio.html"> <i class="fas fa-shield-alt fa-fw"></i> Dettaglio IRP </a> </li>
+        </ul>
+        <div class="sidebar-footer"> <small>SCAN360 © <span id="currentYearSidebar"></span> Kitzanos</small> </div>
+    </aside>
+
+
+    <!-- Contenuto Principale Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header Orizzontale -->
+        <header class="dashboard-header no-print">
+            <div class="header-title">
+                <h5 class="mb-0">Report Dettagliato: Bancabilità e Sostenibilità Debito</h5>
+                <p class="mb-0">Agricola Campidanese | <span class="report-date">31 Dicembre 2024</span></p>
+            </div>
+            <div class="header-controls d-flex align-items-center">
+                <span id="irp-header-badge" class="badge me-3"></span> <!-- Badge IRP -->
+                <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="printDocument()"> <i class="fas fa-print"></i> Stampa </button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user-circle me-1"></i> Agricola Campidanese </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton"> <li><button class="dropdown-item" type="button" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li> </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container d-none d-print-block mt-4 mb-4">
+            <h1 class="text-center mb-0"><span class="company-name">Agricola Campidanese</span></h1>
+            <p class="text-center mb-0">Report Dettagliato: Bancabilità e Sostenibilità Debito | <span class="report-date">31 Dicembre 2024</span></p>
+            <hr>
+        </div>
+
+        <!-- Area Contenuto Specifico del Report -->
+        <div class="dashboard-container">
+
+            <!-- ================================================================ -->
+            <!-- CONTENUTO SPECIFICO PARTE 4 - V11 CON IRP e SINTESI FUSE - Updated for Agricola Campidanese -->
+            <!-- ================================================================ -->
+
+            <h2 class="section-title" id="bankability"><i class="fas fa-university me-2"></i>4. BANCABILITÀ E SOSTENIBILITÀ DEL DEBITO</h2>
+
+            <!-- Sezione IRP Prominente che include la Sintesi Bancabilità -->
+            <section class="irp-visual-section risk-high report-section" id="bankability-summary-section">
+                 <div class="row align-items-center">
+                      <div class="col-lg-4 text-center mb-4 mb-lg-0">
+                           <h6 class="card-title-small mb-3"><i class="fas fa-shield-alt me-1"></i> Indice Rischio Ponderato</h6>
+                           <div class="irp-score-circle risk-high">
+                               <span class="irp-score-value">29,1</span>
+                               <span class="irp-score-max">/ 100</span>
+                           </div>
+                           <div class="irp-category-text text-danger mt-2">
+                                Rischio Molto Elevato <span class="status-badge bg-danger">D</span>
+                           </div>
+                           <a href="irp_dettaglio.html" class="btn btn-sm btn-outline-primary mt-3 btn-pill">Dettaglio Calcolo IRP</a>
+                      </div>
+                       <div class="col-lg-8">
+                           <h4 class="mb-3 fw-bold" style="color: var(--primary);">Valutazione Sintetica Bancabilità e Rischio</h4>
+                           <p class="mb-3">L'analisi della sostenibilità finanziaria di AGRICOLA CAMPIDANESE evidenzia una situazione di <strong>stress finanziario strutturale</strong> con criticità sistemiche nella capacità di servizio del debito. La struttura finanziaria presenta squilibri fondamentali che compromettono la bancabilità aziendale nel breve-medio termine.</p>
+                           <div class="other-ratings border-top pt-3 mt-3">
+                               <h6 class="card-title-small mb-2">Altri Indicatori Chiave (12/2024):</h6>
+                               <ul class="list-unstyled mb-0 row gx-3 gy-2">
+                                   <li class="col-sm-6 d-flex align-items-center"><span class="icon-circle icon-circle-sm bg-icon-danger me-2"><i class="fas fa-chart-bar"></i></span><strong>Leanus Score:</strong> 0,95 <span class="badge bg-danger ms-1">Negativo</span></li>
+                                   <li class="col-sm-6 d-flex align-items-center"><span class="icon-circle icon-circle-sm bg-icon-danger me-2"><i class="fas fa-university"></i></span><strong>Rating MCC PD:</strong> 3,62% <span class="badge bg-danger ms-1">Fascia 3</span></li>
+                                   <li class="col-sm-6 d-flex align-items-center"><span class="icon-circle icon-circle-sm bg-icon-danger me-2"><i class="fas fa-balance-scale-right"></i></span><strong>PFN/EBITDA:</strong> 6,20x <span class="badge bg-danger ms-1">Critico</span></li>
+                                    <li class="col-sm-6 d-flex align-items-center"><span class="icon-circle icon-circle-sm bg-icon-danger me-2"><i class="fas fa-landmark"></i></span><strong>Leva (D/E):</strong> 6,94x <span class="badge bg-danger ms-1">Eccessiva</span></li>
+                               </ul>
+                           </div>
+                           <p class="small text-muted mt-3 mb-0">La struttura finanziaria presenta squilibri fondamentali che compromettono la bancabilità aziendale nel breve-medio termine.</p>
+                       </div>
+                 </div>
+            </section>
+
+             <!-- Sezione Indicatori Sostenibilità Debito -->
+            <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">4.2 Indicatori di Sostenibilità del Debito</h5></div>
+                  <div class="card-body">
+                     <p>Analisi dettagliata della capacità di gestire l'indebitamento.</p>
+                      <div class="row">
+                         <div class="col-lg-7 mb-3 mb-lg-0">
+                              <h6>Tabella 4.1: Indicatori Sostenibilità Debito 2022-2024</h6>
+                             <div class="table-responsive">
+                                 <table class="table table-sm table-striped table-hover">
+                                     <thead class="table-light"><tr><th>Indicatore</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th>Trend</th><th>Benchmark</th><th>Valutazione</th></tr></thead>
+                                     <tbody>
+                                         <tr><td>PFN/EBITDA</td><td class="text-end">NOK</td><td class="text-end">8,92</td><td class="text-end">6,20</td><td class="text-success">↓</td><td>&lt; 3,0</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                         <tr><td>D/E (Leva Fin.)</td><td class="text-end">9,84</td><td class="text-end">8,38</td><td class="text-end">6,94</td><td class="text-success">↓</td><td>&lt; 2,0</td><td><span class="status-badge bg-danger">Eccessiva</span></td></tr>
+                                         <tr><td>DSCR</td><td class="text-end">N.D.</td><td class="text-end">N.D.</td><td class="text-end">0,548</td><td>N.A.</td><td>&gt; 1,2</td><td><span class="status-badge bg-danger">Insostenibile</span></td></tr>
+                                         <tr><td>Oneri Fin./Ricavi</td><td class="text-end">1,01%</td><td class="text-end">1,71%</td><td class="text-end">1,85%</td><td class="text-danger">↑</td><td>&lt; 3%</td><td><span class="status-badge bg-warning">Elevato</span></td></tr>
+                                         <tr><td>CF Operativo/Ricavi</td><td class="text-end">3,09%</td><td class="text-end">6,11%</td><td class="text-end">2,00%</td><td class="text-danger">↓</td><td>&gt; 5%</td><td><span class="status-badge bg-danger">Insufficiente</span></td></tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+                         </div>
+                          <div class="col-lg-5">
+                               <h6 class="text-center small">Grafico 4.1: Indicatori Sostenibilità (Radar)</h6>
+                               <div class="chart-container" style="height: 300px;"> <canvas id="debtSustainabilityChart"></canvas> </div>
+                          </div>
+                     </div>
+                      <h6 class="mt-4">Interpretazione Indicatori Sostenibilità:</h6>
+                      <ul class="small">
+                          <li><strong>PFN/EBITDA (6,20x):</strong> CRITICO - Livello di indebitamento difficilmente sostenibile (benchmark settoriale: &lt; 3,0x)</li>
+                          <li><strong>EBITDA/Oneri Finanziari (2,15x):</strong> CRITICO - Insufficiente copertura (soglia minima 3,0x)</li>
+                          <li><strong>Debt/Equity (6,94x):</strong> ECCESSIVA - Struttura patrimoniale fortemente squilibrata</li>
+                          <li><strong>Costo Medio Ponderato del Debito (7,47%):</strong> ELEVATO - Significativamente sopra i tassi di mercato attuali</li>
+                      </ul>
+                  </div>
+             </div>
+
+            <!-- Capacità Indebitamento -->
+             <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">4.3 Capacità di Indebitamento Incrementale</h5></div>
+                 <div class="card-body">
+                     <p>Valutazione della capacità dell'azienda di assumere nuovo debito.</p>
+                     <div class="row align-items-center">
+                         <div class="col-md-5 mb-3 mb-md-0 text-center">
+                             <div class="alert-box alert-danger p-3">
+                                 <div class="icon-circle bg-icon-danger mx-auto mb-2"><i class="fas fa-times"></i></div>
+                                 <h6 class="mb-1">Capacità Incrementale Stimata:</h6>
+                                 <p class="fs-3 fw-bold mb-1">€ 0</p>
+                                 <p class="small text-muted mb-0">Deficit di capacità: €651.712 - €4.112.266</p>
+                             </div>
+                         </div>
+                          <div class="col-md-7">
+                             <h6>Fattori Limitanti:</h6>
+                              <div class="row small">
+                                  <div class="col-6"><strong>Criticità Primarie:</strong><ul class="fa-ul ms-3"><li><span class="fa-li text-danger"><i class="fas fa-times"></i></span>DSCR insufficiente (0,548)</li><li><span class="fa-li text-danger"><i class="fas fa-times"></i></span>Liquidità critica (€24.900)</li><li><span class="fa-li text-danger"><i class="fas fa-times"></i></span>Cash Flow Operativo debole</li><li><span class="fa-li text-danger"><i class="fas fa-times"></i></span>PFN/EBITDA elevato (6,20x)</li></ul></div>
+                                  <div class="col-6"><strong>Limiti strutturali:</strong><ul class="fa-ul ms-3"><li><span class="fa-li text-danger"><i class="fas fa-times"></i></span>Patrimonio netto insufficiente</li><li><span class="fa-li text-danger"><i class="fas fa-times"></i></span>Copertura immobilizzazioni (0,13)</li><li><span class="fa-li text-danger"><i class="fas fa-times"></i></span>Margine di struttura negativo</li><li><span class="fa-li text-danger"><i class="fas fa-times"></i></span>Free Cash Flow insufficiente</li></ul></div>
+                              </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+
+            <!-- DSCR -->
+             <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">4.4 DSCR (Debt Service Coverage Ratio)</h5></div>
+                  <div class="card-body">
+                      <p>Valutazione della capacità di coprire il servizio del debito.</p>
+                      <div class="alert-box alert-danger">
+                          <div class="row">
+                              <div class="col-md-4 text-center border-end"><strong>DSCR Calcolato</strong><br><span class="fs-3 fw-bold">0,548</span></div>
+                              <div class="col-md-4 text-center border-end"><strong>Soglia Minima</strong><br><span class="fs-3 fw-bold">1,0</span></div>
+                              <div class="col-md-4 text-center"><strong>Interpretazione</strong><br><span class="fs-3 fw-bold">Insostenibile</span></div>
+                          </div>
+                      </div>
+                      <p class="small mt-3">Il DSCR di 0,548 indica che l'azienda è in grado di generare flussi sufficienti a coprire solo il 54,8% degli impegni per il servizio del debito.</p>
+                      <p class="small">Analisi dei flussi di supporto:</p>
+                      <ul class="small">
+                          <li>Cash Flow Operativo 2024: €423.899</li>
+                          <li>Servizio del debito stimato: €773.640 (€599.045 rimborsi + €391.786 interessi)</li>
+                          <li>Coverage ratio effettivo: 0,548x</li>
+                      </ul>
+                  </div>
+             </div>
+
+            <!-- PFN/EBITDA -->
+             <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">4.5 PFN/EBITDA</h5></div>
+                  <div class="card-body">
+                     <p>Valutazione della sostenibilità del debito rispetto alla marginalità lorda.</p>
+                      <h6>Evoluzione storica PFN/EBITDA:</h6>
+                      <div class="table-responsive"> <table class="table table-sm table-striped table-hover"> <thead class="table-light"><tr><th>Anno</th><th class="text-end">PFN (€)</th><th class="text-end">EBITDA (€)</th><th class="text-end">PFN/EBITDA (x)</th><th>Valutazione</th></tr></thead> <tbody>
+                          <tr><td>2022</td><td class="text-end">6.113.861</td><td class="text-end">-459.194</td><td class="text-end">NOK</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                          <tr><td>2023</td><td class="text-end">5.563.155</td><td class="text-end">623.613</td><td class="text-end">8,92x</td><td><span class="status-badge bg-danger">Molto elevato</span></td></tr>
+                          <tr><td>2024</td><td class="text-end">5.221.254</td><td class="text-end">841.748</td><td class="text-end">6,20x</td><td><span class="status-badge bg-danger">Elevato</span></td></tr>
+                          </tbody> </table> </div>
+                      <h6 class="mt-4">Interpretazione:</h6>
+                      <ul class="small"><li>Trend: Miglioramento progressivo ma ancora in zona critica (>5,0x)</li><li>Il valore 2024 (6,20x) è significativamente superiore alla soglia di sostenibilità (3,0-3,5x)</li><li>Nonostante il miglioramento, il livello di indebitamento rimane difficilmente sostenibile nel medio termine</li></ul>
+                  </div>
+             </div>
+
+           <!-- SEZIONE 4.6 MATCHING FINANZIARIO -->
+             <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">4.6 Matching Finanziario</h5></div>
+                 <div class="card-body">
+                    <p>Valutazione dell'allineamento tra la struttura degli impieghi (investimenti) e delle fonti (finanziamenti).</p>
+                    <div class="row gy-3">
+                         <div class="col-md-6">
+                            <div class="dashboard-card matching-card adequate h-100">
+                                 <h6 class="matching-card-header"><i class="fas fa-coins text-warning"></i> Cash Flow Matching</h6>
+                                 <p class="small mb-1">Valuta l'allineamento tra servizio del debito e capacità di generazione di cassa.</p>
+                                 <ul class="small list-unstyled">
+                                     <li><strong>DSCR 2024:</strong> 0,548 (< 1,0 Soglia)</li>
+                                     <li><strong>Cash Flow Operativo 2024:</strong> €423.899</li>
+                                     <li><strong>Servizio Debito Stimato:</strong> €773.640</li>
+                                     <li><strong>Deficit:</strong> €349.741</li>
+                                 </ul>
+                                 <p class="small fw-bold mb-0">Valutazione: <span class="status-badge bg-danger">NON ADEGUATO</span></p>
+                                 <p class="small text-muted mt-1 mb-0">Cash Flow Operativo < Servizio del debito stimato</p>
+                            </div>
+                         </div>
+                          <div class="col-md-6">
+                             <div class="dashboard-card matching-card adequate h-100">
+                                  <h6 class="matching-card-header"><i class="fas fa-layer-group text-warning"></i> Amounts Matching</h6>
+                                  <p class="small mb-1">Valuta se il debito MLT e PN coprono gli investimenti a MLT.</p>
+                                  <ul class="small list-unstyled">
+                                      <li><strong>Attivo Fisso Netto 2024:</strong> €5.608.391</li>
+                                      <li><strong>Debiti finanziari totali:</strong> €5.246.154</li>
+                                      <li><strong>Rapporto:</strong> 0,94</li>
+                                      <li><strong>Squilibrio temporale:</strong> -€3.925.874</li>
+                                  </ul>
+                                  <p class="small fw-bold mb-0">Valutazione: <span class="status-badge bg-danger">CRITICO</span></p>
+                                   <p class="small text-muted mt-1 mb-0">Violazione sistemica del principio di amounts matching</p>
+                             </div>
+                         </div>
+                          <div class="col-md-6">
+                             <div class="dashboard-card matching-card adequate h-100">
+                                 <h6 class="matching-card-header"><i class="fas fa-hourglass-half text-warning"></i> Duration Matching</h6>
+                                  <p class="small mb-1">Valuta se la durata del finanziamento è allineata alla vita utile dell'attivo.</p>
+                                   <ul class="small list-unstyled">
+                                      <li><strong>Debiti finanziari MLT:</strong> €0 (0% del totale)</li>
+                                      <li><strong>Debiti finanziari BT:</strong> €5.246.154 (100% del totale)</li>
+                                      <li><strong>Criticità:</strong> Duration mismatch medio -8,8 anni</li>
+                                   </ul>
+                                   <p class="small fw-bold mb-0">Valutazione: <span class="status-badge bg-danger">CRITICO</span></p>
+                                   <p class="small text-muted mt-1 mb-0">Tutti i debiti sono a breve termine</p>
+                             </div>
+                         </div>
+                           <div class="col-md-6">
+                              <div class="dashboard-card matching-card adequate h-100">
+                                   <h6 class="matching-card-header"><i class="fas fa-gem text-warning"></i> Quality Matching</h6>
+                                   <p class="small mb-1">Valuta se la forma tecnica del finanziamento è appropriata alla natura dell'attivo.</p>
+                                    <p class="small mb-0">L'analisi evidenzia:</p>
+                                    <ul class="small list-unstyled">
+                                        <li>Utilizzo sistematico di forme tecniche inappropriate</li>
+                                        <li>Extra-costo stimato: €135.000 annui (2,6% del fatturato)</li>
+                                        <li>Scoperto c/c invece di mutuo ipotecario/leasing</li>
+                                    </ul>
+                                   <p class="small fw-bold mb-0 mt-2">Valutazione: <span class="status-badge bg-danger">INADEGUATO</span></p>
+                              </div>
+                          </div>
+                     </div>
+                 </div>
+             </div>
+
+            <!-- KPI Crisi -->
+             <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">4.8 KPI della Crisi d'Impresa (CCII)</h5></div>
+                 <div class="card-body">
+                      <div class="alert-box alert-warning d-flex align-items-center mb-4"> <span class="icon-circle bg-icon-warning me-3"><i class="fas fa-exclamation-triangle"></i></span> <div> <h6 class="mb-1">Indicatori CCII: <strong>5 su 7 Rispettati</strong></h6> <p class="small mb-0">Presenza di segnali di allerta specifici secondo il Codice della Crisi d'Impresa.</p> </div> </div>
+                      <h6 class="mt-4">Tabella 4.2: Dettaglio indicatori CCII (2024)</h6>
+                       <div class="table-responsive"> <table class="table table-sm table-striped table-hover"> <thead class="table-light"><tr><th>Indicatore</th><th class="text-end">Valore</th><th>Soglia CCII</th><th>Status</th></tr></thead> <tbody>
+                           <tr><td>Patrimonio Netto</td><td class="text-end">€755.925</td><td>> 0</td><td><span class="status-badge bg-success">✓ CONFORME</span></td></tr>
+                           <tr><td>DSCR prospettico</td><td class="text-end">0,548</td><td>≥ 1,0</td><td><span class="status-badge bg-danger">✗ NON CONFORME</span></td></tr>
+                           <tr><td>Oneri finanziari/Ricavi</td><td class="text-end">1,85%</td><td>< 3,0%</td><td><span class="status-badge bg-success">✓ CONFORME</span></td></tr>
+                           <tr><td>PN/Debiti totali</td><td class="text-end">8,06%</td><td>< 7,6%</td><td><span class="status-badge bg-success">✓ CONFORME</span></td></tr>
+                           <tr><td>Attività BT/Passività BT</td><td class="text-end">139,2%</td><td>< 93,7%</td><td><span class="status-badge bg-success">✓ CONFORME</span></td></tr>
+                           <tr><td>Cash Flow/Attivo</td><td class="text-end">3,64%</td><td>< 0,5%</td><td><span class="status-badge bg-success">✓ CONFORME</span></td></tr>
+                           <tr><td>Debiti prev+trib/Attivo</td><td class="text-end">1,09%</td><td>> 4,9%</td><td><span class="status-badge bg-success">✓ CONFORME</span></td></tr>
+                           </tbody> </table> </div>
+                        <p class="small text-muted mt-3">Valutazione complessiva CCII: <strong>PRE-CRISI</strong> con indicatori di allerta attivati. Nonostante 5 indicatori su 7 siano formalmente positivi, il DSCR critico (0,548) configura comunque uno stato di crisi ai sensi dell'art. 2 CCII.</p>
+                 </div>
+             </div>
+
+            <!-- Raccomandazioni -->
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">4.9 Raccomandazioni per la Strategia Finanziaria</h5></div>
+                 <div class="card-body">
+                     <h6>Piano d'azione prioritario:</h6>
+                     <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                             <thead class="table-light">
+                                 <tr>
+                                     <th>Situazione Attuale</th>
+                                     <th>Azione Suggerita</th>
+                                     <th>Effetti Previsti</th>
+                                     <th>Impatto Quantitativo/Costo</th>
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 <tr>
+                                     <td>Debito 100% BT (€5,2M)</td>
+                                     <td>Ristrutturazione con consolidamento MLT</td>
+                                     <td>Stabilizzazione struttura finanziaria</td>
+                                     <td>-€100-150k oneri finanziari/anno</td>
+                                 </tr>
+                                 <tr>
+                                     <td>DSCR 0,548</td>
+                                     <td>Moratoria selettiva + riscadenziamento</td>
+                                     <td>DSCR target > 1,2</td>
+                                     <td>Dilazione €2,5M su 5-7 anni</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Liquidità €24.900</td>
+                                     <td>Factoring pro-soluto su crediti</td>
+                                     <td>Incremento liquidità immediata</td>
+                                     <td>+€500-800k liquidità (20-30% crediti)</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Leva 6,94x</td>
+                                     <td>Ricapitalizzazione €1,5-2M</td>
+                                     <td>Riduzione D/E < 2,5x</td>
+                                     <td>Costo equity 12-15%</td>
+                                 </tr>
+                                 <tr>
+                                     <td>PFN/EBITDA 6,20x</td>
+                                     <td>Cessione asset non core</td>
+                                     <td>Riduzione PFN</td>
+                                     <td>Target -€1M debito</td>
+                                 </tr>
+                                 <tr>
+                                     <td>Capitale circolante -€285.353</td>
+                                     <td>Ottimizzazione ciclo monetario</td>
+                                     <td>Liberazione risorse</td>
+                                     <td>+€300-500k da gestione magazzino/crediti</td>
+                                 </tr>
+                             </tbody>
+                         </table>
+                     </div>
+                     <h6 class="mt-3">Priorità strategiche:</h6>
+                     <ol class="small">
+                         <li class="mb-2"><strong>CRITICA (0-3 mesi):</strong> Attivazione procedura composizione negoziata crisi</li>
+                         <li class="mb-2"><strong>URGENTE (3 mesi):</strong> Consolidamento debito BT in MLT con hair-cut 30%</li>
+                         <li class="mb-2"><strong>NECESSARIA (6 mesi):</strong> Ricapitalizzazione €1,5-2,0M</li>
+                         <li class="mb-2"><strong>STRUTTURALE (12 mesi):</strong> Piano industriale con focus cash generation</li>
+                         <li class="mb-2"><strong>STRATEGICA (18-24 mesi):</strong> Partnership industriale/M&A</li>
+                     </ol>
+                      <a href="parte6_rischi-raccomandazioni.html#table_7_1_1" class="btn btn-sm btn-primary mt-2 btn-pill"> <i class="fas fa-list-alt me-1"></i> Vai a Piano d'Azione Dettagliato</a>
+                 </div>
+            </div>
+
+            <!-- ================================================================ -->
+            <!-- FINE CONTENUTO SPECIFICO PARTE 4 -->
+            <!-- ================================================================ -->
+
+        </div> <!-- /dashboard-container -->
+
+        <!-- Footer Standard V2 (Corretto) -->
+        <footer class="footer no-print"> <div class="container-fluid px-4"> <div class="row align-items-center"> <div class="col-md-6 text-center text-md-start mb-2 mb-md-0"> SCAN360 © <span id="currentYearFooterReport"></span> </div> <div class="col-md-6 text-center text-md-end"> Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a> <img src="../assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2"> </div> </div> </div> </footer>
+
+    </div> <!-- /main-wrapper -->
+
+    <!-- Script JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/charts_config.js"></script>
+    <script src="../js/report_init.js"></script>
+     <script>
+        document.getElementById('currentYearSidebar').textContent = new Date().getFullYear();
+        document.getElementById('currentYearFooterReport').textContent = new Date().getFullYear();
+
+         // Script aggiornamento badge IRP header
+         document.addEventListener('DOMContentLoaded', function() {
+             const irpScoreValue = 29.08; // IRP Value
+             const irpHeaderBadge = document.getElementById('irp-header-badge');
+             if(irpHeaderBadge) {
+                 let badgeClass = 'bg-warning text-dark';
+                 if (irpScoreValue >= 71) badgeClass = 'bg-success'; // Basso
+                 else if (irpScoreValue < 51) badgeClass = 'bg-danger'; // Alto
+                 irpHeaderBadge.className = `badge ${badgeClass} me-3`;
+                 irpHeaderBadge.textContent = `IRP: ${irpScoreValue.toFixed(1)}`;
+             }
+
+              // Ensure logout function is defined
+             if (typeof logout !== 'function') {
+                 window.logout = function() {
+                    console.log("Logout action triggered (placeholder)");
+                }
+             }
+             // Ensure print function is defined
+             if (typeof printDocument !== 'function') {
+                window.printDocument = function() {
+                    window.print();
+                }
+             }
+         });
+     </script>
+     <!-- Script ChatNode -->
+<scan-chat data-bot-id="41eb2106-a80d-4845-a36f-fc7b8e03f87b"></scan-chat>
+<script src="../js/bundle.js"></script>
+</body>
+</html>

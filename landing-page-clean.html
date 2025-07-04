@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bilancio Plus | Kitzanos Lab</title>
+    
+    <!-- Fogli di stile -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="css/styles2.css" rel="stylesheet">
+    <link href="css/print.css" rel="stylesheet" media="print">
+    
+    <style>
+        /* Stili specifici della landing page che integrano il tema principale */
+        .hero-section {
+            background: url('https://images.unsplash.com/photo-1506784365847-bbad939e9335?q=80&w=2068&auto=format&fit=crop') center center/cover no-repeat;
+            color: white;
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(25, 25, 112, 0.75);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+        
+        .feature-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            background-color: rgba(25, 25, 112, 0.1);
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+        
+        .benefit-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .contact-button {
+            transition: all 0.3s ease;
+            background-color: var(--primary) !important;
+            border-color: var(--primary) !important;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(25, 25, 112, 0.2);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-card {
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-box {
+            padding: 2rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            height: 100%;
+            background-color: white;
+        }
+        
+        .feature-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .cta-section {
+            background-color: var(--light);
+            padding: 5rem 0;
+            border-top: 1px solid rgba(25, 25, 112, 0.1);
+            border-bottom: 1px solid rgba(25, 25, 112, 0.1);
+        }
+        
+        .bg-primary {
+            background-color: var(--primary) !important;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary) !important;
+            border-color: var(--primary) !important;
+        }
+        
+        .btn-success {
+            background-color: var(--primary) !important;
+            border-color: var(--primary) !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm sticky-navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="assets/img/logo_scan.png" alt="Kitzanos Lab" class="img-fluid" style="height: 40px; filter: brightness(0) invert(1);">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#features">Caratteristiche</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#benefits">Vantaggi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#process">Processo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contattaci</a>
+                    </li>
+                </ul>
+                <a href="#contact" class="btn btn-light ms-lg-3">Richiedi Info</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-pattern"></div>
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 hero-content">
+                    <h1 class="display-4 fw-bold mb-4">Bilancio Plus</h1>
+                    <h2 class="h3 mb-4">Ottimizza la presentazione finanziaria della tua cooperativa agricola</h2>
+                    <p class="lead mb-5">Trasforma il tuo bilancio in uno strumento strategico per migliorare gli indici economico-finanziari e rafforzare il profilo di bancabilità della tua azienda nel settore agroalimentare.</p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="#features" class="btn btn-light btn-lg px-4 me-md-2">Scopri di più</a>
+                        <a href="#contact" class="btn btn-outline-light btn-lg px-4">Contattaci</a>
+                    </div>
+                </div>
+               
+            </div>
+        </div>
+    </section>
+
+    <!-- Vantaggi chiave con numeri -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <div class="benefit-value">+2.0%</div>
+                    <p>Miglioramento marginalità EBITDA</p>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <div class="benefit-value">-2.8x</div>
+                    <p>Riduzione PFN/EBITDA</p>
+                </div>
+                <div class="col-md-3 mb-4 mb-md-0">
+                    <div class="benefit-value">+105%</div>
+                    <p>Incremento patrimonio netto</p>
+                </div>
+                <div class="col-md-3">
+                    <div class="benefit-value">+163%</div>
+                    <p>Miglioramento Leanus Score</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title text-center">Caratteristiche del Servizio</h2>
+                    <p class="lead">Bilancio Plus è il servizio che analizza e ottimizza la rappresentazione delle performance aziendali nel settore agroalimentare, nel pieno rispetto dei principi contabili e della normativa vigente.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="feature-box shadow-sm">
+                        <div class="feature-icon">
+                            <i class="fas fa-boxes"></i>
+                        </div>
+                        <h3>Revisione Politiche di Ammortamento</h3>
+                        <p>Analisi approfondita e riclassificazione delle politiche di ammortamento per una rappresentazione più accurata del valore degli asset.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>Rivalutazione vita utile residua impianti</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Riduzione aliquote 20-25% per asset strategici</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Riduzione ammortamenti €74.000-€93.000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box shadow-sm">
+                        <div class="feature-icon">
+                            <i class="fas fa-calculator"></i>
+                        </div>
+                        <h3>Capitalizzazione Costi di Sviluppo</h3>
+                        <p>Valorizzazione degli investimenti in innovazione e sviluppo per una rappresentazione più fedele del capitale investito.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>Capitalizzazione innovazione varietale</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Valorizzazione certificazioni qualità</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Incremento immobilizzazioni €150.000-€200.000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box shadow-sm">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3>Rivalutazione Asset Immobiliari</h3>
+                        <p>Ottimizzazione del valore degli immobili strumentali per migliorare l'efficienza del capitale investito.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>Perizia di stima per rivalutazione civilistica</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Incremento patrimonio netto €400.000-€600.000</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Miglioramento copertura immobilizzazioni</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box shadow-sm">
+                        <div class="feature-icon">
+                            <i class="fas fa-money-bill-alt"></i>
+                        </div>
+                        <h3>Ottimizzazione Valutazione Rimanenze</h3>
+                        <p>Implementazione di metodologie di valorizzazione più appropriate per il settore agroalimentare.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>Passaggio da FIFO a costo medio ponderato</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Revisione coefficienti di obsolescenza</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Incremento valore rimanenze €120.000-€150.000</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box shadow-sm">
+                        <div class="feature-icon">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h3>Riclassificazione Strategica del Debito</h3>
+                        <p>Analisi della struttura del debito e ottimizzazione della classificazione temporale per migliorare gli indici.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>Riclassificazione €2.500.000 da BT a MLT</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Consolidamento con nuovo piano ammortamento</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Miglioramento copertura immobilizzazioni a 0,57</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-box shadow-sm">
+                        <div class="feature-icon">
+                            <i class="fas fa-table"></i>
+                        </div>
+                        <h3>Operazioni di Finanza Straordinaria</h3>
+                        <p>Valutazione di operazioni straordinarie per rafforzare la struttura patrimoniale.</p>
+                        <ul class="list-unstyled mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i>Conversione parziale debito in strumenti partecipativi</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Emissione prestito partecipativo cooperativo</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Incremento patrimonio netto €500.000-€700.000</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="py-5 bg-light">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title text-center">Vantaggi del Bilancio Plus</h2>
+                    <p class="lead">Scopri come Bilancio Plus può trasformare la presentazione delle performance finanziarie della tua cooperativa agricola.</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card benefit-card h-100">
+                        <div class="card-body p-4">
+                            <div class="benefit-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3>Miglioramento degli Indici Economico-Finanziari</h3>
+                            <p>Ottimizzazione degli indicatori chiave che influenzano la valutazione dell'azienda da parte degli stakeholder finanziari:</p>
+                            <ul>
+                                <li>Incremento EBITDA margin da 3,97% a 4,76%-5,35%</li>
+                                <li>Miglioramento EBIT da €471.477 a €712.477-€881.477</li>
+                                <li>Aumento utile netto da €59.803 a €289.803-€409.803</li>
+                                <li>Miglioramento copertura immobilizzazioni da 0,13 a 0,28-0,33</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card benefit-card h-100">
+                        <div class="card-body p-4">
+                            <div class="benefit-icon">
+                                <i class="fas fa-hands-helping"></i>
+                            </div>
+                            <h3>Rafforzamento del Profilo di Bancabilità</h3>
+                            <p>Miglioramento della percezione dell'azienda da parte degli istituti di credito:</p>
+                            <ul>
+                                <li>Riduzione PFN/EBITDA da 6,20 a 3,37-4,19</li>
+                                <li>Miglioramento Current Ratio da 0,63 a 0,85-0,95</li>
+                                <li>Riduzione leva finanziaria (D/E) da 6,94 a 2,71-3,37</li>
+                                <li>Upgrade Leanus Score da 0,95 a 2,50-3,20</li>
+                                <li>Potenziale miglioramento Fascia MCC da "3" a "2"</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card benefit-card h-100">
+                        <div class="card-body p-4">
+                            <div class="benefit-icon">
+                                <i class="fas fa-lock"></i>
+                            </div>
+                            <h3>Piena Conformità Normativa</h3>
+                            <p>Tutte le ottimizzazioni proposte sono pienamente conformi ai principi contabili e alla normativa vigente, garantendo:</p>
+                            <ul>
+                                <li>Rispetto OIC 16 per revisione vita utile asset</li>
+                                <li>Conformità OIC 24 per capitalizzazione costi sviluppo</li>
+                                <li>Aderenza Art. 2423 c.c. per rivalutazioni civilistiche</li>
+                                <li>Rispetto OIC 13 per valutazione rimanenze</li>
+                                <li>Conformità OIC 19 per classificazione debiti</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card benefit-card h-100">
+                        <div class="card-body p-4">
+                            <div class="benefit-icon">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <h3>Rafforzamento Patrimoniale</h3>
+                            <p>Significativo miglioramento della struttura patrimoniale dell'azienda:</p>
+                            <ul>
+                                <li>Incremento patrimonio netto da €755.925 a €1.555.925-€1.865.925</li>
+                                <li>Riduzione PFN da €5.221.254 a €4.221.254-€3.821.254</li>
+                                <li>Miglioramento equilibrio fonti-impieghi</li>
+                                <li>Maggiore capacità di accesso al credito</li>
+                                <li>Riduzione rischio di insolvenza</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title text-center">Come Funziona</h2>
+                    <p class="lead">Un approccio strutturato per ottimizzare la presentazione finanziaria della tua cooperativa agricola</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <div class="timeline">
+                        <div class="timeline-item mb-4">
+                            <div class="timeline-badge"></div>
+                            <div class="action-step">
+                                <h4><i class="fas fa-search me-2"></i>Analisi Preliminare</h4>
+                                <p>Esame approfondito della situazione contabile attuale e individuazione delle aree di potenziale ottimizzazione.</p>
+                                <ul class="mt-2 mb-0">
+                                    <li>Analisi dettagliata degli indici critici (PFN/EBITDA 6,20, D/E 6,94)</li>
+                                    <li>Valutazione copertura immobilizzazioni (0,13)</li>
+                                    <li>Identificazione criticità strutturali (EBITDA margin 3,97%)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item mb-4">
+                            <div class="timeline-badge"></div>
+                            <div class="action-step">
+                                <h4><i class="fas fa-lightbulb me-2"></i>Elaborazione Strategia</h4>
+                                <p>Definizione di un piano dettagliato di ottimizzazioni, con quantificazione degli impatti previsti su ciascun indicatore.</p>
+                                <ul class="mt-2 mb-0">
+                                    <li>Revisione politiche di ammortamento (€74.000-€93.000)</li>
+                                    <li>Capitalizzazione costi sviluppo (€150.000-€200.000)</li>
+                                    <li>Rivalutazione asset immobiliari (€400.000-€600.000)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item mb-4">
+                            <div class="timeline-badge"></div>
+                            <div class="action-step">
+                                <h4><i class="fas fa-tasks me-2"></i>Implementazione</h4>
+                                <p>Supporto nell'attuazione delle ottimizzazioni identificate, con particolare focus sul rispetto delle tempistiche di chiusura dell'esercizio.</p>
+                                <ul class="mt-2 mb-0">
+                                    <li>Fase 1 (0-30 giorni): Interventi immediati</li>
+                                    <li>Fase 2 (30-90 giorni): Interventi a breve termine</li>
+                                    <li>Fase 3 (90-180 giorni): Consolidamento</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="timeline-item">
+                            <div class="timeline-badge"></div>
+                            <div class="action-step">
+                                <h4><i class="fas fa-chart-line me-2"></i>Monitoraggio e Valutazione</h4>
+                                <p>Verifica degli impatti conseguiti e supporto nella comunicazione finanziaria verso stakeholder interni ed esterni.</p>
+                                <ul class="mt-2 mb-0">
+                                    <li>Dashboard KPI critici (liquidità, DSO, DSCR)</li>
+                                    <li>Monitoraggio covenant compliance</li>
+                                    <li>Valutazione cash burn rate</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="cta-section py-5">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title text-center">Contatta il tuo referente Kitzanos</h2>
+                    <p class="lead">Scopri come Bilancio Plus può trasformare la presentazione finanziaria della tua cooperativa agricola</p>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow">
+                        <div class="card-body p-5">
+                            <div class="text-center mb-4">
+                                <div class="recommendation p-4">
+                                    <h5 class="mb-3"><i class="fas fa-info-circle me-2"></i>Perché scegliere Bilancio Plus per Agricola Campidanese?</h5>
+                                    <p class="mb-0">Il servizio Bilancio Plus è ideale per cooperative agricole come Agricola Campidanese che necessitano di migliorare la propria presentazione finanziaria, ottimizzare gli indici di performance e rafforzare il proprio profilo di bancabilità, mantenendo la piena conformità ai principi contabili e alla normativa vigente.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center">
+                                <p class="mb-4">Per richiedere maggiori informazioni o prenotare una consulenza gratuita, contatta il tuo referente Kitzanos:</p>
+                                <a href="mailto:info@kitzanos.com" class="btn btn-success btn-lg contact-button px-5 py-3">
+                                    <i class="fas fa-envelope me-2"></i>Contatta il tuo referente
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer text-center p-4">
+        <div class="container">
+            <div class="row align-items-center mb-3">
+                <div class="col-md-4">
+                    <div style="height: 35px; display: flex; align-items: center; justify-content: center;">
+                        <img src="assets/img/kitzanos_logo_scuro.png" alt="Logo" class="img-fluid company-logo" style="max-height: 100%; width: auto; filter: brightness(0) invert(1);">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <p class="mb-0">
+                        <a href="#features" class="text-white fw-bold">Caratteristiche</a> | 
+                        <a href="#benefits" class="text-white fw-bold">Vantaggi</a> | 
+                        <a href="#process" class="text-white fw-bold">Processo</a> | 
+                        <a href="#contact" class="text-white fw-bold">Contatti</a>
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <a href="index.html" class="btn btn-outline-light">
+                        <i class="fas fa-chart-line me-2"></i>Torna alla home
+                    </a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <p class="mb-0 text-light">© <span id="currentYear">2025</span> powered by <span class="provider-name">Kitzanos Lab</span> | Tutti i diritti riservati</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Imposta anno corrente nel footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Funzione per la stampa
+        function printDocument() {
+            window.print();
+        }
+    </script>
+    <scan-chat data-bot-id="41eb2106-a80d-4845-a36f-fc7b8e03f87b"></scan-chat>
+    <script src="./js/bundle.js"></script>
+</body>
+</html>

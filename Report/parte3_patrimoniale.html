@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Patrimoniale - Agricola Campidanese | SCAN V9</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/print.css" rel="stylesheet" media="print">
+</head>
+<body>
+
+<!-- Sidebar -->
+    <aside class="sidebar no-print">
+        <div class="sidebar-header"> <img src="../assets/img/logo_scan.png" alt="SCAN Logo" style="max-height: 40px;"> <h5>Agricola Campidanese</h5> </div>
+        <ul class="sidebar-nav flex-grow-1">
+            <li class="nav-item"> <a class="nav-link" href="../dashboard_v2.html"> <i class="fas fa-tachometer-alt fa-fw"></i> Dashboard </a> </li>
+            <li class="nav-title">Analisi Dettagliata</li>
+            <li class="nav-item"> <a class="nav-link" href="parte1_sintesi.html"> <i class="fas fa-file-alt fa-fw"></i> Sintesi e Profilo </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte2_economico.html"> <i class="fas fa-balance-scale fa-fw"></i> Analisi Economica </a> </li>
+            <li class="nav-item"> <a class="nav-link active" href="parte3_patrimoniale.html"> <i class="fas fa-landmark fa-fw"></i> Analisi Patrimoniale </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte4_bancabilita.html"> <i class="fas fa-university fa-fw"></i> Bancabilità </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte5_circolante-flussi.html"> <i class="fas fa-sync-alt fa-fw"></i> Circolante e Flussi </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte6_rischi-raccomandazioni.html"> <i class="fas fa-exclamation-triangle fa-fw"></i> Rischi e Azioni </a> </li>
+            <li class="nav-title">Approfondimenti</li>
+            <li class="nav-item"> <a class="nav-link" href="irp_dettaglio.html"> <i class="fas fa-shield-alt fa-fw"></i> Dettaglio IRP </a> </li>
+        </ul>
+        <div class="sidebar-footer"> <small>SCAN360 © <span id="currentYearSidebar"></span> Kitzanos</small> </div>
+    </aside>
+
+
+
+    <!-- Contenuto Principale Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header Orizzontale -->
+        <header class="dashboard-header no-print">
+            <div class="header-title">
+                <h5 class="mb-0">Report Dettagliato: Analisi Patrimoniale</h5>
+                <p class="mb-0">Agricola Campidanese | <span class="report-date">31 Dicembre 2024</span></p>
+            </div>
+            <div class="header-controls d-flex align-items-center">
+                <span id="irp-header-badge" class="badge me-3"></span>
+                <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="printDocument()"> <i class="fas fa-print"></i> Stampa </button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user-circle me-1"></i> Agricola Campidanese </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton"> <li><button class="dropdown-item" type="button" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li> </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container d-none d-print-block mt-4 mb-4">
+            <h1 class="text-center mb-0"><span class="company-name">Agricola Campidanese</span></h1>
+            <p class="text-center mb-0">Report Dettagliato: Analisi Patrimoniale | <span class="report-date">31 Dicembre 2024</span></p>
+            <hr>
+        </div>
+
+        <!-- Area Contenuto Specifico del Report -->
+        <div class="dashboard-container">
+
+            <!-- ================================================================ -->
+            <!-- CONTENUTO SPECIFICO PARTE 3 - V9 - Updated for Agricola Campidanese -->
+            <!-- ================================================================ -->
+
+            <h2 class="section-title" id="patrimonial-analysis"><i class="fas fa-landmark me-2"></i>ANALISI PATRIMONIALE</h2>
+
+         <div class="card mb-4 report-section">
+            <div class="card-header"><h5 class="mb-0">1. Stato Patrimoniale Riclassificato (triennio)</h5></div>
+            <div class="card-body">
+                <p>L'analisi patrimoniale consente di valutare la struttura degli investimenti (Impieghi) e delle fonti di finanziamento (Fonti), evidenziando l'equilibrio strutturale di Agricola Campidanese.</p>
+
+                 <!-- Grafici Composizione Attivo e Passivo -->
+                 <div class="row mt-4">
+                     <div class="col-lg-6 mb-3 mb-lg-0">
+                         <h6 class="text-center small">Grafico 3.1: Composizione Impieghi 2024 (%)</h6>
+                         <div class="chart-container" style="height: 300px;">
+                             <canvas id="assetsChart"></canvas>
+                         </div>
+                     </div>
+                     <div class="col-lg-6">
+                          <h6 class="text-center small">Grafico 3.2: Composizione Fonti 2024 (%)</h6>
+                          <div class="chart-container" style="height: 300px;">
+                              <canvas id="liabilitiesChart"></canvas>
+                          </div>
+                     </div>
+                 </div>
+
+                 <h6 class="mt-4">Tabella 3.1: Stato Patrimoniale Riclassificato 2022-2024 (valori in €)</h6>
+                 <div class="table-responsive">
+                     <table class="table table-sm table-striped table-hover">
+                         <thead class="table-light">
+                             <tr><th>IMPIEGHI</th><th class="text-end">12/2022</th><th class="text-end">%</th><th class="text-end">12/2023</th><th class="text-end">%</th><th class="text-end">12/2024</th><th class="text-end">%</th><th class="text-end">Δ 2023-24</th></tr>
+                         </thead>
+                         <tbody>
+                             <tr><td>Attivo Fisso Netto</td><td class="text-end">5.608.045</td><td class="text-end">41,3%</td><td class="text-end">5.898.255</td><td class="text-end">41,8%</td><td class="text-end">5.608.391</td><td class="text-end">48,0%</td><td class="text-end text-danger">-4,9%</td></tr>
+                             <tr><td>Immobilizzazioni Materiali</td><td class="text-end">5.391.840</td><td class="text-end">39,7%</td><td class="text-end">5.241.033</td><td class="text-end">37,1%</td><td class="text-end">5.049.008</td><td class="text-end">43,1%</td><td class="text-end text-danger">-3,7%</td></tr>
+                             <tr><td>Immobilizzazioni Immateriali</td><td class="text-end">192.204</td><td class="text-end">1,4%</td><td class="text-end">153.221</td><td class="text-end">1,1%</td><td class="text-end">186.412</td><td class="text-end">1,6%</td><td class="text-end text-success">+21,7%</td></tr>
+                             <tr><td>Immobilizzazioni Finanziarie</td><td class="text-end">24.001</td><td class="text-end">0,2%</td><td class="text-end">504.001</td><td class="text-end">3,6%</td><td class="text-end">372.971</td><td class="text-end">3,2%</td><td class="text-end text-danger">-26,0%</td></tr>
+                             <tr><td>Capitale Circolante</td><td class="text-end">7.747.345</td><td class="text-end">57,0%</td><td class="text-end">8.033.878</td><td class="text-end">57,0%</td><td class="text-end">5.851.602</td><td class="text-end">50,6%</td><td class="text-end text-danger">-27,2%</td></tr>
+                             <tr><td>Crediti Commerciali</td><td class="text-end">3.915.699</td><td class="text-end">28,8%</td><td class="text-end">4.675.401</td><td class="text-end">33,1%</td><td class="text-end">2.751.600</td><td class="text-end">23,7%</td><td class="text-end text-danger">-41,2%</td></tr>
+                             <tr><td>Rimanenze</td><td class="text-end">791.281</td><td class="text-end">5,8%</td><td class="text-end">692.266</td><td class="text-end">4,9%</td><td class="text-end">872.688</td><td class="text-end">7,5%</td><td class="text-end text-success">+26,1%</td></tr>
+                             <tr><td>Altri Crediti</td><td class="text-end">2.472.178</td><td class="text-end">18,2%</td><td class="text-end">2.384.167</td><td class="text-end">16,9%</td><td class="text-end">2.223.149</td><td class="text-end">19,2%</td><td class="text-end text-danger">-6,8%</td></tr>
+                             <tr><td>Liquidità</td><td class="text-end">568.187</td><td class="text-end">4,2%</td><td class="text-end">282.044</td><td class="text-end">2,0%</td><td class="text-end">24.900</td><td class="text-end">0,1%</td><td class="text-end text-danger">-91,2%</td></tr>
+                             <tr><td>Ratei e Risconti Attivi</td><td class="text-end">235.704</td><td class="text-end">1,7%</td><td class="text-end">171.962</td><td class="text-end">1,2%</td><td class="text-end">164.970</td><td class="text-end">1,4%</td><td class="text-end text-danger">-4,1%</td></tr>
+                             <tr class="table-primary fw-bold"><td>TOTALE ATTIVO</td><td class="text-end">13.591.094</td><td class="text-end">100%</td><td class="text-end">14.104.095</td><td class="text-end">100%</td><td class="text-end">11.645.699</td><td class="text-end">100%</td><td class="text-end text-danger">-17,4%</td></tr>
+                         </tbody>
+                         <thead class="table-light">
+                              <tr><th>FONTI</th><th class="text-end">12/2022</th><th class="text-end">%</th><th class="text-end">12/2023</th><th class="text-end">%</th><th class="text-end">12/2024</th><th class="text-end">%</th><th class="text-end">Δ 2023-24</th></tr>
+                         </thead>
+                         <tbody>
+                             <tr><td>Patrimonio Netto</td><td class="text-end">679.674</td><td class="text-end">5,0%</td><td class="text-end">697.712</td><td class="text-end">4,9%</td><td class="text-end">755.925</td><td class="text-end">6,5%</td><td class="text-end text-success">+8,3%</td></tr>
+                             <tr><td>Capitale Sociale</td><td class="text-end">10.000</td><td class="text-end">0,1%</td><td class="text-end">9.500</td><td class="text-end">0,1%</td><td class="text-end">8.500</td><td class="text-end">0,1%</td><td class="text-end text-danger">-10,5%</td></tr>
+                             <tr><td>Riserve</td><td class="text-end">631.903</td><td class="text-end">4,6%</td><td class="text-end">668.542</td><td class="text-end">4,7%</td><td class="text-end">687.621</td><td class="text-end">5,9%</td><td class="text-end text-success">+2,9%</td></tr>
+                             <tr><td>Utile/Perdita</td><td class="text-end">37.771</td><td class="text-end">0,3%</td><td class="text-end">19.670</td><td class="text-end">0,1%</td><td class="text-end">59.803</td><td class="text-end">0,5%</td><td class="text-end text-success">+204,0%</td></tr>
+                             <tr><td>Passività Consolidate</td><td class="text-end">2.915.978</td><td class="text-end">21,5%</td><td class="text-end">2.687.013</td><td class="text-end">19,0%</td><td class="text-end">190.987</td><td class="text-end">1,6%</td><td class="text-end text-danger">-92,9%</td></tr>
+                             <tr><td>Debiti MLT</td><td class="text-end">2.783.083</td><td class="text-end">20,5%</td><td class="text-end">2.534.795</td><td class="text-end">18,0%</td><td class="text-end">0</td><td class="text-end">0,0%</td><td class="text-end text-danger">-100,0%</td></tr>
+                             <tr><td>TFR e Fondi</td><td class="text-end">132.895</td><td class="text-end">1,0%</td><td class="text-end">152.218</td><td class="text-end">1,1%</td><td class="text-end">190.987</td><td class="text-end">1,6%</td><td class="text-end text-success">+25,5%</td></tr>
+                             <tr><td>Passività Correnti</td><td class="text-end">9.995.442</td><td class="text-end">73,5%</td><td class="text-end">10.719.370</td><td class="text-end">76,0%</td><td class="text-end">10.698.787</td><td class="text-end">91,9%</td><td class="text-end text-danger">-0,2%</td></tr>
+                             <tr><td>Debiti Finanziari BT</td><td class="text-end">3.898.965</td><td class="text-end">28,7%</td><td class="text-end">3.310.404</td><td class="text-end">23,5%</td><td class="text-end">5.246.154</td><td class="text-end">45,0%</td><td class="text-end text-danger">+58,5%</td></tr>
+                             <tr><td>Debiti Commerciali</td><td class="text-end">4.942.351</td><td class="text-end">36,4%</td><td class="text-end">5.655.785</td><td class="text-end">40,1%</td><td class="text-end">3.909.641</td><td class="text-end">33,6%</td><td class="text-end text-danger">-30,9%</td></tr>
+                             <tr><td>Altri Debiti + Ratei</td><td class="text-end">1.154.126</td><td class="text-end">8,5%</td><td class="text-end">1.753.181</td><td class="text-end">12,4%</td><td class="text-end">1.542.992</td><td class="text-end">13,3%</td><td class="text-end text-danger">-12,0%</td></tr>
+                             <tr class="table-primary fw-bold"><td>TOTALE PASSIVO</td><td class="text-end">13.591.094</td><td class="text-end">100%</td><td class="text-end">14.104.095</td><td class="text-end">100%</td><td class="text-end">11.645.699</td><td class="text-end">100%</td><td class="text-end text-danger">-17,4%</td></tr>
+                         </tbody>
+                     </table>
+                 </div>
+            </div>
+        </div>
+
+        <div class="card mb-4 report-section">
+             <div class="card-header"><h5 class="mb-0">2. Struttura degli Investimenti</h5></div>
+             <div class="card-body">
+                <p>La struttura degli investimenti evidenzia una <strong>concentrazione anomala nell'Attivo Fisso (48,0% del totale attivo)</strong>, superiore alla media settoriale del 35-40% per imprese di trasformazione alimentare.</p>
+                 <div class="row">
+                    <div class="col-lg-7 mb-3 mb-lg-0">
+                         <h6 class="text-center small">Grafico 3.3: Evoluzione Struttura Impieghi (€)</h6>
+                         <div class="chart-container" style="height: 350px;">
+                             <canvas id="investmentsStructureChart"></canvas>
+                         </div>
+                    </div>
+                     <div class="col-lg-5">
+                         <h6 class="mt-1">Analisi Composizione Impieghi 2024:</h6>
+                          <ul class="small list-unstyled">
+                             <li class="mb-2"><span class="icon-circle icon-circle-sm bg-icon-primary me-2"><i class="fas fa-building"></i></span><strong>Attivo Fisso (€5,61M):</strong> 48,0% del Tot. Impieghi. Riduzione -4,9% rispetto al 2023.</li>
+                             <li class="mb-2"><span class="icon-circle icon-circle-sm bg-icon-info me-2"><i class="fas fa-industry"></i></span><strong>Imm. Materiali (€5,05M):</strong> 90,0% dell'Attivo Fisso, riduzione -3,7% YoY.</li>
+                             <li class="mb-2"><span class="icon-circle icon-circle-sm bg-icon-warning me-2"><i class="fas fa-chart-line"></i></span><strong>Imm. Finanziarie (€0,37M):</strong> 6,7% dell'Attivo Fisso, forte riduzione -26,0% YoY.</li>
+                             <li class="mb-2"><span class="icon-circle icon-circle-sm bg-icon-secondary me-2"><i class="fas fa-sync-alt"></i></span><strong>Attivo Circolante (€5,85M):</strong> 50,6% del Tot. Impieghi. Contrazione del -27,2%. <span class="text-danger">Forte calo Liquidità (-91,2%) e Crediti (-41,2%).</span></li>
+                          </ul>
+                     </div>
+                 </div>
+             </div>
+        </div>
+
+        <div class="card mb-4 report-section">
+             <div class="card-header"><h5 class="mb-0">3. Struttura delle Fonti</h5></div>
+              <div class="card-body">
+                 <p>L'analisi delle fonti mostra <strong>squilibri patologici con predominanza assoluta del capitale di terzi (93,5% del totale passivo)</strong>. L'evoluzione temporale evidenzia un deterioramento progressivo.</p>
+                 <div class="row">
+                    <div class="col-lg-6 mb-3 mb-lg-0">
+                         <h6 class="text-center small">Grafico 3.4: Composizione Patrimonio Netto 2024 (%)</h6>
+                         <div class="chart-container" style="height: 300px;">
+                             <canvas id="equityCompositionChart"></canvas>
+                         </div>
+                         <h6 class="mt-3">Analisi Patrimonio Netto (€ 0,76M, +8,3%):</h6>
+                          <ul class="small list-unstyled">
+                             <li><i class="fas fa-arrow-up text-success me-1"></i> Utile in forte crescita (+204,0% YoY) a €59.803.</li>
+                             <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Incidenza su Fonti: <strong>6,5%</strong> (vs 4,9% 2023) <span class="status-badge bg-danger">Critico</span>.</li>
+                          </ul>
+                    </div>
+                     <div class="col-lg-6">
+                         <h6 class="text-center small">Grafico 3.5: Composizione Fonti Finanziarie 2024 (%)</h6>
+                         <div class="chart-container" style="height: 300px;">
+                             <canvas id="financialDebtChart"></canvas>
+                         </div>
+                          <h6 class="mt-3">Analisi Debiti Finanziari (€ 5,25M, +58,5%):</h6>
+                           <ul class="small list-unstyled">
+                              <li><i class="fas fa-arrow-up text-danger me-1"></i> Aumento significativo Debiti BT (+58,5%).</li>
+                              <li><i class="fas fa-arrow-down text-danger me-1"></i> Azzeramento Debiti MLT (-100%).</li>
+                              <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Incidenza Debiti su Fonti <strong>molto alta (45,0%)</strong> <span class="status-badge bg-danger">Critico</span>.</li>
+                           </ul>
+                     </div>
+                 </div>
+              </div>
+        </div>
+
+        <div class="card mb-4 report-section">
+             <div class="card-header"><h5 class="mb-0">4. Posizione Finanziaria Netta (PFN)</h5></div>
+             <div class="card-body">
+                 <p>La Posizione Finanziaria Netta (PFN) misura l'indebitamento finanziario netto dell'azienda.</p>
+                 <div class="row">
+                    <div class="col-lg-7 mb-3 mb-lg-0">
+                         <h6 class="mt-1">Tabella 4.1: Analisi PFN 2022-2024 (€)</h6>
+                         <div class="table-responsive">
+                             <table class="table table-sm table-striped table-hover">
+                                 <thead>
+                                     <tr><th>Componente</th><th class="text-end">12/2022</th><th class="text-end">12/2023</th><th class="text-end">12/2024</th><th class="text-end">Var% 23-24</th></tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr><td>Debiti finanziari a breve</td><td class="text-end">3.898.965</td><td class="text-end">3.310.404</td><td class="text-end">5.246.154</td><td class="text-end text-danger">+58,5%</td></tr>
+                                     <tr><td>Debiti finanziari a M/L termine</td><td class="text-end">2.783.083</td><td class="text-end">2.534.795</td><td class="text-end">0</td><td class="text-end text-success">-100,0%</td></tr>
+                                     <tr class="table-secondary"><td>Totale Debiti Finanziari</td><td class="text-end">6.682.048</td><td class="text-end">5.845.199</td><td class="text-end">5.246.154</td><td class="text-end text-success">-10,3%</td></tr>
+                                     <tr><td>(-) Liquidità</td><td class="text-end">568.187</td><td class="text-end">282.044</td><td class="text-end">24.900</td><td class="text-end text-danger">-91,2%</td></tr>
+                                     <tr class="table-danger fw-bold"><td>Posizione Finanziaria Netta (PFN)</td><td class="text-end">6.113.861</td><td class="text-end">5.563.155</td><td class="text-end">5.221.254</td><td class="text-end text-success">-6,2%</td></tr>
+                                     <tr class="border-top"><td colspan="5"><em>Indicatori correlati:</em></td></tr>
+                                     <tr><td>EBITDA</td><td class="text-end">-459.194</td><td class="text-end">623.613</td><td class="text-end">841.748</td><td class="text-end text-success">+35,0%</td></tr>
+                                     <tr><td>PFN/EBITDA (x)</td><td class="text-end">N/A</td><td class="text-end">8,92</td><td class="text-end">6,20</td><td class="text-end text-success">-30,5%</td></tr>
+                                     <tr><td>PFN/PN (x)</td><td class="text-end">8,99</td><td class="text-end">7,97</td><td class="text-end">6,91</td><td class="text-end text-success">-13,3%</td></tr>
+                                 </tbody>
+                             </table>
+                         </div>
+                    </div>
+                     <div class="col-lg-5">
+                         <h6 class="text-center small">Grafico 4.1: Evoluzione PFN e Componenti (€)</h6>
+                          <div class="chart-container" style="height: 300px;">
+                             <canvas id="pfnTrendChart"></canvas>
+                         </div>
+                         <h6 class="mt-3">Analisi PFN (Agricola Campidanese):</h6>
+                         <ul class="small list-unstyled">
+                             <li><i class="fas fa-arrow-down text-success me-1"></i> Valore Assoluto PFN in diminuzione (-6,2%), trend positivo.</li>
+                             <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Causato da <strong>forte calo Debiti MLT (-100%)</strong> ma con aumento Debiti BT (+58,5%).</li>
+                             <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Sostenibilità PFN/EBITDA: 6,20x (Critico > 4,5x).</li>
+                              <li><i class="fas fa-exclamation-triangle text-danger me-1"></i> Leva PFN/PN: 6,91x (Critico > 3,0x).</li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+         <div class="card mb-4 report-section">
+            <div class="card-header"><h5 class="mb-0">5. Indici di Solidità Patrimoniale</h5></div>
+             <div class="card-body">
+                 <p>Gli indici misurano la capacità di mantenere l'equilibrio finanziario nel medio-lungo termine.</p>
+                  <h6 class="mt-4">Tabella 5.1: Principali Indici di Solidità 2022-2024 (Agricola Campidanese)</h6>
+                  <div class="table-responsive">
+                     <table class="table table-sm table-striped table-hover">
+                         <thead class="table-light"><tr><th>Indice</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th>Valutazione 2024</th></tr></thead>
+                         <tbody>
+                             <tr><td>Copertura Immobilizzazioni</td><td class="text-end">0,64</td><td class="text-end">0,57</td><td class="text-end">0,13</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                             <tr><td>Indice Autonomia Finanziaria</td><td class="text-end">5,0%</td><td class="text-end">4,9%</td><td class="text-end">6,5%</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                             <tr><td>Leva Finanziaria (D/E)</td><td class="text-end">9,83</td><td class="text-end">8,38</td><td class="text-end">6,94</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                             <tr><td>Turnover (Ricavi/CIN)</td><td class="text-end">3,01</td><td class="text-end">3,29</td><td class="text-end">3,55</td><td><span class="status-badge bg-success">Ottimo</span></td></tr>
+                             <tr><td>Indice Struttura Primario</td><td class="text-end">0,12</td><td class="text-end">0,12</td><td class="text-end">0,13</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                             <tr><td>PFN/EBITDA</td><td class="text-end">N/A</td><td class="text-end">8,92</td><td class="text-end">6,20</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                         </tbody>
+                     </table>
+                 </div>
+                 <div class="row mt-3 small">
+                     <div class="col-md-6"><i class="fas fa-exclamation-triangle text-danger me-1"></i><strong>Copertura Immob. (0,13):</strong> Grave squilibrio strutturale (<<1).</div>
+                     <div class="col-md-6"><i class="fas fa-exclamation-triangle text-danger me-1"></i><strong>Autonomia Fin. (6,5%):</strong> Critica e insufficiente.</div>
+                     <div class="col-md-6"><i class="fas fa-exclamation-triangle text-danger me-1"></i><strong>Efficienza Investimenti:</strong> Turnover (3,55x) Ottimo, Leva D/E (6,94x) Critica.</div>
+                     <div class="col-md-6"><i class="fas fa-exclamation-triangle text-danger me-1"></i><strong>Struttura Primaria (0,13x):</strong> Critica (<<1x).</div>
+                 </div>
+             </div>
+        </div>
+
+        <div class="card summary-card mb-4 report-section">
+             <div class="card-body">
+                 <h5 class="card-title"><i class="fas fa-exclamation-circle text-danger me-2"></i>6. Conclusioni Analisi Patrimoniale (Agricola Campidanese)</h5>
+                 <p>L'analisi patrimoniale di Agricola Campidanese evidenzia una <strong>struttura gravemente squilibrata</strong>, con sottocapitalizzazione critica (6,5%), indebitamento eccessivo (D/E 6,94x) e grave disequilibrio strutturale (copertura immobilizzazioni 0,13).</p>
+                 <p>Il collasso della struttura finanziaria a medio-lungo termine (debiti MLT azzerati) e l'aumento dei debiti a breve (+58,5%) configurano un <strong>rischio di insolvenza tecnica</strong> nel breve periodo.</p>
+                 <p><strong>Aree di intervento urgente:</strong> <strong>ricapitalizzazione</strong> (minimo €2,5M), <strong>ristrutturazione del debito</strong> con consolidamento a MLT, <strong>ripristino liquidità</strong> (attualmente quasi azzerata).</p>
+                 <p class="mb-0"><strong>Priorità assoluta:</strong> Piano di risanamento patrimoniale con ingresso di nuovi soci o conversione di debito in equity per evitare default tecnico entro 6-12 mesi.</p>
+             </div>
+         </div>
+
+            <!-- ================================================================ -->
+            <!-- FINE CONTENUTO SPECIFICO PARTE 3 -->
+            <!-- ================================================================ -->
+
+        </div> <!-- /dashboard-container -->
+
+        <!-- Footer Standard V2 (Nessuna modifica necessaria) -->
+        <footer class="footer no-print"> <div class="container-fluid px-4"> <div class="row align-items-center"> <div class="col-md-6 text-center text-md-start mb-2 mb-md-0"> SCAN360 © <span id="currentYearFooterReport"></span> </div> <div class="col-md-6 text-center text-md-end"> Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a> <img src="../assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2"> </div> </div> </div> </footer>
+
+    </div> <!-- /main-wrapper -->
+
+    <!-- Script JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/charts_config.js"></script>
+    <script src="../js/report_init.js"></script>
+     <script>
+        document.getElementById('currentYearSidebar').textContent = new Date().getFullYear();
+        document.getElementById('currentYearFooterReport').textContent = new Date().getFullYear();
+
+         // Script aggiornamento badge IRP header
+         document.addEventListener('DOMContentLoaded', function() {
+             const irpScoreValue = 29.08; // Updated IRP Value
+             const irpHeaderBadge = document.getElementById('irp-header-badge');
+             if(irpHeaderBadge) {
+                 let badgeClass = 'bg-warning text-dark';
+                 if (irpScoreValue >= 71) badgeClass = 'bg-success'; // Basso
+                 else if (irpScoreValue < 51) badgeClass = 'bg-danger'; // Alto
+                 irpHeaderBadge.className = `badge ${badgeClass} me-3`;
+                 irpHeaderBadge.textContent = `IRP: ${irpScoreValue.toFixed(1)}`;
+             }
+
+             // Ensure logout function is defined
+             if (typeof logout !== 'function') {
+                 window.logout = function() {
+                    console.log("Logout action triggered (placeholder)");
+                }
+             }
+             // Ensure print function is defined
+             if (typeof printDocument !== 'function') {
+                window.printDocument = function() {
+                    window.print();
+                }
+             }
+         });
+    </script>
+     <!-- Script ChatNode -->
+<scan-chat data-bot-id="41eb2106-a80d-4845-a36f-fc7b8e03f87b"></scan-chat>
+<script src="../js/bundle.js"></script>
+</body>
+</html>

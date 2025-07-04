@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Economica e Benchmark - Agricola Campidanese | SCAN V9</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/print.css" rel="stylesheet" media="print">
+     <style>
+        .table-success-light { background-color: #d1e7dd !important; }
+        .table-warning-light { background-color: #fff3cd !important; }
+        .table-danger-light { background-color: #f8d7da !important; }
+     </style>
+</head>
+<body>
+
+ <!-- Sidebar -->
+    <aside class="sidebar no-print">
+        <div class="sidebar-header"> <img src="../assets/img/logo_scan.png" alt="SCAN Logo" style="max-height: 40px;"> <h5>Agricola Campidanese</h5> </div>
+        <ul class="sidebar-nav flex-grow-1">
+            <li class="nav-item"> <a class="nav-link" href="../dashboard_v2.html"> <i class="fas fa-tachometer-alt fa-fw"></i> Dashboard </a> </li>
+            <li class="nav-title">Analisi Dettagliata</li>
+            <li class="nav-item"> <a class="nav-link" href="parte1_sintesi.html"> <i class="fas fa-file-alt fa-fw"></i> Sintesi e Profilo </a> </li>
+            <li class="nav-item"> <a class="nav-link active" href="parte2_economico.html"> <i class="fas fa-balance-scale fa-fw"></i> Analisi Economica </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte3_patrimoniale.html"> <i class="fas fa-landmark fa-fw"></i> Analisi Patrimoniale </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte4_bancabilita.html"> <i class="fas fa-university fa-fw"></i> Bancabilità </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte5_circolante_flussi.html"> <i class="fas fa-sync-alt fa-fw"></i> Circolante e Flussi </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte6_rischi-raccomandazioni.html"> <i class="fas fa-exclamation-triangle fa-fw"></i> Rischi e Azioni </a> </li>
+            <li class="nav-title">Approfondimenti</li>
+            <li class="nav-item"> <a class="nav-link" href="irp_dettaglio.html"> <i class="fas fa-shield-alt fa-fw"></i> Dettaglio IRP </a> </li>
+        </ul>
+        <div class="sidebar-footer"> <small>SCAN360 © <span id="currentYearSidebar"></span> Kitzanos</small> </div>
+    </aside>
+
+
+    <!-- Contenuto Principale Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header Orizzontale -->
+        <header class="dashboard-header no-print">
+            <div class="header-title">
+                <h5 class="mb-0">Report Dettagliato: Analisi Economica e Benchmark</h5>
+                <p class="mb-0">Agricola Campidanese | <span class="report-date">31 Dicembre 2024</span></p>
+            </div>
+            <div class="header-controls d-flex align-items-center">
+                <span id="irp-header-badge" class="badge me-3"></span>
+                <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="printDocument()"> <i class="fas fa-print"></i> Stampa </button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user-circle me-1"></i> Agricola Campidanese </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton"> <li><button class="dropdown-item" type="button" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li> </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container d-none d-print-block mt-4 mb-4">
+            <h1 class="text-center mb-0"><span class="company-name">Agricola Campidanese</span></h1>
+            <p class="text-center mb-0">Report Dettagliato: Analisi Economica e Benchmark | <span class="report-date">31 Dicembre 2024</span></p>
+            <hr>
+        </div>
+
+        <!-- Area Contenuto Specifico del Report -->
+        <div class="dashboard-container">
+
+            <!-- ================================================================ -->
+            <!-- CONTENUTO SPECIFICO PARTE 2 - V9 - Updated for Agricola Campidanese -->
+            <!-- ================================================================ -->
+
+             <h2 class="section-title" id="economic-analysis"><i class="fas fa-balance-scale me-2"></i>SEZIONE 2.1: ANALISI ECONOMICA</h2>
+
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.1.1 Conto Economico Riclassificato</h5></div>
+                <div class="card-body">
+                    <p>Il conto economico riclassificato evidenzia la struttura dei costi e dei ricavi di Agricola Campidanese nel periodo 2022-2024, consentendo di valutare la redditività operativa e netta.</p>
+
+                     <h6 class="mt-4 text-center small">Grafico 2.1: Andamento Ricavi ed EBITDA 2022-2024 (€000 e %)</h6>
+                     <div class="chart-container mb-4" style="height: 350px;">
+                         <canvas id="economicTrendChart"></canvas>
+                     </div>
+
+                    <h6 class="mt-4">Tabella 2.1: Conto Economico Riclassificato 2022-2024 (valori in €)</h6>
+                     <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                             <thead class="table-light">
+                                 <tr><th>Voce</th><th class="text-end">2022</th><th class="text-end">% Ricavi</th><th class="text-end">2023</th><th class="text-end">% Ricavi</th><th class="text-end">2024</th><th class="text-end">% Ricavi</th><th class="text-end">Var. % 23-24</th></tr>
+                             </thead>
+                             <tbody>
+                                 <tr><td>Ricavi</td><td class="text-end">20.452.364</td><td class="text-end">100,0%</td><td class="text-end">20.620.546</td><td class="text-end">100,0%</td><td class="text-end">21.213.405</td><td class="text-end">100,0%</td><td class="text-success">+2,88%</td></tr>
+                                 <tr><td>- Acquisti e consumi</td><td class="text-end">-15.465.146</td><td class="text-end">-75,6%</td><td class="text-end">-15.759.276</td><td class="text-end">-76,4%</td><td class="text-end">-16.079.158</td><td class="text-end">-75,8%</td><td class="text-danger">+2,03%</td></tr>
+                                 <tr class="table-secondary"><td>= Valore Aggiunto su Consumi</td><td class="text-end">4.987.218</td><td class="text-end">24,4%</td><td class="text-end">4.861.270</td><td class="text-end">23,6%</td><td class="text-end">5.134.247</td><td class="text-end">24,2%</td><td class="text-success">+5,61%</td></tr>
+                                 <tr><td>- Costi variabili di produzione</td><td class="text-end">-3.171.257</td><td class="text-end">-15,5%</td><td class="text-end">-2.386.019</td><td class="text-end">-11,6%</td><td class="text-end">-2.446.694</td><td class="text-end">-11,5%</td><td class="text-danger">+2,54%</td></tr>
+                                 <tr class="table-secondary"><td>= Margine di Contribuzione</td><td class="text-end">1.815.961</td><td class="text-end">8,9%</td><td class="text-end">2.475.251</td><td class="text-end">12,0%</td><td class="text-end">2.687.553</td><td class="text-end">12,7%</td><td class="text-success">+8,58%</td></tr>
+                                 <tr><td>- Costi fissi</td><td class="text-end">-2.275.155</td><td class="text-end">-11,1%</td><td class="text-end">-1.851.638</td><td class="text-end">-9,0%</td><td class="text-end">-1.845.805</td><td class="text-end">-8,7%</td><td class="text-success">-0,31%</td></tr>
+                                 <tr class="table-success fw-bold"><td>= EBITDA</td><td class="text-end">-459.194</td><td class="text-end">-2,2%</td><td class="text-end">623.613</td><td class="text-end">3,0%</td><td class="text-end">841.748</td><td class="text-end">3,97%</td><td class="text-success">+34,98%</td></tr>
+                                 <tr><td>- Ammortamenti e svalutazioni</td><td class="text-end">-143.511</td><td class="text-end">-0,7%</td><td class="text-end">-439.985</td><td class="text-end">-2,1%</td><td class="text-end">-370.271</td><td class="text-end">-1,7%</td><td class="text-success">-15,84%</td></tr>
+                                 <tr class="table-secondary"><td>= EBIT</td><td class="text-end">-602.705</td><td class="text-end">-2,9%</td><td class="text-end">183.628</td><td class="text-end">0,9%</td><td class="text-end">471.477</td><td class="text-end">2,22%</td><td class="text-success">+156,84%</td></tr>
+                                 <tr><td>+/- Saldo Oneri/Ricavi Diversi</td><td class="text-end">849.354</td><td class="text-end">4,2%</td><td class="text-end">189.321</td><td class="text-end">0,9%</td><td class="text-end">-8.427</td><td class="text-end">-0,0%</td><td class="text-danger">-104,45%</td></tr>
+                                 <tr class="table-secondary"><td>= Margine Ante Gestione Fin.</td><td class="text-end">246.649</td><td class="text-end">1,2%</td><td class="text-end">372.949</td><td class="text-end">1,8%</td><td class="text-end">463.050</td><td class="text-end">2,2%</td><td class="text-success">+24,14%</td></tr>
+                                 <tr><td>+/- Gestione Finanziaria</td><td class="text-end">-206.671</td><td class="text-end">-1,0%</td><td class="text-end">-352.130</td><td class="text-end">-1,7%</td><td class="text-end">-403.246</td><td class="text-end">-1,9%</td><td class="text-danger">+14,52%</td></tr>
+                                 <tr class="table-secondary"><td>= Risultato Ante Imposte (EBT)</td><td class="text-end">39.978</td><td class="text-end">0,2%</td><td class="text-end">20.819</td><td class="text-end">0,1%</td><td class="text-end">59.803</td><td class="text-end">0,3%</td><td class="text-success">+187,29%</td></tr>
+                                 <tr><td>- Imposte</td><td class="text-end">-2.207</td><td class="text-end">-0,0%</td><td class="text-end">-1.149</td><td class="text-end">-0,0%</td><td class="text-end">0</td><td class="text-end">0,0%</td><td class="text-success">-100,00%</td></tr>
+                                 <tr class="table-success fw-bold"><td>= Utile/Perdita di esercizio</td><td class="text-end">37.771</td><td class="text-end">0,2%</td><td class="text-end">19.670</td><td class="text-end">0,1%</td><td class="text-end">59.803</td><td class="text-end">0,28%</td><td class="text-success">+204,06%</td></tr>
+                             </tbody>
+                         </table>
+                     </div>
+
+                    <h6 class="mt-4">Analisi del Conto Economico (Agricola Campidanese):</h6>
+                    <ol class="small">
+                        <li><strong>Ricavi:</strong> Crescita modesta (+2,88%) nel 2024 rispetto al 2023, confermando il trend positivo dopo la crescita dell'0,82% registrata nel 2023 rispetto al 2022.</li>
+                        <li><strong>Valore Aggiunto su Consumi:</strong> Incremento al 24,2% dei ricavi nel 2024 (+5,61% rispetto al 2023), indicativo di un miglioramento nell'efficienza nell'utilizzo delle materie prime, seppur con margini ancora contenuti rispetto al settore.</li>
+                        <li><strong>Margine di Contribuzione:</strong> Miglioramento significativo al 12,7% nel 2024 (vs 12,0% nel 2023), grazie principalmente alla riduzione dell'incidenza dei costi fissi.</li>
+                        <li><strong>EBITDA:</strong> Inversione di tendenza con valore positivo del 3,97% dei ricavi nel 2024, dopo la negatività del 2022 (-2,2%), segnalando un progressivo miglioramento dell'efficienza operativa.</li>
+                        <li><strong>Margine Ante Gestione Finanziaria:</strong> Consolidamento al 2,2% nel 2024 (+24,14% rispetto al 2023), nonostante l'inversione del saldo oneri/ricavi diversi di gestione.</li>
+                        <li><strong>Utile Netto:</strong> Triplicato rispetto al 2023, attestandosi allo 0,28% dei ricavi, valore ancora marginale ma indicativo di un percorso di risanamento in atto.</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.1.2 Analisi della Marginalità</h5></div>
+                 <div class="card-body">
+                    <p>L'analisi della marginalità valuta la capacità di generare valore aggiunto.</p>
+                    <div class="row">
+                        <div class="col-lg-7 mb-3 mb-lg-0">
+                            <h6 class="text-center small">Grafico 2.2: Evoluzione delle Principali Marginalità (%)</h6>
+                             <div class="chart-container" style="height: 350px;">
+                                 <canvas id="marginalityChart"></canvas>
+                             </div>
+                        </div>
+                         <div class="col-lg-5">
+                             <h6>Tabella 2.2: Evoluzione Indici di Marginalità (Agricola Campidanese)</h6>
+                             <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover">
+                                     <thead><tr><th>Indicatore</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th>Trend</th></tr></thead>
+                                     <tbody>
+                                         <tr><td>Valore Aggiunto/Ricavi</td><td class="text-end">24,4%</td><td class="text-end">23,6%</td><td class="text-end">24,2%</td><td class="text-success"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr><td>MdC/Ricavi</td><td class="text-end">8,9%</td><td class="text-end">12,0%</td><td class="text-end">12,7%</td><td class="text-success"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr><td>EBITDA/Ricavi</td><td class="text-end">-2,2%</td><td class="text-end">3,0%</td><td class="text-end">3,97%</td><td class="text-success"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr><td>ROS (EBIT/Ricavi)</td><td class="text-end">-2,9%</td><td class="text-end">0,9%</td><td class="text-end">2,22%</td><td class="text-success"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr><td>Utile Netto/Ricavi</td><td class="text-end">0,2%</td><td class="text-end">0,1%</td><td class="text-end">0,28%</td><td class="text-success"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr class="table-secondary"><td>Break-Even Point (€)</td><td class="text-end">N/D</td><td class="text-end">N/D</td><td class="text-end">16.71M</td><td><i class="fas fa-check text-success"></i></td></tr>
+                                         <tr class="table-secondary"><td>Margine Sicurezza</td><td class="text-end">N/D</td><td class="text-end">N/D</td><td class="text-end">21,25%</td><td><i class="fas fa-exclamation-triangle text-warning"></i></td></tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+                             <h6 class="mt-3">Break-Even e Leva Operativa (2024 - Agricola Campidanese)</h6>
+                             <div class="alert-box alert-info small mt-2 p-2">
+                                 <ul class="list-unstyled mb-0">
+                                     <li><i class="fas fa-bullseye me-1"></i> BEP: €16.705.159 | Margine Sicurezza: 21,25% (Limitato)</li>
+                                     <li><i class="fas fa-calculator me-1"></i> Moltiplicatore CF: 7,89</li>
+                                     <li><i class="fas fa-arrows-alt-v me-1"></i> Resistenza Calo Ricavi: -21,25% | Aumento CF: +21,25%</li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+
+            <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">2.1.3 Struttura e Dettaglio Principali Costi</h5></div>
+                 <div class="card-body">
+                     <p>Analisi delle principali voci di costo e loro incidenza.</p>
+                     <h6 class="mt-4">Tabella 2.3: Struttura dei Costi 2023-2024 (Agricola Campidanese)</h6>
+                      <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                            <thead class="table-light">
+                                <tr><th>Categoria di Costo</th><th class="text-end">2023 (€)</th><th class="text-end">% Ricavi</th><th class="text-end">2024 (€)</th><th class="text-end">% Ricavi</th><th>Var%</th><th>Benchmark</th><th>Valutazione</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Acquisti e consumi</td><td class="text-end">15.759.276</td><td class="text-end">76,4%</td><td class="text-end">16.079.158</td><td class="text-end">75,8%</td><td class="text-danger">+2,03%</td><td>55-60%</td><td><span class="status-badge bg-danger">Elevato</span></td></tr>
+                                <tr><td>Costi variabili prod.</td><td class="text-end">2.386.019</td><td class="text-end">11,6%</td><td class="text-end">2.446.694</td><td class="text-end">11,5%</td><td class="text-danger">+2,54%</td><td>15-18%</td><td><span class="status-badge bg-success">Efficiente</span></td></tr>
+                                <tr><td>Costo del personale</td><td class="text-end">1.641.841</td><td class="text-end">8,0%</td><td class="text-end">1.762.337</td><td class="text-end">8,31%</td><td class="text-danger">+7,34%</td><td>10-12%</td><td><span class="status-badge bg-success">Efficiente</span></td></tr>
+                                <tr><td>Altri costi fissi</td><td class="text-end">209.797</td><td class="text-end">1,0%</td><td class="text-end">83.468</td><td class="text-end">0,4%</td><td class="text-success">-60,21%</td><td>2-3%</td><td><span class="status-badge bg-warning">Da Verificare</span></td></tr>
+                                <tr><td>Ammortamenti</td><td class="text-end">417.905</td><td class="text-end">2,0%</td><td class="text-end">370.271</td><td class="text-end">1,7%</td><td class="text-success">-11,39%</td><td>3-5%</td><td><span class="status-badge bg-secondary">In linea</span></td></tr>
+                                <tr><td>Svalutazioni e acc.</td><td class="text-end">22.080</td><td class="text-end">0,1%</td><td class="text-end">0</td><td class="text-end">0,0%</td><td class="text-success">-100,00%</td><td>0,5-1%</td><td><span class="status-badge bg-warning">Assenti</span></td></tr>
+                                <tr><td>Oneri diversi</td><td class="text-end">111.800</td><td class="text-end">0,5%</td><td class="text-end">214.076</td><td class="text-end">1,0%</td><td class="text-danger">+91,48%</td><td>2-3%</td><td><span class="status-badge bg-secondary">In linea</span></td></tr>
+                                <tr><td>Oneri finanziari</td><td class="text-end">353.127</td><td class="text-end">1,7%</td><td class="text-end">391.786</td><td class="text-end">1,8%</td><td class="text-danger">+10,94%</td><td>1-2%</td><td><span class="status-badge bg-warning">Limite</span></td></tr>
+                            </tbody>
+                         </table>
+                     </div>
+                     <h6 class="mt-4">Approfondimento (Agricola Campidanese):</h6>
+                     <ul class="small">
+                          <li><strong>Acquisti e consumi (75,8%):</strong> L'incidenza del 75,8% dei ricavi è significativamente superiore al benchmark di settore (55-60%), evidenziando inefficienze nell'approvvigionamento e una scarsa capacità di negoziazione con i fornitori.</li>
+                          <li><strong>Costi variabili (11,5%):</strong> L'incidenza dell'11,5% è inferiore al benchmark di settore (15-18%), suggerendo una struttura produttiva relativamente efficiente.</li>
+                          <li><strong>Personale (8,31%):</strong> L'incidenza dell'8,3% è inferiore al benchmark di settore (10-12%), indicando un'efficienza nella gestione delle risorse umane o possibili sottodimensionamenti organici.</li>
+                          <li><strong>Altri costi fissi:</strong> La riduzione significativa (-60,21%) evidenzia un processo di razionalizzazione in corso.</li>
+                          <li><strong>Oneri finanziari (1,8%):</strong> L'incidenza dell'1,8% dei ricavi è allineata al benchmark di settore, ma riflette comunque una struttura finanziaria ancora fragile.</li>
+                     </ul>
+                 </div>
+            </div>
+
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.1.4 Indici di Redditività</h5></div>
+                 <div class="card-body">
+                     <p>Analisi della capacità di generare ritorni adeguati.</p>
+                      <div class="row">
+                         <div class="col-lg-7 mb-3 mb-lg-0">
+                             <h6>Tabella 2.4: Indici di Redditività 2022-2024 (Agricola Campidanese)</h6>
+                              <div class="table-responsive">
+                                 <table class="table table-sm table-striped table-hover">
+                                     <thead class="table-light"><tr><th>Indice</th><th>Formula</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th>Soglia</th><th>Valutazione</th></tr></thead>
+                                     <tbody>
+                                         <tr><td>ROE</td><td>Utile/PN</td><td class="text-end">5,56%</td><td class="text-end">2,82%</td><td class="text-end">7,91%</td><td>6-8%</td><td><span class="status-badge bg-success">Adeguato</span></td></tr>
+                                         <tr><td>ROI</td><td>EBIT/CIN</td><td class="text-end">-8,87%</td><td class="text-end">2,93%</td><td class="text-end">7,89%</td><td>6-8%</td><td><span class="status-badge bg-success">In miglioramento</span></td></tr>
+                                         <tr><td>ROS</td><td>EBIT/Ricavi</td><td class="text-end">-2,9%</td><td class="text-end">0,9%</td><td class="text-end">2,2%</td><td>5-7%</td><td><span class="status-badge bg-danger">Insufficiente</span></td></tr>
+                                         <tr><td>EBITDA Margin</td><td>EBITDA/Ricavi</td><td class="text-end">-2,2%</td><td class="text-end">3,0%</td><td class="text-end">3,97%</td><td>8-10%</td><td><span class="status-badge bg-danger">Insufficiente</span></td></tr>
+                                         <tr><td>Utile Netto/Ricavi</td><td>Utile/Ricavi</td><td class="text-end">0,2%</td><td class="text-end">0,1%</td><td class="text-end">0,28%</td><td>3-4%</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                         <tr><td>Asset Turnover</td><td>Ricavi/CIN</td><td class="text-end">3,01</td><td class="text-end">3,29</td><td class="text-end">3,55</td><td>1,5-2,0</td><td><span class="status-badge bg-success">Ottimo</span></td></tr>
+                                         <tr><td>Cash Flow Op./Ricavi</td><td>CFO/Ricavi</td><td class="text-end">3,09%</td><td class="text-end">6,11%</td><td class="text-end">2,00%</td><td>6-8%</td><td><span class="status-badge bg-danger">Insufficiente</span></td></tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+                         </div>
+                          <div class="col-lg-5">
+                              <h6 class="text-center small">Grafico 2.3: Andamento Redditività (%)</h6>
+                              <div class="chart-container" style="height: 280px;"> <canvas id="profitabilityIndicesChart"></canvas> </div>
+                         </div>
+                     </div>
+                      <h6 class="mt-4">Analisi (Agricola Campidanese):</h6>
+                      <ul class="small">
+                          <li><strong>ROI (Return on Investment):</strong> Il valore del 7,89% nel 2024, in netto miglioramento rispetto agli anni precedenti, si colloca nella fascia positiva del benchmark di settore, indicando un recupero della capacità di generare rendimento dal capitale investito.</li>
+                          <li><strong>ROE (Return on Equity):</strong> Il 7,91% nel 2024 rappresenta una remunerazione adeguata del capitale proprio, in linea con la media di settore, dopo il calo registrato nel 2023.</li>
+                          <li><strong>ROS (Return on Sales):</strong> Il 2,2% nel 2024, seppur in miglioramento, rimane significativamente inferiore al benchmark di settore, evidenziando margini commerciali ancora compressi.</li>
+                          <li><strong>Asset Turnover:</strong> L'indice di 3,55 evidenzia un'eccellente efficienza nell'utilizzo delle risorse investite, superiore al benchmark di settore.</li>
+                          <li><strong>Cash Flow Operativo/Ricavi:</strong> Il valore del 2,00% nel 2024 indica una limitata capacità di conversione dei ricavi in flussi di cassa operativi, inferiore al benchmark di settore.</li>
+                      </ul>
+                 </div>
+            </div>
+
+             <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.1.5 Effetto Leva Finanziaria</h5></div>
+                 <div class="card-body">
+                     <p>Valutazione dell'impatto dell'indebitamento sulla redditività del capitale proprio.</p>
+                      <div class="row">
+                          <div class="col-lg-7 mb-3 mb-lg-0">
+                              <h6>Tabella 2.5: Analisi Effetto Leva 2022-2024 (Agricola Campidanese)</h6>
+                              <div class="table-responsive">
+                                 <table class="table table-sm table-striped table-hover">
+                                      <thead><tr><th>Componente</th><th>Formula</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th></tr></thead>
+                                      <tbody>
+                                          <tr><td>ROI</td><td>EBIT/CIN</td><td class="text-end">-8,87%</td><td class="text-end">2,93%</td><td class="text-end">7,89%</td></tr>
+                                          <tr><td>Costo medio debito (i)</td><td>Oneri Fin./Debiti Fin.</td><td class="text-end">3,10%</td><td class="text-end">6,04%</td><td class="text-end">7,47%</td></tr>
+                                          <tr><td>Rapporto D/E</td><td>Debiti Fin./PN</td><td class="text-end">9,84</td><td class="text-end">8,38</td><td class="text-end">6,94</td></tr>
+                                          <tr class="table-secondary"><td>Spread (ROI-i)</td><td>ROI - i</td><td class="text-end text-danger">-11,97%</td><td class="text-end text-danger">-3,11%</td><td class="text-end text-success">+0,42%</td></tr>
+                                          <tr class="table-secondary"><td>Effetto Leva</td><td>(ROI-i) × D/E</td><td class="text-end text-danger">-117,77%</td><td class="text-end text-danger">-26,06%</td><td class="text-end text-success">+2,92%</td></tr>
+                                          <tr><td>ROE calcolato</td><td>ROI + Effetto Leva</td><td class="text-end">-126,64%</td><td class="text-end">-23,13%</td><td class="text-end">10,81%</td></tr>
+                                          <tr class="fw-bold"><td>ROE effettivo</td><td>Utile Netto/PN</td><td class="text-end">5,56%</td><td class="text-end">2,82%</td><td class="text-end">7,91%</td></tr>
+                                      </tbody>
+                                 </table>
+                              </div>
+                          </div>
+                          <div class="col-lg-5">
+                               <h6 class="text-center small">Grafico 2.4: Confronto ROI vs ROE (%)</h6>
+                               <div class="chart-container" style="height: 250px;"> <canvas id="leverageChart"></canvas> </div>
+                                <h6 class="mt-4">Analisi Leva (Agricola Campidanese):</h6>
+                               <ul class="small list-unstyled">
+                                   <li><i class="fas fa-check-circle text-success me-1"></i> Spread (ROI-i) positivo per la prima volta nel 2024 (+0,42%).</li>
+                                   <li><i class="fas fa-check-circle text-success me-1"></i> Effetto Leva positivo (+2,92% sul ROE).</li>
+                                   <li><i class="fas fa-arrow-down text-success me-1"></i> Leva D/E in miglioramento (da 8,38 a 6,94) ma ancora eccessiva.</li>
+                                   <li><i class="fas fa-exclamation-circle text-warning me-1"></i> ROE Effettivo < Teorico (probabile impatto negativo componenti straordinarie).</li>
+                               </ul>
+                          </div>
+                      </div>
+                 </div>
+            </div>
+
+             <h2 class="section-title mt-5" id="benchmark"><i class="fas fa-chart-bar me-2"></i>SEZIONE 2.2: BENCHMARK E POSIZIONAMENTO COMPETITIVO</h2>
+
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.2.1 Posizionamento Competitivo</h5></div>
+                 <div class="card-body">
+                     <p>Valutazione della performance rispetto al settore "Lavorazione e conservazione di frutta e ortaggi".</p>
+                     <div class="row">
+                         <div class="col-lg-7 mb-3 mb-lg-0">
+                              <h6 class="text-center small">Grafico 2.5: Posizionamento Competitivo (Base 100 = Media Settore)</h6>
+                             <div class="chart-container" style="height: 350px;"> <canvas id="benchmarkRadarChart"></canvas>
+                                 <script>
+                                     document.addEventListener('DOMContentLoaded', function() {
+                                         const ctxBenchmarkRadar = document.getElementById('benchmarkRadarChart');
+
+                                         if (ctxBenchmarkRadar) {
+                                             try {
+                                                  const benchmarkRadarData = {
+                                                     labels: ["Crescita Ricavi", "EBITDA Margin", "ROI", "Turnover", "Costo Personale (inv)", "PFN/EBITDA (inv)", "D/E (inv)"],
+                                                     datasets: [
+                                                         {
+                                                             label: "Agricola Campidanese",
+                                                             data: [105, 50, 99, 238, 144, 48, 27],
+                                                             backgroundColor: "rgba(25, 25, 112, 0.3)",
+                                                             borderColor: "rgba(25, 25, 112, 1)",
+                                                             borderWidth: 2, pointBackgroundColor: "rgba(25, 25, 112, 1)", pointBorderColor: "#fff",
+                                                             pointHoverBackgroundColor: "#fff", pointHoverBorderColor: "rgba(25, 25, 112, 1)"
+                                                         },
+                                                         {
+                                                             label: "Media Settore",
+                                                             data: [100, 100, 100, 100, 100, 100, 100],
+                                                             backgroundColor: "rgba(217, 140, 0, 0.3)",
+                                                             borderColor: "rgba(217, 140, 0, 1)",
+                                                             borderWidth: 2, pointBackgroundColor: "rgba(217, 140, 0, 1)", pointBorderColor: "#fff",
+                                                             pointHoverBackgroundColor: "#fff", pointHoverBorderColor: "rgba(217, 140, 0, 1)"
+                                                         }
+                                                     ]
+                                                 };
+
+                                                 const benchmarkRadarOptions = {
+                                                     responsive: true,
+                                                     maintainAspectRatio: false,
+                                                       scales: {
+                                                          r: {
+                                                              angleLines: { color: '#e0e0e0' }, grid: { color: '#e0e0e0' },
+                                                              pointLabels: { font: { size: 10 } },
+                                                              ticks: {
+                                                                  backdropColor: 'rgba(255, 255, 255, 0.75)', font: { size: 9 },
+                                                                  maxTicksLimit: 5,
+                                                              },
+                                                              suggestedMin: 0,
+                                                          }
+                                                       },
+                                                       plugins: {
+                                                            legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15, font: { size: 11 } } },
+                                                            title: { display: false },
+                                                            tooltip: {
+                                                                backgroundColor: 'rgba(0, 0, 0, 0.8)', titleFont: { weight: 'bold', size: 13 },
+                                                                bodyFont: { size: 12 }, padding: 10, cornerRadius: 4, displayColors: true, boxPadding: 4,
+                                                                callbacks: {
+                                                                    label: function(context) {
+                                                                        let label = context.dataset.label || '';
+                                                                        if (label) label += ': ';
+                                                                        if (context.parsed.r !== null) { label += context.parsed.r.toFixed(1); }
+                                                                        else { label += 'N/D'; }
+                                                                        return label;
+                                                                    }
+                                                                }
+                                                            }
+                                                       },
+                                                       animation: { duration: 400 }
+                                                 };
+
+                                                 const existingChart = Chart.getChart(ctxBenchmarkRadar);
+                                                 if (existingChart instanceof Chart) {
+                                                     existingChart.destroy();
+                                                 }
+
+                                                 new Chart(ctxBenchmarkRadar, {
+                                                     type: 'radar',
+                                                     data: benchmarkRadarData,
+                                                     options: benchmarkRadarOptions
+                                                 });
+                                                 console.log("Grafico benchmarkRadarChart inizializzato direttamente in HTML.");
+
+                                             } catch (error) {
+                                                 console.error("Errore inizializzazione grafico benchmarkRadarChart in HTML:", error);
+                                                  const ctx = ctxBenchmarkRadar.getContext('2d');
+                                                   if (ctx) {
+                                                       ctx.clearRect(0, 0, ctxBenchmarkRadar.width, ctxBenchmarkRadar.height);
+                                                       ctx.font = '14px Titillium Web, sans-serif';
+                                                       ctx.fillStyle = '#dc3545';
+                                                       ctx.textAlign = 'center';
+                                                       ctx.fillText('Errore durante il caricamento del grafico.', ctxBenchmarkRadar.width / 2, ctxBenchmarkRadar.height / 2);
+                                                   }
+                                             }
+                                         } else {
+                                              console.warn("Canvas 'benchmarkRadarChart' non trovato.");
+                                         }
+                                     });
+                                 </script>
+                                 </div>
+                         </div>
+                         <div class="col-lg-5">
+                              <h6>Tabella 2.6: Posizionamento Competitivo 2024 (Agricola Campidanese)</h6>
+                              <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover">
+                                    <thead><tr><th>Indicatore</th><th>Agricola Camp.</th><th>Media Sett.</th><th>Gap</th><th>Valutazione</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Crescita ricavi</td><td>+2,88%</td><td>+3-5%</td><td class="text-danger">-1,6%</td><td><span class="status-badge bg-secondary">Stabile</span></td></tr>
+                                        <tr><td>EBITDA Margin</td><td>3,97%</td><td>8-10%</td><td class="text-danger">-5,0%</td><td><span class="status-badge bg-danger">Inferiore</span></td></tr>
+                                        <tr><td>ROS</td><td>2,2%</td><td>5-7%</td><td class="text-danger">-3,8%</td><td><span class="status-badge bg-danger">Inferiore</span></td></tr>
+                                        <tr><td>Turnover</td><td>3,55</td><td>1,5-2,0</td><td class="text-success">+2,05</td><td><span class="status-badge bg-success">Ottimo</span></td></tr>
+                                        <tr><td>Costo personale/Ricavi</td><td>8,3%</td><td>10-12%</td><td class="text-success">+2,7%</td><td><span class="status-badge bg-success">Efficiente</span></td></tr>
+                                        <tr><td>PFN/EBITDA</td><td>6,20</td><td>3,0-4,0</td><td class="text-danger">+2,7</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                        <tr><td>Leva D/E</td><td>6,94</td><td>1,5-2,0</td><td class="text-danger">+5,44</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                        <tr><td>Ciclo Circolante</td><td>-8 gg</td><td>30-60 gg</td><td class="text-success">+45 gg</td><td><span class="status-badge bg-success">Positivo</span></td></tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                         </div>
+                     </div>
+                      <h6 class="mt-4">Analisi posizionamento (Agricola Campidanese):</h6>
+                      <p class="small mb-0">AGRICOLA CAMPIDANESE presenta un posizionamento competitivo complesso, caratterizzato da redditività operativa (EBITDA Margin) significativamente inferiore alla media di settore, struttura finanziaria critica con elevato livello di indebitamento, efficienza superiore nella gestione del capitale circolante, con tempi di incasso e rotazione scorte migliori del benchmark, e produttività del personale superiore alla media, evidenziata dalla bassa incidenza del costo del lavoro sui ricavi. La società si colloca in una fase di transizione, con performance operative in miglioramento ma ancora distanti dai best performer del settore.</p>
+                 </div>
+            </div>
+
+             <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">2.2.2 Gap Analysis vs Best Practice</h5></div>
+                  <div class="card-body">
+                     <p>Identificazione aree di miglioramento rispetto alle best practice.</p>
+                     <h6 class="mt-4">Tabella 2.7: Gap Analysis 2024 (Agricola Campidanese)</h6>
+                      <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                            <thead class="table-light"> <tr><th>Area</th><th>Indicatore</th><th>Valore Attuale</th><th>Best Practice</th><th>Gap</th><th>Impatto Potenziale</th><th>Priorità</th></tr></thead>
+                             <tbody>
+                                <tr><td>Redditività</td><td>EBITDA Margin</td><td>3,97%</td><td>8-10%</td><td class="text-danger">-5,0%</td><td>€1.060K EBITDA perso</td><td><span class="status-badge bg-danger">Alta</span></td></tr>
+                                <tr><td>Struttura Finanziaria</td><td>D/E Ratio</td><td>6,94</td><td>< 2,0</td><td class="text-danger">-5,44</td><td>€100K oneri extra</td><td><span class="status-badge bg-danger">Alta</span></td></tr>
+                                <tr><td>Sostenibilità Debito</td><td>PFN/EBITDA</td><td>6,20</td><td>< 3,5</td><td class="text-danger">-2,7</td><td>Rischio default</td><td><span class="status-badge bg-danger">Alta</span></td></tr>
+                                <tr><td>Liquidità</td><td>Liquidità/Ricavi</td><td>0,12%</td><td>> 2-3%</td><td class="text-danger">-2,4%</td><td>Tensione tesoreria</td><td><span class="status-badge bg-danger">Alta</span></td></tr>
+                                <tr><td>Efficienza</td><td>Costo personale/Ricavi</td><td>8,3%</td><td>10-12%</td><td class="text-success">+2,7%</td><td>€570K risparmiati</td><td><span class="status-badge bg-success">Mantenere</span></td></tr>
+                                <tr><td>Capitale Circolante</td><td>Ciclo circolante</td><td>-8 gg</td><td>30-60 gg</td><td class="text-success">+45 gg</td><td>€2.0M finanziamento</td><td><span class="status-badge bg-warning">Monitorare</span></td></tr>
+                             </tbody>
+                         </table>
+                     </div>
+                  </div>
+             </div>
+
+             <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">2.2.3 Azioni di Miglioramento Suggerite</h5></div>
+                  <div class="card-body">
+                      <h6 class="mt-4">Tabella 2.8: Piano di Azione Economico (Sintesi - Agricola Campidanese)</h6>
+                      <div class="table-responsive">
+                          <table class="table table-sm table-hover action-table">
+                              <thead class="table-light"><tr><th><i class="fas fa-flag me-1"></i> Area</th><th><i class="fas fa-wrench me-1"></i> Azione Suggerita</th><th><i class="fas fa-chart-line me-1"></i> Effetti Previsti</th><th><i class="fas fa-coins me-1"></i> Net Benefit Stimato</th></tr></thead>
+                              <tbody>
+                                  <tr><td>Marginalità</td><td>Ottimizzazione del mix produttivo verso referenze a maggior valore aggiunto</td><td>Incremento marginalità operativa</td><td class="text-success">+2-3% EBITDA margin (400-600k €)</td></tr>
+                                  <tr><td>Costi Acquisti</td><td>Rinegoziazione contratti fornitori e aggregazione volumi acquisto</td><td>Riduzione costo materie prime</td><td class="text-success">-2% sui costi (320k €)</td></tr>
+                                  <tr><td>Struttura Finanziaria</td><td>Piano di ricapitalizzazione e/o conversione debito in equity</td><td>Riduzione leverage e oneri finanziari</td><td class="text-success">D/E target 3,0 (-100k € oneri)</td></tr>
+                                  <tr><td>Liquidità</td><td>Accelerazione incassi e ottimizzazione gestione tesoreria</td><td>Incremento buffer liquidità</td><td class="text-success">+400-500k € liquidità</td></tr>
+                                  <tr><td>Crescita Ricavi</td><td>Sviluppo canali distributivi alternativi e penetrazione nuovi mercati</td><td>Accelerazione crescita organica</td><td class="text-success">+5-7% ricavi (1,0-1,5 Mln €)</td></tr>
+                              </tbody>
+                          </table>
+                      </div>
+                       <p class="small mt-3 text-muted">L'implementazione di queste azioni potrebbe migliorare l'EBITDA di ~€900K e ridurre significativamente il rischio finanziario.</p>
+                  </div>
+             </div>
+
+            <div class="card summary-card mb-4 report-section">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-check-circle text-primary me-2"></i>Conclusioni Analisi Economica e Benchmark (Agricola Campidanese)</h5>
+                     <p>AGRICOLA CAMPIDANESE presenta un profilo economico-finanziario in fase di miglioramento ma ancora caratterizzato da criticità strutturali. La redditività operativa insufficiente, combinata con una struttura finanziaria squilibrata e tensioni di liquidità, richiede interventi urgenti e coordinati.</p>
+                     <p>Le priorità di intervento dovrebbero focalizzarsi su: 1) Miglioramento della marginalità attraverso ottimizzazione del mix produttivo e riduzione dell'incidenza degli acquisti; 2) Riequilibrio della struttura finanziaria attraverso ricapitalizzazione o ristrutturazione del debito; 3) Rafforzamento della posizione di liquidità per garantire la continuità operativa.</p>
+                     <p>L'eccellente gestione del capitale circolante rappresenta un punto di forza da preservare e valorizzare, evitando tensioni eccessive nei rapporti con i fornitori che potrebbero compromettere questo vantaggio competitivo.</p>
+                </div>
+            </div>
+
+
+            <!-- ================================================================ -->
+            <!-- FINE CONTENUTO SPECIFICO PARTE 2 -->
+            <!-- ================================================================ -->
+
+        </div> <!-- /dashboard-container -->
+
+        <!-- Footer Standard V2 (Nessuna modifica necessaria) -->
+        <footer class="footer no-print"> <div class="container-fluid px-4"> <div class="row align-items-center"> <div class="col-md-6 text-center text-md-start mb-2 mb-md-0"> SCAN360 © <span id="currentYearFooterReport"></span> </div> <div class="col-md-6 text-center text-md-end"> Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a> <img src="../assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2"> </div> </div> </div> </footer>
+
+    </div> <!-- /main-wrapper -->
+
+    <!-- Script JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/charts_config.js"></script>
+    <script src="../js/report_init.js"></script>
+     <script>
+        document.getElementById('currentYearSidebar').textContent = new Date().getFullYear();
+        document.getElementById('currentYearFooterReport').textContent = new Date().getFullYear();
+
+         // Script aggiornamento badge IRP header
+         document.addEventListener('DOMContentLoaded', function() {
+             const irpScoreValue = 29.08;
+             const irpHeaderBadge = document.getElementById('irp-header-badge');
+             if(irpHeaderBadge) {
+                 let badgeClass = 'bg-warning text-dark';
+                 if (irpScoreValue >= 71) badgeClass = 'bg-success';
+                 else if (irpScoreValue < 51) badgeClass = 'bg-danger';
+                 irpHeaderBadge.className = `badge ${badgeClass} me-3`;
+                 irpHeaderBadge.textContent = `IRP: ${irpScoreValue.toFixed(1)}`;
+             }
+
+              // Ensure logout function is defined
+             if (typeof logout !== 'function') {
+                 window.logout = function() {
+                    console.log("Logout action triggered (placeholder)");
+                }
+             }
+             // Ensure print function is defined
+             if (typeof printDocument !== 'function') {
+                window.printDocument = function() {
+                    window.print();
+                }
+             }
+         });
+    </script>
+     <!-- Script ChatNode -->
+<scan-chat data-bot-id="41eb2106-a80d-4845-a36f-fc7b8e03f87b"></scan-chat>
+<script src="../js/bundle.js"></script>
+</body>
+</html>
