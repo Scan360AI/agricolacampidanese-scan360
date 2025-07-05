@@ -1,211 +1,144 @@
 /**
- * SCAN - Strategic Corporate Analysis Navigator
- * Funzioni comuni JS
- * Versione 1.2 - Robusta
+ * SCAN360 - Common.js
+ * File JavaScript comune con funzioni di utilità condivise tra tutte le pagine
  */
+
+// ======================================================================
+// UTILITY FUNZIONI
+// ======================================================================
 
 /**
- * Funzione per gestire il login (base)
- * @param {Event} event - Evento submit del form
+ * Formatta un valore come valuta in Euro
+ * @param {number} value - Valore da formattare
+ * @param {boolean} compact - Se true, formatta in modo compatto (K, M)
+ * @returns {string} Valore formattato
  */
-function handleLogin(event) {
-    if (event) event.preventDefault();
-    const usernameInput = document.getElementById('username');
-    const passwordInput = document.getElementById('password');
-
-    if (!usernameInput || !passwordInput) {
-        console.error("Elementi username o password non trovati nel form.");
-        alert('Errore nel form di login.');
-        return false;
+function formatCurrency(value, compact = false) {
+    if (value === null || value === undefined || isNaN(value)) {
+        return 'N/D';
     }
-
-    const username = usernameInput.value;
-    const password = passwordInput.value;
-
-    // --- VALIDAZIONE CREDENZIALI ---
-    // Sostituisci questa logica con una verifica sicura se necessario.
-    // Accetta le credenziali predefinite o qualsiasi coppia per la demo.
-    if ((username === 'AdminCalcidrata' && password === 'Calcidrata2025') || (username && password)) {
-        console.log('Login successful per', username);
-        // Salva stato login (localStorage è per demo, NON sicuro per produzione)
-        try {
-            localStorage.setItem('scanUserLoggedIn', 'true');
-            localStorage.setItem('scanUsername', username);
-            window.location.href = 'index.html'; // Reindirizza alla dashboard principale
-        } catch (e) {
-            console.error("Errore durante il salvataggio in localStorage:", e);
-            alert("Impossibile salvare lo stato del login. Verifica le impostazioni del browser.");
+    
+    if (compact) {
+        if (Math.abs(value) >= 1000000) {
+            return (value / 1000000).toFixed(1) + ' M€';
         }
-    } else {
-        alert('Credenziali non valide. Riprova.');
-        try {
-            localStorage.removeItem('scanUserLoggedIn');
-            localStorage.removeItem('scanUsername');
-        } catch (e) {
-             console.error("Errore durante la rimozione da localStorage:", e);
+        if (Math.abs(value) >= 1000) {
+            return (value / 1000).toFixed(0) + ' K€';
         }
+        return value.toFixed(0) + ' €';
     }
-    return false; // Previene il submit standard del form
+    
+    // Formattazione estesa
+    return new Intl.NumberFormat('it-IT', {
+        style: 'currency',
+        currency: 'EUR',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0
+    }).format(value);
 }
 
 /**
- * Funzione per gestire il logout
+ * Formatta una percentuale
+ * @param {number} value - Valore da formattare
+ * @param {number} decimals - Numero di decimali (default: 1)
+ * @returns {string} Valore percentuale formattato
  */
-function logout() {
-    console.log("Logout in corso...");
-    try {
-        // Rimuovi stato login
-        localStorage.removeItem('scanUserLoggedIn');
-        localStorage.removeItem('scanUsername');
-        // Reindirizza alla pagina di login
-        window.location.href = '../login-page.html';
-    } catch (e) {
-        console.error("Errore durante il logout:", e);
-        // Anche se c'è un errore nel localStorage, prova a reindirizzare
-        window.location.href = 'login-page.html';
+function formatPercent(value, decimals = 1) {
+    if (value === null || value === undefined || isNaN(value)) {
+        return 'N/D';
     }
+    return value.toFixed(decimals) + '%';
 }
 
+// ======================================================================
+// GESTIONE UTENTE E AUTENTICAZIONE
+// ======================================================================
+
 /**
- * Funzione per verificare se l'utente è loggato
- * **NOTA: Controllo base e NON sicuro per produzione.**
- * In un'applicazione reale, usare token JWT o sessioni server-side.
+ * Controlla lo stato del login dell'utente
+ * @returns {boolean} True se l'utente è loggato, false altrimenti
  */
 function checkLoginStatus() {
-    let loggedIn = false;
-    try {
-        loggedIn = localStorage.getItem('scanUserLoggedIn') === 'true';
-    } catch (e) {
-        console.error("Impossibile accedere a localStorage:", e);
-        // Considera l'utente non loggato se localStorage non è accessibile
+    // Verifica basica presenza del token
+    const token = localStorage.getItem('scan_token');
+    const isLoggedIn = token !== null;
+    
+    // Pagina di login?
+    const isLoginPage = window.location.pathname.includes('login.html');
+    
+    // Redirect alla pagina di login se non autenticato (eccetto login page)
+    if (!isLoggedIn && !isLoginPage && !window.location.pathname.includes('demo')) {
+        console.log("Utente non autenticato, redirect a login");
+        window.location.href = 'login.html';
+        return false;
     }
-
-    // Se non siamo sulla pagina di login E l'utente NON risulta loggato, reindirizza
-    if (!window.location.pathname.endsWith('login-page.html') && !loggedIn) {
-        console.warn("Utente non loggato o stato perso. Reindirizzamento al login.");
-        // ATTENZIONE: Decommenta la riga seguente per attivare il controllo effettivo
-        // window.location.href = 'login-page.html';
-        console.log("Controllo login disattivato per debug. Riattivare decommentando la linea sopra."); // Messaggio per debug
-    } else if (loggedIn) {
-        // console.log(`Utente loggato: ${localStorage.getItem('scanUsername')}`); // Log meno invadente
+    
+    // Aggiorna eventuale UI per utente loggato
+    if (isLoggedIn) {
+        updateLoggedInUI();
     }
+    
+    return isLoggedIn;
 }
 
-
 /**
- * Funzione per la stampa ottimizzata della pagina corrente
+ * Aggiorna gli elementi UI per l'utente loggato
  */
-function printDocument() {
-    console.log("Avvio stampa...");
-    window.print();
+function updateLoggedInUI() {
+    // Recupera info utente
+    const userData = JSON.parse(localStorage.getItem('scan_user_data') || '{}');
+    const userName = userData.nome || 'Utente';
+    
+    // Aggiorna elementi UI se presenti
+    const userNameElement = document.getElementById('loggedUserName');
+    if (userNameElement) {
+        userNameElement.textContent = userName;
+    }
+    
+    // Altri elementi UI potrebbero essere aggiornati qui
 }
 
 /**
- * Formatta un numero come valore monetario (Euro, IT)
- * @param {number|string|null|undefined} value - Valore numerico o convertibile
- * @param {number} [digits=0] - Numero di cifre decimali
- * @returns {string} - Stringa formattata (es. "€ 1.234.567") o "N/D"
+ * Esegue il logout dell'utente
  */
-function formatCurrency(value, digits = 0) {
-    const num = parseFloat(value); // Tenta la conversione
-    if (value === null || value === undefined || isNaN(num)) {
-        return "N/D";
-    }
-    // Controllo per valori molto piccoli che potrebbero diventare "-0 €"
-     if (Math.abs(num) < (1 / Math.pow(10, digits + 1))) {
-        value = 0;
-    }
-    try {
-        return new Intl.NumberFormat('it-IT', {
-            style: 'currency',
-            currency: 'EUR',
-            minimumFractionDigits: digits,
-            maximumFractionDigits: digits
-        }).format(num);
-    } catch (e) {
-        console.error("Errore formattazione valuta:", value, e);
-        return "Err"; // Valore di errore breve
-    }
+function logout() {
+    localStorage.removeItem('scan_token');
+    localStorage.removeItem('scan_user_data');
+    console.log("Logout effettuato");
+    window.location.href = 'login.html';
 }
 
-/**
- * Formatta un numero come percentuale (IT)
- * @param {number|string|null|undefined} value - Valore numerico (es. 8.8 per 8,8%)
- * @param {number} [digits=1] - Numero di cifre decimali
- * @returns {string} - Stringa formattata (es. "8,8%") o "N/D"
- */
-function formatPercentage(value, digits = 1) {
-     const num = parseFloat(value); // Tenta la conversione
-     if (value === null || value === undefined || isNaN(num)) {
-        return "N/D";
-    }
-     try {
-        // Intl.NumberFormat si aspetta un valore tra 0 e 1 per le percentuali (es. 0.088 per 8.8%)
-        return new Intl.NumberFormat('it-IT', {
-            style: 'percent',
-            minimumFractionDigits: digits,
-            maximumFractionDigits: digits
-        }).format(num / 100);
-     } catch(e) {
-         console.error("Errore formattazione percentuale:", value, e);
-         return "Err"; // Valore di errore breve
-     }
-}
+// ======================================================================
+// GESTIONE GRAFICI
+// ======================================================================
 
 /**
- * Recupera i dati per un grafico cercando una funzione globale definita in charts_config.js
- * @param {string} functionName - Nome della funzione globale (es. 'getEconomicTrendData')
- * @returns {object|null} - Oggetto dati restituito dalla funzione o null in caso di errore/mancanza.
- */
-function getChartData(functionName) {
-    try {
-        if (typeof window[functionName] === 'function') {
-            // console.log(`Eseguo funzione dati globale: ${functionName}()`); // Log meno invadente
-            const data = window[functionName]();
-            // Validazione base della struttura dati
-            if (data && typeof data === 'object' && Array.isArray(data.labels) && Array.isArray(data.datasets)) {
-                return data;
-            } else {
-                 console.error(`La funzione ${functionName} non ha restituito dati validi per Chart.js.`);
-                 return null;
-            }
-        } else {
-             console.warn(`Funzione dati globale non trovata: ${functionName}`);
-             return null;
-        }
-    } catch (error) {
-        console.error(`Errore durante l'esecuzione della funzione dati ${functionName}:`, error);
-        return null;
-    }
-}
-
-/**
- * Funzione base per inizializzare un grafico Chart.js, con gestione errori migliorata.
- * @param {string} canvasId - ID dell'elemento <canvas>
+ * Inizializza un grafico Chart.js
+ * @param {string} canvasId - ID dell'elemento canvas
  * @param {string} chartType - Tipo di grafico ('bar', 'line', 'pie', 'doughnut', 'radar')
- * @param {object} chartData - Oggetto dati recuperato (da getChartData o globale)
- * @param {object} chartOptions - Oggetto opzioni per Chart.js
+ * @param {object} chartData - Oggetto dati per il grafico
+ * @param {object} chartOptions - Opzioni di configurazione del grafico
  */
 function initChart(canvasId, chartType, chartData, chartOptions) {
     const canvas = document.getElementById(canvasId);
     if (!canvas) {
-        // console.warn(`Canvas non trovato per il grafico: ${canvasId}`);
-        return; // Esce silenziosamente se il canvas non esiste (la pagina potrebbe non averlo)
+        return; // Canvas non trovato, uscita silenziosa
     }
+    
     const ctx = canvas.getContext('2d');
     if (!ctx) {
         console.error(`Impossibile ottenere il contesto 2D per il canvas: ${canvasId}`);
         return;
     }
 
-    // Validazione dati più robusta
+    // Validazione dati
     if (!chartData || typeof chartData !== 'object' || !Array.isArray(chartData.labels) || !Array.isArray(chartData.datasets)) {
-         console.error(`Dati non validi o mancanti forniti a initChart per: ${canvasId}. Dati ricevuti:`, chartData);
-         ctx.clearRect(0, 0, canvas.width, canvas.height);
-         ctx.font = '14px Titillium Web, sans-serif';
-         ctx.fillStyle = '#dc3545'; // Colore danger
-         ctx.textAlign = 'center';
-         ctx.fillText('Errore: Dati grafico non validi.', canvas.width / 2, canvas.height / 2);
+        console.error(`Dati non validi o mancanti forniti a initChart per: ${canvasId}`);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = '14px Titillium Web, sans-serif';
+        ctx.fillStyle = '#dc3545';
+        ctx.textAlign = 'center';
+        ctx.fillText('Errore: Dati grafico non validi.', canvas.width / 2, canvas.height / 2);
         return;
     }
 
@@ -215,32 +148,65 @@ function initChart(canvasId, chartType, chartData, chartOptions) {
         if (existingChart instanceof Chart) {
             existingChart.destroy();
         }
+        
         // Crea il nuovo grafico
-        new Chart(ctx, { // Usa ctx invece di canvas per maggiore compatibilità
+        new Chart(ctx, {
             type: chartType,
             data: chartData,
             options: chartOptions
         });
-        // console.log(`Grafico ${canvasId} (${chartType}) inizializzato.`); // Log meno invadente
     } catch (error) {
         console.error(`Errore durante l'inizializzazione del grafico ${canvasId}:`, error);
-         ctx.clearRect(0, 0, canvas.width, canvas.height);
-         ctx.font = '14px Titillium Web, sans-serif';
-         ctx.fillStyle = '#dc3545';
-         ctx.textAlign = 'center';
-         ctx.fillText(`Errore inizializzazione grafico.`, canvas.width / 2, canvas.height / 2);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        ctx.font = '14px Titillium Web, sans-serif';
+        ctx.fillStyle = '#dc3545';
+        ctx.textAlign = 'center';
+        ctx.fillText(`Errore inizializzazione grafico.`, canvas.width / 2, canvas.height / 2);
     }
 }
 
+// ======================================================================
+// FUNZIONI DOCUMENT
+// ======================================================================
 
-// Esecuzione all'avvio di ogni pagina (tranne login)
+/**
+ * Funzione per stampare il documento
+ */
+function printDocument() {
+    window.print();
+}
+
+// ======================================================================
+// EVENT LISTENERS
+// ======================================================================
+
+// Esecuzione all'avvio di ogni pagina
 document.addEventListener('DOMContentLoaded', function() {
-    // console.log("SCAN Common JS DOMContentLoaded.");
     checkLoginStatus(); // Verifica sempre lo stato del login
 
     // Aggiungi listener al pulsante di stampa generico, se esiste
     const printBtn = document.querySelector('.print-button button');
     if (printBtn) {
         printBtn.addEventListener('click', printDocument);
+    }
+    
+    // Aggiorna anno corrente nei footer
+    const yearElements = document.querySelectorAll('[id^="currentYear"]');
+    yearElements.forEach(el => {
+        el.textContent = new Date().getFullYear();
+    });
+    
+    // Aggiorna badge IRP header (se presente)
+    const irpHeaderBadge = document.getElementById('irp-header-badge');
+    if (irpHeaderBadge) {
+        const irpScoreValue = 87.03; // Valore fisso o da API
+        let badgeClass = 'bg-success'; // Default: Basso rischio
+        
+        if (irpScoreValue >= 71) badgeClass = 'bg-success'; // Basso
+        else if (irpScoreValue < 51) badgeClass = 'bg-danger'; // Alto
+        else badgeClass = 'bg-warning text-dark'; // Medio
+        
+        irpHeaderBadge.className = `badge ${badgeClass} me-3`;
+        irpHeaderBadge.textContent = `IRP: ${irpScoreValue.toFixed(1)} (B+)`;
     }
 });

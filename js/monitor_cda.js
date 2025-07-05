@@ -345,8 +345,8 @@
              let categoryBadgeTextColor = 'text-dark';
 
              if (irpScoreValue >= 71) {
-                 badgeHeaderClass = 'bg-success'; circleClass = 'risk-low';
-                 categoryText = 'Basso'; categoryTextColor = 'text-success'; badgeClass = 'bg-success'; categoryBadgeText = 'B'; categoryBadgeTextColor = '';
+                 badgeHeaderClass = 'bg-success'; circleClass = 'risk-medium';
+                 categoryText = 'Medio'; categoryTextColor = 'text-warning'; badgeClass = 'bg-warning'; categoryBadgeText = 'D'; categoryBadgeTextColor = '';
              } else if (irpScoreValue < 51) {
                  badgeHeaderClass = 'bg-danger'; circleClass = 'risk-high';
                  categoryText = 'Alto'; categoryTextColor = 'text-danger'; badgeClass = 'bg-danger'; categoryBadgeText = 'D'; categoryBadgeTextColor = '';

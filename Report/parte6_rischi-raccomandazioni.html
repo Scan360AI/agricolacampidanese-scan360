@@ -136,23 +136,23 @@
             <div class="card mb-4 report-section">
                 <div class="card-header card-header-primary"><h5 class="mb-0">6.1 Indicatori di Rischio</h5></div>
                 <div class="card-body">
-                    <p>L'analisi degli indicatori di rischio di AGRICOLA CAMPIDANESE evidenzia un profilo di rischio complessivamente critico con molteplici aree di vulnerabilità strutturale che richiedono interventi immediati.</p>
+                    <p>L'analisi degli indicatori di rischio evidenzia una configurazione multidimensionale di criticità che richiede un'interpretazione integrata per comprendere l'effettivo profilo di rischio aziendale.</p>
                     <div class="table-responsive">
                         <table class="table table-sm table-striped table-hover" id="table_6_1_1">
                            <thead class="table-light"><tr><th>Indicatore</th><th class="text-end">Valore Rilevato</th><th>Soglia Critica</th><th>Status</th><th>Implicazioni</th></tr></thead>
                            <tbody>
                                <tr><td>Leanus Score</td><td class="text-end">0,95 (5-Negativo)</td><td>< 1,8</td><td>❌ Critico</td><td>Classificazione "STUCK" - disequilibrio economico-patrimoniale</td></tr>
-                               <tr><td>Variazione Ricavi</td><td class="text-end">+2,88%</td><td>< 2%</td><td>✓ Accettabile</td><td>Crescita moderata del fatturato</td></tr>
-                               <tr><td>EBITDA Margin</td><td class="text-end">3,97%</td><td>< 4%</td><td>❌ Critico</td><td>Redditività operativa insufficiente</td></tr>
-                               <tr><td>PFN/EBITDA</td><td class="text-end">6,20</td><td>> 4,5</td><td>❌ Critico</td><td>Livello di indebitamento eccessivo</td></tr>
-                               <tr><td>Leva Finanziaria (D/E)</td><td class="text-end">6,94</td><td>> 4,0</td><td>❌ Critico</td><td>Struttura patrimoniale fortemente squilibrata</td></tr>
-                               <tr><td>Liquidità/Ricavi</td><td class="text-end">0,12%</td><td>< 3%</td><td>❌ Critico</td><td>Liquidità inadeguata e in forte contrazione</td></tr>
-                               <tr><td>Cash Flow Operativo/Ricavi</td><td class="text-end">2,00%</td><td>< 5%</td><td>❌ Critico</td><td>Capacità di generazione di cassa insufficiente</td></tr>
-                               <tr><td>Ciclo del circolante</td><td class="text-end">-8 giorni</td><td>> 60 giorni</td><td>✓ Positivo</td><td>Ciclo monetario negativo favorevole</td></tr>
+                               <tr><td>Variazione Ricavi</td><td class="text-end">+2,88%</td><td>< 2%</td><td>✓ Accettabile</td><td>Crescita modesta ma positiva</td></tr>
+                               <tr><td>EBITDA Margin</td><td class="text-end">3,97%</td><td>< 4%</td><td>❌ Critico</td><td>Inferiore alla soglia minima di sostenibilità</td></tr>
+                               <tr><td>ROS (EBIT/Ricavi)</td><td class="text-end">1,37%</td><td>< 3%</td><td>❌ Critico</td><td>Redditività operativa insufficiente</td></tr>
+                               <tr><td>Copertura Immobilizzazioni</td><td class="text-end">0,13</td><td>< 0,7</td><td>❌ Critico</td><td>Grave squilibrio patrimoniale</td></tr>
+                               <tr><td>Leva Finanziaria (D/E)</td><td class="text-end">6,94</td><td>> 4,0</td><td>❌ Critico</td><td>Sottocapitalizzazione estrema</td></tr>
+                               <tr><td>Liquidità/Ricavi</td><td class="text-end">0,12%</td><td>< 3%</td><td>❌ Critico</td><td>Liquidità praticamente azzerata</td></tr>
+                               <tr><td>Cash Flow Operativo/Ricavi</td><td class="text-end">2,00%</td><td>< 5%</td><td>❌ Critico</td><td>Generazione di cassa insufficiente</td></tr>
                            </tbody>
                         </table>
                     </div>
-                    <p class="small mt-3">L'analisi evidenzia un'impresa in situazione di stress finanziario strutturale, caratterizzata da marginalità operativa critica (EBITDA margin al 3,97%), leva finanziaria patologica (D/E ratio a 6,94), liquidità inadeguata (0,12% dei ricavi) e generazione di cassa insufficiente (Cash Flow Operativo/Ricavi al 2,00%).</p>
+                    <p class="small mt-3"><strong>Nota metodologica critica</strong>: La classificazione degli indicatori segue le soglie del framework di valutazione del report. L'estrema criticità della situazione emerge dalla convergenza negativa di quasi tutti gli indicatori principali.</p>
                 </div>
             </div>
 
@@ -162,15 +162,29 @@
                      <!-- Rimossa row, la tabella occupa tutta la larghezza -->
                      <div class="small">
                          <h6>6.2.1 Z-Score di Altman</h6>
-                         <p>Il valore di Z-Score pari a <strong>2,93</strong> colloca l'azienda nella <strong>zona grigia</strong> (1,81-2,99), indicativa di vulnerabilità finanziaria con probabilità di default non trascurabile nel breve-medio termine. Il valore si colloca al limite superiore della zona grigia, suggerendo un equilibrio precario.</p>
+                         <p>Il valore di Z-Score pari a <strong>2,93</strong> colloca l'azienda nella <strong>zona grigia</strong> (range 1,23-2,90 per non quotate), molto vicino alla soglia di sicurezza di 2,99, suggerendo una situazione di equilibrio precario.</p>
+                         
+                         <h6>Decomposizione analitica dello Z-Score:</h6>
+                         <div class="table-responsive">
+                             <table class="table table-sm table-striped">
+                                 <thead class="table-light"><tr><th>Componente</th><th>Formula</th><th class="text-end">Valore Stimato</th><th class="text-end">Contributo</th></tr></thead>
+                                 <tbody>
+                                     <tr><td>X₁ (Working Capital/Total Assets)</td><td>CCN/Totale Attivo</td><td class="text-end value-highlight">0,05</td><td class="text-end">0,034</td></tr>
+                                     <tr><td>X₂ (Retained Earnings/Total Assets)</td><td>Utili non distribuiti/Totale Attivo</td><td class="text-end value-highlight">0,06</td><td class="text-end">0,051</td></tr>
+                                     <tr><td>X₃ (EBIT/Total Assets)</td><td>EBIT/Totale Attivo</td><td class="text-end value-highlight">0,04</td><td class="text-end">0,112</td></tr>
+                                     <tr><td>X₄ (Book Value Equity/Total Liabilities)</td><td>PN/Passività totali</td><td class="text-end value-highlight">0,14</td><td class="text-end">0,027</td></tr>
+                                     <tr><td>X₅ (Sales/Total Assets)</td><td>Ricavi/Totale Attivo</td><td class="text-end value-highlight">1,82</td><td class="text-end">1,830</td></tr>
+                                 </tbody>
+                             </table>
+                         </div>
                          
                          <h6>6.2.2 Probabilità di Default e Rating</h6>
-                         <p>La <strong>probabilità di default del 3,62%</strong> secondo il modello MCC è superiore alla media del settore manifatturiero (tipicamente <2%), indica un rischio creditizio significativo che si riflette in condizioni di accesso al credito penalizzanti. L'azienda è classificata in <strong>Fascia "3"</strong> (rischio medio).</p>
+                         <p>La <strong>probabilità di default del 3,62%</strong> secondo il modello MCC posiziona l'azienda nella <strong>Fascia 3</strong>, corrispondente a un profilo di rischio medio. Questo valore appare relativamente contenuto rispetto alla gravità degli altri indicatori.</p>
                          
                          <h6>6.2.3 Leanus Score</h6>
-                         <p>Il <strong>Leanus Score di 0,95</strong> con classificazione <strong>"5-Negativo"</strong> conferma la presenza di criticità strutturali, sebbene il miglioramento rispetto al periodo precedente ("6 - Molto Negativo") suggerisca una parziale stabilizzazione.</p>
+                         <p>Il <strong>Leanus Score di 0,95</strong> con classificazione <strong>"5-Negativo"</strong> (scala -40 a +40) conferma un profilo di rischio critico, suggerendo disequilibrio economico-patrimoniale e necessità di interventi correttivi immediati.</p>
                          
-                         <p><strong>Analisi critica:</strong> La convergenza degli indicatori di rischio verso valori critici richiede un'attenta valutazione della continuità aziendale e l'implementazione di misure correttive immediate.</p>
+                         <p><strong>Analisi critica della metodologia:</strong> Si rileva una potenziale incongruenza tra la severità del Leanus Score (0,95) e la PD moderata (3,62%), che potrebbe essere spiegata dalla diversa ponderazione dei fattori nei rispettivi modelli.</p>
                      </div>
                  </div>
              </div>
@@ -178,26 +192,26 @@
             <div class="card mb-4 report-section">
                  <div class="card-header card-header-primary"><h5 class="mb-0">6.3 Red Flags e Segnali d'Allarme</h5></div>
                   <div class="card-body">
-                      <p>Dall'analisi del report Leanus emergono numerosi segnali di allarme che configurano un quadro di rischio elevato:</p>
+                      <p>L'analisi identifica molteplici segnali d'allarme che configurano un quadro di rischio sistemico:</p>
                       <div class="table-responsive">
                           <table class="table table-sm table-hover small">
                              <thead class="table-light"><tr><th>Area</th><th>Red Flag Identificato</th><th>Evidenza Quantitativa</th><th>Impatto Potenziale</th></tr></thead>
                               <tbody>
-                                  <tr><td>Redditività</td><td>EBITDA margin insufficiente</td><td>3,97% (vs benchmark >8%)</td><td>Incapacità strutturale di generare margini adeguati</td></tr>
-                                  <tr><td>Liquidità</td><td>Liquidità/Ricavi critica</td><td>0,12% (€24.900)</td><td>Rischio imminente di crisi di liquidità</td></tr>
-                                  <tr><td>Cash Flow</td><td>CF Operativo/Ricavi insufficiente</td><td>2,00% (vs benchmark >5%)</td><td>Insufficiente generazione di cassa per servizio debito</td></tr>
-                                  <tr><td>Patrimoniale</td><td>Copertura Immobilizzazioni critica</td><td>0,13 (vs benchmark >1,0)</td><td>Grave squilibrio fonti/impieghi</td></tr>
-                                  <tr><td>Indebitamento</td><td>PFN/EBITDA eccessivo</td><td>6,20 (vs benchmark <3,5)</td><td>Insostenibilità del debito finanziario</td></tr>
-                                  <tr><td>Stress Test</td><td>Performance critica</td><td>2/5 test superati</td><td>Bassa resilienza a shock economici</td></tr>
+                                  <tr><td>Liquidità</td><td>Erosione drammatica</td><td>Da €282.044 a €24.900 (-91,17%)</td><td>Rischio immediato di insolvenza</td></tr>
+                                  <tr><td>Debiti Fornitori</td><td>Dilazioni anomale</td><td>DPO = 75 giorni</td><td>Tensioni con supply chain</td></tr>
+                                  <tr><td>Crediti Clienti</td><td>Riduzione anomala</td><td>-41,1% (da €4.675.401 a €2.751.600)</td><td>Possibile factoring pro-soluto o svalutazioni</td></tr>
+                                  <tr><td>Patrimonio Netto</td><td>Sottocapitalizzazione</td><td>€755.925 vs €5.608.391 AFN</td><td>Copertura solo 13% immobilizzazioni</td></tr>
+                                  <tr><td>DSCR</td><td>Insostenibilità debito</td><td>0,548 (< 1,0)</td><td>Incapacità strutturale di servire il debito</td></tr>
+                                  <tr><td>Stress Test</td><td>Fallimento multiplo</td><td>2/5 superati</td><td>Vulnerabilità sistemica</td></tr>
                               </tbody>
                           </table>
                       </div>
                       
-                      <h6 class="mt-3">Anomalie rilevate:</h6>
+                      <h6 class="mt-3">Anomalie rilevate nella riclassificazione:</h6>
                       <ul>
-                          <li><strong>Liquidità critica</strong>: Con soli €24.900 di disponibilità liquide (-91,17% YoY), l'azienda opera al limite della sostenibilità finanziaria</li>
-                          <li><strong>DSCR sotto soglia</strong>: Il valore di 0,548 (inferiore a 1,0) indica l'impossibilità matematica di rimborsare il debito con i flussi operativi correnti</li>
-                          <li><strong>Variazione anomala crediti</strong>: La riduzione del 41,15% dei crediti clienti suggerisce possibili operazioni di factoring pro-soluto per fronteggiare tensioni di liquidità</li>
+                          <li><strong>Variazione rimanenze</strong>: +€180.422 (+26,1%) appare significativa e richiede verifica approfondita</li>
+                          <li><strong>Oneri finanziari</strong>: €391.786 rappresentano il 7,47% dei debiti finanziari, suggerendo costi elevati</li>
+                          <li><strong>Capitale Circolante Caratteristico</strong>: -€285.353 (valore negativo) indica una struttura finanziaria in cui i debiti commerciali superano la somma di crediti e rimanenze</li>
                       </ul>
                   </div>
             </div>
@@ -205,46 +219,54 @@
             <div class="card mb-4 report-section">
                  <div class="card-header"><h5 class="mb-0">6.4 Analisi di Potenziali Manipolazioni Contabili</h5></div>
                  <div class="card-body small">
-                     <p>L'applicazione del framework Kitzanos per l'identificazione di potenziali manipolazioni contabili rivela alcune anomalie significative:</p>
+                     <p>L'analisi forense dei dati contabili evidenzia alcune anomalie che richiedono approfondimento:</p>
                      
-                     <h6>6.4.1 Indicatori di potenziali manipolazioni contabili</h6>
+                     <h6>6.4.1 Indicatori di Window Dressing</h6>
                      <table class="table table-sm">
-                         <thead class="table-light"><tr><th>Test</th><th>Indicatori</th><th>Valutazione</th><th>Note</th></tr></thead>
+                         <thead class="table-light"><tr><th>Indicatore</th><th>Valore/Trend</th><th>Benchmark</th><th>Segnale di Allarme</th></tr></thead>
                           <tbody>
-                              <tr><td>Sales Profitability</td><td>- Fatturato: +2,88%<br>- EBITDA: +34,98%<br>- Rimanenze: +26,08%</td><td>⚠️ Attenzione</td><td>Miglioramento EBITDA sproporzionato rispetto ai ricavi</td></tr>
-                              <tr><td>Tax Effect</td><td>- Oneri finanziari: 7,47% dei debiti<br>- Tax rate: 0%<br>- Posizione Tributaria: -€340.194</td><td>🚨 Critico</td><td>Assenza imposte nonostante utile positivo</td></tr>
-                              <tr><td>Asset Quality</td><td>- Copertura immobilizzazioni: 0,13<br>- Goodwill: Non presente<br>- Crediti: -41,15%</td><td>⚠️ Attenzione</td><td>Forte riduzione crediti suggerisce cessioni o svalutazioni</td></tr>
-                              <tr><td>Expense Capitalization</td><td>- Investimenti: €80.407<br>- Ammortamenti: €370.271<br>- Capex/Ammortamenti: 0,22</td><td>✓ Coerente</td><td>Investimenti inferiori agli ammortamenti</td></tr>
+                              <tr><td>Margine di Contribuzione</td><td>Aumento da 8,8% a 11,8%</td><td>Settore: 15-20%</td><td>⚠️ Miglioramento anomalo in contesto di stagnazione</td></tr>
+                              <tr><td>Variazione Rimanenze</td><td>+€180.422 (+26,1%)</td><td>Ricavi: +2,88%</td><td>⚠️ Accumulo scorte non giustificato</td></tr>
+                              <tr><td>Crediti Clienti</td><td>-41,1%</td><td>DSO: 47 giorni</td><td>⚠️ Possibile cessione massiva o svalutazioni</td></tr>
+                              <tr><td>Capitalizzazioni</td><td>Non evidenti</td><td>-</td><td>✓ Non rilevate capitalizzazioni aggressive</td></tr>
                           </tbody>
                      </table>
                      
-                     <p><strong>Principali anomalie rilevate:</strong></p>
-                     <ol>
-                         <li><strong>Anomalia fiscale</strong>: L'assenza di imposte correnti (€0) nonostante un utile ante imposte di €59.803 è altamente anomala. Possibili spiegazioni includono utilizzo di perdite pregresse, crediti d'imposta o errori di rilevazione.</li>
-                         <li><strong>Miglioramento EBITDA sproporzionato</strong>: L'incremento del 34,98% dell'EBITDA a fronte di una crescita dei ricavi del solo 2,88% suggerisce possibili riduzioni anomale dei costi operativi o riclassificazioni contabili.</li>
-                         <li><strong>Dinamica crediti commerciali</strong>: La riduzione del 41,15% dei crediti clienti potrebbe indicare operazioni di factoring pro-soluto non trasparenti o accelerazione artificiosa degli incassi a fine periodo.</li>
-                     </ol>
+                     <p><strong>Valutazione della qualità degli utili:</strong></p>
+                     <div class="alert alert-warning p-2">
+                         <strong>Accrual Ratio</strong> = (Utile - Cash Flow Operativo) / Totale Attivo = (€59.803 - €423.899) / €11.645.699 = -3,13%
+                     </div>
+                     <p>Il valore negativo indica che il cash flow supera l'utile contabile, suggerendo qualità accettabile degli earnings.</p>
+                     
+                     <h6>6.4.2 Ciclo del Circolante Anomalo</h6>
+                     <p>Il ciclo del circolante negativo (-8 giorni) è composto da:</p>
+                     <ul>
+                         <li>DSO (giorni crediti clienti): 47 giorni (miglioramento significativo da 82 giorni)</li>
+                         <li>DIO (giorni rimanenze): 20 giorni (leggero incremento da 16 giorni)</li>
+                         <li>DPO (giorni debiti fornitori): 75 giorni (riduzione da 112 giorni)</li>
+                     </ul>
+                     <p>Questo ciclo negativo indica un modello di business che genera liquidità dal ciclo operativo, ma il deterioramento da -14 a -8 giorni rispetto all'anno precedente segnala un possibile riequilibrio delle condizioni commerciali.</p>
                  </div>
             </div>
 
             <div class="card mb-4 report-section">
                 <div class="card-header"><h5 class="mb-0">6.5 Analisi di Sensitività</h5></div>
                  <div class="card-body">
-                     <p>L'analisi di sensitività rivela una struttura aziendale con limitata resilienza a variazioni negative delle variabili chiave:</p>
+                     <p>L'analisi di sensitività sui parametri critici evidenzia una resilienza estremamente limitata:</p>
                      <div class="small">
                          <div class="table-responsive">
                               <table class="table table-sm table-striped">
-                                 <thead class="table-light"><tr><th>Parametro</th><th>Valore critico</th><th>Interpretazione</th></tr></thead>
+                                 <thead class="table-light"><tr><th>Parametro</th><th>Impatto su EBIT = 0</th><th>Resilienza</th><th>Valutazione</th></tr></thead>
                                  <tbody>
-                                     <tr><td>Variazione Ricavi che azzera l'EBIT</td><td>-17,54%</td><td>Vulnerabilità moderata a cali di fatturato</td></tr>
-                                     <tr><td>Variazione Costi Fissi che azzera l'EBIT</td><td>+25,54%</td><td>Limitata capacità di assorbire aumenti costi fissi</td></tr>
-                                     <tr><td>Variazione Crediti Clienti che azzera la Liquidità</td><td>+1 giorno</td><td>Estrema vulnerabilità a ritardi negli incassi</td></tr>
-                                     <tr><td>Variazione Rimanenze che annulla il Patrimonio Netto</td><td>-17 giorni</td><td>Patrimonio netto inadeguato rispetto al magazzino</td></tr>
-                                     <tr><td>Variazione Debiti Fornitori che azzera la Liquidità</td><td>0 giorni</td><td>Totale dipendenza dalle dilazioni fornitori</td></tr>
+                                     <tr><td>Ricavi</td><td>-17,54%</td><td>Molto bassa</td><td>Margine di sicurezza insufficiente</td></tr>
+                                     <tr><td>Costi Fissi</td><td>+25,54%</td><td>Bassa</td><td>Elevata rigidità strutturale</td></tr>
+                                     <tr><td>Crediti Clienti (liquidità zero)</td><td>+1 giorno</td><td>Critica</td><td>Sistema al collasso</td></tr>
+                                     <tr><td>Rimanenze (PN zero)</td><td>-15 giorni</td><td>Bassa</td><td>Patrimonio vulnerabile</td></tr>
+                                     <tr><td>Debiti Fornitori (liquidità zero)</td><td>0 giorni</td><td>Nulla</td><td>Già al limite</td></tr>
                                  </tbody>
                               </table>
                          </div>
-                         <p class="alert alert-warning small mt-3 p-2 mb-0"><i class="fas fa-exclamation-triangle me-1"></i><strong>Valutazione critica</strong>: Con solo 1 giorno di incremento DSO necessario per azzerare la liquidità, l'azienda opera senza alcun margine di sicurezza finanziaria. L'impossibilità di ridurre anche minimamente i tempi di pagamento (0 giorni di margine) configura una situazione di dipendenza patologica dalle dilazioni commerciali.</p>
+                         <p class="alert alert-warning small mt-3 p-2 mb-0"><i class="fas fa-exclamation-triangle me-1"></i><strong>Valutazione critica</strong>: L'azienda opera con margini di sicurezza praticamente nulli. Una variazione negativa del 17,54% nei ricavi o un incremento del 25,54% nei costi fissi azzererebbero la redditività operativa.</p>
                      </div>
                  </div>
             </div>
@@ -252,24 +274,25 @@
              <div class="card mb-4 report-section">
                  <div class="card-header"><h5 class="mb-0">6.6 Risultati Stress Test</h5></div>
                  <div class="card-body">
-                    <p>Lo stress test multiscenario conferma la vulnerabilità strutturale dell'azienda:</p>
+                    <p>I risultati degli stress test confermano l'estrema vulnerabilità della struttura economico-finanziaria:</p>
                     <div class="table-responsive small">
                         <table class="table table-sm table-hover">
-                            <thead class="table-light"><tr><th>Stress Test</th><th>Superato</th><th>Valore critico</th><th>Valore attuale</th><th>Margine di sicurezza</th></tr></thead>
+                            <thead class="table-light"><tr><th>Metrica</th><th>2024</th><th>2025</th><th>2026</th><th>2027</th><th>2028</th><th>Trend</th></tr></thead>
                             <tbody>
-                                <tr><td>Variazione Ricavi</td><td>✓</td><td>-17,54%</td><td>+2,88%</td><td>20,42%</td></tr>
-                                <tr><td>Variazione Costi Fissi</td><td>✓</td><td>+25,54%</td><td>N/A</td><td>25,54%</td></tr>
-                                <tr><td>Variazione Crediti</td><td>✗</td><td>+1 giorno</td><td>47 giorni</td><td>Solo 1 giorno sostenibile</td></tr>
-                                <tr><td>Variazione Rimanenze</td><td>✗</td><td>-17 giorni</td><td>20 giorni</td><td>Patrimonio netto insufficiente</td></tr>
-                                <tr><td>Variazione Debiti</td><td>✗</td><td>0 giorni</td><td>75 giorni</td><td>Nessuna riduzione sostenibile</td></tr>
+                                <tr><td>Utile/Perdita</td><td>€59.803</td><td>-€48.970</td><td>-€48.970</td><td>-€48.970</td><td>-€48.970</td><td>❌ Deterioramento</td></tr>
+                                <tr><td>Patrimonio Netto</td><td>€755.925</td><td>€706.955</td><td>€657.985</td><td>€609.015</td><td>€560.045</td><td>❌ Erosione -26%</td></tr>
+                                <tr><td>D/E Ratio</td><td>6,94</td><td>7,42</td><td>7,97</td><td>8,62</td><td>9,37</td><td>❌ Peggioramento</td></tr>
+                                <tr><td>Liquidità</td><td>€24.900</td><td>-€375.691</td><td>-€422.403</td><td>-€258.224</td><td>€46.549</td><td>❌ Critica</td></tr>
+                                <tr><td>DSCR</td><td>0,548</td><td>NOK</td><td>NOK</td><td>NOK</td><td>NOK</td><td>❌ Insostenibile</td></tr>
                             </tbody>
                         </table>
                     </div>
-                     <p class="small mt-3 mb-1"><strong>Analisi dei risultati:</strong></p>
+                     <p class="small mt-3 mb-1"><strong>Valutazione critica:</strong> Il Business Plan inerziale evidenzia un percorso di progressivo deterioramento patrimoniale con liquidità negativa per i primi tre anni, suggerendo un modello di business strutturalmente non sostenibile.</p>
+                     <p class="small mb-0"><strong>Criticità nei flussi di cassa:</strong></p>
                      <ul class="small">
-                         <li><strong>Test superati (2/5)</strong>: Solo i test su ricavi e costi fissi sono superati, grazie alla struttura prevalentemente variabile dei costi che conferisce una certa flessibilità operativa.</li>
-                         <li><strong>Test falliti (3/5)</strong>: I fallimenti sui test di liquidità e capitale circolante evidenziano una situazione di liquidity trap e working capital stress.</li>
-                         <li><strong>Implicazioni sistemiche</strong>: Il fallimento di 3 test su 5, tutti relativi alla liquidità e al capitale circolante, configura uno scenario di rischio sistemico di insolvenza che richiede interventi strutturali immediati.</li>
+                         <li><strong>Deterioramento del cash flow operativo</strong>: da €1.260.453 (2023) a €423.899 (2024), -66,36%</li>
+                         <li><strong>Tasso di conversione EBITDA-Cash insufficiente</strong>: solo il 50,4% dell'EBITDA si trasforma in cash flow operativo</li>
+                         <li><strong>DSCR (Debt Service Coverage Ratio) critico</strong>: 0,548, significativamente sotto la soglia minima di 1,1</li>
                      </ul>
                  </div>
              </div>
@@ -303,7 +326,7 @@
                                  <tr><td>Ristrutturazione debito</td><td>Consolidamento BT in MLT, grace period 24 mesi</td><td>€50.000 (advisory)</td><td>€391.786/anno oneri</td><td>783%</td></tr>
                                  <tr><td>Working Capital optimization</td><td>Factoring pro-soluto 50% crediti</td><td>€30.000 (setup)</td><td>€1.375.800 liquidità</td><td>4.586%</td></tr>
                                  <tr><td>Asset disposal</td><td>Cessione asset non core (stima 10% immobilizzazioni)</td><td>€20.000 (valutazione)</td><td>€560.839 one-off</td><td>2.804%</td></tr>
-                                 <tr><td>Cost reduction</td><td>Zero-based budgeting su costi indiretti</td><td>€40.000 (consulenza)</td><td>€369.161/anno</td><td>923%</td></tr>
+                                 <tr><td>Cost reduction</td><td>Zero-based budgeting su costi indiretti</td><td>€40.000 (consulenza)</td><td>€369.000/anno</td><td>923%</td></tr>
                              </tbody>
                          </table>
                      </div>
@@ -321,10 +344,10 @@
                               <div class="timeline-irp-content"> 
                                   <h6>Emergenza <span class="badge bg-danger float-end">Alta</span></h6> 
                                   <ul class="small">
-                                      <li>Rivalutazione degli ammortamenti e vita utile asset</li>
-                                      <li>Capitalizzazione costi di sviluppo già sostenuti</li>
-                                      <li>Ottimizzazione valutazione rimanenze</li>
-                                      <li>Avvio negoziazioni per ristrutturazione del debito</li>
+                                      <li>Liquidità: Cash pooling immediato e freeze spese</li>
+                                      <li>Task force recupero crediti scaduti</li>
+                                      <li>Comunicazione preventiva banche e richiesta standstill</li>
+                                      <li>Costituzione crisis management committee</li>
                                   </ul> 
                               </div> 
                           </li>
@@ -333,10 +356,10 @@
                               <div class="timeline-irp-content"> 
                                   <h6>Stabilizzazione <span class="badge bg-warning text-dark float-end">Media</span></h6> 
                                   <ul class="small">
-                                      <li>Completamento rivalutazione immobiliare</li>
-                                      <li>Implementazione operazioni sul capitale circolante</li>
-                                      <li>Finalizzazione riclassificazione debiti a MLT</li>
-                                      <li>Predisposizione documentazione per aumento capitale</li>
+                                      <li>Ristrutturazione: Accordo standstill con sistema bancario</li>
+                                      <li>Factoring pro-soluto su crediti commerciali</li>
+                                      <li>Negoziazione moratoria fornitori strategici</li>
+                                      <li>Implementazione controllo di tesoreria settimanale</li>
                                   </ul> 
                               </div> 
                           </li>
@@ -345,10 +368,10 @@
                               <div class="timeline-irp-content"> 
                                   <h6>Rilancio <span class="badge bg-warning text-dark float-end">Media</span></h6> 
                                   <ul class="small">
-                                      <li>Perfezionamento operazioni di finanza straordinaria</li>
-                                      <li>Implementazione sistema di controllo gestione avanzato</li>
-                                      <li>Completamento ottimizzazioni patrimoniali</li>
-                                      <li>Monitoraggio continuo degli indicatori</li>
+                                      <li>Efficienza operativa: Revisione costi fissi e variabili</li>
+                                      <li>Consolidamento debito a breve in MLT</li>
+                                      <li>Cessione asset non core per generare liquidità</li>
+                                      <li>Ricapitalizzazione (€2.000.000-2.500.000)</li>
                                   </ul> 
                               </div> 
                           </li>
@@ -357,10 +380,10 @@
                               <div class="timeline-irp-content"> 
                                   <h6>Consolidamento <span class="badge bg-success float-end">Bassa</span></h6> 
                                   <ul class="small">
-                                      <li>Revisione del modello di business con focus su marginalità</li>
-                                      <li>Sviluppo di nuovi mercati/prodotti a maggior valore aggiunto</li>
-                                      <li>Implementazione di un sistema ERP integrato</li>
-                                      <li>Valutazione di partnership strategiche</li>
+                                      <li>Crescita sostenibile: Sviluppo nuovi mercati/prodotti</li>
+                                      <li>Normalizzazione ratios finanziari</li>
+                                      <li>Riequilibrio strutturale fonti-impieghi</li>
+                                      <li>Implementazione sistema ERP integrato</li>
                                   </ul> 
                               </div> 
                           </li>
@@ -377,13 +400,13 @@
                          <table class="table table-sm table-bordered kpi-target-table">
                             <thead class="table-light"><tr><th>KPI</th><th>Current</th><th>Target 3M</th><th>Target 12M</th><th>Frequenza</th><th>Owner</th></tr></thead>
                             <tbody>
-                               <tr><td>Liquidità assoluta</td><td class="value-crit">€24.900</td><td>€250.000</td><td>€500.000</td><td>Giornaliera</td><td>Tesoriere</td></tr>
+                               <tr><td>Liquidità assoluta</td><td class="value-crit">€24.900</td><td>€250.000</td><td>€600.000</td><td>Giornaliera</td><td>Tesoriere</td></tr>
                                <tr><td>DSCR rolling 6M</td><td class="value-crit">0,548</td><td>0,85</td><td>1,25</td><td>Settimanale</td><td>CFO</td></tr>
-                               <tr><td>EBITDA margin</td><td class="value-crit">3,97%</td><td>5,0%</td><td>8,0%</td><td>Mensile</td><td>Controller</td></tr>
+                               <tr><td>EBITDA margin</td><td class="value-crit">3,97%</td><td>5,5%</td><td>8,0%</td><td>Mensile</td><td>Controller</td></tr>
                                <tr><td>DSO</td><td class="value-ok">47 gg</td><td>45 gg</td><td>40 gg</td><td>Settimanale</td><td>Credit Manager</td></tr>
                                <tr><td>DPO</td><td class="value-warn">75 gg</td><td>90 gg</td><td>60 gg</td><td>Bisettimanale</td><td>Procurement</td></tr>
                                <tr><td>Cash conversion</td><td class="value-warn">50,4%</td><td>65%</td><td>80%</td><td>Mensile</td><td>CFO</td></tr>
-                               <tr><td>PFN/EBITDA</td><td class="value-crit">6,20</td><td>5,5</td><td>3,5</td><td>Mensile</td><td>CFO</td></tr>
+                               <tr><td>PFN/EBITDA</td><td class="value-crit">6,20x</td><td>5,5x</td><td>3,5x</td><td>Mensile</td><td>CFO</td></tr>
                             </tbody>
                          </table>
                       </div>
@@ -430,21 +453,21 @@
                      
                      <h6>Priorità assolute:</h6>
                      <ol>
-                         <li><strong>Rafforzamento patrimoniale urgente</strong>: incremento di almeno €800.000-€1.000.000</li>
-                         <li><strong>Ristrutturazione del debito</strong>: conversione di almeno il 50% a MLT</li>
-                         <li><strong>Ottimizzazione del circolante</strong>: liberazione di €500.000-€700.000</li>
-                         <li><strong>Revisione del modello di business</strong>: focus su marginalità e cash generation</li>
+                         <li><strong>Ristrutturazione urgente del debito</strong> (52,1% a breve termine)</li>
+                         <li><strong>Ricapitalizzazione significativa</strong> (minimo €2.000.000)</li>
+                         <li><strong>Miglioramento marginalità operativa</strong> (target EBITDA >6%)</li>
+                         <li><strong>Controllo rigoroso della conversione cash</strong></li>
                      </ol>
                      
                      <p>La sostenibilità del business richiede un incremento dell'EBITDA margin dal 3,97% attuale ad almeno l'8% entro 12 mesi, obiettivo raggiungibile solo attraverso una combinazione di:</p>
                      <ul>
-                         <li><strong>Ottimizzazioni contabili immediate</strong> per migliorare gli indicatori</li>
-                         <li><strong>Ristrutturazione finanziaria</strong> per garantire la sostenibilità</li>
-                         <li><strong>Rilancio industriale</strong> per migliorare la marginalità strutturale</li>
-                         <li><strong>Governance rafforzata</strong> per la gestione della fase di turnaround</li>
+                         <li><strong>Ottimizzazione del capitale circolante</strong>: Allineamento scorte al fatturato (-€150.000, -17% stock)</li>
+                         <li><strong>Negoziazione con fornitori</strong>: Recupero dilazioni (+€500.000 liquidità)</li>
+                         <li><strong>Revisione pricing policy</strong>: Incremento prezzi selettivo (+2,5%)</li>
+                         <li><strong>Razionalizzazione costi approvvigionamento</strong>: Riduzione incidenza dal 76,7% al 74,0% (+€572.762 marginalità)</li>
                      </ul>
                      
-                     <p class="mb-0">Il successo degli interventi dipenderà dalla rapidità di esecuzione e dal supporto degli stakeholder chiave, in particolare del sistema bancario e della base sociale cooperativa.</p>
+                     <p class="mb-0">Il successo dipenderà dalla capacità di incrementare simultaneamente marginalità e efficienza del capitale circolante, garantendo sostenibilità finanziaria nel medio termine.</p>
                  </div>
             </div>
 
@@ -524,12 +547,12 @@
          };
 
          const sensitivityData = {
-              labels: ["Ricavi (%)", "Costi Fissi (%)", "Crediti Clienti (gg)", "Rimanenze (gg)", "Debiti Fornitori (gg)"],
+              labels: ["Ricavi (%)", "Costi Materie Prime (%)", "Costo Personale (%)", "Tassi Interesse (bps)", "Giorni Crediti (gg)"],
               datasets: [{
                   label: "Variazione Critica",
-                  data: [-17.54, 25.54, 1, -17, 0],
-                  backgroundColor: ["#F44336", "#4CAF50", "#F44336", "#F44336", "#F44336"],
-                  borderColor: ["#c82333", "#157347", "#c82333", "#c82333", "#c82333"],
+                  data: [-17.54, 2.6, 25.54, 180, 1],
+                  backgroundColor: ["#F44336", "#F44336", "#4CAF50", "#4CAF50", "#F44336"],
+                  borderColor: ["#c82333", "#c82333", "#157347", "#157347", "#c82333"],
                   borderWidth: 1
               }]
           };
@@ -627,7 +650,7 @@
              const footerYear = document.getElementById('currentYearFooterReport');
              if (footerYear) footerYear.textContent = new Date().getFullYear();
 
-             const irpScoreValue = 29.08; // Agricola Campidanese IRP
+             const irpScoreValue = 51.92; // Agricola Campidanese IRP
              const irpHeaderBadge = document.getElementById('irp-header-badge');
              if(irpHeaderBadge) {
                  let badgeClass = 'bg-danger';
