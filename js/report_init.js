@@ -1,436 +1,238 @@
 /**
- * SCAN360 - init.js
- * Inizializzazione comune per tutte le pagine del minisito
+ * SCAN - Initializzazione Grafici Report Dettagliati (report/parteX_*.html)
  */
 
-/**
- * Inizializza gli elementi della pagina dashboard
- */
-function initDashboard() {
-    console.log("Inizializzazione dashboard...");
-    
-    // Tenta di inizializzare il grafico Trend Ricavi/EBITDA
-    try {
-        const trendRicEbitdaData = getTrendRicaviEbitdaData_Dashboard();
-        if (trendRicEbitdaData) {
-            const trendRicEbitdaOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Valore (€)' },
-                        position: 'left',
-                        ticks: {
-                            callback: function(value) {
-                                if (Math.abs(value) >= 1000000) return (value / 1000000).toFixed(1) + ' M';
-                                if (Math.abs(value) >= 1000) return (value / 1000).toFixed(0) + ' K';
-                                return value;
-                            }
-                        }
-                    },
-                    y1: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'EBITDA Margin (%)' },
-                        position: 'right',
-                        grid: { drawOnChartArea: false },
-                        suggestedMin: 0,
-                        suggestedMax: 15
-                    },
-                    x: {
-                        grid: { display: false }
-                    }
-                },
-                plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } },
-                    title: { display: true, text: 'Evoluzione Ricavi e Margine EBITDA', font: { size: 14, weight: 'bold' } },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) label += ': ';
-                                if (context.parsed.y !== null) {
-                                    if (context.dataset.yAxisID === 'y1') {
-                                        label += context.parsed.y.toFixed(1) + '%';
-                                    } else {
-                                        if (context.parsed.y >= 1) {
-                                            label += context.parsed.y.toFixed(1) + ' M€';
-                                        } else {
-                                            label += (context.parsed.y * 1000).toFixed(0) + ' K€';
-                                        }
-                                    }
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                },
-                animation: { duration: 400 }
-            };
-            initChart('trendRicaviEbitdaChart', 'bar', trendRicEbitdaData, trendRicEbitdaOptions);
-        }
-    } catch (error) {
-        console.error("Errore inizializzazione grafico Trend Ricavi/EBITDA:", error);
-    }
-    
-    // Tenta di inizializzare il grafico Trend PFN/EBITDA
-    try {
-        const trendPfnEbitdaData = getTrendPfnEbitdaData_Dashboard();
-        if (trendPfnEbitdaData) {
-            const trendPfnEbitdaOptions = {
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                    y: {
-                        title: { display: true, text: 'Rapporto (x)' },
-                        suggestedMin: -1,
-                        suggestedMax: 4
-                    },
-                    x: {
-                        grid: { display: false }
-                    }
-                },
-                plugins: {
-                    legend: { position: 'bottom', labels: { boxWidth: 12, padding: 10, font: { size: 11 } } },
-                    title: { display: true, text: 'Evoluzione PFN/EBITDA vs Soglia', font: { size: 14, weight: 'bold' } },
-                    tooltip: {
-                        callbacks: {
-                            label: function(context) {
-                                let label = context.dataset.label || '';
-                                if (label) label += ': ';
-                                if (context.parsed.y !== null) {
-                                    label += context.parsed.y.toFixed(2) + 'x';
-                                } else {
-                                    label += 'N/D';
-                                }
-                                return label;
-                            }
-                        }
-                    }
-                },
-                animation: { duration: 400 }
-            };
-            initChart('trendPfnEbitdaChart', 'line', trendPfnEbitdaData, trendPfnEbitdaOptions);
-        }
-    } catch (error) {
-        console.error("Errore inizializzazione grafico Trend PFN/EBITDA:", error);
-    }
-    
-    console.log("Inizializzazione dashboard completata.");
-}
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Inizializzazione grafici report (se presenti)...");
 
-/**
- * Inizializzazione elementi comuni per le pagine di report
- */
-function initReportPage() {
-    console.log("Inizializzazione pagina report...");
-    
-    // Attiva tooltip Bootstrap
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-    
-    // Attiva la navigazione sidebar
-    const sidebarLinks = document.querySelectorAll('.sidebar-nav .nav-link');
-    sidebarLinks.forEach(link => {
-        // Evidenzia link attivo in base all'URL corrente
-        if (window.location.href.includes(link.getAttribute('href'))) {
-            link.classList.add('active');
-        }
-        
-        // Evento click per mobile (opzionale)
-        link.addEventListener('click', function() {
-            // Per versioni mobile, potrebbe chiudere la sidebar dopo il click
-            const sidebar = document.querySelector('.sidebar');
-            if (window.innerWidth < 992 && sidebar.classList.contains('show')) {
-                sidebar.classList.remove('show');
-            }
-        });
-    });
-    
-    console.log("Inizializzazione pagina report completata.");
-}
-
-/**
- * Inizializza tutti i grafici della pagina report corrente
- * Questa funzione rileva quali grafici sono presenti e li inizializza
- */
-function initReportCharts() {
-    console.log("Inizializzazione grafici report...");
-    
-    // La funzione inizializza ogni grafico solo se il relativo elemento canvas esiste nella pagina
-    
-    // Grafici parte 1: Sintesi
+    // --- PARTE 1: Sintesi ---
     if (document.getElementById('mainMetricsChart')) {
         try {
-            const data = getMainMetricsData();
+            const data = getMainMetricsData(); // Da charts_config.js
             const options = {
                 ...commonChartOptions,
-                scales: {
-                    y: {
-                        ...commonChartOptions.scales.y,
-                        title: { display: true, text: 'Valori in €000' },
-                        ticks: { callback: function(v) { return v.toLocaleString('it-IT'); } }
-                    }
-                },
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    title: { display: true, text: 'Evoluzione Ricavi, EBITDA e Patrimonio Netto' }
-                }
+                scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Valori in €000' }, ticks: { callback: function(v) { return v.toLocaleString('it-IT');} } } },
+                plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Evoluzione Ricavi, EBITDA e Patrimonio Netto' } }
             };
             initChart('mainMetricsChart', 'bar', data, options);
-        } catch(e) {
-            console.error("Errore grafico mainMetricsChart:", e);
-        }
+        } catch(e) { console.error("Errore grafico mainMetricsChart:", e); }
     }
-    
     if (document.getElementById('currentAssetsLiabilitiesChart')) {
-        try {
-            const data = getCurrentAssetsLiabilitiesData();
-            const options = {
+         try {
+             const data = getCurrentAssetsLiabilitiesData();
+             const options = {
+                 ...commonChartOptions,
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Valore (€)' }, ticks: { callback: function(v) { return formatCurrency(v); } } } }, // Usa formattazione valuta
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Andamento Attivo e Passivo Corrente' } }
+             };
+             initChart('currentAssetsLiabilitiesChart', 'bar', data, options);
+         } catch(e) { console.error("Errore grafico currentAssetsLiabilitiesChart:", e); }
+    }
+
+    // --- PARTE 2: Economico ---
+     if (document.getElementById('economicTrendChart')) {
+         try {
+             const data = getEconomicTrendData();
+             const options = {
                 ...commonChartOptions,
                 scales: {
-                    y: {
-                        ...commonChartOptions.scales.y,
-                        title: { display: true, text: 'Valore (€)' },
-                        ticks: { callback: function(v) { return formatCurrency(v); } }
-                    }
-                },
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    title: { display: true, text: 'Andamento Attivo e Passivo Corrente' }
-                }
-            };
-            initChart('currentAssetsLiabilitiesChart', 'bar', data, options);
-        } catch(e) {
-            console.error("Errore grafico currentAssetsLiabilitiesChart:", e);
-        }
-    }
-    
-    // Grafici parte 2: Economico
-    if (document.getElementById('economicTrendChart')) {
-        try {
-            const data = getEconomicTrendData();
-            const options = {
+                     y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Valori in €000' }, ticks: { callback: function(v) { return v.toLocaleString('it-IT');} } },
+                     y1: { position: 'right', title: { display: true, text: 'EBITDA %' }, grid: { drawOnChartArea: false }, suggestedMin: 0, suggestedMax: 15, ticks: { callback: function(v) { return v + '%';}} }
+                 },
+                plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Andamento Ricavi ed EBITDA 2022-2024' } }
+             };
+             initChart('economicTrendChart', 'bar', data, options); // Tipo misto definito nei dati
+         } catch(e) { console.error("Errore grafico economicTrendChart:", e); }
+     }
+     if (document.getElementById('marginalityChart')) {
+         try {
+             const data = getMarginalityData();
+             const options = {
+                 ...commonChartOptions,
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Percentuale sui Ricavi (%)' }, suggestedMax: 25, ticks: { callback: function(v) { return v + '%';}} } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Evoluzione delle Marginalità' } }
+             };
+             initChart('marginalityChart', 'line', data, options);
+         } catch(e) { console.error("Errore grafico marginalityChart:", e); }
+     }
+     if (document.getElementById('profitabilityIndicesChart')) { // Rinominato da profitabilityChart
+         try {
+            const data = getProfitabilityIndicesData(); // Assicurati che la funzione esista in config
+             const options = {
+                 ...commonChartOptions,
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Percentuale (%)' }, suggestedMin: 0, suggestedMax: 40, ticks: { callback: function(v) { return v + '%';}} } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Andamento Indici di Redditività' } }
+             };
+             initChart('profitabilityIndicesChart', 'line', data, options);
+         } catch(e) { console.error("Errore grafico profitabilityIndicesChart:", e); }
+     }
+     if (document.getElementById('leverageChart')) {
+          try {
+             const data = getLeverageData(); // Assicurati che la funzione esista
+             const options = {
+                 ...commonChartOptions,
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Percentuale (%)' }, ticks: { callback: function(v) { return v + '%';}} } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Confronto ROI vs ROE' } }
+             };
+             initChart('leverageChart', 'bar', data, options);
+         } catch(e) { console.error("Errore grafico leverageChart:", e); }
+     }
+
+
+    // --- PARTE 3: Patrimoniale ---
+     if (document.getElementById('assetsChart')) {
+         try {
+             const data = getAssetsData();
+             initChart('assetsChart', 'pie', data, pieChartOptions); // Usa opzioni Torta
+         } catch(e) { console.error("Errore grafico assetsChart:", e); }
+     }
+     if (document.getElementById('liabilitiesChart')) {
+         try {
+            const data = getLiabilitiesData();
+             initChart('liabilitiesChart', 'pie', data, pieChartOptions);
+         } catch(e) { console.error("Errore grafico liabilitiesChart:", e); }
+     }
+      if (document.getElementById('investmentsStructureChart')) {
+         try {
+             const data = getInvestmentsStructureData();
+             const options = {
                 ...commonChartOptions,
-                scales: {
-                    y: {
-                        ...commonChartOptions.scales.y,
-                        title: { display: true, text: 'Valori in €000' },
-                        ticks: { callback: function(v) { return v.toLocaleString('it-IT'); } }
-                    },
-                    y1: {
-                        position: 'right',
-                        title: { display: true, text: 'EBITDA %' },
-                        grid: { drawOnChartArea: false },
-                        suggestedMin: 0,
-                        suggestedMax: 15,
-                        ticks: { callback: function(v) { return v + '%'; } }
-                    }
-                },
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    title: { display: true, text: 'Trend Economico e Marginalità' }
-                }
-            };
-            initChart('economicTrendChart', 'bar', data, options);
-        } catch(e) {
-            console.error("Errore grafico economicTrendChart:", e);
-        }
+                 scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'Valori in Euro' }, ticks: { callback: function(v) { return formatCurrency(v); } } } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Evoluzione Struttura Investimenti' } }
+             };
+             initChart('investmentsStructureChart', 'bar', data, options);
+         } catch(e) { console.error("Errore grafico investmentsStructureChart:", e); }
+     }
+      if (document.getElementById('equityCompositionChart')) {
+         try {
+             const data = getEquityCompositionData();
+             initChart('equityCompositionChart', 'doughnut', data, doughnutChartOptions); // Usa opzioni Ciambella
+         } catch(e) { console.error("Errore grafico equityCompositionChart:", e); }
+     }
+     if (document.getElementById('financialDebtChart')) {
+         try {
+             const data = getFinancialDebtData();
+              initChart('financialDebtChart', 'doughnut', data, doughnutChartOptions);
+         } catch(e) { console.error("Errore grafico financialDebtChart:", e); }
+     }
+     if (document.getElementById('pfnTrendChart')) {
+          try {
+             const data = getPfnTrendData();
+             const options = {
+                 ...commonChartOptions,
+                  scales: { x: { stacked: true }, y: { stacked: true, title: { display: true, text: 'Valori in Euro' }, ticks: { callback: function(v) { return formatCurrency(v); } } } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Andamento Posizione Finanziaria Netta (Stack: Debiti vs Liquidità)' } }
+             };
+             // Modifica tipo per PFN in linea, sovrapposto a barre stacked
+              data.datasets.forEach(ds => {
+                  if (ds.label === 'PFN') ds.type = 'line';
+                  else ds.type = 'bar';
+              });
+
+             initChart('pfnTrendChart', 'bar', data, options); // Tipo base bar per stacked
+         } catch(e) { console.error("Errore grafico pfnTrendChart:", e); }
+     }
+
+    // --- PARTE 4: Bancabilità ---
+    if (document.getElementById('debtSustainabilityChart')) {
+         try {
+            const data = getDebtSustainabilityData();
+            initChart('debtSustainabilityChart', 'radar', data, radarChartOptions); // Usa opzioni Radar
+         } catch(e) { console.error("Errore grafico debtSustainabilityChart:", e); }
     }
-    
-    // Grafici parte 5: Circolante e Flussi
-    if (document.getElementById('dsoDpoTrendChart')) {
-        try {
-            const data = getDsoDpoTrendData();
+     if (document.getElementById('debtCostChart')) {
+         try {
+            const data = getDebtCostData();
+             const options = {
+                 ...commonChartOptions,
+                 scales: {
+                     y: { ...commonChartOptions.scales.y, type: 'linear', position: 'left', title: { display: true, text: 'Valore (€000)' }, ticks: { callback: function(v) { return v.toLocaleString('it-IT'); } } },
+                     y1: { type: 'linear', position: 'right', title: { display: true, text: 'Capacità Teorica Indebitamento (€000)' }, grid: { drawOnChartArea: false }, suggestedMin: 0, ticks: { callback: function(v) { return v.toLocaleString('it-IT'); } } }
+                 },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'EBITDA e Capacità di Indebitamento' } }
+             };
+            initChart('debtCostChart', 'bar', data, options); // Tipo misto configurato nei dati
+         } catch(e) { console.error("Errore grafico debtCostChart:", e); }
+    }
+
+    // --- PARTE 5: Circolante e Flussi ---
+    if (document.getElementById('workingCapitalCycleChart')) {
+         try {
+            const data = getWorkingCapitalCycleData();
+             const options = {
+                 ...commonChartOptions,
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Giorni' } } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Ciclo del Capitale Circolante vs Benchmark' } }
+             };
+            initChart('workingCapitalCycleChart', 'bar', data, options);
+         } catch(e) { console.error("Errore grafico workingCapitalCycleChart:", e); }
+    }
+     if (document.getElementById('cashFlowWaterfallChart')) {
+         try {
+            const data = getCashFlowWaterfallData();
             const options = {
-                ...commonChartOptions,
-                scales: {
-                    y: {
-                        ...commonChartOptions.scales.y,
-                        title: { display: true, text: 'Giorni' }
-                    }
-                },
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    title: { display: true, text: 'Evoluzione DSO, DPO e Ciclo Circolante' }
-                }
+                 ...commonChartOptions,
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Euro' }, ticks: { callback: function(v) { return formatCurrency(v); } } } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Composizione Flussi di Cassa 2024' }, legend: {display: false} }
             };
-            initChart('dsoDpoTrendChart', 'line', data, options);
-        } catch(e) {
-            console.error("Errore grafico dsoDpoTrendChart:", e);
-        }
+            initChart('cashFlowWaterfallChart', 'bar', data, options); // Usiamo 'bar' come approssimazione
+         } catch(e) { console.error("Errore grafico cashFlowWaterfallChart:", e); }
     }
-    
-    if (document.getElementById('cashFlowOpTrendChart')) {
-        try {
-            const data = getTrendCashFlowOpData();
-            const options = {
-                ...commonChartOptions,
-                scales: {
-                    y: {
-                        ...commonChartOptions.scales.y,
-                        title: { display: true, text: 'Percentuale (%)' },
-                        ticks: { callback: function(v) { return v + '%'; } }
-                    }
-                },
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    title: { display: true, text: 'Cash Flow Operativo in % sui Ricavi' }
-                }
-            };
-            initChart('cashFlowOpTrendChart', 'line', data, options);
-        } catch(e) {
-            console.error("Errore grafico cashFlowOpTrendChart:", e);
-        }
+     if (document.getElementById('cashFlowTrendChart')) {
+         try {
+            const data = getCashFlowTrendData();
+             const options = {
+                 ...commonChartOptions,
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Euro' }, ticks: { callback: function(v) { return formatCurrency(v); } } } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Evoluzione Flussi di Cassa' } }
+             };
+            initChart('cashFlowTrendChart', 'line', data, options);
+         } catch(e) { console.error("Errore grafico cashFlowTrendChart:", e); }
     }
-    
-    if (document.getElementById('cashFlowProjectionChart')) {
-        try {
+     if (document.getElementById('cashFlowProjectionChart')) {
+         try {
             const data = getCashFlowProjectionData();
-            const options = {
+             const options = {
                 ...commonChartOptions,
                 scales: {
-                    y: {
-                        ...commonChartOptions.scales.y,
-                        title: { display: true, text: 'Flussi di Cassa (€)' },
-                        ticks: { callback: function(v) { return formatCurrency(v); } }
-                    },
-                    y1: {
-                        type: 'linear',
-                        position: 'right',
-                        title: { display: true, text: 'Liquidità Finale (€)' },
-                        grid: { drawOnChartArea: false },
-                        ticks: { callback: function(v) { return formatCurrency(v); } }
-                    }
-                },
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    title: { display: true, text: 'Proiezioni Finanziarie 2024-2028' }
-                }
-            };
-            initChart('cashFlowProjectionChart', 'bar', data, options);
-        } catch(e) {
-            console.error("Errore grafico cashFlowProjectionChart:", e);
-        }
+                     y: { ...commonChartOptions.scales.y, type: 'linear', position: 'left', title: { display: true, text: 'Flussi (€)' }, ticks: { callback: function(v) { return formatCurrency(v); } } },
+                     y1: { type: 'linear', position: 'right', title: { display: true, text: 'Liquidità Finale (€)' }, grid: { drawOnChartArea: false }, ticks: { callback: function(v) { return formatCurrency(v); } } }
+                 },
+                plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Proiezioni Finanziarie 2024-2028' } }
+             };
+            initChart('cashFlowProjectionChart', 'bar', data, options); // Tipo misto configurato nei dati
+         } catch(e) { console.error("Errore grafico cashFlowProjectionChart:", e); }
     }
-    
-    // Grafici parte 6: Rischi
-    if (document.getElementById('zscoreChart')) {
-        try {
+
+    // --- PARTE 6: Rischi ---
+     if (document.getElementById('zscoreChart')) {
+         try {
             const data = getZscoreData();
-            const options = {
-                ...commonChartOptions,
-                scales: {
-                    y: {
-                        ...commonChartOptions.scales.y,
-                        title: { display: true, text: 'Z-Score' },
-                        suggestedMin: 0,
-                        suggestedMax: 4
-                    }
-                },
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    title: { display: true, text: 'Evoluzione Z-Score e Soglie di Riferimento' }
-                }
-            };
+             const options = {
+                 ...commonChartOptions,
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Z-Score' }, suggestedMin: 0, suggestedMax: 4 } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Evoluzione Z-Score e Soglie di Riferimento' } }
+             };
             initChart('zscoreChart', 'line', data, options);
-        } catch(e) {
-            console.error("Errore grafico zscoreChart:", e);
-        }
+         } catch(e) { console.error("Errore grafico zscoreChart:", e); }
     }
-    
     if (document.getElementById('riskIndicatorsChart')) {
-        try {
+         try {
             const data = getRiskIndicatorsData();
             initChart('riskIndicatorsChart', 'radar', data, radarChartOptions);
-        } catch(e) {
-            console.error("Errore grafico riskIndicatorsChart:", e);
-        }
+         } catch(e) { console.error("Errore grafico riskIndicatorsChart:", e); }
     }
-    
-    if (document.getElementById('sensitivityChart')) {
-        try {
+     if (document.getElementById('sensitivityChart')) {
+         try {
             const data = getSensitivityData();
             const options = {
                 ...commonChartOptions,
-                scales: {
-                    y: {
-                        ...commonChartOptions.scales.y,
-                        title: { display: true, text: 'Variazione percentuale critica (%)' },
-                        ticks: { callback: function(v) { return v + '%'; } }
-                    }
-                },
-                plugins: {
-                    ...commonChartOptions.plugins,
-                    title: { display: true, text: 'Analisi di Sensitività - Variazioni Critiche' }
-                }
+                 scales: { y: { ...commonChartOptions.scales.y, title: { display: true, text: 'Variazione percentuale critica (%)' }, ticks: { callback: function(v) { return v + '%'; } } } },
+                 plugins: { ...commonChartOptions.plugins, title: { display: true, text: 'Analisi di Sensitività - Variazioni Critiche' } }
             };
             initChart('sensitivityChart', 'bar', data, options);
-        } catch(e) {
-            console.error("Errore grafico sensitivityChart:", e);
-        }
+         } catch(e) { console.error("Errore grafico sensitivityChart:", e); }
     }
-    
-    console.log("Inizializzazione grafici report completata.");
-}
 
-// ======================================================================
-// EVENT LISTENERS PER INIZIALIZZAZIONE
-// ======================================================================
-
-// Esecuzione all'avvio di ogni pagina
-document.addEventListener('DOMContentLoaded', function() {
-    // Determina il tipo di pagina e inizializza di conseguenza
-    const isReportPage = document.querySelector('.sidebar-nav') !== null;
-    const isDashboardPage = document.querySelector('.dashboard-container') !== null && 
-                           !document.URL.includes('/report/');
-    
-    // Inizializza elementi comuni per tutte le pagine
-    // Aggiorna anno corrente nei footer
-    const yearElements = document.querySelectorAll('[id^="currentYear"]');
-    yearElements.forEach(el => {
-        el.textContent = new Date().getFullYear();
-    });
-    
-    // Inizializzazione specifica per tipo di pagina
-    if (isReportPage) {
-        // Inizializza elementi pagina report
-        initReportPage();
-        // Inizializza i grafici presenti nella pagina report
-        initReportCharts();
-    } else if (isDashboardPage) {
-        // Inizializza la dashboard
-        initDashboard();
-    }
-    
-    // Aggiorna badge IRP header (se presente)
-    const irpHeaderBadge = document.getElementById('irp-header-badge');
-    if (irpHeaderBadge) {
-        const irpScoreValue = 87.03; // Valore fisso o da API
-        let badgeClass = 'bg-success'; // Default: Basso rischio
-        
-        if (irpScoreValue >= 71) badgeClass = 'bg-success'; // Basso
-        else if (irpScoreValue < 51) badgeClass = 'bg-danger'; // Alto
-        else badgeClass = 'bg-warning text-dark'; // Medio
-        
-        irpHeaderBadge.className = `badge ${badgeClass} me-3`;
-        irpHeaderBadge.textContent = `IRP: ${irpScoreValue.toFixed(1)} (B+)`;
-    }
-    
-    // Definisci funzioni globali se non esistono già
-    if (typeof logout !== 'function') {
-        window.logout = function() {
-            console.log("Logout action triggered (placeholder)");
-            // Implementazione reale da aggiungere se necessario
-        }
-    }
-    
-    // Funzione di stampa
-    if (typeof printDocument !== 'function') {
-        window.printDocument = function() {
-            window.print();
-        }
-    }
+    console.log("Inizializzazione grafici report completata (per elementi presenti).");
 });

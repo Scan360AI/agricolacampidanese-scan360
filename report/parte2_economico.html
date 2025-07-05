@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Economica e Benchmark - RELIVE COMMUNICATION S.R.L. | SCAN V9</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/print.css" rel="stylesheet" media="print">
+     <style>
+        .table-success-light { background-color: #d1e7dd !important; }
+        .table-warning-light { background-color: #fff3cd !important; }
+        .table-danger-light { background-color: #f8d7da !important; }
+     </style>
+</head>
+<body>
+
+ <!-- Sidebar -->
+    <aside class="sidebar no-print">
+        <div class="sidebar-header"> <img src="../assets/img/logo_scan.png" alt="SCAN Logo" style="max-height: 40px;"> <h5>RELIVE COMMUNICATION S.R.L.</h5> </div>
+        <ul class="sidebar-nav flex-grow-1">
+            <li class="nav-item"> <a class="nav-link" href="../dashboard_v2.html"> <i class="fas fa-tachometer-alt fa-fw"></i> Dashboard </a> </li>
+            <li class="nav-title">Analisi Dettagliata</li>
+            <li class="nav-item"> <a class="nav-link" href="parte1_sintesi.html"> <i class="fas fa-file-alt fa-fw"></i> Sintesi e Profilo </a> </li>
+            <li class="nav-item"> <a class="nav-link active" href="parte2_economico.html"> <i class="fas fa-balance-scale fa-fw"></i> Analisi Economica </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte3_patrimoniale.html"> <i class="fas fa-landmark fa-fw"></i> Analisi Patrimoniale </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte4_bancabilita.html"> <i class="fas fa-university fa-fw"></i> Bancabilità </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte5_circolante_flussi.html"> <i class="fas fa-sync-alt fa-fw"></i> Circolante e Flussi </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte6_rischi-raccomandazioni.html"> <i class="fas fa-exclamation-triangle fa-fw"></i> Rischi e Azioni </a> </li>
+            <li class="nav-title">Approfondimenti</li>
+            <li class="nav-item"> <a class="nav-link" href="irp_dettaglio.html"> <i class="fas fa-shield-alt fa-fw"></i> Dettaglio IRP </a> </li>
+        </ul>
+        <div class="sidebar-footer"> <small>SCAN360 © <span id="currentYearSidebar"></span> Kitzanos</small> </div>
+    </aside>
+
+
+    <!-- Contenuto Principale Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header Orizzontale -->
+        <header class="dashboard-header no-print">
+            <div class="header-title">
+                <h5 class="mb-0">Report Dettagliato: Analisi Economica e Benchmark</h5>
+                <p class="mb-0">RELIVE COMMUNICATION S.R.L. | <span class="report-date">28 Aprile 2025</span></p>
+            </div>
+            <div class="header-controls d-flex align-items-center">
+                <span id="irp-header-badge" class="badge me-3"></span> <!-- Badge IRP -->
+                <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="printDocument()"> <i class="fas fa-print"></i> Stampa </button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user-circle me-1"></i> RELIVE COMMUNICATION S.R.L. </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton"> <li><button class="dropdown-item" type="button" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li> </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container d-none d-print-block mt-4 mb-4">
+            <h1 class="text-center mb-0"><span class="company-name">RELIVE COMMUNICATION S.R.L.</span></h1>
+            <p class="text-center mb-0">Report Dettagliato: Analisi Economica e Benchmark | <span class="report-date">28 Aprile 2025</span></p>
+            <hr>
+        </div>
+
+        <!-- Area Contenuto Specifico del Report -->
+        <div class="dashboard-container">
+
+            <!-- ================================================================ -->
+            <!-- CONTENUTO SPECIFICO PARTE 2 - V9 - Updated for RELIVE COMMUNICATION -->
+            <!-- ================================================================ -->
+
+             <h2 class="section-title" id="economic-analysis"><i class="fas fa-balance-scale me-2"></i>SEZIONE 2.1: ANALISI ECONOMICA</h2>
+
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.1.1 Conto Economico Riclassificato</h5></div>
+                <div class="card-body">
+                    <p>Il conto economico riclassificato evidenzia la struttura dei costi e dei ricavi di RELIVE COMMUNICATION S.R.L. nel periodo 2022-2024, consentendo di valutare la redditività operativa e netta.</p>
+
+                     <h6 class="mt-4 text-center small">Grafico 2.1: Andamento Ricavi ed EBITDA 2022-2024 (€000 e %)</h6>
+                     <div class="chart-container mb-4" style="height: 350px;">
+                         <canvas id="economicTrendChart"></canvas>
+                     </div>
+
+                    <h6 class="mt-4">Tabella 2.1: Conto Economico Riclassificato 2022-2024 (valori in €)</h6>
+                     <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                             <thead class="table-light">
+                                 <tr><th>Voce</th><th class="text-end">2022</th><th class="text-end">% Ricavi</th><th class="text-end">2023</th><th class="text-end">% Ricavi</th><th class="text-end">2024</th><th class="text-end">% Ricavi</th><th class="text-end">Var. % 23-24</th></tr>
+                             </thead>
+                             <tbody>
+                                 <tr><td>Ricavi</td><td class="text-end">837.763</td><td class="text-end">100,0%</td><td class="text-end">1.014.130</td><td class="text-end">100,0%</td><td class="text-end">1.030.748</td><td class="text-end">100,0%</td><td class="text-success">+1,64%</td></tr>
+                                 <tr><td>Valore della Produzione</td><td class="text-end">851.188</td><td class="text-end">101,6%</td><td class="text-end">1.007.883</td><td class="text-end">99,4%</td><td class="text-end">1.030.748</td><td class="text-end">100,0%</td><td class="text-success">+2,27%</td></tr>
+                                 <tr><td>Valore Aggiunto su Consumi</td><td class="text-end">844.485</td><td class="text-end">100,8%</td><td class="text-end">999.481</td><td class="text-end">98,6%</td><td class="text-end">1.022.062</td><td class="text-end">99,2%</td><td class="text-success">+2,26%</td></tr>
+                                 <tr class="table-secondary"><td>Margine di Contribuzione</td><td class="text-end">258.841</td><td class="text-end">30,9%</td><td class="text-end">345.223</td><td class="text-end">34,0%</td><td class="text-end">396.343</td><td class="text-end">38,5%</td><td class="text-success">+14,81%</td></tr>
+                                 <tr class="table-success fw-bold"><td>EBITDA</td><td class="text-end">59.227</td><td class="text-end">7,1%</td><td class="text-end">104.917</td><td class="text-end">10,3%</td><td class="text-end">102.108</td><td class="text-end">9,9%</td><td class="text-danger">-2,68%</td></tr>
+                                 <tr><td>EBIT (Reddito Operativo)</td><td class="text-end">52.451</td><td class="text-end">6,3%</td><td class="text-end">96.014</td><td class="text-end">9,5%</td><td class="text-end">94.378</td><td class="text-end">9,2%</td><td class="text-danger">-1,70%</td></tr>
+                                 <tr><td>Margine Ante Gestione Fin. e Straord.</td><td class="text-end">36.394</td><td class="text-end">4,3%</td><td class="text-end">68.781</td><td class="text-end">6,8%</td><td class="text-end">79.598</td><td class="text-end">7,7%</td><td class="text-success">+15,73%</td></tr>
+                                 <tr><td>Risultato Ante Imposte</td><td class="text-end">35.500</td><td class="text-end">4,2%</td><td class="text-end">66.651</td><td class="text-end">6,6%</td><td class="text-end">96.025</td><td class="text-end">9,3%</td><td class="text-success">+44,07%</td></tr>
+                                 <tr class="table-success fw-bold"><td>Utile/Perdita d'esercizio</td><td class="text-end">18.359</td><td class="text-end">2,2%</td><td class="text-end">41.467</td><td class="text-end">4,1%</td><td class="text-end">95.783</td><td class="text-end">9,3%</td><td class="text-success">+131,00%</td></tr>
+                             </tbody>
+                         </table>
+                     </div>
+
+                    <h6 class="mt-4">Analisi della composizione dei costi</h6>
+                     <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                             <thead class="table-light">
+                                 <tr><th>Categoria di costo</th><th class="text-end">2022</th><th class="text-end">% Ricavi</th><th class="text-end">2023</th><th class="text-end">% Ricavi</th><th class="text-end">2024</th><th class="text-end">% Ricavi</th><th class="text-end">Var.% 23-24</th></tr>
+                             </thead>
+                             <tbody>
+                                 <tr><td>Acquisti</td><td class="text-end">2.178</td><td class="text-end">0,3%</td><td class="text-end">5.749</td><td class="text-end">0,6%</td><td class="text-end">8.686</td><td class="text-end">0,8%</td><td class="text-danger">+51,09%</td></tr>
+                                 <tr><td>Costi Variabili di Produzione (Servizi)</td><td class="text-end">585.644</td><td class="text-end">69,9%</td><td class="text-end">654.258</td><td class="text-end">64,5%</td><td class="text-end">625.719</td><td class="text-end">60,7%</td><td class="text-success">-4,36%</td></tr>
+                                 <tr><td>Costi Fissi di Produzione</td><td class="text-end">199.614</td><td class="text-end">23,8%</td><td class="text-end">240.306</td><td class="text-end">23,7%</td><td class="text-end">294.235</td><td class="text-end">28,5%</td><td class="text-danger">+22,44%</td></tr>
+                                 <tr><td>- Godimento beni di terzi</td><td class="text-end">29.168</td><td class="text-end">3,5%</td><td class="text-end">41.768</td><td class="text-end">4,1%</td><td class="text-end">51.485</td><td class="text-end">5,0%</td><td class="text-danger">+23,26%</td></tr>
+                                 <tr><td>- Personale</td><td class="text-end">170.446</td><td class="text-end">20,3%</td><td class="text-end">198.538</td><td class="text-end">19,6%</td><td class="text-end">242.750</td><td class="text-end">23,6%</td><td class="text-danger">+22,27%</td></tr>
+                                 <tr><td>Ammortamenti</td><td class="text-end">6.776</td><td class="text-end">0,8%</td><td class="text-end">8.903</td><td class="text-end">0,9%</td><td class="text-end">7.730</td><td class="text-end">0,7%</td><td class="text-success">-13,17%</td></tr>
+                                 <tr><td>Oneri diversi di gestione</td><td class="text-end">20.582</td><td class="text-end">2,5%</td><td class="text-end">29.886</td><td class="text-end">2,9%</td><td class="text-end">14.780</td><td class="text-end">1,4%</td><td class="text-success">-50,55%</td></tr>
+                                 <tr><td>Oneri finanziari</td><td class="text-end">894</td><td class="text-end">0,1%</td><td class="text-end">2.146</td><td class="text-end">0,2%</td><td class="text-end">1.439</td><td class="text-end">0,1%</td><td class="text-success">-33,01%</td></tr>
+                                 <tr><td>Imposte</td><td class="text-end">17.141</td><td class="text-end">2,0%</td><td class="text-end">25.184</td><td class="text-end">2,5%</td><td class="text-end">242</td><td class="text-end">0,0%</td><td class="text-success">-99,04%</td></tr>
+                             </tbody>
+                         </table>
+                     </div>
+
+                    <h6 class="mt-4">Analisi del Conto Economico (RELIVE COMMUNICATION S.R.L.):</h6>
+                    <ol class="small">
+                        <li><strong>Ricavi:</strong> Crescita moderata dell'1,64% nel 2024 rispetto al 2023, evidenziando una stabilizzazione dopo il significativo incremento dell'anno precedente.</li>
+                        <li><strong>Margine di Contribuzione (38,5%):</strong> Significativo miglioramento (+14,81%), con progressiva crescita dal 30,9% del 2022, indicando un'ottima capacità di generare valore attraverso il core business.</li>
+                        <li><strong>EBITDA (9,9%):</strong> Lieve flessione (-2,68%) rispetto al 2023, pur mantenendosi ampiamente positivo e significativamente superiore ai valori del 2022.</li>
+                        <li><strong>Costi fissi:</strong> Incremento significativo (+22,44%), principalmente dovuto all'aumento del costo del personale (+22,27%), evidenziando un potenziale fattore di attenzione.</li>
+                        <li><strong>Utile Netto (9,3%):</strong> Eccezionale incremento (+131,00%) rispetto all'anno precedente, fortemente influenzato dalla drastica riduzione delle imposte (-99,04%).</li>
+                        <li><strong>Struttura costi:</strong> Miglioramento dell'efficienza con riduzione dell'incidenza dei costi variabili (servizi: -4,36%) e degli oneri diversi di gestione (-50,55%).</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.1.2 Analisi della Marginalità</h5></div>
+                 <div class="card-body">
+                    <p>L'analisi della marginalità valuta la capacità di generare valore aggiunto.</p>
+                    <div class="row">
+                        <div class="col-lg-7 mb-3 mb-lg-0">
+                            <h6 class="text-center small">Grafico 2.2: Evoluzione delle Principali Marginalità (%)</h6>
+                             <div class="chart-container" style="height: 350px;">
+                                 <canvas id="marginalityChart"></canvas>
+                             </div>
+                        </div>
+                         <div class="col-lg-5">
+                             <h6>Tabella 2.2: Evoluzione Indici di Marginalità (RELIVE COMMUNICATION S.R.L.)</h6>
+                             <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover">
+                                     <thead><tr><th>Indicatore</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th>Trend</th></tr></thead>
+                                     <tbody>
+                                         <tr><td>Valore Aggiunto/Ricavi</td><td class="text-end">100,8%</td><td class="text-end">98,6%</td><td class="text-end">99,2%</td><td class="text-success"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr><td>MdC/Ricavi</td><td class="text-end">30,9%</td><td class="text-end">34,0%</td><td class="text-end">38,5%</td><td class="text-success"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr><td>EBITDA/Ricavi</td><td class="text-end">7,1%</td><td class="text-end">10,3%</td><td class="text-end">9,9%</td><td class="text-warning"><i class="fas fa-arrow-down"></i></td></tr>
+                                         <tr><td>ROS (EBIT/Ricavi)</td><td class="text-end">6,3%</td><td class="text-end">9,5%</td><td class="text-end">9,2%</td><td class="text-warning"><i class="fas fa-arrow-down"></i></td></tr>
+                                         <tr><td>Utile Netto/Ricavi</td><td class="text-end">2,2%</td><td class="text-end">4,1%</td><td class="text-end">9,3%</td><td class="text-success"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr class="table-secondary"><td>Break-Even Point (€)</td><td class="text-end">646.000</td><td class="text-end">706.782</td><td class="text-end">785.304</td><td class="text-warning"><i class="fas fa-arrow-up"></i></td></tr>
+                                         <tr class="table-secondary"><td>Margine Sicurezza</td><td class="text-end">22,9%</td><td class="text-end">30,3%</td><td class="text-end">23,8%</td><td class="text-warning"><i class="fas fa-arrow-down"></i></td></tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+                             <h6 class="mt-3">Break-Even e Leva Operativa (2024 - RELIVE COMMUNICATION S.R.L.)</h6>
+                             <div class="alert-box alert-success small mt-2 p-2">
+                                 <ul class="list-unstyled mb-0">
+                                     <li><i class="fas fa-bullseye me-1"></i> BEP: €785.304 | Margine Sicurezza: 23,8% (Buono)</li>
+                                     <li><i class="fas fa-calculator me-1"></i> Moltiplicatore CF: 2,60</li>
+                                     <li><i class="fas fa-arrows-alt-v me-1"></i> Variazione ricavi per EBIT=0: -23,8% | Variazione CF per EBIT=0: +32,08%</li>
+                                 </ul>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+            </div>
+
+            <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">2.1.3 Struttura e Dettaglio Principali Costi</h5></div>
+                 <div class="card-body">
+                     <p>Analisi delle principali voci di costo e loro incidenza.</p>
+                     <h6 class="mt-4">Tabella 2.3: Struttura dei Costi 2022-2024 (RELIVE COMMUNICATION S.R.L.)</h6>
+                      <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                            <thead class="table-light">
+                                <tr><th>Categoria di Costo</th><th class="text-end">2022</th><th class="text-end">% Ricavi</th><th class="text-end">2023</th><th class="text-end">% Ricavi</th><th class="text-end">2024</th><th class="text-end">% Ricavi</th><th>Var%</th><th>Valutazione</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Costi Variabili (acquisti+servizi)</td><td class="text-end">587.822</td><td class="text-end">72,7%</td><td class="text-end">660.007</td><td class="text-end">70,3%</td><td class="text-end">634.405</td><td class="text-end">66,7%</td><td class="text-success">-3,9%</td><td><span class="status-badge bg-success">Miglioramento</span></td></tr>
+                                <tr><td>Costi Fissi</td><td class="text-end">199.614</td><td class="text-end">24,7%</td><td class="text-end">240.306</td><td class="text-end">25,6%</td><td class="text-end">294.235</td><td class="text-end">30,9%</td><td class="text-danger">+22,4%</td><td><span class="status-badge bg-warning">Attenzione</span></td></tr>
+                                <tr><td>Costo del personale</td><td class="text-end">170.446</td><td class="text-end">21,1%</td><td class="text-end">198.538</td><td class="text-end">21,1%</td><td class="text-end">242.750</td><td class="text-end">25,5%</td><td class="text-danger">+22,3%</td><td><span class="status-badge bg-warning">Attenzione</span></td></tr>
+                                <tr><td>Godimento beni di terzi</td><td class="text-end">29.168</td><td class="text-end">3,6%</td><td class="text-end">41.768</td><td class="text-end">4,4%</td><td class="text-end">51.485</td><td class="text-end">5,4%</td><td class="text-danger">+23,3%</td><td><span class="status-badge bg-warning">Attenzione</span></td></tr>
+                                <tr><td>Ammortamenti</td><td class="text-end">6.776</td><td class="text-end">0,8%</td><td class="text-end">8.903</td><td class="text-end">0,9%</td><td class="text-end">7.730</td><td class="text-end">0,8%</td><td class="text-success">-13,2%</td><td><span class="status-badge bg-secondary">In linea</span></td></tr>
+                                <tr><td>Oneri diversi gestione</td><td class="text-end">20.582</td><td class="text-end">2,5%</td><td class="text-end">29.886</td><td class="text-end">3,2%</td><td class="text-end">14.780</td><td class="text-end">1,6%</td><td class="text-success">-50,5%</td><td><span class="status-badge bg-success">Miglioramento</span></td></tr>
+                                <tr><td>Oneri finanziari</td><td class="text-end">894</td><td class="text-end">0,1%</td><td class="text-end">2.146</td><td class="text-end">0,2%</td><td class="text-end">1.439</td><td class="text-end">0,1%</td><td class="text-success">-33,0%</td><td><span class="status-badge bg-success">Buono</span></td></tr>
+                            </tbody>
+                         </table>
+                     </div>
+                     <h6 class="mt-4">Analisi del Costo del Personale</h6>
+                      <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                            <thead class="table-light">
+                                <tr><th>Dettaglio</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th class="text-end">Var.% 23-24</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>Numero dipendenti</td><td class="text-end">6</td><td class="text-end">n.d.</td><td class="text-end">6</td><td class="text-end">n.d.</td></tr>
+                                <tr><td>Costo totale personale (€)</td><td class="text-end">170.446</td><td class="text-end">198.538</td><td class="text-end">242.750</td><td class="text-danger">+22,3%</td></tr>
+                                <tr><td>Costo medio per dipendente (€)</td><td class="text-end">28.408</td><td class="text-end">n.d.</td><td class="text-end">40.458</td><td class="text-end">n.d.</td></tr>
+                                <tr><td>Incidenza su ricavi (%)</td><td class="text-end">20,3%</td><td class="text-end">19,6%</td><td class="text-end">23,6%</td><td class="text-danger">+4,0 p.p.</td></tr>
+                                <tr><td>Ricavi per dipendente (€)</td><td class="text-end">139.627</td><td class="text-end">n.d.</td><td class="text-end">171.791</td><td class="text-end">n.d.</td></tr>
+                            </tbody>
+                         </table>
+                     </div>
+                     <h6 class="mt-4">Approfondimento (RELIVE COMMUNICATION S.R.L.):</h6>
+                     <ul class="small">
+                          <li><strong>Costi variabili (66,7%):</strong> Riduzione dell'incidenza (-3,9% rispetto al 2023), segnale di miglioramento dell'efficienza operativa e possibile evoluzione verso servizi a maggior valore aggiunto.</li>
+                          <li><strong>Costi fissi (30,9%):</strong> Incremento significativo (+22,4%), con incidenza crescente rispetto ai ricavi, elemento di attenzione considerando la moderata crescita del fatturato.</li>
+                          <li><strong>Costo del personale (25,5%):</strong> Significativo aumento (+22,3%) con incremento dell'incidenza sui ricavi (+4,0 p.p.), evidenziando un probabile investimento in risorse umane con competenze specialistiche.</li>
+                          <li><strong>Elasticità costi-ricavi:</strong> Critico il rapporto tra crescita dei costi fissi (+22,4%) e crescita dei ricavi (+1,64%), che potrebbe indicare una riduzione dell'efficienza operativa se non accompagnato da una corrispondente crescita futura del fatturato.</li>
+                          <li><strong>Produttività:</strong> Buon livello di ricavi per dipendente (€171.791), con potenziale capacità di assorbire l'incremento del costo medio per dipendente (€40.458).</li>
+                     </ul>
+                 </div>
+            </div>
+
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.1.4 Indici di Redditività</h5></div>
+                 <div class="card-body">
+                     <p>Analisi della capacità di generare ritorni adeguati.</p>
+                      <div class="row">
+                         <div class="col-lg-7 mb-3 mb-lg-0">
+                             <h6>Tabella 2.4: Indici di Redditività 2022-2024 (RELIVE COMMUNICATION S.R.L.)</h6>
+                              <div class="table-responsive">
+                                 <table class="table table-sm table-striped table-hover">
+                                     <thead class="table-light"><tr><th>Indice</th><th>Formula</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th>Soglia</th><th>Valutazione</th></tr></thead>
+                                     <tbody>
+                                         <tr><td>ROE</td><td>Utile/PN</td><td class="text-end">18,95%</td><td class="text-end">29,97%</td><td class="text-end">40,91%</td><td>> 7%</td><td><span class="status-badge bg-success">Eccellente</span></td></tr>
+                                         <tr><td>ROI</td><td>EBIT/CIN</td><td class="text-end">113,84%</td><td class="text-end">67,88%</td><td class="text-end">53,26%</td><td>> 10%</td><td><span class="status-badge bg-success">Eccellente</span></td></tr>
+                                         <tr><td>ROS</td><td>EBIT/Ricavi</td><td class="text-end">6,3%</td><td class="text-end">9,5%</td><td class="text-end">9,2%</td><td>> 6%</td><td><span class="status-badge bg-success">Ottimo</span></td></tr>
+                                         <tr><td>EBITDA Margin</td><td>EBITDA/Ricavi</td><td class="text-end">7,1%</td><td class="text-end">10,3%</td><td class="text-end">9,9%</td><td>> 8%</td><td><span class="status-badge bg-success">Buono</span></td></tr>
+                                         <tr><td>Redditività Netta</td><td>Utile/Ricavi</td><td class="text-end">2,2%</td><td class="text-end">4,1%</td><td class="text-end">9,3%</td><td>> 5%</td><td><span class="status-badge bg-success">Eccellente</span></td></tr>
+                                         <tr><td>Turnover</td><td>Ricavi/CIN</td><td class="text-end">18,18</td><td class="text-end">7,17</td><td class="text-end">5,82</td><td>> 2</td><td><span class="status-badge bg-success">Ottimo</span></td></tr>
+                                         <tr><td>Cash Flow / Ricavi</td><td>CF/Ricavi</td><td class="text-end">1,4%</td><td class="text-end">-3,5%</td><td class="text-end">6,2%</td><td>> 5%</td><td><span class="status-badge bg-success">Buono</span></td></tr>
+                                     </tbody>
+                                 </table>
+                             </div>
+                         </div>
+                          <div class="col-lg-5">
+                              <h6 class="text-center small">Grafico 2.3: Andamento Redditività (%)</h6>
+                              <div class="chart-container" style="height: 280px;"> <canvas id="profitabilityIndicesChart"></canvas> </div>
+                         </div>
+                     </div>
+                      <h6 class="mt-4">Analisi (RELIVE COMMUNICATION S.R.L.):</h6>
+                      <ul class="small">
+                        <li><strong>ROE (40,91%):</strong> Eccellente risultato in costante crescita nel triennio, significativamente superiore alla soglia di eccellenza del 7%, influenzato dalla forte crescita dell'utile netto.</li>
+                        <li><strong>ROI (53,26%):</strong> Valore estremamente positivo che, nonostante la riduzione rispetto al 2022 (113,84%), rimane notevolmente superiore alla soglia del 10%, evidenziando un'eccellente efficienza nell'impiego del capitale.</li>
+                        <li><strong>ROS (9,2%):</strong> Ottima performance, superiore alla soglia del 6%, con stabilità rispetto al 2023, confermando la buona capacità di generare margini dalle vendite.</li>
+                        <li><strong>Redditività Netta (9,3%):</strong> Eccezionale miglioramento dal 4,1% del 2023, principalmente dovuto alla drastica riduzione delle imposte.</li>
+                        <li><strong>Cash Flow / Ricavi (6,2%):</strong> Ottimo recupero dopo il valore negativo del 2023, superiore alla soglia del 5%, indicando una buona generazione di cassa operativa.</li>
+                        <li><strong>Trend ROI:</strong> La tendenza al calo (dal 113,84% del 2022 al 53,26% del 2024) è un elemento da monitorare, pur rimanendo su livelli eccellenti.</li>
+                      </ul>
+                 </div>
+            </div>
+
+             <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.1.5 Effetto Leva Finanziaria</h5></div>
+                 <div class="card-body">
+                     <p>Valutazione dell'impatto dell'indebitamento sulla redditività del capitale proprio.</p>
+                      <div class="row">
+                          <div class="col-lg-7 mb-3 mb-lg-0">
+                              <h6>Tabella 2.5: Analisi Effetto Leva 2022-2024 (RELIVE COMMUNICATION S.R.L.)</h6>
+                              <div class="table-responsive">
+                                 <table class="table table-sm table-striped table-hover">
+                                      <thead><tr><th>Parametro</th><th>Formula</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th class="text-end">Variazione 23-24</th></tr></thead>
+                                      <tbody>
+                                          <tr><td>ROI</td><td>EBIT/CIN</td><td class="text-end">113,84%</td><td class="text-end">67,88%</td><td class="text-end">53,26%</td><td class="text-end">-14,62 p.p.</td></tr>
+                                          <tr><td>Costo medio del debito (i)</td><td>Oneri Fin./Debiti Fin.</td><td class="text-end">4,14%</td><td class="text-end">4,93%</td><td class="text-end">6,61%</td><td class="text-end">+1,68 p.p.</td></tr>
+                                          <tr><td>Spread (ROI - i)</td><td>ROI - i</td><td class="text-end text-success">+109,70%</td><td class="text-end text-success">+62,95%</td><td class="text-end text-success">+46,65%</td><td class="text-end">-16,30 p.p.</td></tr>
+                                          <tr><td>Rapporto D/E (Debt/Equity)</td><td>Debiti Fin./PN</td><td class="text-end">0,22</td><td class="text-end">0,31</td><td class="text-end">0,00</td><td class="text-end">-0,31</td></tr>
+                                          <tr class="table-secondary"><td>Effetto leva (ROI - i) × D/E</td><td>(ROI - i) × D/E</td><td class="text-end text-success">+24,13%</td><td class="text-end text-success">+19,51%</td><td class="text-end">0,00%</td><td class="text-end">-19,51 p.p.</td></tr>
+                                          <tr><td>ROE teorico (ROI + effetto leva)</td><td>ROI + Effetto Leva</td><td class="text-end">137,97%</td><td class="text-end">87,39%</td><td class="text-end">53,26%</td><td class="text-end">-34,13 p.p.</td></tr>
+                                          <tr class="fw-bold"><td>ROE effettivo</td><td>Utile Netto/PN</td><td class="text-end">18,95%</td><td class="text-end">29,97%</td><td class="text-end">40,91%</td><td class="text-end">+10,94 p.p.</td></tr>
+                                          <tr><td>Differenza (ROE effettivo - ROE teorico)</td><td>ROE - ROE teorico</td><td class="text-end">-119,02%</td><td class="text-end">-57,42%</td><td class="text-end">-12,35%</td><td class="text-end">+45,07 p.p.</td></tr>
+                                      </tbody>
+                                 </table>
+                              </div>
+                          </div>
+                          <div class="col-lg-5">
+                               <h6 class="text-center small">Grafico 2.4: Evoluzione della Struttura Finanziaria</h6>
+                               <div class="chart-container" style="height: 250px;"> <canvas id="leverageChart"></canvas> </div>
+                                <h6 class="mt-4">Analisi Leva (RELIVE COMMUNICATION S.R.L.):</h6>
+                               <ul class="small list-unstyled">
+                                <li><i class="fas fa-check-circle text-success me-1"></i> Spread (ROI-i) ampiamente positivo (+46,65%), indicativo di un'ottima redditività operativa.</li>
+                                <li><i class="fas fa-info-circle text-info me-1"></i> Effetto Leva azzerato (0,00%) per l'assenza di debiti finanziari nel 2024.</li>
+                                <li><i class="fas fa-arrow-down text-success me-1"></i> Azzeramento completo del debito finanziario (D/E: da 0,31 a 0,00), con conseguente rinuncia all'effetto leva positivo.</li>
+                                <li><i class="fas fa-exclamation-circle text-warning me-1"></i> ROE effettivo (40,91%) inferiore al ROE teorico calcolato sulla base del ROI (53,26%), ma comunque eccellente.</li>
+                                <li><i class="fas fa-info-circle text-info me-1"></i> L'importante differenza tra ROE effettivo e teorico si è notevolmente ridotta rispetto agli anni precedenti (-12,35% vs -57,42% del 2023).</li>
+                               </ul>
+                          </div>
+                      </div>
+                 </div>
+            </div>
+
+             <h2 class="section-title mt-5" id="benchmark"><i class="fas fa-chart-bar me-2"></i>SEZIONE 2.2: BENCHMARK E POSIZIONAMENTO COMPETITIVO</h2>
+
+            <div class="card mb-4 report-section">
+                <div class="card-header"><h5 class="mb-0">2.2.1 Posizionamento Competitivo</h5></div>
+                 <div class="card-body">
+                     <p>Valutazione della performance rispetto al settore "Attività di agenzie pubblicitarie" (ATECO 73.11).</p>
+                     <div class="row">
+                         <div class="col-lg-7 mb-3 mb-lg-0">
+                              <h6 class="text-center small">Grafico 2.5: Posizionamento Competitivo (Base 100 = Media Settore)</h6>
+                             <div class="chart-container" style="height: 350px;"> <canvas id="benchmarkRadarChart"></canvas>          
+                                 <script>
+                                     document.addEventListener('DOMContentLoaded', function() {
+                                         const ctxBenchmarkRadar = document.getElementById('benchmarkRadarChart');
+
+                                         if (ctxBenchmarkRadar) {
+                                             try {
+                                                  const benchmarkRadarData = {
+                                                     labels: ["Crescita Ricavi", "EBITDA Margin", "ROI", "Turnover", "Costo Personale (inv)", "PFN/EBITDA (inv)", "D/E (inv)"],
+                                                     datasets: [
+                                                         {
+                                                             label: "RELIVE COMMUNICATION S.R.L.",
+                                                             data: [33, 86, 290, 201, 95, 200, 200],
+                                                             backgroundColor: "rgba(25, 25, 112, 0.3)",
+                                                             borderColor: "rgba(25, 25, 112, 1)",
+                                                             borderWidth: 2, pointBackgroundColor: "rgba(25, 25, 112, 1)", pointBorderColor: "#fff",
+                                                             pointHoverBackgroundColor: "#fff", pointHoverBorderColor: "rgba(25, 25, 112, 1)"
+                                                         },
+                                                         {
+                                                             label: "Media Settore",
+                                                             data: [100, 100, 100, 100, 100, 100, 100],
+                                                             backgroundColor: "rgba(217, 140, 0, 0.3)",
+                                                             borderColor: "rgba(217, 140, 0, 1)",
+                                                             borderWidth: 2, pointBackgroundColor: "rgba(217, 140, 0, 1)", pointBorderColor: "#fff",
+                                                             pointHoverBackgroundColor: "#fff", pointHoverBorderColor: "rgba(217, 140, 0, 1)"
+                                                         }
+                                                     ]
+                                                 };
+
+                                                 const benchmarkRadarOptions = {
+                                                     responsive: true,
+                                                     maintainAspectRatio: false,
+                                                       scales: {
+                                                          r: {
+                                                              angleLines: { color: '#e0e0e0' }, grid: { color: '#e0e0e0' },
+                                                              pointLabels: { font: { size: 10 } },
+                                                              ticks: {
+                                                                  backdropColor: 'rgba(255, 255, 255, 0.75)', font: { size: 9 },
+                                                                  maxTicksLimit: 5,
+                                                              },
+                                                              suggestedMin: 0,
+                                                          }
+                                                       },
+                                                       plugins: {
+                                                            legend: { position: 'bottom', labels: { boxWidth: 12, padding: 15, font: { size: 11 } } },
+                                                            title: { display: false },
+                                                            tooltip: {
+                                                                backgroundColor: 'rgba(0, 0, 0, 0.8)', titleFont: { weight: 'bold', size: 13 },
+                                                                bodyFont: { size: 12 }, padding: 10, cornerRadius: 4, displayColors: true, boxPadding: 4,
+                                                                callbacks: {
+                                                                    label: function(context) {
+                                                                        let label = context.dataset.label || '';
+                                                                        if (label) label += ': ';
+                                                                        if (context.parsed.r !== null) { label += context.parsed.r.toFixed(1); }
+                                                                        else { label += 'N/D'; }
+                                                                        return label;
+                                                                    }
+                                                                }
+                                                            }
+                                                       },
+                                                       animation: { duration: 400 }
+                                                 };
+
+                                                 const existingChart = Chart.getChart(ctxBenchmarkRadar);
+                                                 if (existingChart instanceof Chart) {
+                                                     existingChart.destroy();
+                                                 }
+
+                                                 new Chart(ctxBenchmarkRadar, {
+                                                     type: 'radar',
+                                                     data: benchmarkRadarData,
+                                                     options: benchmarkRadarOptions
+                                                 });
+                                                 console.log("Grafico benchmarkRadarChart inizializzato direttamente in HTML.");
+
+                                             } catch (error) {
+                                                 console.error("Errore inizializzazione grafico benchmarkRadarChart in HTML:", error);
+                                                  const ctx = ctxBenchmarkRadar.getContext('2d');
+                                                   if (ctx) {
+                                                       ctx.clearRect(0, 0, ctxBenchmarkRadar.width, ctxBenchmarkRadar.height);
+                                                       ctx.font = '14px Titillium Web, sans-serif';
+                                                       ctx.fillStyle = '#dc3545';
+                                                       ctx.textAlign = 'center';
+                                                       ctx.fillText('Errore durante il caricamento del grafico.', ctxBenchmarkRadar.width / 2, ctxBenchmarkRadar.height / 2);
+                                                   }
+                                             }
+                                         } else {
+                                              console.warn("Canvas 'benchmarkRadarChart' non trovato.");
+                                         }
+                                     });
+                                 </script>
+                                 </div>
+                         </div>
+                         <div class="col-lg-5">
+                              <h6>Tabella 2.6: Posizionamento Competitivo 2024 (RELIVE COMMUNICATION S.R.L.)</h6>
+                              <div class="table-responsive">
+                                <table class="table table-sm table-striped table-hover">
+                                    <thead><tr><th>Indicatore</th><th>RELIVE COMM.</th><th>Media Sett.</th><th>Gap</th><th>Valutazione</th></tr></thead>
+                                    <tbody>
+                                        <tr><td>Crescita ricavi</td><td>+1,64%</td><td>+5,00%</td><td class="text-danger">-3,36 p.p.</td><td><span class="status-badge bg-warning">Inferiore</span></td></tr>
+                                        <tr><td>EBITDA Margin</td><td>9,91%</td><td>11,50%</td><td class="text-danger">-1,59 p.p.</td><td><span class="status-badge bg-secondary">In linea</span></td></tr>
+                                        <tr><td>ROI</td><td>53,26%</td><td>18,40%</td><td class="text-success">+34,86 p.p.</td><td><span class="status-badge bg-success">Superiore</span></td></tr>
+                                        <tr><td>ROE</td><td>40,91%</td><td>22,70%</td><td class="text-success">+18,21 p.p.</td><td><span class="status-badge bg-success">Superiore</span></td></tr>
+                                        <tr><td>Turnover</td><td>5,82</td><td>2,90</td><td class="text-success">+2,92</td><td><span class="status-badge bg-success">Superiore</span></td></tr>
+                                        <tr><td>PFN/EBITDA</td><td>-0,56 (negativa)</td><td>1,70</td><td class="text-success">Migliore</td><td><span class="status-badge bg-success">Superiore</span></td></tr>
+                                        <tr><td>Leva D/E</td><td>0,00</td><td>0,80-1,20</td><td class="text-success">Più conservativa</td><td><span class="status-badge bg-success">Superiore</span></td></tr>
+                                        <tr><td>Giorni Crediti Clienti</td><td>262</td><td>95</td><td class="text-danger">+167</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                        <tr><td>Giorni Debiti Fornitori</td><td>222</td><td>105</td><td class="text-danger">+117</td><td><span class="status-badge bg-warning">Attenzione</span></td></tr>
+                                    </tbody>
+                                </table>
+                              </div>
+                         </div>
+                     </div>
+                      <h6 class="mt-4">Analisi posizionamento (RELIVE COMMUNICATION S.R.L.):</h6>
+                      <p class="small mb-0">RELIVE COMMUNICATION S.R.L. si posiziona <strong>significativamente meglio della media di settore</strong> in termini di redditività del capitale (ROI 53,26% vs 18,40%), efficienza nell'utilizzo delle risorse (Turnover 5,82 vs 2,90) e solidità finanziaria (assenza di debiti finanziari e PFN negativa). L'EBITDA margin (9,91%) è sostanzialmente in linea con il benchmark settoriale (11,50%). La <strong>principale criticità</strong> riguarda la gestione del capitale circolante, con tempi di incasso dei crediti commerciali (262 giorni) eccezionalmente superiori agli standard di settore (95 giorni). La crescita dei ricavi (+1,64%) risulta inferiore alla media di settore (+5,00%), evidenziando un potenziale ambito di miglioramento.</p>
+                 </div>
+            </div>
+
+             <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">2.2.2 Gap Analysis vs Best Practice</h5></div>
+                  <div class="card-body">
+                     <p>Identificazione aree di miglioramento rispetto alle best practice.</p>
+                     <h6 class="mt-4">Tabella 2.7: Gap Analysis 2024 (RELIVE COMMUNICATION S.R.L.)</h6>
+                      <div class="table-responsive">
+                         <table class="table table-sm table-striped table-hover">
+                            <thead class="table-light"> <tr><th>Area</th><th>Situazione Attuale</th><th>Benchmark</th><th>Gap</th><th>Valutazione</th></tr></thead>
+                             <tbody>
+                                <tr><td>Gestione Crediti Clienti</td><td>DSO: 262 giorni</td><td>90-120 giorni</td><td class="text-danger">+172 giorni</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                <tr><td>Gestione Debiti Fornitori</td><td>DPO: 222 giorni</td><td>60-90 giorni</td><td class="text-danger">+162 giorni</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                <tr><td>Gestione del Circolante</td><td>Ciclo: 119 giorni</td><td>30-60 giorni</td><td class="text-danger">+74 giorni</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                <tr><td>Crescita Ricavi</td><td>+1,64% (2023-2024)</td><td>+5-10%</td><td class="text-danger">-6,36 p.p.</td><td><span class="status-badge bg-warning">Problematico</span></td></tr>
+                                <tr><td>Struttura Costi Fissi</td><td>+22,4% (2023-2024)</td><td><+5%</td><td class="text-danger">+17,4 p.p.</td><td><span class="status-badge bg-danger">Critico</span></td></tr>
+                                <tr><td>Dimensione Aziendale</td><td>6 dipendenti</td><td>8-15 dipendenti</td><td class="text-warning">-5 dipendenti</td><td><span class="status-badge bg-secondary">Potenziale opportunità</span></td></tr>
+                                <tr><td>Produttività Risorse</td><td>€171.791/dipendente</td><td>€120.000-150.000/dipendente</td><td class="text-success">+€31.791/dipendente</td><td><span class="status-badge bg-success">Eccellente</span></td></tr>
+                                <tr><td>Redditività Operativa</td><td>ROS: 9,2%</td><td>5-7%</td><td class="text-success">+3,2 p.p.</td><td><span class="status-badge bg-success">Eccellente</span></td></tr>
+                             </tbody>
+                         </table>
+                     </div>
+                  </div>
+             </div>
+
+             <div class="card mb-4 report-section">
+                 <div class="card-header"><h5 class="mb-0">2.2.3 Azioni di Miglioramento Suggerite</h5></div>
+                  <div class="card-body">
+                      <h6 class="mt-4">Tabella 2.8: Piano di Azione Economico (Sintesi - RELIVE COMMUNICATION S.R.L.)</h6>
+                      <div class="table-responsive">
+                          <table class="table table-sm table-hover action-table">
+                              <thead class="table-light"><tr><th><i class="fas fa-flag me-1"></i> Area</th><th><i class="fas fa-wrench me-1"></i> Azione Suggerita</th><th><i class="fas fa-chart-line me-1"></i> Effetti Previsti</th><th><i class="fas fa-coins me-1"></i> Net Benefit Stimato</th></tr></thead>
+                              <tbody>
+                                  <tr><td>Gestione crediti commerciali</td><td>Implementazione di politiche di credit management più efficaci e valutazione di strumenti come factoring o assicurazione del credito</td><td>Riduzione DSO a 180 giorni</td><td class="text-success">Liberazione di €177.518 di liquidità</td></tr>
+                                  <tr><td>Rientro Debiti Fornitori</td><td>Rinegoziazione termini pagamento e implementazione di un piano di rientro scaduti</td><td>Normalizzazione DPO a 120 giorni e miglioramento relazioni con fornitori</td><td class="text-success">Miglioramento condizioni acquisto: -2% (circa €12.500/anno)</td></tr>
+                                  <tr><td>Controllo Costi Fissi</td><td>Implementazione sistema budgeting e ottimizzazione costi fissi indiretti</td><td>Allineamento crescita costi/ricavi</td><td class="text-success">Risparmio €30.000/anno (10% su incremento costi fissi)</td></tr>
+                                  <tr><td>Strategia di Crescita</td><td>Piano commerciale strutturato e sviluppo di servizi ad alto valore</td><td>Accelerazione crescita ricavi e miglioramento mix servizi</td><td class="text-success">Target crescita: +10% (€103.000)</td></tr>
+                                  <tr><td>Struttura Finanziaria</td><td>Valutazione leva finanziaria controllata per finanziare investimenti strategici</td><td>Ottimizzazione costo del capitale e incremento ROE</td><td class="text-success">Incremento ROE potenziale: +5 p.p.</td></tr>
+                                  <tr><td>Digitalizzazione processi</td><td>Investimento in tecnologie e strumenti di automazione del ciclo attivo/passivo</td><td>Miglioramento efficienza operativa e controllo</td><td class="text-secondary">Costo implementazione: €15.000 | ROI stimato: 85%</td></tr>
+                              </tbody>
+                          </table>
+                      </div>
+                       <p class="small mt-3 text-muted">L'implementazione di queste azioni potrebbe generare un miglioramento dell'EBITDA di circa €40.000-50.000 su base annua (incremento di 4-5 punti percentuali), oltre a liberare significative risorse finanziarie attraverso l'ottimizzazione del capitale circolante. Il piano d'azione consentirebbe anche di sostenere in modo più efficace la crescita futura, bilanciando l'incremento dei costi fissi con un adeguato sviluppo del fatturato.</p>
+                  </div>
+             </div>
+
+            <div class="card summary-card mb-4 report-section">
+                <div class="card-body">
+                    <h5 class="card-title"><i class="fas fa-check-circle text-primary me-2"></i>Conclusioni Analisi Economica e Benchmark (RELIVE COMMUNICATION S.R.L.)</h5>
+                     <p>RELIVE COMMUNICATION S.R.L. presenta un <strong>profilo di redditività complessivamente positivo</strong>, con indicatori economico-finanziari eccellenti (ROE 40,91%, ROI 53,26%, ROS 9,2%) e significativamente superiori ai benchmark settoriali. La struttura patrimoniale è solida, con assenza di debiti finanziari e buona liquidità disponibile.</p>
+                     <p>Le <strong>principali criticità</strong> riguardano la gestione del capitale circolante, con tempi di incasso eccezionalmente elevati (DSO 262 giorni) e tempi di pagamento ai fornitori altrettanto dilatati (DPO 222 giorni). Ulteriori elementi di attenzione sono l'incremento dei costi fissi (+22,4%) significativamente superiore alla crescita dei ricavi (+1,64%) e la limitata espansione dimensionale.</p>
+                     <p>Le <strong>azioni prioritarie</strong> dovrebbero concentrarsi sull'ottimizzazione della gestione del circolante per liberare liquidità, sull'implementazione di un sistema strutturato di controllo dei costi fissi e sullo sviluppo di un piano commerciale per accelerare la crescita dei ricavi, capitalizzando sull'eccellente produttività delle risorse umane e sulla solidità patrimoniale.</p>
+                </div>
+            </div>
+
+
+            <!-- ================================================================ -->
+            <!-- FINE CONTENUTO SPECIFICO PARTE 2 -->
+            <!-- ================================================================ -->
+
+        </div> <!-- /dashboard-container -->
+
+        <!-- Footer Standard V2 (Nessuna modifica necessaria) -->
+        <footer class="footer no-print"> <div class="container-fluid px-4"> <div class="row align-items-center"> <div class="col-md-6 text-center text-md-start mb-2 mb-md-0"> SCAN360 © <span id="currentYearFooterReport"></span> </div> <div class="col-md-6 text-center text-md-end"> Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a> <img src="../assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2"> </div> </div> </div> </footer>
+
+    </div> <!-- /main-wrapper -->
+
+    <!-- Script JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/charts_config.js"></script>
+    <script src="../js/report_init.js"></script>
+     <script>
+        document.getElementById('currentYearSidebar').textContent = new Date().getFullYear();
+        document.getElementById('currentYearFooterReport').textContent = new Date().getFullYear();
+
+         // Script aggiornamento badge IRP header (Updated for RELIVE COMMUNICATION)
+         document.addEventListener('DOMContentLoaded', function() {
+             const irpScoreValue = 78.50; // Updated IRP Value from PARTE0_irp-relive-analysis.md
+             const irpHeaderBadge = document.getElementById('irp-header-badge');
+             if(irpHeaderBadge) {
+                 let badgeClass = 'bg-warning text-dark';
+                 if (irpScoreValue >= 71) badgeClass = 'bg-success'; // Basso
+                 else if (irpScoreValue < 51) badgeClass = 'bg-danger'; // Alto
+                 irpHeaderBadge.className = `badge ${badgeClass} me-3`;
+                 irpHeaderBadge.textContent = `IRP: ${irpScoreValue.toFixed(1)}`;
+             }
+
+              // Ensure logout function is defined
+             if (typeof logout !== 'function') {
+                 window.logout = function() {
+                    console.log("Logout action triggered (placeholder)");
+                }
+             }
+             // Ensure print function is defined
+             if (typeof printDocument !== 'function') {
+                window.printDocument = function() {
+                    window.print();
+                }
+             }
+         });
+    </script>
+<script 
+  type="text/javascript" 
+  src="https://embed.chatnode.ai/c28f50ff-7c75-4eb1-b745-616825cafc56/popup.js"
+  async
+></script>
+</body>
+</html>

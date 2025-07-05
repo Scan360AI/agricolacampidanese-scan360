@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisi Patrimoniale - RELIVE COMMUNICATION S.R.L. | SCAN V9</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="../css/styles.css" rel="stylesheet">
+    <link href="../css/print.css" rel="stylesheet" media="print">
+    <!-- Stili specifici eventuali -->
+</head>
+<body>
+
+<!-- Sidebar -->
+    <aside class="sidebar no-print">
+        <div class="sidebar-header"> <img src="../assets/img/logo_scan.png" alt="SCAN Logo" style="max-height: 40px;"> <h5>RELIVE COMMUNICATION S.R.L.</h5> </div>
+        <ul class="sidebar-nav flex-grow-1">
+            <li class="nav-item"> <a class="nav-link" href="../dashboard_v2.html"> <i class="fas fa-tachometer-alt fa-fw"></i> Dashboard </a> </li>
+            <li class="nav-title">Analisi Dettagliata</li>
+            <li class="nav-item"> <a class="nav-link" href="parte1_sintesi.html"> <i class="fas fa-file-alt fa-fw"></i> Sintesi e Profilo </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte2_economico.html"> <i class="fas fa-balance-scale fa-fw"></i> Analisi Economica </a> </li>
+            <li class="nav-item"> <a class="nav-link active" href="parte3_patrimoniale.html"> <i class="fas fa-landmark fa-fw"></i> Analisi Patrimoniale </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte4_bancabilita.html"> <i class="fas fa-university fa-fw"></i> Bancabilità </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte5_circolante-flussi.html"> <i class="fas fa-sync-alt fa-fw"></i> Circolante e Flussi </a> </li>
+            <li class="nav-item"> <a class="nav-link" href="parte6_rischi-raccomandazioni.html"> <i class="fas fa-exclamation-triangle fa-fw"></i> Rischi e Azioni </a> </li>
+            <li class="nav-title">Approfondimenti</li>
+            <li class="nav-item"> <a class="nav-link" href="irp_dettaglio.html"> <i class="fas fa-shield-alt fa-fw"></i> Dettaglio IRP </a> </li>
+            <!-- Removed Bilancio Plus Link -->
+        </ul>
+        <div class="sidebar-footer"> <small>SCAN360 © <span id="currentYearSidebar"></span> Kitzanos</small> </div>
+    </aside>
+
+
+
+    <!-- Contenuto Principale Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header Orizzontale -->
+        <header class="dashboard-header no-print">
+            <div class="header-title">
+                <h5 class="mb-0">Report Dettagliato: Analisi Patrimoniale</h5>
+                <p class="mb-0">RELIVE COMMUNICATION S.R.L. | <span class="report-date">28 Aprile 2025</span></p>
+            </div>
+            <div class="header-controls d-flex align-items-center">
+                <span id="irp-header-badge" class="badge me-3"></span> <!-- Badge IRP -->
+                <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="printDocument()"> <i class="fas fa-print"></i> Stampa </button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user-circle me-1"></i> RELIVE COMMUNICATION S.R.L. </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton"> <li><button class="dropdown-item" type="button" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li> </ul>
+                </div>
+            </div>
+        </header>
+        <div class="container d-none d-print-block mt-4 mb-4">
+            <h1 class="text-center mb-0"><span class="company-name">RELIVE COMMUNICATION S.R.L.</span></h1>
+            <p class="text-center mb-0">Report Dettagliato: Analisi Patrimoniale | <span class="report-date">28 Aprile 2025</span></p>
+            <hr>
+        </div>
+
+        <!-- Area Contenuto Specifico del Report -->
+        <div class="dashboard-container">
+
+            <!-- ================================================================ -->
+            <!-- CONTENUTO SPECIFICO PARTE 3 - V9 - Updated for RELIVE COMMUNICATION -->
+            <!-- ================================================================ -->
+
+            <h2 class="section-title" id="patrimonial-analysis"><i class="fas fa-landmark me-2"></i>ANALISI PATRIMONIALE</h2>
+
+         <div class="card mb-4 report-section">
+            <div class="card-header"><h5 class="mb-0">3.1 Analisi Patrimoniale Complessiva</h5></div>
+            <div class="card-body">
+                <p>L'analisi patrimoniale di RELIVE COMMUNICATION S.R.L. evidenzia una struttura caratterizzata da un'elevata incidenza dei crediti verso clienti (87,3% del totale attivo al 31/12/2024) e immobilizzazioni nette contenute (2,6%), elementi tipici di una società di servizi nel settore delle agenzie pubblicitarie che riflettono la limitata necessità di investimenti in strutture fisiche e l'elevata esposizione verso la clientela.</p>
+
+                 <!-- Grafici Composizione Attivo e Passivo -->
+                 <div class="row mt-4">
+                     <div class="col-lg-6 mb-3 mb-lg-0">
+                         <h6 class="text-center small">Grafico 3.1: Composizione Impieghi 2024 (%)</h6>
+                         <div class="chart-container" style="height: 300px;">
+                             <canvas id="assetsChart"></canvas> <!-- ID for report_init.js -->
+                         </div>
+                     </div>
+                     <div class="col-lg-6">
+                          <h6 class="text-center small">Grafico 3.2: Composizione Fonti 2024 (%)</h6>
+                          <div class="chart-container" style="height: 300px;">
+                              <canvas id="liabilitiesChart"></canvas> <!-- ID for report_init.js -->
+                          </div>
+                     </div>
+                 </div>
+
+                <h6 class="mt-4">Trend Evolutivo 2022-2024</h6>
+                <p class="small">L'evoluzione patrimoniale dell'ultimo triennio mostra:</p>
+                <ul class="small">
+                    <li><strong>Crescita contenuta dell'attivo</strong>: da €649.680 nel 2022 a €857.254 nel 2024 (+31,9%)</li>
+                    <li><strong>Significativo rafforzamento del patrimonio netto</strong>: da €96.884 nel 2022 a €234.134 nel 2024 (+141,7%)</li>
+                    <li><strong>Completo azzeramento dell'indebitamento finanziario</strong>: da €21.599 nel 2022 a €0 nel 2024 (-100%)</li>
+                    <li><strong>Miglioramento della posizione di liquidità</strong>: da €72.409 nel 2022 a €56.948 nel 2024 (-21,3%)</li>
+                </ul>
+                <p class="small">Questa evoluzione suggerisce un percorso di consolidamento patrimoniale e riduzione della leva finanziaria, con una migliore gestione della liquidità aziendale che rafforza la resilienza finanziaria e conferma una gestione prudente delle risorse aziendali.</p>
+            </div>
+        </div>
+
+         <div class="card mb-4 report-section">
+            <div class="card-header"><h5 class="mb-0">3.2 Stato Patrimoniale Riclassificato (triennio)</h5></div>
+            <div class="card-body">
+                 <!-- Updated Table Data for RELIVE COMMUNICATION -->
+                 <div class="table-responsive">
+                     <table class="table table-sm table-striped table-hover">
+                         <thead class="table-light">
+                             <tr><th>Stato Patrimoniale (€)</th><th class="text-end">31/12/2022</th><th class="text-end">%</th><th class="text-end">31/12/2023</th><th class="text-end">%</th><th class="text-end">31/12/2024</th><th class="text-end">%</th></tr>
+                         </thead>
+                         <tbody>
+                             <tr class="fw-bold"><td>IMPIEGHI</td><td class="text-end"></td><td class="text-end"></td><td class="text-end"></td><td class="text-end"></td><td class="text-end"></td><td class="text-end"></td></tr>
+                             <tr><td>Attivo Fisso Netto</td><td class="text-end">16.377</td><td class="text-end">2,5%</td><td class="text-end">25.861</td><td class="text-end">3,8%</td><td class="text-end">21.936</td><td class="text-end">2,6%</td></tr>
+                             <tr><td>Crediti Clienti</td><td class="text-end">486.142</td><td class="text-end">74,9%</td><td class="text-end">614.165</td><td class="text-end">89,4%</td><td class="text-end">748.028</td><td class="text-end">87,3%</td></tr>
+                             <tr><td>Rimanenze</td><td class="text-end">10.100</td><td class="text-end">1,6%</td><td class="text-end">0</td><td class="text-end">0,0%</td><td class="text-end">1.883</td><td class="text-end">0,2%</td></tr>
+                             <tr><td>Altri Crediti</td><td class="text-end">64.361</td><td class="text-end">9,9%</td><td class="text-end">6.675</td><td class="text-end">1,0%</td><td class="text-end">28.459</td><td class="text-end">3,3%</td></tr>
+                             <tr><td>Liquidità</td><td class="text-end">72.409</td><td class="text-end">11,2%</td><td class="text-end">40.471</td><td class="text-end">5,9%</td><td class="text-end">56.948</td><td class="text-end">6,6%</td></tr>
+                             <tr class="table-primary fw-bold"><td>Totale Attivo</td><td class="text-end">649.389</td><td class="text-end">100,0%</td><td class="text-end">687.172</td><td class="text-end">100,0%</td><td class="text-end">857.254</td><td class="text-end">100,0%</td></tr>
+                         </tbody>
+                         <tbody>
+                             <tr class="fw-bold"><td>FONTI</td><td class="text-end"></td><td class="text-end"></td><td class="text-end"></td><td class="text-end"></td><td class="text-end"></td><td class="text-end"></td></tr>
+                             <tr><td>Debiti Fornitori</td><td class="text-end">344.889</td><td class="text-end">53,1%</td><td class="text-end">290.742</td><td class="text-end">42,3%</td><td class="text-end">421.125</td><td class="text-end">49,1%</td></tr>
+                             <tr><td>Altri Debiti</td><td class="text-end">150.151</td><td class="text-end">23,1%</td><td class="text-end">168.423</td><td class="text-end">24,5%</td><td class="text-end">143.318</td><td class="text-end">16,7%</td></tr>
+                             <tr><td>Fondi</td><td class="text-end">35.866</td><td class="text-end">5,5%</td><td class="text-end">46.086</td><td class="text-end">6,7%</td><td class="text-end">58.677</td><td class="text-end">6,8%</td></tr>
+                             <tr><td>Debiti Finanziari</td><td class="text-end">21.599</td><td class="text-end">3,3%</td><td class="text-end">43.570</td><td class="text-end">6,3%</td><td class="text-end">0</td><td class="text-end">0,0%</td></tr>
+                             <tr><td>Patrimonio Netto</td><td class="text-end">96.884</td><td class="text-end">14,9%</td><td class="text-end">138.351</td><td class="text-end">20,1%</td><td class="text-end">234.134</td><td class="text-end">27,3%</td></tr>
+                             <tr class="table-primary fw-bold"><td>Totale Passivo</td><td class="text-end">649.389</td><td class="text-end">100,0%</td><td class="text-end">687.172</td><td class="text-end">100,0%</td><td class="text-end">857.254</td><td class="text-end">100,0%</td></tr>
+                         </tbody>
+                     </table>
+                 </div>
+            </div>
+        </div>
+
+        <div class="card mb-4 report-section">
+             <div class="card-header"><h5 class="mb-0">3.3 Struttura degli Investimenti</h5></div>
+             <div class="card-body">
+                 <h6 class="mt-1">Composizione e Trend</h6>
+                 <p class="small">La struttura degli investimenti di RELIVE COMMUNICATION è caratterizzata da un rilevante peso dei crediti commerciali e una limitata incidenza delle immobilizzazioni, coerente con la tipologia di attività svolta nel settore dei servizi di comunicazione:</p>
+                 <ul class="small">
+                    <li><strong>Crediti commerciali</strong>: €748.028 al 31/12/2024, pari all'87,3% del totale attivo</li>
+                    <li><strong>Immobilizzazioni nette</strong>: €21.936 al 31/12/2024, pari al 2,6% del totale attivo</li>
+                    <li><strong>Liquidità</strong>: €56.948 al 31/12/2024, pari al 6,6% del totale attivo</li>
+                 </ul>
+                 
+                 <p class="small">L'analisi delle immobilizzazioni evidenzia un valore in diminuzione rispetto al 2023 (-15,2%) e comprende principalmente:</p>
+                 <ul class="small">
+                    <li>Immobilizzazioni materiali: €10.735 (48,9% del totale immobilizzazioni)</li>
+                    <li>Immobilizzazioni immateriali: €9.001 (41,0% del totale immobilizzazioni)</li>
+                    <li>Immobilizzazioni finanziarie: €2.200 (10,1% del totale immobilizzazioni)</li>
+                 </ul>
+                 
+                 <h6 class="mt-3">Analisi delle Rotazioni</h6>
+                 <p class="small">Un elemento critico è rappresentato dall'elevata rotazione dei crediti commerciali, con 262 giorni nel 2024, in peggioramento rispetto ai 219 giorni del 2023 e ai 209 giorni del 2022. Questo valore risulta significativamente superiore ai benchmark di settore e rappresenta un'area di prioritario intervento per l'ottimizzazione della struttura degli investimenti.</p>
+                 
+                 <div class="row mt-4">
+                    <div class="col-lg-7 mb-3 mb-lg-0">
+                         <h6 class="text-center small">Grafico 3.3: Evoluzione Struttura Impieghi (€000)</h6>
+                         <div class="chart-container" style="height: 350px;">
+                             <canvas id="investmentsStructureChart"></canvas> <!-- ID for report_init.js -->
+                         </div>
+                    </div>
+                     <div class="col-lg-5">
+                         <h6 class="mt-1">Analisi Attivo Circolante:</h6>
+                         <ul class="small list-unstyled">
+                             <li class="mb-2"><span class="icon-circle icon-circle-sm bg-icon-primary me-2"><i class="fas fa-coins"></i></span><strong>Liquidità (€56.948):</strong> 6,6% del Tot. Impieghi, in crescita (+40,7% vs 2023).</li>
+                             <li class="mb-2"><span class="icon-circle icon-circle-sm bg-icon-info me-2"><i class="fas fa-file-invoice-dollar"></i></span><strong>Crediti Clienti (€748.028):</strong> 87,3% del Tot. Impieghi, in aumento (+21,8% vs 2023).</li>
+                             <li class="mb-2"><span class="icon-circle icon-circle-sm bg-icon-warning me-2"><i class="fas fa-boxes"></i></span><strong>Rimanenze (€1.883):</strong> 0,2% del Tot. Impieghi, in aumento dal valore nullo del 2023.</li>
+                             <li class="mb-2"><span class="icon-circle icon-circle-sm bg-icon-secondary me-2"><i class="fas fa-sync-alt"></i></span><strong>Attivo Circolante (€834.741):</strong> 97,4% del Tot. Impieghi. Incremento significativo nel triennio (+32,9%).</li>
+                          </ul>
+                     </div>
+                 </div>
+             </div>
+        </div>
+
+        <div class="card mb-4 report-section">
+             <div class="card-header"><h5 class="mb-0">3.4 Struttura delle Fonti</h5></div>
+              <div class="card-body">
+                 <h6 class="mt-1">Composizione e Trend</h6>
+                 <p class="small">La struttura delle fonti di finanziamento ha mostrato una progressiva evoluzione nel triennio:</p>
+                 <ul class="small">
+                    <li><strong>Patrimonio netto</strong>: crescita da €96.884 (14,9%) nel 2022 a €234.134 (27,3%) nel 2024</li>
+                    <li><strong>Debiti finanziari</strong>: completo azzeramento da €21.599 (3,3%) nel 2022 a €0 (0,0%) nel 2024</li>
+                    <li><strong>Rapporto D/E (Debt/Equity)</strong>: azzeramento da 0,22 nel 2022 a 0,00 nel 2024</li>
+                 </ul>
+                 
+                 <p class="small">L'incremento del patrimonio netto è principalmente dovuto all'accantonamento degli utili a riserva, passati da €58.525 nel 2022 a €118.351 nel 2024, e all'eccezionale utile di esercizio realizzato nel 2024 (€95.783).</p>
+                 
+                 <h6 class="mt-3">Qualità delle Fonti di Finanziamento</h6>
+                 <p class="small">La struttura delle fonti presenta diversi punti di forza e alcune aree di attenzione:</p>
+                 <ul class="small">
+                    <li><strong>Autonomia finanziaria</strong>: il patrimonio netto finanzia il 27,3% del totale attivo, un valore in significativo miglioramento rispetto al 14,9% del 2022</li>
+                    <li><strong>Copertura delle immobilizzazioni</strong>: indice pari a 10,67, in miglioramento rispetto al 5,92 del 2022 e ampiamente superiore alla soglia ottimale di 1</li>
+                    <li><strong>Composizione dei debiti</strong>: prevalenza di debiti commerciali (49,1% del totale passivo) con assenza di debiti finanziari</li>
+                 </ul>
+                 
+                 <div class="row">
+                    <div class="col-lg-6 mb-3 mb-lg-0">
+                         <h6 class="text-center small">Grafico 3.4: Evoluzione Fonti 2022-2024 (%)</h6>
+                         <div class="chart-container" style="height: 300px;">
+                             <canvas id="equityCompositionChart"></canvas> <!-- ID for report_init.js -->
+                         </div>
+                         <h6 class="mt-3">Analisi Patrimonio Netto (€234.134, +69,23%):</h6>
+                          <ul class="small list-unstyled">
+                             <li><i class="fas fa-arrow-up text-success me-1"></i> <strong>Crescita significativa</strong> rispetto al 2023, eccezionale nel triennio (+141,7%).</li>
+                             <li><i class="fas fa-check text-success me-1"></i> Utile d'esercizio rilevante: €95.783 (40,9% del PN).</li>
+                             <li><i class="fas fa-exclamation-triangle text-success me-1"></i> Incidenza su Fonti: <strong>27,3%</strong> (vs 14,9% 2022) <span class="status-badge bg-success">Ottima</span>.</li>
+                          </ul>
+                    </div>
+                     <div class="col-lg-6">
+                        <h6 class="text-center small">Grafico 3.5: Evoluzione Debiti Finanziari (€000)</h6>
+<div class="chart-container" style="height: 300px;">
+    <canvas id="financialDebtChart"></canvas>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const ctx = document.getElementById('financialDebtChart').getContext('2d');
+        
+        // Dati per il grafico
+        const data = {
+            labels: ["2022", "2023", "2024"],
+            datasets: [
+                { 
+                    label: "Debiti Finanziari", 
+                    data: [21.6, 43.6, 0], 
+                    backgroundColor: "rgba(214, 34, 70, 0.7)",
+                    type: "bar",
+                    yAxisID: 'y'
+                },
+                { 
+                    label: "Patrimonio Netto", 
+                    data: [96.9, 138.4, 234.1], 
+                    backgroundColor: "rgba(25, 25, 112, 0.7)",
+                    type: "bar",
+                    yAxisID: 'y'
+                },
+                { 
+                    label: "Rapporto D/E", 
+                    data: [0.22, 0.31, 0.00], 
+                    type: "line",
+                    borderColor: "rgba(77, 140, 87, 1)",
+                    backgroundColor: "transparent",
+                    yAxisID: 'y1',
+                    borderWidth: 2,
+                    pointBackgroundColor: "rgba(77, 140, 87, 1)",
+                    fill: false
+                }
+            ]
+        };
+        
+        // Opzioni per il grafico
+        const options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { boxWidth: 12, padding: 15, font: { size: 11 } }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    titleFont: { weight: 'bold', size: 13 },
+                    bodyFont: { size: 12 },
+                    padding: 10,
+                    cornerRadius: 4,
+                    displayColors: true,
+                    boxPadding: 4,
+                    callbacks: {
+                        label: function(context) {
+                            let label = context.dataset.label || '';
+                            if (label) label += ': ';
+                            let value = context.parsed.y;
+                            
+                            if (context.dataset.label === "Rapporto D/E") {
+                                return label + value.toFixed(2) + 'x';
+                            } else {
+                                return label + value.toFixed(1) + 'K';
+                            }
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: { display: false },
+                    ticks: { font: { size: 11 } }
+                },
+                y: {
+                    grid: { color: '#e0e0e0', borderDash: [2, 3] },
+                    ticks: { 
+                        font: { size: 11 },
+                        callback: function(value) {
+                            return value + 'K';
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Valori in €000',
+                        font: { size: 10 }
+                    }
+                },
+                y1: {
+                    position: 'right',
+                    grid: { drawOnChartArea: false },
+                    ticks: { 
+                        font: { size: 11 },
+                        callback: function(value) {
+                            return value.toFixed(2) + 'x';
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Rapporto D/E',
+                        font: { size: 10 }
+                    }
+                }
+            },
+            animation: { duration: 400 }
+        };
+        
+        // Creazione del grafico
+        new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: options
+        });
+    });
+</script>
+                          <h6 class="mt-3">Analisi Debiti Finanziari (€0, -100%):</h6>
+                           <ul class="small list-unstyled">
+                              <li><i class="fas fa-arrow-down text-success me-1"></i> <strong>Completo azzeramento</strong> dei Debiti Finanziari (-100% vs 2023).</li>
+                              <li><i class="fas fa-check text-success me-1"></i> <strong>Eliminazione della dipendenza da fonti finanziarie esterne</strong>, con significativa riduzione degli oneri finanziari.</li>
+                              <li><i class="fas fa-exclamation-triangle text-success me-1"></i> Incidenza Debiti Finanziari su Fonti <strong>nulla (0,0%)</strong> <span class="status-badge bg-success">Eccellente</span>.</li>
+                              <li><i class="fas fa-exclamation-circle text-warning me-1"></i> Oneri finanziari residui (€1.439) nonostante l'azzeramento dei debiti.</li>
+                           </ul>
+                     </div>
+                 </div>
+              </div>
+        </div>
+
+        <div class="card mb-4 report-section">
+             <div class="card-header"><h5 class="mb-0">3.5 Posizione Finanziaria Netta</h5></div>
+             <div class="card-body">
+                 <h6 class="mt-1">Analisi della PFN</h6>
+                 <p class="small">La Posizione Finanziaria Netta presenta un miglioramento significativo nel triennio, con il raggiungimento di una posizione di liquidità netta senza debiti finanziari:</p>
+                 
+                 <div class="row">
+                    <div class="col-lg-7 mb-3 mb-lg-0">
+                         <h6 class="mt-1">Tabella 3.5: Analisi PFN 2022-2024 (€)</h6>
+                         <!-- Updated Table Data for RELIVE COMMUNICATION -->
+                         <div class="table-responsive">
+                             <table class="table table-sm table-striped table-hover">
+                                 <thead>
+                                     <tr><th>Componenti PFN (€)</th><th class="text-end">31/12/2022</th><th class="text-end">31/12/2023</th><th class="text-end">31/12/2024</th></tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr><td>Debiti Finanziari</td><td class="text-end">21.599</td><td class="text-end">43.570</td><td class="text-end">0</td></tr>
+                                     <tr><td>Liquidità</td><td class="text-end">(72.409)</td><td class="text-end">(40.471)</td><td class="text-end">(56.948)</td></tr>
+                                     <tr class="fw-bold"><td>PFN</td><td class="text-end">(50.810)</td><td class="text-end">3.099</td><td class="text-end">(56.948)</td></tr>
+                                 </tbody>
+                             </table>
+                         </div>
+                         
+                         <h6 class="mt-4">Rapporto PFN/EBITDA</h6>
+                         <p class="small">Il rapporto PFN/EBITDA evidenzia un'eccellente situazione, con PFN negativa (eccedenza di liquidità) ed EBITDA positivo:</p>
+                         <ul class="small">
+                            <li>2022: PFN negativa, EBITDA positivo (€59.227) → situazione "cash positive"</li>
+                            <li>2023: 0,03x - eccellente</li>
+                            <li>2024: PFN negativa, EBITDA positivo (€102.108) → situazione "cash positive"</li>
+                         </ul>
+                         <p class="small">Questo valore è estremamente positivo e ampiamente sotto la soglia di sicurezza generalmente considerata di 3x, indicando un'eccellente capacità di generazione di liquidità operativa in assenza di indebitamento finanziario.</p>
+                         
+                         <h6 class="mt-3">Costo del Debito</h6>
+                         <p class="small">Gli oneri finanziari sostenuti nel 2024 ammontano a €1.439, riferiti a debiti estinti in corso d'anno, con un'incidenza sui debiti finanziari medi del 6,61%, un valore relativamente contenuto che ha avuto impatto marginale sulla redditività aziendale.</p>
+                    </div>
+                     <div class="col-lg-5">
+                         <h6 class="text-center small">Grafico 3.6: Evoluzione PFN 2022-2024 (€000)</h6>
+                          <div class="chart-container" style="height: 300px;">
+                             <canvas id="pfnTrendChart"></canvas>
+                         </div>
+                         <h6 class="mt-3">Analisi PFN (RELIVE COMMUNICATION):</h6>
+                         <ul class="small list-unstyled">
+                             <li><i class="fas fa-arrow-down text-success me-1"></i> <strong>Ritorno a PFN negativa</strong> (cash positive) per €56.948.</li>
+                             <li><i class="fas fa-check-circle text-success me-1"></i> Significativo miglioramento della liquidità (+40,7% vs 2023).</li>
+                             <li><i class="fas fa-exclamation-triangle text-success me-1"></i> <strong>PFN/EBITDA eccellente</strong> (situazione ottimale con PFN negativa e EBITDA positivo).</li>
+                              <li><i class="fas fa-exclamation-circle text-success me-1"></i> Azzeramento completo di tutti i debiti finanziari.</li>
+                         </ul>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+         <div class="card mb-4 report-section">
+            <div class="card-header"><h5 class="mb-0">3.6 Indici di Solidità Patrimoniale</h5></div>
+             <div class="card-body">
+                 <div class="table-responsive">
+                     <table class="table table-sm table-striped table-hover">
+                         <thead class="table-light"><tr><th>Indice</th><th>Formula</th><th class="text-end">31/12/2022</th><th class="text-end">31/12/2023</th><th class="text-end">31/12/2024</th><th>Valutazione</th></tr></thead>
+                         <tbody>
+                             <tr><td>Indice di Autonomia Finanziaria</td><td>PN / Totale Passivo</td><td class="text-end">14,9%</td><td class="text-end">20,1%</td><td class="text-end">27,3%</td><td><span class="status-badge bg-success">Buona</span></td></tr>
+                             <tr><td>Copertura Immobilizzazioni</td><td>PN / Immobilizzazioni</td><td class="text-end">5,92</td><td class="text-end">5,35</td><td class="text-end">10,67</td><td><span class="status-badge bg-success">Eccellente</span></td></tr>
+                             <tr><td>Leva Finanziaria (D/E)</td><td>Debiti Finanziari / PN</td><td class="text-end">0,22</td><td class="text-end">0,31</td><td class="text-end">0,00</td><td><span class="status-badge bg-success">Eccellente</span></td></tr>
+                             <tr><td>Quoziente di Liquidità</td><td>Liquidità / Ricavi</td><td class="text-end">8,6%</td><td class="text-end">4,0%</td><td class="text-end">5,5%</td><td><span class="status-badge bg-success">Adeguata</span></td></tr></tbody>
+                     </table>
+                 </div>
+                 
+                 <h6 class="mt-3">Interpretazione degli Indici</h6>
+                 <div class="row mt-3 small">
+                     <div class="col-md-6"><i class="fas fa-check text-success me-1"></i><strong>Indice di Autonomia Finanziaria (27,3%):</strong> Buono, in significativo miglioramento rispetto al 2022 (14,9%) e prossimo alla soglia ottimale del 33%.</div>
+                     <div class="col-md-6"><i class="fas fa-check text-success me-1"></i><strong>Copertura Immobilizzazioni (10,67):</strong> Eccellente, ampiamente superiore alla soglia ottimale (≥1,0), indicando una struttura patrimoniale equilibrata con capitale proprio che finanzia integralmente le immobilizzazioni.</div>
+                     <div class="col-md-6"><i class="fas fa-check text-success me-1"></i><strong>Leva Finanziaria (0,00):</strong> Eccellente, azzeramento completo dell'indebitamento finanziario con eliminazione del rischio finanziario.</div>
+                     <div class="col-md-6"><i class="fas fa-check text-success me-1"></i><strong>Quoziente di Liquidità (5,5%):</strong> Adeguato, indica una buona disponibilità di mezzi liquidi in rapporto ai ricavi, superiore alla soglia di sicurezza del 4%.</div>
+                 </div>
+             </div>
+        </div>
+
+        <div class="card mb-4 report-section">
+            <div class="card-header"><h5 class="mb-0">3.7 Punti di Forza e Debolezza con Proposte di Miglioramento</h5></div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-sm table-striped table-hover">
+                        <thead class="table-light">
+                            <tr><th>Area</th><th>Situazione attuale</th><th>Azione suggerita</th><th>Effetti previsti</th><th>Impatto quantitativo/costo</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Crediti commerciali</strong></td>
+                                <td>DSO elevato (262 giorni) con crediti pari a €748.028</td>
+                                <td>Implementare politiche di credit management più stringenti (sconti per pagamenti anticipati, factoring, sistemi di sollecito strutturati)</td>
+                                <td>Riduzione del ciclo di incasso, miglioramento della liquidità, riduzione del rischio credito</td>
+                                <td>Riduzione DSO a 150 giorni (-112 giorni): liberazione di €320.000 di liquidità</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Debiti fornitori</strong></td>
+                                <td>DPO molto elevato (222 giorni) con debiti pari a €421.125</td>
+                                <td>Riequilibrare i rapporti con i fornitori strategici attraverso accordi di supply chain financing</td>
+                                <td>Miglioramento delle relazioni commerciali, mantenimento di condizioni favorevoli, prevenzione di interruzioni di fornitura</td>
+                                <td>Riduzione DPO a 180 giorni (-42 giorni): impiego di €118.000 di liquidità</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Capitale Circolante Netto</strong></td>
+                                <td>CCN in forte crescita (+32,3%), assorbimento di liquidità</td>
+                                <td>Ottimizzare la gestione complessiva del CCN con approccio integrato</td>
+                                <td>Miglioramento dell'efficienza del capitale, riduzione del fabbisogno finanziario</td>
+                                <td>Riduzione del 15% del CCN: liberazione di €32.000 di liquidità</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Immobilizzazioni</strong></td>
+                                <td>Bassa incidenza (2,6%) con trend decrescente (-15,2%)</td>
+                                <td>Valutare investimenti strategici in tecnologie e infrastrutture digitali</td>
+                                <td>Incremento della capacità produttiva, miglioramento dell'efficienza operativa</td>
+                                <td>Investimento programmato: €25.000 con ROI atteso del 35%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Struttura Finanziaria</strong></td>
+                                <td>Ottima (PFN cash positive, zero debiti)</td>
+                                <td>Valutare l'opportunità di utilizzare moderata leva finanziaria per investimenti strategici</td>
+                                <td>Incremento della redditività del capitale proprio attraverso effetto leva positivo</td>
+                                <td>Finanziamento potenziale: €50.000 con costo del 5,5% e ROI atteso >15%</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Liquidità</strong></td>
+                                <td>Consistente (€56.948) ma con rendimenti potenzialmente bassi</td>
+                                <td>Implementare strategie di cash management per ottimizzare i rendimenti della liquidità in eccesso</td>
+                                <td>Incremento dei proventi finanziari senza compromettere la disponibilità di risorse</td>
+                                <td>Rendimento addizionale: €1.700 annui (+3% sulla liquidità disponibile)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="card summary-card mb-4 report-section">
+             <div class="card-body">
+                 <h5 class="card-title"><i class="fas fa-check-circle text-primary me-2"></i>3.8 Conclusioni sull'Analisi Patrimoniale</h5>
+                 
+                 <p>La struttura patrimoniale di RELIVE COMMUNICATION S.R.L. presenta numerosi punti di forza e alcune aree di attenzione:</p>
+                 
+                 <ol>
+                    <li><strong>Eccellente progressivo rafforzamento della struttura finanziaria</strong>: azzeramento dell'indebitamento finanziario (-100% vs 2023) e significativo incremento del patrimonio netto (+69,2% vs 2023)</li>
+                    <li><strong>Ottimo equilibrio patrimoniale</strong>: copertura delle immobilizzazioni eccellente (10,67) e autonomia finanziaria in miglioramento (27,3%)</li>
+                    <li><strong>Capitale circolante fortemente influenzato dai crediti commerciali</strong>: DSO molto elevato (262 giorni) con immobilizzazione significativa di risorse</li>
+                    <li><strong>Sostenibilità del debito eccellente</strong>: assenza di debiti finanziari con PFN negativa (cash positive) di €56.948</li>
+                 </ol>
+                 
+                 <p>Le principali priorità strategiche dovrebbero essere:</p>
+                 
+                 <ol>
+                    <li><strong>Ottimizzazione della gestione del capitale circolante</strong>: in particolare attraverso politiche di riduzione dei tempi di incasso dei crediti commerciali e normalizzazione dei tempi di pagamento ai fornitori</li>
+                    <li><strong>Valutazione di un moderato ricorso alla leva finanziaria</strong>: per investimenti strategici con rendimenti superiori al costo del capitale</li>
+                    <li><strong>Ottimizzazione della gestione della liquidità</strong>: implementazione di strategie di cash management per migliorare i rendimenti sulla liquidità disponibile</li>
+                 </ol>
+                 
+                 <p class="mb-0">L'azienda mostra un percorso virtuoso di rafforzamento patrimoniale, con una struttura finanziaria eccellente caratterizzata da elevata solidità e flessibilità. La sfida principale riguarda l'ottimizzazione della gestione del capitale circolante, con particolare riferimento ai crediti commerciali, per migliorare ulteriormente l'efficienza nell'utilizzo delle risorse e la generazione di liquidità.</p>
+             </div>
+         </div>
+
+            <!-- ================================================================ -->
+            <!-- FINE CONTENUTO SPECIFICO PARTE 3 -->
+            <!-- ================================================================ -->
+
+        </div> <!-- /dashboard-container -->
+
+        <!-- Footer Standard V2 (Nessuna modifica necessaria) -->
+        <footer class="footer no-print"> <div class="container-fluid px-4"> <div class="row align-items-center"> <div class="col-md-6 text-center text-md-start mb-2 mb-md-0"> SCAN360 © <span id="currentYearFooterReport"></span> </div> <div class="col-md-6 text-center text-md-end"> Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a> <img src="../assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2"> </div> </div> </div> </footer>
+
+    </div> <!-- /main-wrapper -->
+
+    <!-- Script JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="../js/common.js"></script>
+    <script src="../js/charts_config.js"></script>
+    <script src="../js/report_init.js"></script>
+     <script>
+        document.getElementById('currentYearSidebar').textContent = new Date().getFullYear();
+        document.getElementById('currentYearFooterReport').textContent = new Date().getFullYear();
+
+         // Script aggiornamento badge IRP header (Updated for RELIVE COMMUNICATION)
+         document.addEventListener('DOMContentLoaded', function() {
+             const irpScoreValue = 78.50; // Updated IRP Value
+             const irpHeaderBadge = document.getElementById('irp-header-badge');
+             if(irpHeaderBadge) {
+                 let badgeClass = 'bg-warning text-dark';
+                 if (irpScoreValue >= 71) badgeClass = 'bg-success'; // Basso
+                 else if (irpScoreValue < 51) badgeClass = 'bg-danger'; // Alto
+                 irpHeaderBadge.className = `badge ${badgeClass} me-3`;
+                 irpHeaderBadge.textContent = `IRP: ${irpScoreValue.toFixed(1)}`;
+             }
+
+              // Ensure logout function is defined
+             if (typeof logout !== 'function') {
+                 window.logout = function() {
+                    console.log("Logout action triggered (placeholder)");
+                }
+             }
+             // Ensure print function is defined
+             if (typeof printDocument !== 'function') {
+                window.printDocument = function() {
+                    window.print();
+                }
+             }
+         });
+    </script>
+<script 
+  type="text/javascript" 
+  src="https://embed.chatnode.ai/c28f50ff-7c75-4eb1-b745-616825cafc56/popup.js"
+  async
+></script>
+</body>
+</html>

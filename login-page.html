@@ -3,9 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Accesso al sistema SCAN360 - Strategic Corporate Analysis Navigator">
-    <meta name="author" content="Kitzanos Lab">
-    <meta name="robots" content="noindex, nofollow">
     <title>Login - SCAN360</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -14,59 +11,13 @@
      <style>
         /* Stili aggiuntivi specifici per login */
         html, body { height: 100%; }
-        body { 
-            display: flex; 
-            align-items: center; 
-            padding-top: 40px; 
-            padding-bottom: 40px; 
-            background-color: #eef2f7; 
-        }
-        .login-container { 
-            max-width: 450px; 
-            margin: auto; 
-            padding: 0 15px;
-        }
-        .login-card-header { 
-            background-color: var(--primary); 
-            color: white; 
-            border-radius: 8px 8px 0 0 !important; 
-            padding: 1rem 1.5rem; 
-        }
-        .login-btn { 
-            background-color: var(--primary); 
-            border-color: var(--primary); 
-            padding: 0.75rem 1.5rem; 
-            font-weight: 600; 
-            color: white !important;
-            transition: all 0.3s ease;
-        }
-        .login-btn:hover { 
-            background-color: #13134f; 
-            border-color: #13134f; 
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .powered-by img { 
-            max-height: 25px; 
-            filter: grayscale(50%);
-            transition: filter 0.3s ease;
-        }
-        .powered-by img:hover {
-            filter: grayscale(0%);
-        }
-        .watermark-login { 
-            text-align: center; 
-            margin-top: 20px; 
-            color: #6c757d; 
-            font-size: 0.8rem; 
-        }
-        .input-group-text {
-            background-color: #f8f9fa;
-        }
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 0.25rem rgba(25, 25, 112, 0.25);
-        }
+        body { display: flex; align-items: center; padding-top: 40px; padding-bottom: 40px; background-color: #eef2f7; }
+        .login-container { max-width: 450px; margin: auto; }
+        .login-card-header { background-color: var(--primary); color: white; border-radius: 8px 8px 0 0 !important; padding: 1rem 1.5rem; }
+        .login-btn { background-color: var(--primary); border-color: var(--primary); padding: 0.75rem 1.5rem; font-weight: 600; color: white !important;}
+        .login-btn:hover { background-color: #13134f; border-color: #13134f; }
+        .powered-by img { max-height: 25px; filter: grayscale(50%);}
+        .watermark-login { text-align: center; margin-top: 20px; color: #6c757d; font-size: 0.8rem; }
      </style>
 </head>
 <body>
@@ -85,14 +36,14 @@
                         <label for="username" class="form-label">Username</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
-                            <input type="text" class="form-control" id="username" placeholder="Username" required value="AdminAgricola"> <!-- Precompilato per demo -->
+                            <input type="text" class="form-control" id="username" placeholder="Username" required value="">
                         </div>
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Password</label>
                         <div class="input-group">
                             <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                            <input type="password" class="form-control" id="password" placeholder="Password" required value="Campidanese2025"> <!-- Precompilato per demo -->
+                            <input type="password" class="form-control" id="password" placeholder="Password" required value="">
                         </div>
                     </div>
                     <div class="d-grid mt-4">
@@ -101,7 +52,7 @@
                 </form>
                 <div class="powered-by d-flex justify-content-center align-items-center mt-4 pt-3 border-top">
                     <span class="me-2 text-muted small">Powered by</span>
-                    <img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo"> <!-- Assicurati che il path sia corretto -->
+                    <img src="assets/img/kitzanos_logo_scuro.png" alt="Kitzanos Logo"> <!-- Assicurati che il path sia corretto -->
                 </div>
             </div>
         </div>
@@ -119,7 +70,5 @@
             loginForm.addEventListener('submit', handleLogin); // Usa la funzione da common.js
         }
     </script>
-    <scan-chat data-bot-id="41eb2106-a80d-4845-a36f-fc7b8e03f87b"></scan-chat>
-    <script src="./js/bundle.js"></script>
 </body>
 </html>
