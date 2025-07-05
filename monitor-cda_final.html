@@ -28,12 +28,12 @@
         .irp-scale-labels { font-size: 0.8rem; color: #6c757d; font-weight: 500; padding: 0 5px;}
         .irp-score-circle { width: 140px; height: 140px; border-radius: 50%; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; box-shadow: 0 8px 20px rgba(0,0,0,0.25); background: var(--warning); border: 6px solid rgba(255, 255, 255, 0.5); }
         .irp-score-circle.risk-low { background: radial-gradient(circle, #6bc571, #4CAF50); }
-        .irp-score-circle.risk-medium { background: radial-gradient(circle, #ffd54f, #FFC107); }
-        .irp-score-circle.risk-high { background: radial-gradient(circle, #f6685e, #F44336); }
-        .irp-score-value { font-size: 3.5rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
-        .irp-score-max { font-size: 0.9rem; opacity: 0.8; display: block; line-height: 1;}
-        .irp-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
-        .irp-category-text .status-badge { font-size: 0.85rem; vertical-align: middle; margin-left: 8px;}
+        .-score-circle.risk-medium { background: radial-gradient(circle, #ffd54f, #FFC107); }
+        .-score-circle.risk-high { background: radial-gradient(circle, #f6685e, #F44336); }
+        .-score-value { font-size: 3.5rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
+        .-score-max { font-size: 0.9rem; opacity: 0.8; display: block; line-height: 1;}
+        .-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
+        .-category-text .status-badge { font-size: 0.85rem; vertical-align: middle; margin-left: 8px;}
 
         :root {
             --primary: #191970; --secondary: #4a69bd; --success: #4CAF50;
@@ -146,13 +146,13 @@
                      <div class="row align-items-center">
                          <div class="col-lg-8"> <!-- Colonna più larga per testo -->
                              <h4 class="card-title mb-3" style="color: var(--primary);"><i class="fas fa-info-circle me-2"></i>Executive Summary</h4>
-                             <p class="mb-2">L'analisi finanziaria di Agricola Campidanese evidenzia un <strong>profilo di rischio Molto Alto (IRP 52,81)</strong>, caratterizzato da <strong>marginalità operativa insufficiente</strong> (EBITDA 3,97%) e <strong>struttura patrimoniale gravemente squilibrata</strong> (PN €755.925, D/E 6,94). L'indebitamento è insostenibile (PFN/EBITDA 6,20) e la generazione di cassa operativa è debole (2,00% dei ricavi).</p>
+                             <p class="mb-2">L'analisi finanziaria di Agricola Campidanese evidenzia un <strong>profilo di rischio Molto Alto ( 52,81)</strong>, caratterizzato da <strong>marginalità operativa insufficiente</strong> (EBITDA 3,97%) e <strong>struttura patrimoniale gravemente squilibrata</strong> (PN €755.925, D/E 6,94). L'indebitamento è insostenibile (PFN/EBITDA 6,20) e la generazione di cassa operativa è debole (2,00% dei ricavi).</p>
                              <p class="mb-0 text-danger">Le <strong>criticità principali</strong> includono <strong>liquidità critica</strong> (€24.900, -91,17%), <strong>copertura immobilizzazioni inadeguata</strong> (0,13), <strong>DSCR insufficiente</strong> (0,548) e <strong>debito totalmente a breve termine</strong>. Il Leanus Score "Negativo" (0,95) conferma la necessità di interventi strutturali urgenti.</p>
                          </div>
-                         <div class="col-lg-4 text-center mt-3 mt-lg-0"> <!-- Colonna più stretta per IRP -->
+                         <div class="col-lg-4 text-center mt-3 mt-lg-0"> <!-- Colonna più stretta per  -->
                               <h6 class="card-title-small mb-1">Indice Rischio (IRP)</h6>
                               <div class="irp-score-circle risk-high mx-auto" style="width: 110px; height: 110px; border-width: 4px;"> <!-- Dimensione leggermente ridotta -->
-                                 <span class="irp-score-value" style="font-size: 2.8rem;">29,1</span> <!-- Valore dentro -->
+                                 <span class="irp-score-value" style="font-size: 2.8rem;">52,81</span> <!-- Valore dentro -->
                                  <span class="irp-score-max" style="font-size: 0.7rem;">/ 100</span>
                              </div>
                              <div class="irp-category-text text-danger mt-1" style="font-size: 1rem;"> <!-- Categoria sotto -->
