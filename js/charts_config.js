@@ -1,7 +1,7 @@
 /**
  * SCAN - Strategic Corporate Analysis Navigator
  * Configurazione Dati e Opzioni per Grafici Chart.js
- * Versione 1.1 - Dati Aggiornati per RELIVE COMMUNICATION S.R.L.
+ * Versione 1.1 - DATI AGRICOLA CAMPIDANESE AGGIORNATI
  */
 
 // ======================================
@@ -10,27 +10,26 @@
 
 // --- Dati per Dashboard Esecutiva (dashboard.html) ---
 function getTrendRicaviEbitdaData_Dashboard() {
-    // console.log("Fornitura dati per trendRicaviEbitdaChart (Dashboard)");
     return {
         labels: ["2022", "2023", "2024"],
         datasets: [
              {
                  label: "Ricavi (€)",
-                 data: [837763, 1014130, 1030748], // Valori assoluti
+                 data: [null, 20621793, 21213405], // Valori assoluti
                  borderColor: 'rgb(25, 25, 112)',
                  backgroundColor: 'rgba(25, 25, 112, 0.1)',
                  type: 'line', tension: 0.1, yAxisID: 'y', fill: true, pointRadius: 3,
              },
              {
                  label: "EBITDA (€)",
-                 data: [59227, 104917, 102108], // Valori assoluti
+                 data: [-459194, 623613, 843287], // Valori assoluti
                  borderColor: 'rgb(77, 140, 87)',
                  backgroundColor: 'rgba(77, 140, 87, 0.7)',
                  type: 'bar', yAxisID: 'y', barPercentage: 0.6, categoryPercentage: 0.7
              },
               {
                   label: "EBITDA Margin (%)",
-                  data: [7.1, 10.3, 9.9], // Percentuale
+                  data: [null, 3.0, 3.98], // Percentuale
                   borderColor: 'rgb(217, 140, 0)',
                   backgroundColor: 'transparent',
                   type: 'line', tension: 0.1, yAxisID: 'y1', fill: false, borderDash: [5, 5], pointRadius: 3
@@ -40,21 +39,20 @@ function getTrendRicaviEbitdaData_Dashboard() {
 }
 
 function getTrendPfnEbitdaData_Dashboard() {
-    // console.log("Fornitura dati per trendPfnEbitdaChart (Dashboard)");
     return {
          labels: ["2022", "2023", "2024"],
          datasets: [
              {
                  label: "PFN/EBITDA",
-                 data: [-0.86, 0.03, -0.56], // Valori del rapporto
+                 data: [null, 8.92, 6.19], // Valori del rapporto
                  borderColor: 'rgb(214, 34, 70)',
                  backgroundColor: 'rgba(214, 34, 70, 0.2)',
                  tension: 0.1, fill: true, pointRadius: 5, pointHoverRadius: 7,
                  pointBackgroundColor: 'rgb(214, 34, 70)'
              },
               {
-                 label: 'Soglia Attenzione (<3x)',
-                 data: [3, 3, 3], // Linea target
+                 label: 'Soglia Attenzione (<3.5x)',
+                 data: [3.5, 3.5, 3.5], // Linea target
                  borderColor: 'rgb(255, 193, 7)',
                  borderDash: [5, 5], fill: false, pointRadius: 0, borderWidth: 2,
              }
@@ -66,33 +64,28 @@ function getTrendPfnEbitdaData_Dashboard() {
 
 // Dati Parte 1
 function getMainMetricsData() {
-    // console.log("Fornitura dati per mainMetricsChart (Report Parte 1)");
      return {
-         labels: ["2022", "2023", "2024"], // Rimosso previsionale non disponibile
+         labels: ["2022", "2023", "2024"], 
          datasets: [
-             { label: "Ricavi (€000)", data: [838, 1014, 1031], backgroundColor: "rgba(25, 25, 112, 0.7)" }, // Dati in migliaia
-             { label: "EBITDA (€000)", data: [59, 105, 102], backgroundColor: "rgba(77, 140, 87, 0.7)" },
-             { label: "Patrimonio Netto (€000)", data: [97, 138, 234], backgroundColor: "rgba(217, 140, 0, 0.7)" }
+             { label: "Ricavi (€000)", data: [20452, 20622, 21213], backgroundColor: "rgba(25, 25, 112, 0.7)" },
+             { label: "EBITDA (€000)", data: [-459, 624, 843], backgroundColor: "rgba(77, 140, 87, 0.7)" },
+             { label: "Patrimonio Netto (€000)", data: [680, 698, 698], backgroundColor: "rgba(217, 140, 0, 0.7)" }
          ]
      };
 }
 function getCurrentAssetsLiabilitiesData() {
-    // console.log("Fornitura dati per currentAssetsLiabilitiesChart (Report Parte 1)");
-    // Dati estratti dai report - corrisponde a Capitale Circolante, Attivo Corrente, Passivo Corrente
      return {
          labels: ["2023", "2024"],
          datasets: [
-             { label: "Attivo Corrente", data: [661240, 835318], backgroundColor: "rgba(25, 25, 112, 0.7)" },
-             { label: "Passivo Corrente", data: [459165, 564443], backgroundColor: "rgba(214, 34, 70, 0.7)" },
-             { label: "Capitale Circolante Netto", data: [161675, 213927], backgroundColor: "rgba(77, 140, 87, 0.7)" }
+             { label: "Attivo Corrente", data: [8033878, 5851602], backgroundColor: "rgba(25, 25, 112, 0.7)" },
+             { label: "Passivo Corrente", data: [10719370, 10689441], backgroundColor: "rgba(214, 34, 70, 0.7)" },
+             { label: "Capitale Circolante Netto", data: [-2685492, -4837839], backgroundColor: "rgba(77, 140, 87, 0.7)" }
          ]
      };
 }
 
 // Dati Parte 2
 function getEconomicTrendData() {
-    // console.log("Fornitura dati per economicTrendChart (Report Parte 2)");
-    // Uguale a getTrendRicaviEbitdaData_Dashboard ma usa valori in €000 per coerenza con altre tabelle
     const dataAbs = getTrendRicaviEbitdaData_Dashboard();
     dataAbs.datasets[0].data = dataAbs.datasets[0].data.map(v => v ? v / 1000 : null); // Ricavi in K
     dataAbs.datasets[1].data = dataAbs.datasets[1].data.map(v => v ? v / 1000 : null); // EBITDA in K
@@ -101,47 +94,43 @@ function getEconomicTrendData() {
     return dataAbs;
 }
 function getMarginalityData() {
-    // console.log("Fornitura dati per marginalityChart (Report Parte 2)");
      return {
          labels: ["2022", "2023", "2024"],
          datasets: [
-            { label: "Valore Aggiunto %", data: [100.8, 98.6, 99.2], borderColor: "rgba(25, 25, 112, 1)", fill: false },
-            { label: "Margine di Contribuzione %", data: [30.9, 34.0, 38.5], borderColor: "rgba(42, 58, 128, 1)", fill: false },
-            { label: "EBITDA %", data: [7.1, 10.3, 9.9], borderColor: "rgba(77, 140, 87, 1)", fill: false },
-            { label: "EBIT %", data: [6.3, 9.5, 9.2], borderColor: "rgba(217, 140, 0, 1)", fill: false }
+            { label: "Valore Aggiunto %", data: [null, 22.0, 24.2], borderColor: "rgba(25, 25, 112, 1)", fill: false },
+            { label: "Margine di Contribuzione %", data: [null, 12.0, 12.7], borderColor: "rgba(42, 58, 128, 1)", fill: false },
+            { label: "EBITDA %", data: [null, 3.0, 4.0], borderColor: "rgba(77, 140, 87, 1)", fill: false },
+            { label: "EBIT %", data: [null, 0.9, 1.95], borderColor: "rgba(217, 140, 0, 1)", fill: false }
          ]
      };
 }
 function getProfitabilityIndicesData() {
-    // console.log("Fornitura dati per profitabilityIndicesChart (Report Parte 2)");
     return {
         labels: ["2022", "2023", "2024"],
         datasets: [
-            { label: "ROE %", data: [18.95, 29.97, 40.91], borderColor: "rgba(25, 25, 112, 1)", backgroundColor: "rgba(25, 25, 112, 0.2)", fill: true},
-            { label: "ROI %", data: [113.84, 67.88, 53.26], borderColor: "rgba(77, 140, 87, 1)", backgroundColor: "rgba(77, 140, 87, 0.2)", fill: true},
-            { label: "ROS %", data: [6.3, 9.5, 9.2], borderColor: "rgba(217, 140, 0, 1)", backgroundColor: "rgba(217, 140, 0, 0.2)", fill: true}
+            { label: "ROE %", data: [5.56, 2.82, 0.26], borderColor: "rgba(25, 25, 112, 1)", backgroundColor: "rgba(25, 25, 112, 0.2)", fill: true},
+            { label: "ROI %", data: [null, 1.32, 6.99], borderColor: "rgba(77, 140, 87, 1)", backgroundColor: "rgba(77, 140, 87, 0.2)", fill: true},
+            { label: "ROS %", data: [null, 0.9, 1.95], borderColor: "rgba(217, 140, 0, 1)", backgroundColor: "rgba(217, 140, 0, 0.2)", fill: true}
         ]
     };
 }
 function getLeverageData() {
-     // console.log("Fornitura dati per leverageChart (Report Parte 2)");
      return {
          labels: ["2023", "2024"],
          datasets: [
-             { label: "ROI (%)", data: [67.88, 53.26], backgroundColor: "rgba(25, 25, 112, 0.7)"},
-             { label: "ROE (%)", data: [29.97, 40.91], backgroundColor: "rgba(77, 140, 87, 0.7)"}
+             { label: "ROI (%)", data: [1.32, 6.99], backgroundColor: "rgba(25, 25, 112, 0.7)"},
+             { label: "ROE (%)", data: [2.82, 0.26], backgroundColor: "rgba(77, 140, 87, 0.7)"},
+             { label: "Costo del debito (%)", data: [null, 7.97], backgroundColor: "rgba(214, 34, 70, 0.7)"}
          ]
      };
 }
 function getBenchmarkRadarData() {
-    // console.log("Fornitura dati per benchmarkRadarChart (Report Parte 2)");
-    // Dati normalizzati basati sul posizionamento competitivo
     return {
         labels: ["Crescita Ricavi", "EBITDA Margin", "ROI", "Turnover", "Costo Personale (inv)", "PFN/EBITDA (inv)", "D/E (inv)"],
         datasets: [
             {
-                label: "RELIVE COMMUNICATION", // Valori > 100 = Migliore della media
-                data: [33, 124, 355, 194, 106, 150, 150], // DATI NORMALIZZATI STIMATI
+                label: "Agricola Campidanese",
+                data: [102, 50, 140, 183, 120, 56, 27], // Normalizzati rispetto al benchmark
                 backgroundColor: "rgba(25, 25, 112, 0.3)", borderColor: "rgba(25, 25, 112, 1)", borderWidth: 2, pointBackgroundColor: "rgba(25, 25, 112, 1)"
             },
             {
@@ -155,8 +144,7 @@ function getBenchmarkRadarData() {
 
 // Dati Parte 3
 function getAssetsData() {
-    // console.log("Fornitura dati per assetsChart (Report Parte 3)");
-    const originalData = [10735, 2200, 9001, 1883, 748028, 56948]; // Immob. Mat, Fin, Immat, Magazzino, Crediti, Liquidità
+    const originalData = [4989493, 372971, 186412, 872688, 2738671, 17094];
     const total = originalData.reduce((a, b) => a + b, 0);
     return {
         labels: ["Immob. Materiali", "Immob. Finanziarie", "Immob. Immateriali", "Magazzino", "Crediti Comm.", "Liquidità"],
@@ -168,8 +156,7 @@ function getAssetsData() {
     };
 }
 function getLiabilitiesData() {
-    // console.log("Fornitura dati per liabilitiesChart (Report Parte 3)");
-    const originalData = [234134, 0, 0, 421125, 143318]; // PN, Debt MLT, Debt BT, Debt Forn, Altri Debt
+    const originalData = [697950, 0, 5238348, 3908102, 1542992]; // PN, Debt MLT, Debt BT, Debt Forn, Altri Debt
     const total = originalData.reduce((a, b) => a + b, 0);
      return {
          labels: ["Patrimonio Netto", "Debiti Fin. MLT", "Debiti Fin. BT", "Debiti Comm.", "Altri Debiti"],
@@ -181,21 +168,18 @@ function getLiabilitiesData() {
      };
 }
 function getInvestmentsStructureData() {
-    // console.log("Fornitura dati per investmentsStructureChart (Report Parte 3)");
     return {
         labels: ["2022", "2023", "2024"],
         datasets: [
-             { label: "Immobilizzazioni", data: [16377, 25861, 21936], backgroundColor: "rgba(25, 25, 112, 0.7)", stack: "Stack 0" },
-             { label: "Crediti commerciali", data: [486142, 614165, 748028], backgroundColor: "rgba(77, 140, 87, 0.7)", stack: "Stack 0" },
-             { label: "Rimanenze", data: [10100, 0, 1883], backgroundColor: "rgba(217, 140, 0, 0.7)", stack: "Stack 0" },
-             { label: "Liquidità", data: [72409, 40471, 56948], backgroundColor: "rgba(79, 109, 122, 0.7)", stack: "Stack 0" }
+             { label: "Immobilizzazioni", data: [5608045, 5898255, 5548877], backgroundColor: "rgba(25, 25, 112, 0.7)", stack: "Stack 0" },
+             { label: "Crediti commerciali", data: [3915699, 4675401, 2738671], backgroundColor: "rgba(77, 140, 87, 0.7)", stack: "Stack 0" },
+             { label: "Rimanenze", data: [791281, 692266, 872688], backgroundColor: "rgba(217, 140, 0, 0.7)", stack: "Stack 0" },
+             { label: "Liquidità", data: [568187, 282044, 17094], backgroundColor: "rgba(79, 109, 122, 0.7)", stack: "Stack 0" }
         ]
     };
 }
 function getEquityCompositionData() {
-    // console.log("Fornitura dati per equityCompositionChart (Report Parte 3)");
-    // Dati ottenuti dalla relazione
-    const originalData = [20000, 118351, 95783, 0]; // Capitale Sociale, Riserve, Utile, Utili a nuovo
+    const originalData = [8500, 687621, 1828, 0];
     const total = originalData.reduce((a, b) => a + b, 0);
      return {
          labels: ["Capitale Sociale", "Riserve", "Utile Esercizio", "Utili a Nuovo"],
@@ -207,164 +191,131 @@ function getEquityCompositionData() {
      };
 }
 function getFinancialDebtSourcesData() {
-    // console.log("Fornitura dati per financialDebtSourcesChart (Report Parte 3)");
+    const originalData = [697950, 0, 5238348]; // PN, Debt MLT, Debt BT
+    const total = originalData.reduce((a, b) => a + b, 0);
     return {
-        labels: ["2022", "2023", "2024"],
-        datasets: [
-            { 
-                label: "Debiti Finanziari", 
-                data: [21599, 43570, 0], 
-                backgroundColor: "rgba(214, 34, 70, 0.7)",
-                type: "bar",
-                yAxisID: 'y'
-            },
-            { 
-                label: "Patrimonio Netto", 
-                data: [96884, 138351, 234134], 
-                backgroundColor: "rgba(25, 25, 112, 0.7)",
-                type: "bar",
-                yAxisID: 'y'
-            },
-            { 
-                label: "Rapporto D/E", 
-                data: [0.22, 0.31, 0.00], 
-                type: "line",
-                borderColor: "rgba(77, 140, 87, 1)",
-                backgroundColor: "transparent",
-                yAxisID: 'y1',
-                borderWidth: 2,
-                pointBackgroundColor: "rgba(77, 140, 87, 1)",
-                fill: false
-            }
-        ]
+        labels: ["Patrimonio Netto", "Debiti Fin. MLT", "Debiti Fin. BT"],
+        _originalData: originalData,
+        datasets: [{
+            data: originalData.map(v => total > 0 ? (v / total) * 100 : 0), // Dati %
+            backgroundColor: ["#191970", "#4CAF50", "#FFC107"]
+        }]
     };
 }
 function getPfnTrendData() {
-    // console.log("Fornitura dati per pfnTrendChart (Report Parte 3)");
     return {
          labels: ["2022", "2023", "2024"],
          datasets: [
-             { label: "Debiti Finanziari Tot.", data: [21599, 43570, 0], type: "bar", backgroundColor: "rgba(214, 34, 70, 0.7)", yAxisID: 'y' },
-             { label: "Liquidità", data: [72409, 40471, 56948], type: "bar", backgroundColor: "rgba(77, 140, 87, 0.7)", yAxisID: 'y'},
-             { label: "PFN", data: [-50810, 3099, -56948], type: "line", borderColor: "rgba(25, 25, 112, 1)", fill: false, yAxisID: 'y' }
+             { label: "Debiti Finanziari Tot.", data: [6682048, 5845199, 5238348], type: "bar", backgroundColor: "rgba(214, 34, 70, 0.7)", yAxisID: 'y' },
+             { label: "Liquidità", data: [568187, 282044, 17094], type: "bar", backgroundColor: "rgba(77, 140, 87, 0.7)", yAxisID: 'y'},
+             { label: "PFN", data: [6113861, 5563155, 5221254], type: "line", borderColor: "rgba(25, 25, 112, 1)", fill: false, yAxisID: 'y' }
          ]
      };
 }
 
 // Dati Parte 4
 function getDebtSustainabilityData() {
-    // console.log("Fornitura dati per debtSustainabilityChart (Report Parte 4)");
-     // Valori normalizzati per il grafico radar
      return {
          labels: ["PFN/EBITDA (inv)", "D/E (inv)", "DSCR", "Oneri Fin./Ricavi (inv)", "Cash Flow Op./Ricavi", "Leanus Score"], // Invertiti D/E e OF/Ricavi
          datasets: [
-             { label: "RELIVE COMMUNICATION", data: [100, 100, 86, 95, 62, 87], backgroundColor: "rgba(25, 25, 112, 0.2)", borderColor: "rgba(25, 25, 112, 1)" }, // Valori > 100 = Migliore
-             { label: "Target/Benchmark", data: [67, 67, 60, 70, 50, 75], backgroundColor: "rgba(77, 140, 87, 0.2)", borderColor: "rgba(77, 140, 87, 1)" }
+             { label: "Agricola Campidanese", data: [16, 13, 56, 48, 40, 2], backgroundColor: "rgba(25, 25, 112, 0.2)", borderColor: "rgba(25, 25, 112, 1)" }, // Valori normalizzati
+             { label: "Target/Benchmark", data: [33, 50, 100, 67, 50, 75], backgroundColor: "rgba(77, 140, 87, 0.2)", borderColor: "rgba(77, 140, 87, 1)" }
          ]
      };
 }
-function getDebtCostData() { // Grafico Capacità Indebitamento
-    // console.log("Fornitura dati per debtCostChart (Report Parte 4)");
+function getDebtCostData() {
     return {
          labels: ["2022", "2023", "2024"],
          datasets: [
-             { label: "EBITDA (€000)", data: [59, 105, 102], type: "bar", yAxisID: "y", backgroundColor: "rgba(77, 140, 87, 0.7)" },
-             { label: "Capacità Teorica Indeb. (3x EBITDA, €000)", data: [177, 315, 306], type: "line", yAxisID: "y", borderColor: "rgba(25, 25, 112, 1)", fill: false }
+             { label: "EBITDA (€000)", data: [-459, 624, 843], type: "bar", yAxisID: "y", backgroundColor: "rgba(77, 140, 87, 0.7)" },
+             { label: "Capacità Teorica Indeb. (3x EBITDA, €000)", data: [0, 1872, 2529], type: "line", yAxisID: "y", borderColor: "rgba(25, 25, 112, 1)", fill: false },
+             { label: "PFN Attuale (€000)", data: [6114, 5563, 5221], type: "line", yAxisID: "y", borderColor: "rgba(214, 34, 70, 1)", fill: false, borderDash: [5, 5] }
          ]
      };
 }
 
 // Dati Parte 5
 function getWorkingCapitalCycleData() {
-    // console.log("Fornitura dati per workingCapitalCycleChart (Report Parte 5)");
     return {
         labels: ["Crediti Clienti (DSO)", "Magazzino (DIO)", "Debiti Fornitori (DPO)", "Ciclo Circolante"],
         datasets: [
-            { label: "RELIVE COMMUNICATION (Giorni)", data: [262, 79, 222, 119], backgroundColor: "rgba(25, 25, 112, 0.7)" },
-            { label: "Benchmark Settore (Giorni)", data: [90, 60, 90, 60], backgroundColor: "rgba(77, 140, 87, 0.7)" }
+            { label: "Agricola Campidanese (Giorni)", data: [47, 20, 75, -8], backgroundColor: "rgba(25, 25, 112, 0.7)" },
+            { label: "Benchmark Settore (Giorni)", data: [75, 45, 90, 30], backgroundColor: "rgba(77, 140, 87, 0.7)" }
         ]
     };
 }
 function getCashFlowWaterfallData() {
-    // console.log("Fornitura dati per cashFlowWaterfallChart (Report Parte 5)");
-    // Implementazione con barre semplici per rappresentare la cascata
-     return {
+    return {
          labels: ["EBITDA", "Imposte", "+Δ Circ.", "=CF Op.", "-Invest.", "=FCF", "+Δ Debt", "-Divid.", "=Δ Cassa"],
          datasets: [{
-             data: [102108, -242, 98150, 63852, -3805, 60047, -43570, 0, 16477],
+             data: [843287, 0, 440239, 423899, -80407, 343492, -606851, -1591, -264950],
              backgroundColor: [ // Colori significativi
-                 '#4CAF50', // EBITDA (+)
+                 '#4CAF50', // EBITDA
                  '#F44336', // Imposte (-)
                  '#4CAF50', // Delta Circ. (+)
-                 '#4CAF50', // CF Op (+)
+                 '#2E8B57', // CF Op (=)
                  '#F44336', // Investimenti (-)
-                 '#4CAF50', // FCF (+)
-                 '#F44336', // Delta Debt (-)
-                 '#4CAF50', // Dividendi (0)
-                 '#4CAF50'  // Delta Cassa (+)
+                 '#2E8B57', // FCF (=)
+                 '#F44336', // Delta Debt (-) - Negativo
+                 '#F44336', // Dividendi (-) - Warning color
+                 '#F44336'  // Delta Cassa (-) - Negativo
              ]
          }]
      };
 }
 function getCashFlowTrendData() {
-    // console.log("Fornitura dati per cashFlowTrendChart (Report Parte 5)");
     return {
         labels: ["2022", "2023", "2024"],
         datasets: [
-            { label: "Cash Flow Operativo", data: [11859, -35522, 63852], borderColor: "rgba(77, 140, 87, 1)", fill: true, backgroundColor: "rgba(77, 140, 87, 0.1)"},
-            { label: "Cash Flow Investimenti", data: [-2316, -18387, -3805], borderColor: "rgba(214, 34, 70, 1)", fill: true, backgroundColor: "rgba(214, 34, 70, 0.1)" },
-            { label: "Variazione Netta di Cassa", data: [6142, -31938, 16477], borderColor: "rgba(25, 25, 112, 1)", fill: true, backgroundColor: "rgba(25, 25, 112, 0.1)" }
+            { label: "Cash Flow Operativo", data: [632006, 1260453, 423899], borderColor: "rgba(77, 140, 87, 1)", fill: true, backgroundColor: "rgba(77, 140, 87, 0.1)"},
+            { label: "Cash Flow Investimenti", data: [-286041, -708115, -80407], borderColor: "rgba(214, 34, 70, 1)", fill: true, backgroundColor: "rgba(214, 34, 70, 0.1)" },
+            { label: "Variazione Netta di Cassa", data: [196437, -286143, -264950], borderColor: "rgba(25, 25, 112, 1)", fill: true, backgroundColor: "rgba(25, 25, 112, 0.1)" }
         ]
     };
 }
 function getCashFlowProjectionData() {
-    // console.log("Fornitura dati per cashFlowProjectionChart (Report Parte 5)");
     return {
         labels: ["2024", "2025E", "2026E", "2027E", "2028E"],
         datasets: [
-            { label: "Cash Flow Operativo", data: [63852, 92805, 120000, 150000, 175000], type: 'bar', backgroundColor: "rgba(79, 109, 122, 0.7)", yAxisID: 'y' },
-            { label: "Variazione Debiti Fin.", data: [-43570, 0, 0, 0, 0], type: 'bar', backgroundColor: "rgba(214, 34, 70, 0.7)", yAxisID: 'y' },
-            { label: "Liquidità Finale", data: [56948, 138953, 258953, 408953, 583953], type: 'line', borderColor: "rgba(77, 140, 87, 1)", fill: false, yAxisID: 'y1' }
+            { label: "Cash Flow Operativo", data: [423899, 431403, 468933, 468933, 468933], type: 'bar', backgroundColor: "rgba(79, 109, 122, 0.7)", yAxisID: 'y' },
+            { label: "Variazione Debiti Fin.", data: [-606851, 0, 0, 0, 0], type: 'bar', backgroundColor: "rgba(214, 34, 70, 0.7)", yAxisID: 'y' },
+            { label: "Liquidità Finale", data: [17094, 448497, 917430, 1386363, 1855296], type: 'line', borderColor: "rgba(77, 140, 87, 1)", fill: false, yAxisID: 'y1' }
         ]
     };
 }
 
 // Dati Parte 6
 function getZscoreData() {
-    // console.log("Fornitura dati per zscoreChart (Report Parte 6)");
     return {
         labels: ["2022", "2023", "2024"],
         datasets: [
-            { label: "Z-Score", data: [null, null, 9.48], borderColor: "rgba(25, 25, 112, 1)", fill: false },
+            { label: "Z-Score", data: [null, null, 2.90], borderColor: "rgba(25, 25, 112, 1)", fill: false },
             { label: "Soglia Sicurezza", data: [2.99, 2.99, 2.99], borderColor: "rgba(77, 140, 87, 1)", borderDash: [5, 5], fill: false, pointRadius: 0 },
             { label: "Soglia Rischio", data: [1.81, 1.81, 1.81], borderColor: "rgba(214, 34, 70, 1)", borderDash: [5, 5], fill: false, pointRadius: 0 }
         ]
     };
 }
 function getRiskIndicatorsData() {
-     // console.log("Fornitura dati per riskIndicatorsChart (Report Parte 6)");
-     // Dati normalizzati basati sui valori dell'azienda vs benchmark
     return {
         labels: ["ROI", "ROS", "D/E (inv)", "Cop. Immob.", "DSO (inv)", "DPO (inv)"], // Giorni invertiti
         datasets: [{
-             label: "RELIVE COMMUNICATION",
-             data: [95, 92, 100, 100, 34, 40], // Normalizzati dai dati dei report
+             label: "Agricola Campidanese",
+             data: [70, 39, 13, 13, 85, 83], // Normalizzati
              backgroundColor: "rgba(136, 141, 194, 0.5)", borderColor: "rgba(97, 103, 173, 1)", borderWidth: 2
             }, {
              label: "Target/Benchmark",
-             data: [100, 100, 67, 100, 100, 100], // Benchmark normalizzato
+             data: [100, 100, 50, 100, 67, 67], // Benchmark normalizzato
              backgroundColor: "rgba(145, 190, 145, 0.4)", borderColor: "rgba(103, 167, 103, 1)", borderWidth: 2
         }]
     };
 }
 function getSensitivityData() {
-    // console.log("Fornitura dati per sensitivityChart (Report Parte 6)");
      return {
          labels: ["Ricavi", "Costi Fissi", "Crediti Clienti (gg)", "Debiti Fornitori (gg)"],
          datasets: [{
              label: "Variazione Critica",
-             data: [-23.81, 32.08, 20, -30], // Dati dai report - Basati sull'analisi di sensitività
-             backgroundColor: ["#F44336", "#F44336", "#F44336", "#F44336"] // Colori per impatto
+             data: [-1.95, 23.5, 1, -30], // Valori da analisi sensitività
+             backgroundColor: ["#F44336", "#4CAF50", "#F44336", "#F44336"] // Colori per impatto
          }]
      };
 }
@@ -474,10 +425,8 @@ const radarChartOptions = {
                  backdropColor: 'rgba(255, 255, 255, 0.75)',
                  font: { size: 9 },
                  maxTicksLimit: 5,
-                 // callback: function(value) { return value + '%'; } // Esempio se scala è %
              },
              suggestedMin: 0,
-             // suggestedMax: 150 // Adattare se necessario per i dati normalizzati
          }
       },
       plugins: {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard Moderna - RELIVE COMMUNICATION S.R.L. | SCAN</title>
+    <title>Dashboard Moderna  | SCAN - Agricola Campidanese Soc. Coop.</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -16,8 +16,8 @@
     <aside class="sidebar no-print">
         <div class="sidebar-header">
             <!-- Inserisci qui il logo se desiderato -->
-             <img src="assets/img/logo_scan.png" alt="SCAN Logo" style="max-height: 40px;">
-            <h5>RELIVE COMMUNICATION</h5>
+             <img src="assets/img/logo_scan.png" alt="FREM Logo" style="max-height: 40px;">
+            <h5>AGRICOLA CAMPIDANESE</h5>
         </div>
 
         <ul class="sidebar-nav flex-grow-1">
@@ -59,7 +59,7 @@
             </li>
              <li class="nav-item">
                  <!-- Updated link -->
-                <a class="nav-link" href="report/parte3_patrimoniale.html">
+                <a class="nav-link" href="report/parte3_analisi_patrimoniale.html">
                     <i class="fas fa-landmark fa-fw"></i> Analisi Patrimoniale
                 </a>
             </li>
@@ -101,27 +101,18 @@
     <!-- Contenuto Principale -->
     <main class="main-content">
         <!-- Header Orizzontale -->
-        <header class="dashboard-header no-print">
-             <div class="header-title">
-                  <h4 class="mb-0">RELIVE COMMUNICATION S.R.L.</h4> <!-- Added Company Name -->
-             </div>
+       <header class="dashboard-header no-print">
+            <div class="header-title">
+                 <h5 class="mb-0">Dashboard Esecutiva CDA</h5>
+                 <p class="mb-0">Agricola Campidanese | <span class="report-date">31 Dicembre 2024</span></p>
+            </div>
             <div class="header-controls d-flex align-items-center">
-                <!-- Updated Date -->
-                <span class="me-3 small text-muted">Aggiornamento: 23 Apr 2025</span>
-                 <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="printDocument()">
-                    <i class="fas fa-print"></i> Stampa
-                 </button>
-                <!-- Bottone Utente/Logout -->
-                 <div class="dropdown">
-                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                       <i class="fas fa-user-circle me-1"></i> AdminUser
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton">
-                        <li><a class="dropdown-item" href="#">Profilo (Non attivo)</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><button class="dropdown-item" type="button" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li>
-                    </ul>
-                 </div>
+                <span id="irp-header-badge" class="badge me-3"></span> <!-- Badge will be updated by JS -->
+                <button class="btn btn-sm btn-outline-secondary me-2 print-button" onclick="printDocument()"> <i class="fas fa-print"></i> Stampa </button>
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-light border dropdown-toggle" type="button" id="userMenuButton" data-bs-toggle="dropdown" aria-expanded="false"> <i class="fas fa-user-circle me-1"></i> Agricola Campidanese </button>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenuButton"> <li><button class="dropdown-item" type="button" onclick="logout()"><i class="fas fa-sign-out-alt me-2"></i>Logout</button></li> </ul>
+                </div>
             </div>
         </header>
 
@@ -130,7 +121,7 @@
 
             <!-- Intestazione pagina contenuto -->
             <div class="d-flex justify-content-between align-items-center mb-4">
-                <h3 class="mb-0 fw-bold" style="color: var(--primary);">Dashboard Esecutiva - RELIVE COMMUNICATION</h3>
+                <h3 class="mb-0 fw-bold" style="color: var(--primary);">Dashboard Esecutiva - Agricola Campidanese Soc. Coop.</h3>
                  <div>
                      <!-- Eventuali pulsanti azione pagina -->
                  </div>
@@ -142,115 +133,106 @@
                  <div class="row">
                      <!-- KPI Card: IRP -->
                      <div class="col-xl-3 col-md-6 mb-4">
-                         <!-- Updated IRP -->
-                         <div class="kpi-card-v2 border-left-success"> 
+                         <div class="kpi-card-v2 border-left-warning">
                               <i class="fas fa-shield-alt kpi-icon-modern-bg"></i>
                               <h4 class="card-title-modern">Indice Rischio (IRP)</h4>
-                              <div class="kpi-value-modern">78,50</div> <!-- Updated IRP Value -->
+                              <div class="kpi-value-modern">51,9</div>
                              <div class="kpi-trend-modern">
-                                 <span class="status-badge bg-success">Moderato-Basso</span> <!-- Updated IRP Category -->
+                                 <span class="status-badge bg-warning">Medio</span>
                                  <span class="text-muted ms-2">(Scala 0-100)</span>
                              </div>
-                             <p class="kpi-description-modern">Solidità adeguata con alcuni punti di forza.</p> <!-- Updated description -->
+                             <p class="kpi-description-modern">Squilibri strutturali che richiedono interventi correttivi.</p>
                          </div>
                      </div>
                      <!-- KPI Card: Ricavi -->
                       <div class="col-xl-3 col-md-6 mb-4">
-                         <!-- Updated Ricavi -->
-                         <div class="kpi-card-v2 border-left-info"> 
+                         <div class="kpi-card-v2 border-left-warning">
                               <i class="fas fa-chart-bar kpi-icon-modern-bg"></i>
                               <h4 class="card-title-modern">Ricavi</h4>
-                              <div class="kpi-value-modern">€ 1,03 M</div> <!-- Updated Ricavi Value -->
-                             <div class="kpi-trend-modern trend-up"> 
+                              <div class="kpi-value-modern">€ 21,2 M</div>
+                             <div class="kpi-trend-modern trend-up">
                                  <i class="fas fa-arrow-up trend-icon"></i>
-                                 <span class="trend-value">+1,64%</span> <span class="text-muted small">vs 2023</span> <!-- Updated trend value -->
+                                 <span class="trend-value">+2,88%</span> <span class="text-muted small">vs 2023</span>
                              </div>
-                             <p class="kpi-description-modern">Crescita limitata ma stabile.</p> <!-- Updated description -->
+                             <p class="kpi-description-modern">Crescita modesta, marginalità insufficiente.</p>
                          </div>
                      </div>
                       <!-- KPI Card: EBITDA Margin -->
                       <div class="col-xl-3 col-md-6 mb-4">
-                         <!-- Updated EBITDA Margin -->
-                         <div class="kpi-card-v2 border-left-success"> 
+                         <div class="kpi-card-v2 border-left-danger">
                               <i class="fas fa-percent kpi-icon-modern-bg"></i>
                               <h4 class="card-title-modern">EBITDA Margin</h4>
-                              <div class="kpi-value-modern">9,91%</div> <!-- Updated EBITDA Margin Value -->
-                              <div class="kpi-trend-modern trend-down"> 
-                                 <i class="fas fa-arrow-down trend-icon"></i>
-                                 <span class="trend-value">-0,39 p.p.</span> <span class="text-muted small">vs 2023</span> <!-- Updated trend value -->
+                              <div class="kpi-value-modern">3,97%</div>
+                              <div class="kpi-trend-modern trend-up">
+                                 <i class="fas fa-arrow-up trend-icon"></i>
+                                 <span class="trend-value">+0,97 p.p.</span> <span class="text-muted small">vs 2023</span>
                               </div>
-                             <p class="kpi-description-modern">Marginalità ancora buona (benchmark 8-12%).</p> <!-- Updated description -->
+                             <p class="kpi-description-modern">Marginalità critica (benchmark 8-12%).</p>
                          </div>
                      </div>
                        <!-- KPI Card: PFN/EBITDA -->
                        <div class="col-xl-3 col-md-6 mb-4">
-                          <!-- Updated PFN/EBITDA -->
-                          <div class="kpi-card-v2 border-left-success"> 
+                          <div class="kpi-card-v2 border-left-danger">
                                <i class="fas fa-balance-scale kpi-icon-modern-bg"></i>
                                <h4 class="card-title-modern">PFN / EBITDA</h4>
-                               <div class="kpi-value-modern">-0,56</div> <!-- Updated PFN/EBITDA Value -->
-                               <div class="kpi-trend-modern trend-up">
-                                  <i class="fas fa-arrow-up trend-icon"></i>
-                                  <span class="trend-value">Eccellente</span> <span class="text-muted small">PFN Negativa</span>
+                               <div class="kpi-value-modern">6,20x</div>
+                               <div class="kpi-trend-modern trend-down">
+                                  <i class="fas fa-arrow-down trend-icon"></i>
+                                  <span class="trend-value">-2,72x</span> <span class="text-muted small">vs 2023</span>
                                </div>
-                              <p class="kpi-description-modern">Surplus di cassa (benchmark <3x).</p> <!-- Updated description -->
+                              <p class="kpi-description-modern">Sostenibilità debito critica (>3,5x).</p>
                           </div>
                       </div>
                        <!-- KPI Card: DSO -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                           <!-- Updated DSO -->
-                           <div class="kpi-card-v2 border-left-danger"> 
+                           <div class="kpi-card-v2 border-left-success">
                                <i class="fas fa-file-invoice-dollar kpi-icon-modern-bg"></i>
                                <h4 class="card-title-modern">Giorni Incasso Clienti</h4>
-                               <div class="kpi-value-modern">262 gg</div> <!-- Updated DSO Value -->
-                               <div class="kpi-trend-modern trend-down"> 
+                               <div class="kpi-value-modern">47 gg</div>
+                               <div class="kpi-trend-modern trend-down">
                                   <i class="fas fa-arrow-down trend-icon"></i>
-                                  <span class="trend-value">+43 gg</span> <span class="text-muted small">vs 2023</span> <!-- Updated trend value -->
+                                  <span class="trend-value">-35 gg</span> <span class="text-muted small">vs 2023</span>
                                </div>
-                               <p class="kpi-description-modern">Criticità significativa (benchmark 90-120gg).</p> <!-- Updated description -->
+                               <p class="kpi-description-modern">Ottima gestione incassi (Benchmark 60-90gg).</p>
                            </div>
                        </div>
                         <!-- KPI Card: Cash Flow Op -->
                          <div class="col-xl-3 col-md-6 mb-4">
-                            <!-- Updated Cash Flow Operativo -->
-                            <div class="kpi-card-v2 border-left-success">
+                            <div class="kpi-card-v2 border-left-warning">
                                 <i class="fas fa-coins kpi-icon-modern-bg"></i>
                                 <h4 class="card-title-modern">Cash Flow Operativo</h4>
-                                <div class="kpi-value-modern">€ 63,85 K</div> <!-- Updated Cash Flow Value -->
-                                <div class="kpi-trend-modern trend-up">
-                                   <i class="fas fa-arrow-up trend-icon"></i>
-                                   <span class="trend-value">6,19%</span> <span class="text-muted small">dei Ricavi</span> <!-- Updated trend value -->
+                                <div class="kpi-value-modern">€ 423,9 K</div>
+                                <div class="kpi-trend-modern trend-down">
+                                   <i class="fas fa-arrow-down trend-icon"></i>
+                                   <span class="trend-value">2,0%</span> <span class="text-muted small">dei Ricavi</span>
                                 </div>
-                               <p class="kpi-description-modern">Buona generazione di cassa (benchmark >5%).</p> <!-- Updated description -->
+                               <p class="kpi-description-modern">Generazione di cassa insufficiente (<5%).</p>
                             </div>
                         </div>
                          <!-- KPI Card: Leanus Score -->
                           <div class="col-xl-3 col-md-6 mb-4">
-                              <!-- Updated Leanus Score -->
-                              <div class="kpi-card-v2 border-left-success"> 
+                              <div class="kpi-card-v2 border-left-danger">
                                   <i class="fas fa-user-shield kpi-icon-modern-bg"></i>
                                   <h4 class="card-title-modern">Leanus Score / Categoria</h4>
-                                  <div class="kpi-value-modern">10,03</div> <!-- Updated Leanus Score Value -->
+                                  <div class="kpi-value-modern">0,95</div>
                                   <div class="kpi-trend-modern">
-                                       <span class="status-badge bg-success me-2">Buono (2)</span> <!-- Updated Leanus Score Category -->
-                                       <span class="status-badge bg-info">Miglioramento</span> <!-- Updated Leanus Category -->
+                                       <span class="status-badge bg-danger me-2">Negativo (5)</span>
+                                       <span class="status-badge bg-danger">STUCK</span>
                                   </div>
-                                 <p class="kpi-description-modern">Profilo creditizio solido e affidabile.</p> <!-- Updated description -->
+                                 <p class="kpi-description-modern">Disequilibrio economico-patrimoniale critico.</p>
                               </div>
                           </div>
                           <!-- KPI Card: Prossime Azioni -->
                            <div class="col-xl-3 col-md-6 mb-4">
-                               <!-- Updated Azione Prioritaria -->
-                               <div class="kpi-card-v2 border-left-warning">
+                               <div class="kpi-card-v2 border-left-info">
                                    <i class="fas fa-tasks kpi-icon-modern-bg"></i>
                                    <h4 class="card-title-modern">Azione Prioritaria</h4>
-                                   <div class="kpi-value-modern" style="font-size: 1.5rem;">Gestione Crediti</div> <!-- Updated Text -->
+                                   <div class="kpi-value-modern" style="font-size: 1.5rem;">Ricapitalizzazione</div>
                                    <div class="kpi-trend-modern">
-                                        <span class="status-badge bg-warning">Alta Priorità</span>
+                                        <span class="status-badge bg-danger">Urgente</span>
                                    </div>
-                                  <p class="kpi-description-modern">Riduzione DSO da 262 a 180 giorni.</p> <!-- Updated description -->
-                                   <!-- Updated link target -->
-                                   <a href="report/parte6_rischi_raccomandazioni.html#section_7_1" class="btn btn-outline-primary btn-sm btn-pill mt-2">Vedi Piano</a>
+                                  <p class="kpi-description-modern">Intervento su struttura patrimoniale e debito.</p>
+                                   <a href="report/parte6_rischi_raccomandazioni.html#table_7_1_1" class="btn btn-outline-primary btn-sm btn-pill mt-2">Vedi Piano</a>
                                </div>
                            </div>
                  </div>
@@ -312,12 +294,12 @@
         const chartData = {
             trendRicaviEbitda: {
                 labels: ['2022', '2023', '2024'],
-                ricavi: [0.84, 1.01, 1.03],
-                ebitda: [0.06, 0.10, 0.10]
+                ricavi: [20.45, 20.62, 21.21],
+                ebitda: [-0.46, 0.62, 0.84]
             },
             trendPfnEbitda: {
                 labels: ['2022', '2023', '2024'],
-                pfnEbitda: [-0.86, 0.03, -0.56]
+                pfnEbitda: [null, 8.92, 6.20]
             }
         };
     </script>
@@ -352,10 +334,8 @@
              }
         });
     </script>
-<script 
-  type="text/javascript" 
-  src="https://embed.chatnode.ai/c28f50ff-7c75-4eb1-b745-616825cafc56/popup.js"
-  async
-></script>
+    <!-- Script ChatNode -->
+    <scan-chat data-bot-id="41eb2106-a80d-4845-a36f-fc7b8e03f87b"></scan-chat>
+    <script src="./js/bundle.js"></script>
 </body>
 </html>
