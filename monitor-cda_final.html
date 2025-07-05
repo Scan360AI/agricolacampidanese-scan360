@@ -28,12 +28,12 @@
         .irp-scale-labels { font-size: 0.8rem; color: #6c757d; font-weight: 500; padding: 0 5px;}
         .irp-score-circle { width: 140px; height: 140px; border-radius: 50%; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; box-shadow: 0 8px 20px rgba(0,0,0,0.25); background: var(--warning); border: 6px solid rgba(255, 255, 255, 0.5); }
         .irp-score-circle.risk-low { background: radial-gradient(circle, #6bc571, #4CAF50); }
-        .-score-circle.risk-medium { background: radial-gradient(circle, #ffd54f, #FFC107); }
-        .-score-circle.risk-high { background: radial-gradient(circle, #f6685e, #F44336); }
-        .-score-value { font-size: 3.5rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
-        .-score-max { font-size: 0.9rem; opacity: 0.8; display: block; line-height: 1;}
-        .-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
-        .-category-text .status-badge { font-size: 0.85rem; vertical-align: middle; margin-left: 8px;}
+        .irp-score-circle.risk-medium { background: radial-gradient(circle, #ffd54f, #FFC107); }
+        .irp-score-circle.risk-high { background: radial-gradient(circle, #f6685e, #F44336); }
+        .irp-score-value { font-size: 3.5rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
+        .irp-score-max { font-size: 0.9rem; opacity: 0.8; display: block; line-height: 1;}
+        .irp-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
+        .irp-category-text .status-badge { font-size: 0.85rem; vertical-align: middle; margin-left: 8px;}
 
         :root {
             --primary: #191970; --secondary: #4a69bd; --success: #4CAF50;
@@ -105,7 +105,7 @@
    <!-- Sidebar -->
     <aside class="sidebar no-print">
          <div class="sidebar-header">   <img src="assets/img/logo_scan.png" alt="FREM Logo" style="max-height: 40px;">
- <h5>Agricola Campidanese</h5> </div>
+ <h5>Agricola Campidanese</h5> </div> <!-- Changed Name -->
          <ul class="sidebar-nav flex-grow-1">
              <li class="nav-item"> <a class="nav-link active" href="monitor-cda_final.html"> <i class="fas fa-tachometer-alt fa-fw"></i> Overview CDA </a> </li>
              <!-- Link Interni alla Pagina -->
@@ -127,12 +127,12 @@
         <header class="dashboard-header no-print">
             <div class="header-title">
                  <h5 class="mb-0">Dashboard Esecutiva CDA</h5>
-                 <p class="mb-0">Agricola Campidanese | <span class="report-date">31 Dicembre 2024</span></p>
+                 <p class="mb-0">Agricola Campidanese | <span class="report-date">31 Dicembre 2024</span></p> <!-- Changed Name -->
             </div>
             
         </header>
         <div class="container d-none d-print-block mt-4 mb-4">
-            <h1 class="text-center mb-0"><span class="company-name">Agricola Campidanese</span></h1>
+            <h1 class="text-center mb-0"><span class="company-name">Agricola Campidanese</span></h1> <!-- Changed Name -->
             <p class="text-center mb-0">Dashboard Esecutiva CDA | <span class="report-date">31 Dicembre 2024</span></p>
             <hr>
         </div>
@@ -140,89 +140,92 @@
         <!-- Area Contenuto Dashboard CDA -->
         <div class="dashboard-container">
 
-            <!-- Executive Summary Card -->
+            <!-- Executive Summary Card (Updated for Agricola Campidanese) -->
             <div class="card executive-summary-card mb-4 report-section">
                  <div class="card-body">
                      <div class="row align-items-center">
                          <div class="col-lg-8"> <!-- Colonna più larga per testo -->
                              <h4 class="card-title mb-3" style="color: var(--primary);"><i class="fas fa-info-circle me-2"></i>Executive Summary</h4>
-                             <p class="mb-2">L'analisi finanziaria di Agricola Campidanese evidenzia un <strong>profilo di rischio Medio Alto ( 52,81)</strong>, caratterizzato da <strong>marginalità operativa insufficiente</strong> (EBITDA 3,97%) e <strong>struttura patrimoniale gravemente squilibrata</strong> (PN €755.925, D/E 6,94). L'indebitamento è insostenibile (PFN/EBITDA 6,20) e la generazione di cassa operativa è debole (2,00% dei ricavi).</p>
-                             <p class="mb-0 text-danger">Le <strong>criticità principali</strong> includono <strong>liquidità critica</strong> (€24.900, -91,17%), <strong>copertura immobilizzazioni inadeguata</strong> (0,13), <strong>DSCR insufficiente</strong> (0,548) e <strong>debito totalmente a breve termine</strong>. Il Leanus Score "Negativo" (0,95) conferma la necessità di interventi strutturali urgenti.</p>
+                             <!-- !!! TESTO AGGIORNATO PER Agricola Campidanese !!! -->
+                             <p class="mb-2">L'analisi dell'Indice di Rischio Ponderato (IRP) di Agricola Campidanese S.C. evidenzia un <strong>profilo di rischio medio (51,92/100)</strong>, collocando l'entità nel range 51-70 della scala valutativa. La cooperativa manifesta <strong>squilibri patrimoniali strutturali</strong> (copertura immobilizzazioni 0,13) e <strong>inefficienze operative</strong> (EBITDA margin 3,97%) che, pur non configurando rischio immediato di discontinuità, richiedono interventi correttivi mirati.</p>
+                             <p class="mb-0 text-danger">Le <strong>criticità principali</strong> includono una <strong>leva finanziaria eccessiva</strong> (D/E 6,94), <strong>liquidità critica</strong> (€24.900, 0,12% dei ricavi) e <strong>sostenibilità del debito compromessa</strong> (PFN/EBITDA 6,20, DSCR 0,548), richiedendo una ristrutturazione finanziaria urgente.</p>
+                             <!-- Fine Testo Aggiornato -->
                          </div>
-                         <div class="col-lg-4 text-center mt-3 mt-lg-0"> <!-- Colonna più stretta per  -->
+                         <div class="col-lg-4 text-center mt-3 mt-lg-0"> <!-- Colonna più stretta per IRP -->
                               <h6 class="card-title-small mb-1">Indice Rischio (IRP)</h6>
-                              <div class="irp-score-circle risk-high" style="width: 110px; height: 110px; border-width: 4px;"> <!-- Dimensione leggermente ridotta -->
-                                 <span class="irp-score-value" style="font-size: 2.8rem;">52,81</span> <!-- Valore dentro -->
+                              <!-- !!! CERCHIO IRP AGGIORNATO PER Agricola Campidanese !!! -->
+                              <div class="irp-score-circle risk-medium mx-auto" style="width: 110px; height: 110px; border-width: 4px;"> <!-- Dimensione leggermente ridotta -->
+                                 <span class="irp-score-value" style="font-size: 2.8rem;">51,9</span> <!-- Valore dentro -->
                                  <span class="irp-score-max" style="font-size: 0.7rem;">/ 100</span>
                              </div>
-                             <div class="irp-category-text text-danger mt-1" style="font-size: 1rem;"> <!-- Categoria sotto -->
-                                 Rischio Molto Alto <span class="status-badge bg-danger">E</span>
+                             <div class="irp-category-text text-warning mt-1" style="font-size: 1rem;"> <!-- Categoria sotto -->
+                                 Rischio Medio <span class="status-badge bg-warning text-dark">M</span> <!-- Changed badge -->
                              </div>
-                             <a href="../report/PARTE0_irp-agricola-campidanese.html" target="_blank" class="btn btn-link btn-sm p-0 mt-1 small">Dettaglio IRP</a>
+                             <a href="../report/PARTE0_irp_agricola_campidanese(1).html" target="_blank" class="btn btn-link btn-sm p-0 mt-1 small">Dettaglio IRP</a> <!-- Changed link and Adjusted Path-->
                          </div>
                      </div>
                  </div>
              </div>
 
-             <!-- Sezione KPI Principali V4 (8 KPI) -->
+             <!-- Sezione KPI Principali V4 (8 KPI - Updated for Agricola Campidanese) -->
              <section id="kpi-section" class="report-section">
                   <h4 class="section-title small"><i class="fas fa-key me-2"></i>INDICATORI CHIAVE</h4>
                    <div class="row gy-4">
-                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-success"><i class="fas fa-euro-sign"></i></span> <div class="kpi-content"> <div class="kpi-title">Ricavi</div> <div class="kpi-value">€ 21,2 M</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +2,88% YoY</div> </div> </div> </div>
-                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-warning"><i class="fas fa-percent"></i></span> <div class="kpi-content"> <div class="kpi-title">EBITDA Margin</div> <div class="kpi-value">3,97%</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +0,97 p.p.</div> </div> </div> </div>
-                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-warning"><i class="fas fa-chart-line"></i></span> <div class="kpi-content"> <div class="kpi-title">EBITDA</div> <div class="kpi-value">€ 842 K</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +34,98% YoY</div> </div> </div> </div>
-                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-warning"><i class="fas fa-coins"></i></span> <div class="kpi-content"> <div class="kpi-title">Utile Netto</div> <div class="kpi-value">€ 60 K</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +204,02% YoY</div> </div> </div> </div>
-                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-danger"><i class="fas fa-balance-scale-right"></i></span> <div class="kpi-content"> <div class="kpi-title">PFN / EBITDA</div> <div class="kpi-value">6,20x</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> -30,49%</div> </div> </div> </div>
-                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-danger"><i class="fas fa-landmark"></i></span> <div class="kpi-content"> <div class="kpi-title">Leva (D/E)</div> <div class="kpi-value">6,94x</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> -17,18%</div> </div> </div> </div>
-                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-success"><i class="fas fa-hourglass-half"></i></span> <div class="kpi-content"> <div class="kpi-title">DSO (Clienti)</div> <div class="kpi-value">47 gg</div> <div class="kpi-trend trend-down"><i class="fas fa-arrow-down"></i> -42,68%</div> </div> </div> </div>
-                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-warning"><i class="fas fa-water"></i></span> <div class="kpi-content"> <div class="kpi-title">Cash Flow Operativo</div> <div class="kpi-value">€ 424 K</div> <div class="kpi-trend trend-down"><i class="fas fa-arrow-down"></i> 2,00% Ricavi</div> </div> </div> </div>
+                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-success"><i class="fas fa-euro-sign"></i></span> <div class="kpi-content"> <div class="kpi-title">Ricavi</div> <div class="kpi-value">€ 21,2 M</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +2,88% YoY</div> </div> </div> </div> <!-- Trend Up -->
+                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-danger"><i class="fas fa-percent"></i></span> <div class="kpi-content"> <div class="kpi-title">EBITDA Margin</div> <div class="kpi-value">3,97%</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +0,97 p.p.</div> </div> </div> </div> <!-- Low Value, Trend Up -->
+                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-warning"><i class="fas fa-chart-line"></i></span> <div class="kpi-content"> <div class="kpi-title">EBITDA</div> <div class="kpi-value">€ 841,7 K</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +34,98% YoY</div> </div> </div> </div> <!-- Trend Up -->
+                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-success"><i class="fas fa-coins"></i></span> <div class="kpi-content"> <div class="kpi-title">Utile Netto</div> <div class="kpi-value">€ 59,8 K</div> <div class="kpi-trend trend-up"><i class="fas fa-arrow-up"></i> +204,02% YoY</div> </div> </div> </div> <!-- Trend Up -->
+                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-danger"><i class="fas fa-balance-scale-right"></i></span> <div class="kpi-content"> <div class="kpi-title">PFN / EBITDA</div> <div class="kpi-value">6,20x</div> <div class="kpi-trend trend-down"><i class="fas fa-arrow-down"></i> -30,49%</div> </div> </div> </div> <!-- Critical Value, Trend Improved -->
+                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-danger"><i class="fas fa-landmark"></i></span> <div class="kpi-content"> <div class="kpi-title">Leva (D/E)</div> <div class="kpi-value">6,94x</div> <div class="kpi-trend trend-down"><i class="fas fa-arrow-down"></i> -17,18%</div> </div> </div> </div> <!-- Critical Value, Trend Improved -->
+                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-success"><i class="fas fa-hourglass-half"></i></span> <div class="kpi-content"> <div class="kpi-title">DSO (Clienti)</div> <div class="kpi-value">47 gg</div> <div class="kpi-trend trend-down text-success"><i class="fas fa-arrow-down"></i> -42,68%</div> </div> </div> </div> <!-- Good Value, Trend Improved -->
+                      <div class="col-lg-3 col-md-6"> <div class="kpi-card-v4"> <span class="icon-circle bg-icon-danger"><i class="fas fa-water"></i></span> <div class="kpi-content"> <div class="kpi-title">Cash Flow Operativo</div> <div class="kpi-value">€ 423,9 K</div> <div class="kpi-trend trend-down text-danger"><i class="fas fa-arrow-down"></i> -66,36%</div> </div> </div> </div> <!-- Low Value, Trend Worsened -->
                  </div>
              </section>
 
-             <!-- Sezione Alert Principali -->
+             <!-- Sezione Alert Principali (Updated for Agricola Campidanese) -->
              <section id="alerts-section" class="report-section">
                  <h4 class="section-title small"><i class="fas fa-bell me-2 text-danger"></i>ALERT PRINCIPALI</h4>
                  <div class="row">
                      <div class="col-lg-6 mb-4">
-                         <div class="alert-card alert-danger">
-                             <i class="fas fa-tint-slash alert-icon"></i>
+                         <div class="alert-card alert-danger"> <!-- Changed to Danger -->
+                             <i class="fas fa-tint-slash alert-icon"></i> <!-- Changed icon -->
                              <div>
-                                 <h5>Liquidità: €24.900 <span class="badge bg-danger ms-2">Critico</span></h5>
-                                 <p>Drastica riduzione (-91,17%) con livello pari a solo 0,12% dei ricavi. Rischio imminente di crisi di liquidità e incapacità di far fronte agli impegni a breve.</p>
+                                 <h5>Liquidità: €24.900 <span class="badge bg-danger ms-2">Critico</span></h5> <!-- Changed Alert -->
+                                 <p>Riduzione drastica (-91,17% vs 2023) con liquidità pari a solo 0,12% dei ricavi. Rischio immediato di tensione finanziaria.</p> <!-- Changed Text -->
                              </div>
                          </div>
                      </div>
                      <div class="col-lg-6 mb-4">
                          <div class="alert-card alert-danger">
-                             <i class="fas fa-balance-scale-right alert-icon"></i>
+                             <i class="fas fa-balance-scale-right alert-icon"></i> <!-- Changed icon -->
                              <div>
-                                 <h5>PFN/EBITDA: 6,20 <span class="badge bg-danger ms-2">Insostenibile</span></h5>
-                                 <p>Rapporto molto superiore alla soglia critica (3,5), indica incapacità di ripagare il debito con la marginalità operativa. Rischio elevato di insolvenza.</p>
+                                 <h5>DSCR: 0,548 <span class="badge bg-danger ms-2">Critico</span></h5> <!-- Changed Alert -->
+                                 <p>Incapacità strutturale di sostenere il servizio del debito con i flussi operativi attuali. Rischio di default tecnico.</p> <!-- Changed Text -->
                              </div>
                          </div>
                      </div>
-                     <div class="col-lg-6 mb-4">
+                     <div class="col-lg-6 mb-4"> <!-- Added Alert -->
                          <div class="alert-card alert-danger">
-                             <i class="fas fa-landmark alert-icon"></i>
-                             <div>
-                                 <h5>Copertura Immobilizzazioni: 0,13 <span class="badge bg-danger ms-2">Critico</span></h5>
-                                 <p>Patrimonio netto copre solo il 13% dell'attivo fisso. Grave squilibrio patrimoniale con violazione dei principi di equilibrio finanziario.</p>
-                             </div>
+                              <i class="fas fa-landmark alert-icon"></i>
+                              <div>
+                                   <h5>Copertura Immobilizzazioni: 0,13 <span class="badge bg-danger ms-2">Critico</span></h5>
+                                   <p>Solo il 13% delle immobilizzazioni è finanziato con capitale proprio, configurando un grave squilibrio nella correlazione fonti-impieghi.</p>
+                              </div>
                          </div>
                      </div>
-                      <div class="col-lg-6 mb-4">
-                          <div class="alert-card alert-danger">
-                               <i class="fas fa-university alert-icon"></i>
+                      <div class="col-lg-6 mb-4"> <!-- Added Alert -->
+                          <div class="alert-card alert-warning">
+                               <i class="fas fa-percent alert-icon"></i>
                                <div>
-                                   <h5>DSCR: 0,548 <span class="badge bg-danger ms-2">Default Tecnico</span></h5>
-                                   <p>Incapacità di generare flussi di cassa sufficienti per il servizio del debito. Valore molto inferiore alla soglia minima di 1,2.</p>
+                                   <h5>EBITDA Margin: 3,97% <span class="badge bg-warning ms-2 text-dark">Insufficiente</span></h5>
+                                   <p>Marginalità operativa significativamente inferiore al benchmark settoriale (8-12%), limitando la capacità di autofinanziamento.</p>
                                </div>
                           </div>
                       </div>
                  </div>
              </section>
 
-             <!-- Sezione Grafici Chiave CDA -->
+             <!-- Sezione Grafici Chiave CDA (Updated for Agricola Campidanese) -->
              <section id="charts-section" class="report-section">
                    <h4 class="section-title small"><i class="fas fa-chart-pie me-2"></i>GRAFICI CHIAVE</h4>
                    <div class="row">
@@ -262,111 +265,116 @@
                    </div>
               </section>
 
-             <!-- SEZIONI DI DETTAGLIO CON ACCORDION -->
+             <!-- SEZIONI DI DETTAGLIO CON ACCORDION (Updated for Agricola Campidanese) -->
              <h2 class="section-title mt-5" id="details-accordion"><i class="fas fa-layer-group me-2"></i>Approfondimenti Dettagliati</h2>
              <div class="accordion report-section" id="cdaDetailsAccordion">
 
                  <!-- 1. Dettaglio Performance Economica -->
                  <div class="accordion-item">
-                     <h2 class="accordion-header" id="headingEconomic"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEconomic" aria-expanded="false" aria-controls="collapseEconomic"> <i class="fas fa-chart-line me-2"></i> Performance Economica<span class="badge bg-warning ms-2 text-dark">Insufficiente</span> </button> </h2>
+                     <h2 class="accordion-header" id="headingEconomic"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEconomic" aria-expanded="false" aria-controls="collapseEconomic"> <i class="fas fa-chart-line me-2"></i> Performance Economica<span class="badge bg-warning ms-2 text-dark">Insufficiente</span> </button> </h2> <!-- Rating downgraded -->
                      <div id="collapseEconomic" class="accordion-collapse collapse" aria-labelledby="headingEconomic" data-bs-parent="#cdaDetailsAccordion">
                          <div class="accordion-body">
+                              <!-- Updated content for Agricola Campidanese from PARTE2 -->
                               <h6>Principali indicatori economici</h6>
                               <div class="table-responsive mb-3"><table class="table table-sm table-striped">
-                                  <tbody><tr><td>Ricavi</td><td class="value-highlight">€21.213.405</td><td><i class="fas fa-arrow-up text-success"></i> +2,88%</td></tr><tr><td>EBITDA</td><td class="value-highlight">€841.748 (3,97%)</td><td><i class="fas fa-arrow-up text-success"></i> +34,98%</td></tr><tr><td>EBIT</td><td class="value-highlight">€471.477 (2,22%)</td><td><i class="fas fa-arrow-up text-success"></i> +156,84%</td></tr><tr><td>Utile Netto</td><td class="value-highlight">€59.803 (0,28%)</td><td><i class="fas fa-arrow-up text-success"></i> +204,06%</td></tr><tr><td>Margine di Contribuzione</td><td class="value-highlight">12,7%</td><td><i class="fas fa-arrow-up text-success"></i> +0,7 p.p.</td></tr><tr><td>Break-Even Point</td><td class="value-highlight">€16.705.159</td><td><span class="badge bg-warning text-dark">21,25% margine</span></td></tr></tbody>
+                                  <tbody><tr><td>Ricavi</td><td class="value-highlight">€21.213.405</td><td><i class="fas fa-arrow-up text-success"></i> +2,88%</td></tr><tr><td>EBITDA</td><td class="value-highlight">€841.748 (3,97%)</td><td><i class="fas fa-arrow-up text-success"></i> +34,98%</td></tr><tr><td>EBIT</td><td class="value-highlight">€291.055 (1,4%)</td><td><i class="fas fa-arrow-up text-success"></i> +41,47%</td></tr><tr><td>Utile Netto</td><td class="value-highlight">€59.803 (0,3%)</td><td><i class="fas fa-arrow-up text-success"></i> +204,02%</td></tr><tr><td>Margine di Contribuzione</td><td class="value-highlight">11,8%</td><td><i class="fas fa-arrow-down text-danger"></i> -0,7 p.p.</td></tr><tr><td>Break-Even Point</td><td class="value-highlight">€15.648.347</td><td><span class="badge bg-warning text-dark">26,23% margine</span></td></tr></tbody>
                               </table></div>
                               <h6>Indici di redditività</h6>
                               <div class="table-responsive mb-3"><table class="table table-sm table-striped">
-                                   <tbody><tr><td>ROE</td><td class="value-highlight">7,91%</td><td><i class="fas fa-arrow-up text-success"></i> +5,09 p.p.</td><td><span class="badge bg-success">Adeguato</span> (6-8%)</td></tr><tr><td>ROI</td><td class="value-highlight">7,89%</td><td><i class="fas fa-arrow-up text-success"></i> +4,96 p.p.</td><td><span class="badge bg-success">In miglioramento</span> (6-8%)</td></tr><tr><td>ROS</td><td class="value-highlight">2,2%</td><td><i class="fas fa-arrow-up text-success"></i> +1,3 p.p.</td><td><span class="badge bg-warning text-dark">Insufficiente</span> (5-7%)</td></tr><tr><td>Turnover Capitale</td><td class="value-highlight">3,55x</td><td><i class="fas fa-arrow-up text-success"></i> +0,26</td><td><span class="badge bg-success">Ottimo</span> (>1,5x)</td></tr><tr><td>EBIT/Oneri Fin.</td><td class="value-highlight">1,20x</td><td><i class="fas fa-arrow-up text-success"></i> +0,14</td><td><span class="badge bg-danger">Insufficiente</span> (>3x)</td></tr><tr><td>Costo Medio Debito</td><td class="value-highlight">7,47%</td><td><i class="fas fa-arrow-up text-danger"></i> +1,43 p.p.</td><td><span class="badge bg-danger">Elevato</span> (<5%)</td></tr></tbody>
+                                   <tbody><tr><td>ROE</td><td class="value-highlight">7,91%</td><td><i class="fas fa-arrow-up text-success"></i> +5,09 p.p.</td><td><span class="badge bg-warning text-dark">Sotto-soglia</span> (8-12%)</td></tr><tr><td>ROI</td><td class="value-highlight">7,89%</td><td><i class="fas fa-arrow-up text-success"></i> +4,96 p.p.</td><td><span class="badge bg-success">Buono</span> (6-10%)</td></tr><tr><td>ROS</td><td class="value-highlight">1,37%</td><td><i class="fas fa-arrow-up text-success"></i> +0,37 p.p.</td><td><span class="badge bg-danger">Critico</span> (4-6%)</td></tr><tr><td>Asset Turnover</td><td class="value-highlight">3,55</td><td><i class="fas fa-arrow-up text-success"></i> +0,62</td><td><span class="badge bg-success">Ottimo</span> (2-3)</td></tr><tr><td>EBIT/Oneri Fin.</td><td class="value-highlight">1,20</td><td><i class="fas fa-arrow-up text-success"></i> +0,20</td><td><span class="badge bg-danger">Critico</span> (>3x)</td></tr><tr><td>Costo Medio Debito</td><td class="value-highlight">7,47%</td><td><i class="fas fa-arrow-up text-danger"></i> +1,43 p.p.</td><td><span class="badge bg-danger">Elevato</span> (&lt;5%)</td></tr></tbody>
                               </table></div>
                               <h6 class="mt-3">Evoluzione Conto Economico (Dettaglio)</h6>
                               <div class="table-responsive"><table class="table table-sm table-striped table-hover">
                                   <thead class="table-light"><tr><th>Voce</th><th class="text-end">2022 (€)</th><th class="text-end">2023 (€)</th><th class="text-end">2024 (€)</th><th class="text-end">Var % 23-24</th></tr></thead>
-                                  <tbody><tr><td>Ricavi</td><td class="text-end">20.452K</td><td class="text-end">20.621K</td><td class="text-end">21.213K</td><td class="text-end text-success">+2,88%</td></tr><tr><td>Acquisti e consumi</td><td class="text-end">-15.465K</td><td class="text-end">-15.759K</td><td class="text-end">-16.079K</td><td class="text-end text-danger">+2,03%</td></tr><tr><td>Valore Aggiunto</td><td class="text-end">4.987K</td><td class="text-end">4.861K</td><td class="text-end">5.134K</td><td class="text-end text-success">+5,61%</td></tr><tr><td>Costi variabili prod.</td><td class="text-end">-3.171K</td><td class="text-end">-2.386K</td><td class="text-end">-2.447K</td><td class="text-end text-danger">+2,54%</td></tr><tr><td>Margine di Contribuzione</td><td class="text-end">1.816K</td><td class="text-end">2.475K</td><td class="text-end">2.688K</td><td class="text-end text-success">+8,58%</td></tr><tr><td>Costi fissi</td><td class="text-end">-2.275K</td><td class="text-end">-1.852K</td><td class="text-end">-1.846K</td><td class="text-end text-success">-0,31%</td></tr><tr class="table-warning fw-bold"><td>EBITDA</td><td class="text-end">-459K</td><td class="text-end">624K</td><td class="text-end">842K</td><td class="text-end text-success">+34,98%</td></tr><tr><td>Amm.ti/Svalut.</td><td class="text-end">-144K</td><td class="text-end">-440K</td><td class="text-end">-370K</td><td class="text-end text-success">-15,84%</td></tr><tr><td>EBIT</td><td class="text-end">-603K</td><td class="text-end">184K</td><td class="text-end">471K</td><td class="text-end text-success">+156,84%</td></tr><tr><td>Saldo oneri/ricavi diversi</td><td class="text-end">849K</td><td class="text-end">189K</td><td class="text-end">-8K</td><td class="text-end text-danger">-104,45%</td></tr><tr><td>Gestione finanziaria</td><td class="text-end">-207K</td><td class="text-end">-352K</td><td class="text-end">-403K</td><td class="text-end text-danger">+14,52%</td></tr><tr><td>EBT</td><td class="text-end">40K</td><td class="text-end">21K</td><td class="text-end">60K</td><td class="text-end text-success">+187,29%</td></tr><tr><td>Imposte</td><td class="text-end">-2K</td><td class="text-end">-1K</td><td class="text-end">0K</td><td class="text-end text-success">-100,00%</td></tr><tr class="table-warning fw-bold"><td>Utile Netto</td><td class="text-end">38K</td><td class="text-end">20K</td><td class="text-end">60K</td><td class="text-end text-success">+204,06%</td></tr></tbody>
+                                  <tbody><tr><td>Ricavi</td><td class="text-end">20.452K</td><td class="text-end">20.621K</td><td class="text-end">21.213K</td><td class="text-end text-success">+2,9%</td></tr><tr><td>Acquisti e consumi</td><td class="text-end">-15.479K</td><td class="text-end">-15.660K</td><td class="text-end">-16.260K</td><td class="text-end text-danger">+3,8%</td></tr><tr><td>Valore Aggiunto</td><td class="text-end">4.974K</td><td class="text-end">4.960K</td><td class="text-end">4.954K</td><td class="text-end text-danger">-0,1%</td></tr><tr><td>Costi variabili prod.</td><td class="text-end">-3.171K</td><td class="text-end">-2.386K</td><td class="text-end">-2.447K</td><td class="text-end text-danger">+2,5%</td></tr><tr><td>Margine Contribuzione</td><td class="text-end">1.803K</td><td class="text-end">2.574K</td><td class="text-end">2.507K</td><td class="text-end text-danger">-2,6%</td></tr><tr><td>Costi fissi</td><td class="text-end">-2.262K</td><td class="text-end">-1.951K</td><td class="text-end">-1.846K</td><td class="text-end text-success">-5,4%</td></tr><tr class="table-warning fw-bold"><td>EBITDA</td><td class="text-end">-459K</td><td class="text-end">624K</td><td class="text-end">661K</td><td class="text-end text-success">+6,0%</td></tr><tr><td>Amm.ti/Svalut.</td><td class="text-end">-144K</td><td class="text-end">-418K</td><td class="text-end">-370K</td><td class="text-end text-success">-11,4%</td></tr><tr><td>EBIT</td><td class="text-end">-603K</td><td class="text-end">206K</td><td class="text-end">291K</td><td class="text-end text-success">+41,5%</td></tr><tr><td>Gest. Finanz.</td><td class="text-end">-207K</td><td class="text-end">-352K</td><td class="text-end">-403K</td><td class="text-end text-danger">+14,5%</td></tr><tr><td>EBT</td><td class="text-end">40K</td><td class="text-end">43K</td><td class="text-end">-121K</td><td class="text-end text-danger">-381,2%</td></tr><tr><td>Imposte</td><td class="text-end">-2K</td><td class="text-end">-23K</td><td class="text-end">180K</td><td class="text-end text-success">+876,9%</td></tr><tr class="table-warning fw-bold"><td>Utile Netto</td><td class="text-end">38K</td><td class="text-end">20K</td><td class="text-end">60K</td><td class="text-end text-success">+204,1%</td></tr></tbody>
                               </table></div>
-                              <div class="row mt-3"> <div class="col-md-6"><div class="alert alert-success small p-2"><h6>Punti di forza:</h6><ul><li>Trend positivo EBITDA (+35%)</li><li>Miglioramento ROI e ROE</li><li>Ottimo Asset Turnover (3,55x)</li><li>Riduzione costi fissi (-0,31%)</li></ul></div></div> <div class="col-md-6"><div class="alert alert-warning small p-2"><h6>Aree di miglioramento:</h6><ul><li>EBITDA margin insufficiente (3,97%)</li><li>ROS molto basso (2,2%)</li><li>Copertura oneri fin. critica (1,20x)</li><li>Costo debito elevato (7,47%)</li></ul></div></div></div>
+                              <div class="row mt-3"> <div class="col-md-6"><div class="alert alert-success small p-2"><h6>Punti di forza:</h6><ul><li>Miglioramento EBITDA (+35%)</li><li>Riduzione costi fissi (-5,4%)</li><li>Elevato Asset Turnover (3,55)</li><li>Crescita ricavi (+2,9%)</li></ul></div></div> <div class="col-md-6"><div class="alert alert-warning small p-2"><h6>Aree di miglioramento:</h6><ul><li>EBITDA margin insufficiente (3,97%)</li><li>ROS critico (1,37%)</li><li>Coverage oneri fin. inadeguato (1,2x)</li><li>Costo debito elevato (7,47%)</li></ul></div></div></div>
                          </div>
                      </div>
                  </div>
 
                  <!-- Dettaglio Struttura Patrimoniale -->
                   <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingAssets"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssets" aria-expanded="false" aria-controls="collapseAssets"> <i class="fas fa-landmark me-2"></i> Struttura Patrimoniale <span class="badge bg-danger ms-2">Critica</span></button> </h2>
+                      <h2 class="accordion-header" id="headingAssets"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssets" aria-expanded="false" aria-controls="collapseAssets"> <i class="fas fa-landmark me-2"></i> Struttura Patrimoniale <span class="badge bg-danger ms-2">Critica</span></button> </h2> <!-- Rating downgraded -->
                       <div id="collapseAssets" class="accordion-collapse collapse" aria-labelledby="headingAssets" data-bs-parent="#cdaDetailsAccordion">
                           <div class="accordion-body">
+                               <!-- Updated content for Agricola Campidanese from PARTE3 -->
                                <div class="row mb-4">
-                                  <div class="col-md-6"><h6>Stato Patrimoniale Sintetico (Impieghi)</h6><table class="table table-sm table-striped"><tbody><tr><td>Attivo Fisso Netto</td><td class="value-highlight">€5.608.391</td><td><i class="fas fa-arrow-down text-success"></i> -4,9%</td></tr><tr><td>- Imm. materiali</td><td>€5.049.008</td><td><i class="fas fa-arrow-down text-success"></i> -4,9%</td></tr><tr><td>- Imm. immateriali</td><td>€186.412</td><td><i class="fas fa-arrow-down text-success"></i> -4,9%</td></tr><tr><td>- Imm. finanziarie</td><td>€372.971</td><td><i class="fas fa-arrow-down text-success"></i> -4,9%</td></tr><tr><td>Capitale Circolante</td><td class="value-highlight">€559.774</td><td><i class="fas fa-arrow-up text-success"></i> +8,7%</td></tr><tr><td>- Magazzino</td><td>€872.688</td><td><i class="fas fa-arrow-up text-danger"></i> +26,1%</td></tr><tr><td>- Crediti comm.</td><td>€2.751.600</td><td><i class="fas fa-arrow-down text-success"></i> -41,2%</td></tr><tr><td>- Debiti comm.</td><td>-€3.909.641</td><td><i class="fas fa-arrow-down text-danger"></i> -30,8%</td></tr><tr class="table-primary fw-bold"><td>Capitale Investito Netto</td><td class="value-highlight">€5.977.178</td><td><i class="fas fa-arrow-down text-success"></i> -6,8%</td></tr></tbody></table></div>
-                                  <div class="col-md-6"><h6>Struttura delle Fonti</h6><table class="table table-sm table-striped"><tbody><tr><td>Patrimonio Netto</td><td class="value-highlight">€755.925</td><td><i class="fas fa-arrow-up text-success"></i> +8,3%</td></tr><tr><td>PFN</td><td class="value-highlight">€5.221.254</td><td><i class="fas fa-arrow-down text-success"></i> -6,2%</td></tr><tr><td>- Debiti MLT</td><td>€0</td><td><i class="fas fa-arrow-down text-danger"></i> -100,0%</td></tr><tr><td>- Debiti BT</td><td>€5.246.154</td><td><i class="fas fa-arrow-down text-success"></i> -10,3%</td></tr><tr><td>- Liquidità</td><td>-€24.900</td><td><i class="fas fa-arrow-down text-danger"></i> -91,2%</td></tr><tr class="table-primary fw-bold"><td>Totale Fonti</td><td class="value-highlight">€5.977.178</td><td><i class="fas fa-arrow-down text-success"></i> -6,8%</td></tr></tbody></table></div>
+                                  <div class="col-md-6"><h6>Stato Patrimoniale Sintetico (Impieghi)</h6><table class="table table-sm table-striped"><tbody><tr><td>Attivo Fisso Netto</td><td class="value-highlight">€5.608K</td><td><i class="fas fa-arrow-down text-success"></i> -4,9%</td></tr><tr><td>- Imm. materiali</td><td>€5.049K</td><td><i class="fas fa-arrow-down text-success"></i> -4,9%</td></tr><tr><td>- Imm. finanziarie</td><td>€373K</td><td><i class="fas fa-arrow-down text-success"></i> -25,9%</td></tr><tr><td>Capitale Circolante</td><td class="value-highlight">€6.037K</td><td><i class="fas fa-arrow-down text-success"></i> -26,4%</td></tr><tr><td>- Magazzino</td><td>€873K</td><td><i class="fas fa-arrow-up text-danger"></i> +26,1%</td></tr><tr><td>- Crediti comm.</td><td>€2.752K</td><td><i class="fas fa-arrow-down text-success"></i> -41,1%</td></tr><tr><td>- Debiti comm.</td><td>-€3.910K</td><td><i class="fas fa-arrow-down text-danger"></i> -30,9%</td></tr><tr class="table-primary fw-bold"><td>Capitale Investito Netto</td><td class="value-highlight">€11.646K</td><td><i class="fas fa-arrow-down text-success"></i> -17,4%</td></tr></tbody></table></div> <!-- Adjusted CIN calculation logic if needed based on source definition -->
+                                  <div class="col-md-6"><h6>Struttura delle Fonti</h6><table class="table table-sm table-striped"><tbody><tr><td>Patrimonio Netto</td><td class="value-highlight">€756K</td><td><i class="fas fa-arrow-up text-success"></i> +8,3%</td></tr><tr><td>PFN</td><td class="value-highlight">€5.221K</td><td><i class="fas fa-arrow-down text-success"></i> -6,1%</td></tr><tr><td>- Debiti MLT</td><td>€2.510K</td><td><i class="fas fa-arrow-down text-success"></i> -1,0%</td></tr><tr><td>- Debiti BT</td><td>€2.736K</td><td><i class="fas fa-arrow-down text-success"></i> -17,4%</td></tr><tr><td>- Liquidità</td><td>-€25K</td><td><i class="fas fa-arrow-down text-danger"></i> -91,2%</td></tr><tr class="table-primary fw-bold"><td>Totale Fonti</td><td class="value-highlight">€11.646K</td><td><i class="fas fa-arrow-down text-success"></i> -17,4%</td></tr></tbody></table></div> <!-- Adjusted Total Fonti if needed -->
                                </div>
                                <h6>Indici di Solidità Patrimoniale</h6>
                                <div class="table-responsive"><table class="table table-sm table-striped table-hover">
                                    <thead class="table-light"><tr><th>Indice</th><th>Formula</th><th class="text-end">2022</th><th class="text-end">2023</th><th class="text-end">2024</th><th>Valutazione</th></tr></thead>
-                                   <tbody><tr><td>Autonomia Fin.</td><td>PN / Tot Passivo</td><td class="text-end">5,0%</td><td class="text-end">4,9%</td><td class="text-end">6,5%</td><td><span class="status-badge bg-danger">Critico</span></td></tr><tr><td>Cop. Immob.</td><td>(PN+MLT)/AF</td><td class="text-end">0,62</td><td class="text-end">0,55</td><td class="text-end">0,13</td><td><span class="status-badge bg-danger">Critico</span></td></tr><tr><td>Struttura Primario</td><td>PN / AF</td><td class="text-end">0,12</td><td class="text-end">0,12</td><td class="text-end">0,13</td><td><span class="status-badge bg-danger">Critico</span></td></tr><tr><td>Leva (D/E)</td><td>Debt Fin / PN</td><td class="text-end">9,84</td><td class="text-end">8,38</td><td class="text-end">6,94</td><td><span class="status-badge bg-danger">Eccessiva</span></td></tr><tr><td>PFN/EBITDA</td><td>PFN / EBITDA</td><td class="text-end">NOK</td><td class="text-end">8,92</td><td class="text-end">6,20</td><td><span class="status-badge bg-danger">Insostenibile</span></td></tr><tr><td>PFN/PN</td><td>PFN / PN</td><td class="text-end">8,99</td><td class="text-end">7,97</td><td class="text-end">6,91</td><td><span class="status-badge bg-danger">Critico</span></td></tr></tbody>
+                                   <tbody><tr><td>Autonomia Fin.</td><td>PN / Tot Passivo</td><td class="text-end">5,0%</td><td class="text-end">4,9%</td><td class="text-end">6,5%</td><td><span class="status-badge bg-danger">Critica</span></td></tr><tr><td>Cop. Immob.</td><td>PN / AF</td><td class="text-end">0,12</td><td class="text-end">0,12</td><td class="text-end">0,13</td><td><span class="status-badge bg-danger">Critica</span></td></tr><tr><td>Struttura Secondario</td><td>(PN+MLT)/AF</td><td class="text-end">0,62</td><td class="text-end">0,54</td><td class="text-end">0,50</td><td><span class="status-badge bg-danger">Critica</span></td></tr><tr><td>Leva (D/E)</td><td>Debt Fin / PN</td><td class="text-end">9,83</td><td class="text-end">8,38</td><td class="text-end">6,94</td><td><span class="status-badge bg-danger">Eccessiva</span></td></tr><tr><td>PFN/EBITDA</td><td>PFN / EBITDA</td><td class="text-end">n.a.</td><td class="text-end">8,92</td><td class="text-end">6,20</td><td><span class="status-badge bg-danger">Critica</span></td></tr><tr><td>PFN/PN</td><td>PFN / PN</td><td class="text-end">9,00</td><td class="text-end">7,97</td><td class="text-end">6,91</td><td><span class="status-badge bg-danger">Critica</span></td></tr></tbody>
                                </table></div>
-                               <div class="row mt-3"> <div class="col-md-6"><div class="alert alert-success small p-2"><h6>Punti di forza:</h6><ul><li>Riduzione PFN (-6,2%)</li><li>Miglioramento leva finanziaria</li><li>Riduzione debiti BT (-10,3%)</li><li>Incremento PN (+8,3%)</li></ul></div></div> <div class="col-md-6"><div class="alert alert-warning small p-2"><h6>Aree critiche:</h6><ul><li>Copertura immobilizz. critica (0,13)</li><li>Leva finanziaria eccessiva (6,94)</li><li>Azzeramento debiti MLT</li><li>Crollo liquidità (-91,2%)</li></ul></div></div></div>
+                               <div class="row mt-3"> <div class="col-md-6"><div class="alert alert-success small p-2"><h6>Punti di forza:</h6><ul><li>Riduzione PFN (-6,1%)</li><li>Incremento PN (+8,3%)</li><li>Miglioramento leva (da 8,38 a 6,94)</li><li>Riduzione debiti BT (-17,4%)</li></ul></div></div> <div class="col-md-6"><div class="alert alert-danger small p-2"><h6>Aree critiche:</h6><ul><li>Copertura immobilizzazioni (0,13)</li><li>Autonomia finanziaria (6,5%)</li><li>Liquidità quasi azzerata (-91,2%)</li><li>Leva finanziaria eccessiva (6,94)</li></ul></div></div></div>
                           </div>
                       </div>
                   </div>
 
                  <!-- Dettaglio Situazione Finanziaria e Flussi -->
                   <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingFinancial"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinancial" aria-expanded="false" aria-controls="collapseFinancial"> <i class="fas fa-university me-2"></i> Situazione Finanziaria e Flussi<span class="badge bg-danger ms-2">Critica</span> </button> </h2>
+                      <h2 class="accordion-header" id="headingFinancial"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFinancial" aria-expanded="false" aria-controls="collapseFinancial"> <i class="fas fa-university me-2"></i> Situazione Finanziaria e Flussi<span class="badge bg-danger ms-2">Critica</span> </button> </h2> <!-- Rating downgraded -->
                       <div id="collapseFinancial" class="accordion-collapse collapse" aria-labelledby="headingFinancial" data-bs-parent="#cdaDetailsAccordion">
                           <div class="accordion-body">
+                              <!-- Updated content for Agricola Campidanese from PARTE4 and PARTE5 -->
                                <div class="row mb-4">
-                                   <div class="col-md-6"><h6>Indicatori Sostenibilità Debito</h6><table class="table table-sm table-striped"><tbody><tr><td>PFN/EBITDA</td><td class="value-highlight">6,20x</td><td><span class="badge bg-danger">Insostenibile</span></td></tr><tr><td>Leva (D/E)</td><td class="value-highlight">6,94x</td><td><span class="badge bg-danger">Eccessiva</span></td></tr><tr><td>DSCR</td><td class="value-highlight">0,548x</td><td><span class="badge bg-danger">Default tecnico</span></td></tr><tr><td>Oneri Fin./Ricavi</td><td class="value-highlight">1,85%</td><td><span class="badge bg-warning text-dark">Elevato</span></td></tr><tr><td>CF Op./Ricavi</td><td class="value-highlight">2,00%</td><td><span class="badge bg-danger">Insufficiente</span></td></tr><tr><td>EBIT/Oneri Fin.</td><td class="value-highlight">1,20x</td><td><span class="badge bg-danger">Insufficiente</span></td></tr></tbody></table></div>
-                                   <div class="col-md-6"><h6>Posizione Finanziaria Netta</h6><table class="table table-sm table-striped"><tbody><tr><td>Debiti MLT</td><td class="value-highlight">€0</td><td><i class="fas fa-arrow-down text-danger"></i> -100,0%</td></tr><tr><td>Debiti BT</td><td class="value-highlight">€5.246.154</td><td><i class="fas fa-arrow-down text-success"></i> -10,3%</td></tr><tr><td>Totale Debiti Fin.</td><td class="value-highlight">€5.246.154</td><td><i class="fas fa-arrow-down text-success"></i> -10,3%</td></tr><tr><td>Liquidità</td><td class="value-highlight">€24.900</td><td><i class="fas fa-arrow-down text-danger"></i> -91,2%</td></tr><tr class="table-primary fw-bold"><td>PFN</td><td class="value-highlight">€5.221.254</td><td><i class="fas fa-arrow-down text-success"></i> -6,2%</td></tr></tbody></table></div>
+                                   <div class="col-md-6"><h6>Indicatori Sostenibilità Debito</h6><table class="table table-sm table-striped"><tbody><tr><td>PFN/EBITDA</td><td class="value-highlight">6,20x</td><td><span class="badge bg-danger">Critico</span></td></tr><tr><td>Leva (D/E)</td><td class="value-highlight">6,94x</td><td><span class="badge bg-danger">Eccessiva</span></td></tr><tr><td>DSCR</td><td class="value-highlight">0,548x</td><td><span class="badge bg-danger">Critico</span></td></tr><tr><td>Oneri Fin./Ricavi</td><td class="value-highlight">1,85%</td><td><span class="badge bg-warning text-dark">Elevato</span></td></tr><tr><td>CF Op./Ricavi</td><td class="value-highlight">2,00%</td><td><span class="badge bg-danger">Insufficiente</span></td></tr><tr><td>EBIT/Oneri Fin.</td><td class="value-highlight">1,20x</td><td><span class="badge bg-danger">Critico</span></td></tr></tbody></table></div>
+                                   <div class="col-md-6"><h6>Posizione Finanziaria Netta</h6><table class="table table-sm table-striped"><tbody><tr><td>Debiti MLT</td><td class="value-highlight">€2.510K</td><td><i class="fas fa-arrow-down text-success"></i> -1,0%</td></tr><tr><td>Debiti BT</td><td class="value-highlight">€2.736K</td><td><i class="fas fa-arrow-down text-success"></i> -17,4%</td></tr><tr><td>Totale Debiti Fin.</td><td class="value-highlight">€5.246K</td><td><i class="fas fa-arrow-down text-success"></i> -10,3%</td></tr><tr><td>Liquidità</td><td class="value-highlight">€25K</td><td><i class="fas fa-arrow-down text-danger"></i> -91,2%</td></tr><tr class="table-primary fw-bold"><td>PFN</td><td class="value-highlight">€5.221K</td><td><i class="fas fa-arrow-down text-success"></i> -6,1%</td></tr></tbody></table></div>
                                </div>
                                 <h6 class="mt-3">Analisi dei Flussi di Cassa 2024</h6>
                                 <div class="table-responsive"><table class="table table-sm table-striped">
                                      <thead class="table-light"><tr><th>Voce</th><th class="text-end">Valore (€)</th><th class="text-end">% Ricavi</th><th>Nota</th></tr></thead>
-                                     <tbody><tr><td>EBITDA</td><td class="text-end">841.748</td><td class="text-end">3,97%</td><td>Margine Op. Lordo</td></tr><tr><td>Imposte</td><td class="text-end text-success">0</td><td class="text-end">0,00%</td><td>Nessuna uscita fiscale</td></tr><tr><td>Δ Cap. Circ. Op.</td><td class="text-end text-danger">(427.310)</td><td class="text-end">-2,01%</td><td>Assorbimento da Circolante</td></tr>
-                                     <tr class="table-secondary fw-bold"><td>Cash Flow Operativo</td><td class="text-end">423.899</td><td class="text-end">2,00%</td><td>Liquidità da Gestione Core</td></tr><tr><td>CF Investimento</td><td class="text-end text-danger">(80.407)</td><td class="text-end">-0,38%</td><td>Investimenti minimi</td></tr><tr class="table-secondary fw-bold"><td>Free Cash Flow (FCF)</td><td class="text-end">343.492</td><td class="text-end">1,62%</td><td>Cassa Libera</td></tr><tr><td>Var. Debiti Fin.</td><td class="text-end text-danger">(599.045)</td><td class="text-end">-2,82%</td><td>Riduzione Indebitamento</td></tr><tr><td>Var. PN</td><td class="text-end text-danger">(1.591)</td><td class="text-end">-0,01%</td><td>Marginale</td></tr><tr class="table-danger fw-bold"><td>Var. Netta Cassa</td><td class="text-end">(257.144)</td><td class="text-end">-1,21%</td><td>Riduzione Liquidità</td></tr></tbody>
+                                     <tbody><tr><td>EBITDA</td><td class="text-end">841.748</td><td class="text-end">3,97%</td><td>Margine Op. Lordo</td></tr><tr><td>Imposte</td><td class="text-end text-success">0</td><td class="text-end">0,0%</td><td>Benefici fiscali</td></tr><tr><td>Δ Cap. Circ. Op.</td><td class="text-end text-success">427.310</td><td class="text-end">2,01%</td><td>Generazione da Circolante</td></tr>
+                                     <tr class="table-secondary fw-bold"><td>Cash Flow Operativo</td><td class="text-end">423.899</td><td class="text-end">2,00%</td><td>Liquidità da Gestione Core</td></tr><tr><td>CF Investimento</td><td class="text-end text-danger">(80.407)</td><td class="text-end">-0,38%</td><td>Assorbimento per Investimenti</td></tr><tr class="table-secondary fw-bold"><td>Free Cash Flow (FCF)</td><td class="text-end">343.492</td><td class="text-end">1,62%</td><td>Cassa Libera</td></tr><tr><td>Var. Debiti Fin.</td><td class="text-end text-danger">(599.045)</td><td class="text-end">-2,82%</td><td>Riduzione Indebitamento</td></tr><tr><td>Var. PN</td><td class="text-end text-danger">(1.591)</td><td class="text-end">-0,01%</td><td>Variazione minima</td></tr><tr class="table-danger fw-bold"><td>Var. Netta Cassa</td><td class="text-end">(257.144)</td><td class="text-end">-1,21%</td><td>Riduzione Liquidità</td></tr></tbody>
                                 </table></div>
-                               <div class="row mt-3"> <div class="col-md-6"><div class="alert alert-success small p-2"><h6>Punti di forza:</h6><ul><li>FCF positivo (€343K)</li><li>Riduzione debito (-€599K)</li><li>Miglioramento PFN/EBITDA</li><li>Investimenti contenuti</li></ul></div></div> <div class="col-md-6"><div class="alert alert-warning small p-2"><h6>Aree critiche:</h6><ul><li>DSCR insufficiente (0,548)</li><li>Liquidità critica (€24.9K)</li><li>CF Operativo debole (2,00%)</li><li>Debito 100% a breve termine</li></ul></div></div></div>
+                               <div class="row mt-3"> <div class="col-md-6"><div class="alert alert-success small p-2"><h6>Punti di forza:</h6><ul><li>Riduzione debito totale (-10,3%)</li><li>FCF positivo (€343K)</li><li>Generazione cassa da circolante</li><li>Investimenti contenuti</li></ul></div></div> <div class="col-md-6"><div class="alert alert-danger small p-2"><h6>Aree critiche:</h6><ul><li>DSCR critico (0,548)</li><li>PFN/EBITDA elevato (6,20x)</li><li>Liquidità quasi azzerata (€25K)</li><li>CF Operativo insufficiente (2%)</li></ul></div></div></div>
                           </div>
                       </div>
                    </div>
 
                   <!-- Dettaglio Capitale Circolante -->
                   <div class="accordion-item">
-                      <h2 class="accordion-header" id="headingCapital"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCapital" aria-expanded="false" aria-controls="collapseCapital"> <i class="fas fa-sync-alt me-2"></i> Capitale Circolante <span class="badge bg-success ms-2">Efficiente</span> </button> </h2>
+                      <h2 class="accordion-header" id="headingCapital"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCapital" aria-expanded="false" aria-controls="collapseCapital"> <i class="fas fa-sync-alt me-2"></i> Capitale Circolante <span class="badge bg-success ms-2">Buono</span> </button> </h2> <!-- Rating upgraded -->
                       <div id="collapseCapital" class="accordion-collapse collapse" aria-labelledby="headingCapital" data-bs-parent="#cdaDetailsAccordion">
                           <div class="accordion-body">
+                              <!-- Updated content for Agricola Campidanese from PARTE5 -->
                               <div class="row mb-4">
-                                  <div class="col-md-6"><h6>Ciclo del Capitale Circolante</h6><table class="table table-sm table-striped"><tbody><tr><td>Giorni Clienti (DSO)</td><td class="value-highlight">47 gg</td><td class="text-success"><i class="fas fa-arrow-down"></i> -35 gg</td><td><span class="badge bg-success">Ottimo</span></td></tr><tr><td>Giorni Magazzino (DIO)</td><td class="value-highlight">20 gg</td><td class="text-danger"><i class="fas fa-arrow-up"></i> +7 gg</td><td><span class="badge bg-success">Ottimo</span></td></tr><tr><td>Giorni Fornitori (DPO)</td><td class="value-highlight">75 gg</td><td class="text-danger"><i class="fas fa-arrow-down"></i> -37 gg</td><td><span class="badge bg-warning text-dark">Attenzione</span></td></tr><tr class="table-success fw-bold"><td>Ciclo del Circolante</td><td class="value-highlight">-8 gg</td><td class="text-danger"><i class="fas fa-arrow-up"></i> +9 gg</td><td><span class="badge bg-success">Ottimo</span></td></tr></tbody></table></div>
-                                  <div class="col-md-6"><h6>Test di Congruità Componenti</h6><table class="table table-sm table-striped"><tbody><tr><td>Crediti Eccesso (vs 70gg)</td><td class="value-highlight">-23 gg</td><td class="text-success">~€ -1.355.298</td></tr><tr><td>Debiti Eccesso (vs 105gg)</td><td class="value-highlight">-30 gg</td><td class="text-danger">~€ -1.339.920</td></tr><tr><td>Magazzino Eccesso (vs 38gg)</td><td class="value-highlight">-18 gg</td><td class="text-success">~€ -803.952</td></tr></tbody></table></div>
+                                  <div class="col-md-6"><h6>Ciclo del Capitale Circolante</h6><table class="table table-sm table-striped"><tbody><tr><td>Giorni Clienti (DSO)</td><td class="value-highlight">47 gg</td><td class="text-success"><i class="fas fa-arrow-down"></i> -35 gg</td><td><span class="badge bg-success">Ottimo</span></td></tr><tr><td>Giorni Magazzino (DIO)</td><td class="value-highlight">20 gg</td><td class="text-danger"><i class="fas fa-arrow-up"></i> +4 gg</td><td><span class="badge bg-success">Buono</span></td></tr><tr><td>Giorni Fornitori (DPO)</td><td class="value-highlight">75 gg</td><td class="text-danger"><i class="fas fa-arrow-down"></i> -37 gg</td><td><span class="badge bg-warning text-dark">Attenzione</span></td></tr><tr class="table-success fw-bold"><td>Ciclo del Circolante</td><td class="value-highlight">-8 gg</td><td class="text-danger"><i class="fas fa-arrow-up"></i> +6 gg</td><td><span class="badge bg-success">Ottimo</span></td></tr></tbody></table></div>
+                                  <div class="col-md-6"><h6>Test di Congruità Componenti</h6><table class="table table-sm table-striped"><tbody><tr><td>Crediti Eccesso (vs 55gg)</td><td class="value-highlight">-8 gg</td><td class="text-success">~€ -471 K</td></tr><tr><td>Debiti Eccesso (vs 75gg)</td><td class="value-highlight">0 gg</td><td class="text-secondary">~€ 0 K</td></tr><tr><td>Magazzino Eccesso (vs 22gg)</td><td class="value-highlight">-2 gg</td><td class="text-success">~€ -89 K</td></tr></tbody></table></div>
                               </div>
                               <h6>Stress Test sul Capitale Circolante</h6>
                               <div class="table-responsive"><table class="table table-sm table-striped">
                                   <thead class="table-light"><tr><th>Test</th><th class="text-end">Impatto</th><th class="text-end">Valore Limite</th><th>Rischio</th></tr></thead>
-                                  <tbody><tr><td>Variaz. DSO x Liq.=0</td><td class="text-end">+1 gg</td><td class="text-end">~€ 58.926 assorbiti</td><td><span class="badge bg-danger">Estremo</span></td></tr><tr><td>Variaz. DPO x Liq.=0</td><td class="text-end">0 gg</td><td class="text-end">~€ 0 assorbiti</td><td><span class="badge bg-danger">Estremo</span></td></tr><tr><td>Variaz. Rimanenze x PN=0</td><td class="text-end">-17 gg</td><td class="text-end">~€ 755.925 perdita</td><td><span class="badge bg-danger">Alto</span></td></tr></tbody>
+                                  <tbody><tr><td>Variaz. DSO x Liq.=0</td><td class="text-end">+1 gg</td><td class="text-end">~€ 59 K assorbiti</td><td><span class="badge bg-danger">Estremo</span></td></tr><tr><td>Variaz. DPO x Liq.=0</td><td class="text-end">0 gg</td><td class="text-end">~€ 25 K assorbiti</td><td><span class="badge bg-danger">Massimo</span></td></tr><tr><td>Variaz. Rimanenze x PN=0</td><td class="text-end">+17 gg</td><td class="text-end">~€ 756 K perdita</td><td><span class="badge bg-warning text-dark">Medio</span></td></tr></tbody>
                               </table></div>
-                              <div class="alert alert-success mt-3 small p-2"><h5>Punti di forza circolante:</h5><ul><li>Ciclo circolante negativo (-8gg) genera liquidità strutturale.</li><li>DSO eccellente (47gg) con forte miglioramento (-35gg).</li><li>DIO ottimo (20gg) molto inferiore al benchmark.</li><li>Efficienza complessiva nella gestione del circolante.</li></ul></div>
-                              <div class="alert alert-warning mt-3 small p-2"><h5>Aree di attenzione:</h5><ul><li>Riduzione DPO (-37gg) potrebbe indicare tensioni con fornitori.</li><li>Vulnerabilità estrema a variazioni DSO/DPO (buffer liquidità insufficiente).</li><li>Aumento DIO (+7gg) da monitorare.</li></ul></div>
+                              <div class="alert alert-success mt-3 small p-2"><h5>Punti di forza Circolante:</h5><ul><li>Ciclo negativo (-8gg) con vantaggio finanziario.</li><li>Ottima gestione crediti (47gg, -43%).</li><li>Rotazione magazzino efficiente (20gg).</li><li>Generazione cassa da circolante (€427K).</li></ul></div>
+                              <div class="alert alert-warning mt-3 small p-2"><h5>Aree di attenzione:</h5><ul><li>Riduzione DPO (da 112 a 75gg) potenzialmente forzata.</li><li>Vulnerabilità estrema a variazioni DSO/DPO data la liquidità minima.</li><li>Peggioramento ciclo rispetto al 2023 (-14gg).</li></ul></div>
                           </div>
                       </div>
                   </div>
 
                   <!-- Dettaglio Rischi -->
                    <div class="accordion-item">
-                       <h2 class="accordion-header" id="headingRisk"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRisk" aria-expanded="false" aria-controls="collapseRisk"> <i class="fas fa-exclamation-triangle me-2"></i> Profilo di Rischio <span class="badge bg-danger ms-2">Molto Alto</span></button> </h2>
+                       <h2 class="accordion-header" id="headingRisk"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRisk" aria-expanded="false" aria-controls="collapseRisk"> <i class="fas fa-exclamation-triangle me-2"></i> Profilo di Rischio <span class="badge bg-warning ms-2 text-dark">Medio</span></button> </h2> <!-- Rating downgraded -->
                        <div id="collapseRisk" class="accordion-collapse collapse" aria-labelledby="headingRisk" data-bs-parent="#cdaDetailsAccordion">
                            <div class="accordion-body">
+                               <!-- Updated content for Agricola Campidanese from PARTE0, PARTE4, PARTE6 -->
                                 <div class="row">
-                                   <div class="col-md-6"><h6>Indice Rischio Ponderato (IRP)</h6><p>Valore: <strong>29,08 / 100</strong> <span class="badge bg-danger">MOLTO ALTO</span></p>
+                                   <div class="col-md-6"><h6>Indice Rischio Ponderato (IRP)</h6><p>Valore: <strong>51,92 / 100</strong> <span class="badge bg-warning text-dark">MEDIO</span></p>
                                      <table class="table table-sm">
-                                         <tr><td>Component Score</td><td class="text-end">26,00</td></tr>
-                                         <tr><td>Leanus Score Norm.</td><td class="text-end">11,88</td></tr>
-                                         <tr><td>Rating MCC Norm.</td><td class="text-end">46,60</td></tr>
-                                         <tr><td>Z-Score Norm.</td><td class="text-end">40,45</td></tr>
+                                         <tr><td>Component Score</td><td class="text-end">33,70</td></tr>
+                                         <tr><td>Leanus Score Norm.</td><td class="text-end">47,50</td></tr>
+                                         <tr><td>Rating MCC Norm.</td><td class="text-end">75,26</td></tr>
+                                         <tr><td>Z-Score Norm.</td><td class="text-end">58,35</td></tr>
                                      </table>
                                    </div>
-                                   <div class="col-md-6"><h6>Modelli di Rating</h6><table class="table table-sm"><tbody><tr><td>Z-Score Altman</td><td class="value-highlight">2,93</td><td><span class="badge bg-warning text-dark">Zona Grigia</span></td></tr><tr><td>PD (MCC)</td><td class="value-highlight">3,62%</td><td><span class="badge bg-warning text-dark">Fascia 3</span></td></tr><tr><td>Leanus Score</td><td class="value-highlight">0,95</td><td><span class="badge bg-danger">Negativo</span></td></tr><tr><td>Classe MCC</td><td class="value-highlight">F7</td><td><span class="badge bg-warning text-dark">Media-bassa</span></td></tr></tbody></table></div>
+                                   <div class="col-md-6"><h6>Modelli di Rating</h6><table class="table table-sm"><tbody><tr><td>Z-Score Altman</td><td class="value-highlight">2,93</td><td><span class="badge bg-warning text-dark">Zona Grigia</span></td></tr><tr><td>PD (MCC)</td><td class="value-highlight">3,62%</td><td><span class="badge bg-warning text-dark">Fascia 3</span></td></tr><tr><td>Leanus Score</td><td class="value-highlight">0,95</td><td><span class="badge bg-danger">Negativo</span></td></tr><tr><td>Classe MCC</td><td class="value-highlight">F7</td><td><span class="badge bg-warning text-dark">Borderline</span></td></tr></tbody></table></div>
                                 </div>
                                 <h6 class="mt-3">Stress Test Sintesi</h6>
                                 <p class="small">Resistenza Ricavi: -17,54% | Resistenza Costi: +25,54% | Resistenza DSO: +1gg (Critico) | Resistenza DPO: 0gg (Critico)</p>
-                                <div class="row mt-3"><div class="col-md-6"><div class="alert alert-success small p-2"><h6>Positivi:</h6><ul><li>Patrimonio Netto > 0</li><li>Ciclo circolante negativo</li><li>Oneri fin./Ricavi < 3%</li><li>Trend miglioramento indicatori</li></ul></div></div><div class="col-md-6"><div class="alert alert-warning small p-2"><h6>Red Flags:</h6><ul><li>DSCR critico (0,548)</li><li>Liquidità quasi azzerata</li><li>PFN/EBITDA insostenibile</li><li>Leva finanziaria eccessiva</li></ul></div></div></div>
+                                <div class="row mt-3"><div class="col-md-6"><div class="alert alert-success small p-2"><h6>Positivi:</h6><ul><li>Miglioramento vs 2022-2023</li><li>Trend positivo indicatori</li><li>Ciclo circolante negativo</li><li>Riduzione indebitamento</li></ul></div></div><div class="col-md-6"><div class="alert alert-warning small p-2"><h6>Red Flags:</h6><ul><li>DSCR critico (0,548)</li><li>Liquidità quasi azzerata</li><li>Leva finanziaria eccessiva</li><li>Copertura immob. critica</li></ul></div></div></div>
                            </div>
                        </div>
                    </div>
@@ -376,11 +384,12 @@
                        <h2 class="accordion-header" id="headingActions"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseActions" aria-expanded="false" aria-controls="collapseActions"> <i class="fas fa-lightbulb me-2"></i> Piano d'Azione </button> </h2>
                        <div id="collapseActions" class="accordion-collapse collapse" aria-labelledby="headingActions" data-bs-parent="#cdaDetailsAccordion">
                            <div class="accordion-body">
-                               <div class="action-item priority-high"><h6>PRIORITÀ ALTA: Ristrutturazione Finanziaria</h6><div class="action-detail"><strong>1a. Ricapitalizzazione urgente:</strong> Aumento capitale €1,5-2,0M per riequilibrio patrimoniale</div><div class="action-detail"><strong>1b. Ristrutturazione debito:</strong> Consolidamento 50% debito BT in MLT con moratoria</div></div>
-                               <div class="action-item priority-high"><h6>PRIORITÀ ALTA: Gestione Liquidità</h6><div class="action-detail"><strong>2a. Linea emergenza:</strong> Negoziare linea dedicata €500K per buffer liquidità</div><div class="action-detail"><strong>2b. Ottimizzazione circolante:</strong> Mantenere DSO basso, normalizzare DPO</div></div>
-                               <div class="action-item priority-medium"><h6>PRIORITÀ MEDIA: Miglioramento Marginalità</h6><div class="action-detail"><strong>3a. Revisione pricing:</strong> Incremento prezzi selettivo (+3-5%)</div><div class="action-detail"><strong>3b. Efficienza costi:</strong> Riduzione costi acquisto (-2-3%) e ottimizzazione processi</div></div>
-                               <div class="action-item priority-medium"><h6>PRIORITÀ MEDIA: Governance e Controllo</h6><div class="action-detail"><strong>4a. Implementazione sistema controllo gestione:</strong> KPI real-time, forecast tesoreria</div><div class="action-detail"><strong>4b. Revisione strategia commerciale:</strong> Focus su prodotti alta marginalità</div></div>
-                               <div class="row mt-4"><div class="col-md-6"><div class="alert alert-success"><h6>Impatto Stimato:</h6><ul><li>D/E: da 6,94 a < 2,5</li><li>EBITDA: +€400-500K</li><li>Liquidità: +€700-800K</li><li>DSCR: > 1,2</li></ul></div></div><div class="col-md-6"><div class="alert alert-primary"><h6>Tempistiche:</h6><ul><li>Immediato (0-3m): Liquidità, Moratoria</li><li>Breve (3-6m): Ricapitalizzazione</li><li>Medio (6-12m): Ristrutturazione, Margini</li></ul></div></div></div>
+                               <!-- Updated content for Agricola Campidanese from PARTE7 -->
+                               <div class="action-item priority-high"><h6>PRIORITÀ ALTA: Ristrutturazione Finanziaria</h6><div class="action-detail"><strong>1a. Ricapitalizzazione:</strong> Aumento capitale di almeno €2.000.000 per ridurre D/E sotto 3,0</div><div class="action-detail"><strong>1b. Ristrutturazione Debito:</strong> Rinegoziazione scadenze e conversione debito a breve in M/L termine</div></div>
+                               <div class="action-item priority-high"><h6>PRIORITÀ ALTA: Stabilizzazione Liquidità</h6><div class="action-detail"><strong>2a. Emergency Funding:</strong> Apertura linea di credito per €500.000 + ottimizzazione cash flow</div><div class="action-detail"><strong>2b. Gestione Tesoreria:</strong> Implementazione cash forecasting 13 settimane</div></div>
+                               <div class="action-item priority-medium"><h6>PRIORITÀ MEDIA: Miglioramento Marginalità</h6><div class="action-detail"><strong>3a. Revisione Pricing:</strong> Incremento prezzi selettivo (+2-3%)</div><div class="action-detail"><strong>3b. Ottimizzazione Costi:</strong> Riduzione costi approvvigionamento (-2-3%)</div></div>
+                               <div class="action-item priority-medium"><h6>PRIORITÀ MEDIA: Governance Finanziaria</h6><div class="action-detail"><strong>4a. Adeguati Assetti:</strong> Implementazione sistemi di controllo ex CCII</div><div class="action-detail"><strong>4b. Monitoraggio KPI:</strong> Dashboard indicatori critici con alerting</div></div>
+                               <div class="row mt-4"><div class="col-md-6"><div class="alert alert-success"><h6>Impatto Stimato:</h6><ul><li>D/E: da 6,94 a 2,6</li><li>EBITDA: da 3,97% a 6-8%</li><li>DSCR: da 0,548 a >1,2</li><li>Liquidità: da €25K a €500K</li></ul></div></div><div class="col-md-6"><div class="alert alert-primary"><h6>Tempistiche:</h6><ul><li>Immediato (0-30gg): Liquidità</li><li>Breve (30-90gg): Ricapitalizzazione</li><li>Medio (90-180gg): Ristrutturazione</li><li>Lungo (180-360gg): Marginalità</li></ul></div></div></div>
                            </div>
                        </div>
                    </div>
@@ -388,7 +397,7 @@
              </div> <!-- Fine Accordion Principale -->
 
 
-            <!-- Sezione Azioni Prioritarie CDA -->
+            <!-- Sezione Azioni Prioritarie CDA (Updated for Agricola Campidanese) -->
              <section id="actions-summary" class="report-section">
                   <h4 class="section-title small"><i class="fas fa-tasks me-2"></i>AZIONI PRIORITARIE</h4>
                   <div class="card actions-card"> <!-- Uso di card semplice per la lista -->
@@ -399,7 +408,7 @@
                                       <div>
                                           <span class="icon-circle icon-circle-sm bg-icon-danger me-2"><i class="fas fa-landmark"></i></span>
                                           <strong>Ricapitalizzazione Urgente</strong>
-                                          <p class="small text-muted mb-0">Aumento capitale €1,5-2,0M per riequilibrare struttura patrimoniale (target D/E < 2,5).</p>
+                                          <p class="small text-muted mb-0">Aumento capitale di almeno €2.000.000 per ridurre leva finanziaria e migliorare copertura immobilizzazioni.</p>
                                       </div>
                                       <span class="priority-badge status-badge bg-danger">Alta Priorità</span>
                                   </div>
@@ -407,31 +416,31 @@
                                <li>
                                   <div class="d-flex justify-content-between align-items-start">
                                       <div>
-                                           <span class="icon-circle icon-circle-sm bg-icon-danger me-2"><i class="fas fa-university"></i></span>
-                                           <strong>Ristrutturazione Debito</strong>
-                                          <p class="small text-muted mb-0">Consolidamento 50% debito a breve in MLT con piano ammortamento sostenibile.</p>
-                                      </div>
-                                      <span class="priority-badge status-badge bg-danger">Alta Priorità</span>
-                                  </div>
-                              </li>
-                               <li>
-                                  <div class="d-flex justify-content-between align-items-start">
-                                       <div>
                                            <span class="icon-circle icon-circle-sm bg-icon-danger me-2"><i class="fas fa-tint-slash"></i></span>
-                                           <strong>Gestione Emergenza Liquidità</strong>
-                                          <p class="small text-muted mb-0">Negoziare linea dedicata €500K e ottimizzare circolante per buffer liquidità.</p>
-                                       </div>
-                                      <span class="priority-badge status-badge bg-danger">Alta Priorità</span>
+                                           <strong>Stabilizzazione Liquidità</strong>
+                                          <p class="small text-muted mb-0">Apertura linee di credito emergency per €500.000 e implementazione cash forecasting 13 settimane.</p>
+                                      </div>
+                                      <span class="priority-badge status-badge bg-danger">Alta Priorità</span> <!-- Changed to Alta -->
                                   </div>
                               </li>
                                <li>
                                   <div class="d-flex justify-content-between align-items-start">
                                        <div>
-                                            <span class="icon-circle icon-circle-sm bg-icon-warning me-2"><i class="fas fa-percent"></i></span>
-                                            <strong>Miglioramento Marginalità</strong>
-                                           <p class="small text-muted mb-0">Incrementare EBITDA margin da 3,97% a >8% con revisione pricing e costi.</p>
+                                           <span class="icon-circle icon-circle-sm bg-icon-warning me-2"><i class="fas fa-university"></i></span>
+                                           <strong>Ristrutturazione Debito</strong>
+                                          <p class="small text-muted mb-0">Rinegoziazione scadenze con allungamento a 7-10 anni e conversione debito BT in MLT.</p>
                                        </div>
                                       <span class="priority-badge status-badge bg-warning text-dark">Media Priorità</span>
+                                  </div>
+                              </li>
+                               <li>
+                                  <div class="d-flex justify-content-between align-items-start">
+                                       <div>
+                                            <span class="icon-circle icon-circle-sm bg-icon-warning me-2"><i class="fas fa-percent"></i></span> <!-- Changed icon -->
+                                            <strong>Miglioramento Marginalità</strong>
+                                           <p class="small text-muted mb-0">Incrementare EBITDA margin dal 3,97% al 6-8% attraverso revisione pricing e ottimizzazione costi.</p>
+                                       </div>
+                                      <span class="priority-badge status-badge bg-warning text-dark">Media Priorità</span> <!-- Changed Priority -->
                                   </div>
                               </li>
                           </ol>
@@ -455,6 +464,6 @@
     <script src= "./js/monitor_cda.js"></script>
      <!-- Script ChatNode -->
      <scan-chat data-bot-id="41eb2106-a80d-4845-a36f-fc7b8e03f87b"></scan-chat>
-     <script src="../js/bundle.js"></script>
+     <script src="./js/bundle.js"></script>
 </body>
 </html>
