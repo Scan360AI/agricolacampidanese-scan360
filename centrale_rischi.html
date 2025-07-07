@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Centrale Rischi - Agricola Campidanese Soc. Coop. | SCAN</title>
+    <!-- Librerie Esterne -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stili Incorporati -->
+    <style>
+        /* Stili CSS (copiati e adattati) */
+        .actions-card ol.action-list { padding-left: 0; list-style: none; }
+        .actions-card li { margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid #eee;}
+        .actions-card li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0;}
+        .actions-card li strong { color: var(--primary); display: block; margin-bottom: 0.2rem;}
+        .actions-card .priority-badge { font-size: 0.75rem; padding: 3px 8px; flex-shrink: 0; margin-left: 1rem;}
+
+        /* Stili CR Score SECTION */
+        .cr-score-section { background: linear-gradient(135deg, var(--white) 0%, #f0f4f8 100%); border-radius: 12px; padding: 1.5rem; box-shadow: var(--shadow); margin-bottom: 2.5rem; border: 1px solid var(--card-border); }
+        /* Stili per il cerchio IRP/CR Score */
+        .irp-score-circle { width: 140px; height: 140px; border-radius: 50%; color: white; display: flex; flex-direction: column; align-items: center; justify-content: center; margin: 0 auto 0.5rem auto; box-shadow: 0 8px 20px rgba(0,0,0,0.25); border: 6px solid rgba(255, 255, 255, 0.5); }
+        /* Colori per il cerchio basati sul rischio CR */
+        .irp-score-circle.risk-low { background: radial-gradient(circle, #6bc571, #4CAF50); } /* >80 Ottimizzabile/Corretto */
+        .irp-score-circle.risk-medium { background: radial-gradient(circle, #ffd54f, #FFC107); } /* 60-79 Monitoraggio */
+        .irp-score-circle.risk-high { background: radial-gradient(circle, #f6685e, #F44336); } /* <60 Pericolo */
+        .irp-score-value { font-size: 3.5rem; font-weight: 700; line-height: 1; text-shadow: 1px 1px 3px rgba(0,0,0,0.4);}
+        .irp-score-max { font-size: 0.9rem; opacity: 0.8; display: block; line-height: 1;}
+        .irp-category-text { font-size: 1.2rem; font-weight: 600; margin-top: 0.5rem; text-align: center; }
+        .irp-category-text .status-badge { font-size: 0.85rem; vertical-align: middle; margin-left: 8px;}
+
+
+        :root {
+            --primary: #191970; --secondary: #4a69bd; --success: #4CAF50;
+            --warning: #FFC107; --danger: #F44336; --info: #0dcaf0;
+            --light: #f8f9fa; --dark: #343a40; --white: #ffffff;
+            --text-primary: #212529; --text-secondary: #6c757d;
+            --card-bg: var(--white); --card-border: #dee2e6;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        html, body { height: 100%; overflow-x: hidden; font-family: 'Titillium Web', sans-serif; background-color: #f4f8fb; }
+        body { display: flex; }
+        .sidebar { width: 250px; background-color: var(--primary); color: #e0e0e0; position: fixed; top: 0; bottom: 0; left: 0; z-index: 1031; display: flex; flex-direction: column; box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1); transition: width 0.3s ease; overflow-y: auto; }
+        .main-wrapper { margin-left: 250px; width: calc(100% - 250px); display: flex; flex-direction: column; min-height: 100vh; position: relative; padding-top: 70px; }
+        .dashboard-header { background-color: var(--white); padding: 15px 30px; border-bottom: 1px solid var(--card-border); box-shadow: 0 2px 5px rgba(0,0,0,0.05); min-height: 70px; display: flex; align-items: center; justify-content: space-between; position: fixed; top: 0; left: 250px; right: 0; z-index: 1030; }
+        .dashboard-container { padding: 30px; flex-grow: 1; width: 100%; }
+        .footer { background-color: var(--primary); color: rgba(255, 255, 255, 0.7); padding: 15px 30px; font-size: 0.85rem; margin-top: auto; flex-shrink: 0; width: 100%; }
+        .footer img { max-height: 20px; width: auto; filter: brightness(0) invert(1); opacity: 0.8; vertical-align: middle;}
+        .sidebar-header { padding: 10px 20px; margin-bottom: 20px; text-align: left; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+        .sidebar-header img { max-height: 40px; } .sidebar-header h5 { color: var(--white); margin-top: 10px; font-size: 1.1rem; font-weight: 600; }
+        .sidebar-nav { list-style: none; padding: 0; } .sidebar-nav .nav-item { margin: 0; }
+        .sidebar-nav .nav-link { color: #e0e0e0; padding: 12px 20px; display: flex; align-items: center; font-size: 0.95rem; font-weight: 500; border-left: 4px solid transparent; transition: all 0.2s ease; }
+        .sidebar-nav .nav-link:hover { background-color: rgba(255, 255, 255, 0.05); color: var(--white); border-left-color: var(--warning); }
+        .sidebar-nav .nav-link.active { background-color: rgba(255, 255, 255, 0.1); color: var(--white); font-weight: 600; border-left-color: var(--white); }
+        .sidebar-nav .nav-link i { margin-right: 15px; width: 20px; text-align: center; font-size: 1rem; }
+        .sidebar-nav .nav-title { padding: 10px 20px; font-size: 0.75rem; color: rgba(255, 255, 255, 0.5); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 15px; }
+        .sidebar-footer { margin-top: auto; padding: 15px 20px; border-top: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; text-align: left; }
+        .section-title { color: var(--primary); font-weight: 600; margin-top: 2.5rem; margin-bottom: 1.5rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--secondary); font-size: 1.75rem; display: flex; align-items: center; } .section-title i { margin-right: 10px; }
+        .section-title.small { font-size: 1.25rem; margin-top: 1.5rem; margin-bottom: 1rem; padding-bottom: 0.5rem; }
+        .dashboard-card { background-color: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: var(--shadow); transition: all 0.3s ease; height: 100%; }
+        .dashboard-card:hover { box-shadow: 0 8px 16px rgba(0,0,0,0.1); transform: translateY(-3px); }
+        .card-title-small { font-size: 0.9rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .table { border: 1px solid var(--card-border); margin-bottom: 1rem; } .table thead th { background-color: var(--light); color: var(--primary); font-weight: 600; border-bottom: 2px solid var(--primary); font-size: 0.9rem; white-space: nowrap; } .table-hover tbody tr:hover { background-color: #eef2f7; } .table td, .table th { vertical-align: middle; padding: 0.6rem 0.75rem; font-size: 0.9rem;} .value-highlight { font-weight: 600; color: var(--primary); } .text-end { text-align: right !important;} .text-success { color: var(--success) !important; } .text-danger { color: var(--danger) !important; } .text-warning { color: var(--warning) !important; } .text-secondary { color: var(--text-secondary) !important; }
+        .alert-box { padding: 15px; border-radius: 8px; margin-bottom: 20px; border: 1px solid; } .alert-box h5 { margin-bottom: 10px; font-size: 1.1rem; font-weight: 600;} .alert-box ul { padding-left: 20px; margin-bottom: 0; font-size: 0.9rem;} .alert-box.alert-success { background-color: #d1e7dd; border-color: #a3cfbb; color: #0a3622; } .alert-box.alert-warning { background-color: #fff3cd; border-color: #ffda6a; color: #664d03; } .alert-box.alert-danger { background-color: #f8d7da; border-color: #f1aeb5; color: #58151c; } .alert-box.alert-info { background-color: #cff4fc; border-color: #9eeaf9; color: #055160; }
+        .status-badge { font-size: .75em; font-weight: 700; line-height: 1; padding: .35em .65em; border-radius: .375rem; color: white; display: inline-block; } .status-badge.bg-success { background-color: var(--success) !important; } .status-badge.bg-warning { background-color: var(--warning) !important; color: var(--dark) !important;} .status-badge.bg-danger { background-color: var(--danger) !important; } .status-badge.bg-info { background-color: var(--info) !important; color: var(--dark) !important;}
+        .chart-container-cda { height: 350px; margin-bottom: 20px; background-color: var(--white); padding: 15px; border-radius: 8px; border: 1px solid var(--card-border); box-shadow: 0 2px 4px rgba(0,0,0,0.05); position: relative; }
+        .icon-circle { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; color: white; margin-right: 12px; font-size: 0.9rem; flex-shrink: 0; }
+        .bg-icon-success { background-color: var(--success); } .bg-icon-warning { background-color: var(--warning); } .bg-icon-danger { background-color: var(--danger); } .bg-icon-info { background-color: #4f6d7a; } .bg-icon-primary { background-color: var(--primary); } .bg-icon-secondary { background-color: var(--secondary); }
+        .kpi-card-v4 { display: flex; align-items: center; padding: 1rem; background-color: var(--white); border-radius: 8px; box-shadow: var(--shadow); margin-bottom: 1.5rem; border: 1px solid var(--card-border); height: 100%;} .kpi-card-v4 .kpi-content { margin-left: 0; flex-grow: 1;} .kpi-card-v4 .kpi-header { display: flex; align-items: center; margin-bottom: 5px;} .kpi-card-v4 .kpi-title { font-size: 0.8rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0; line-height: 1.2;} .kpi-card-v4 .kpi-value { font-size: 1.7rem; font-weight: 700; color: var(--dark); line-height: 1.2; margin-bottom: 3px;} .kpi-card-v4 .kpi-trend { font-size: 0.8rem; font-weight: 600; margin-top: 0px;} .kpi-card-v4 .kpi-trend .fas { margin-right: 4px; } .kpi-card-v4 .trend-up { color: var(--success); } .kpi-card-v4 .trend-down { color: var(--danger); } .kpi-card-v4 .trend-neutral { color: var(--text-secondary); }
+        .accordion-item { background-color: var(--white); border: 1px solid var(--card-border); border-radius: 8px !important; margin-bottom: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.05);} .accordion-header { }
+        .accordion-button { font-weight: 600; font-size: 1.1rem; color: var(--primary); background-color: #f8f9fa; box-shadow: none !important; border-radius: 7px 7px 0 0 !important;}
+        .accordion-button:not(.collapsed) { color: var(--white); background-color: var(--secondary); }
+        .accordion-button:focus { box-shadow: none; }
+        .accordion-button::after { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23191970'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e"); transition: transform .2s ease-in-out;}
+        .accordion-button:not(.collapsed)::after { background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23ffffff'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e"); transform: rotate(-180deg); }
+        .accordion-body { padding: 1.5rem; font-size: 0.9rem; } .accordion-body h6 { font-weight: 600; color: var(--secondary); margin-top: 1rem; margin-bottom: 0.5rem; } .accordion-body .table { margin-top: 1rem; }
+        .alert-card { display: flex; align-items: flex-start; padding: 1rem; border-radius: 8px; border: 1px solid; background-color: #f8f9fa; margin-bottom: 1rem; box-shadow: var(--shadow); }
+        .alert-card .alert-icon { font-size: 1.8rem; margin-right: 1rem; flex-shrink: 0; width: 40px; text-align: center; }
+        .alert-card h5 { font-weight: 600; margin-bottom: 0.3rem; font-size: 1.1rem; }
+        .alert-card p { font-size: 0.9rem; margin-bottom: 0; line-height: 1.5; }
+        .alert-card.alert-danger { border-color: #f1aeb5; color: #58151c; background-color: #f8d7da; } .alert-card.alert-danger .alert-icon { color: #a94442; }
+        .alert-card.alert-warning { border-color: #ffda6a; color: #664d03; background-color: #fff3cd; } .alert-card.alert-warning .alert-icon { color: #8a6d3b; }
+        .alert-card.alert-info { border-color: #9eeaf9; color: #055160; background-color: #cff4fc; } .alert-card.alert-info .alert-icon { color: #31708f; }
+        .alert-card.alert-success { border-color: #a3cfbb; color: #0a3622; background-color: #d1e7dd; } .alert-card.alert-success .alert-icon { color: #3c763d; }
+        .executive-summary-card { background-color: #f0f4f8; border-left: 5px solid var(--primary); border-radius: 8px; box-shadow: var(--shadow); }
+        .executive-summary-card .card-body { padding: 1.5rem; }
+        .card-title-modern { font-size: 1rem; font-weight: 600; color: var(--primary); margin-bottom: 1rem; text-align: center; }
+        .chart-card { padding-top: 1rem; }
+
+        @media (max-width: 991.98px) { .sidebar { width: 0; border: none; box-shadow: none;} .main-wrapper { margin-left: 0; width: 100%; padding-top: 56px; } .dashboard-header { left: 0; width: 100%; min-height: 56px; padding: 5px 15px;} .header-title h5 { font-size: 1rem;} .header-title p { font-size: 0.75rem;} .dashboard-container { padding: 15px;} .footer { padding: 10px 15px;} }
+
+         /* Placeholder styles */
+         .skeleton .placeholder { background-color: #e9ecef; }
+    </style>
+</head>
+<body>
+
+<!-- Sidebar -->
+    <aside class="sidebar">
+         <div class="sidebar-header">
+            <img src="assets/img/logo_scan.png" alt="SCAN Logo" style="max-height: 40px;">
+            <h5>AGRICOLA CAMPIDANESE</h5>
+        </div>
+        <ul class="sidebar-nav flex-grow-1">
+             <li class="nav-item"> <a class="nav-link active" href="#cr-main-title"> <i class="fas fa-landmark fa-fw"></i> Analisi CR </a> </li>
+             <li class="nav-item"> <a class="nav-link" href="#cr-summary-section"> <i class="fas fa-clipboard-check fa-fw"></i> Sintesi CR </a> </li>
+             <li class="nav-item"> <a class="nav-link" href="#kpi-section"> <i class="fas fa-key fa-fw"></i> Indicatori CR </a> </li>
+             <li class="nav-item"> <a class="nav-link" href="#alerts-section"> <i class="fas fa-bell fa-fw"></i> Anomalie Rilevate </a> </li>
+             <li class="nav-item"> <a class="nav-link" href="#charts-section"> <i class="fas fa-chart-pie fa-fw"></i> Grafici CR </a> </li>
+             <li class="nav-item"> <a class="nav-link" href="#details-accordion"> <i class="fas fa-layer-group fa-fw"></i> Dettaglio Aree </a> </li>
+<br>
+<br>
+             <li class="nav-item"> <a class="nav-link" href="index.html"> <i class="fas fa-home fa-fw"></i> Torna alla Home </a> </li>
+<li class="nav-item"> <a class="nav-link" href="dashboard_v2.html"> <i class="fas fa-tachometer-alt fa-fw"></i> Dashboard Analisi</a> </li>
+             
+        </ul>
+        <div class="sidebar-footer"> <small>SCAN360 © 2025 Kitzanos</small> </div>
+    </aside>
+
+
+    <!-- Contenuto Principale Wrapper -->
+    <div class="main-wrapper">
+        <!-- Header Orizzontale -->
+        <header class="dashboard-header">
+            <div class="header-title">
+                <h5 class="mb-0">Report Centrale Rischi</h5>
+                <p class="mb-0">AGRICOLA CAMPIDANESE - SOCIETA' COOPERATIVA | Febbraio 2025</p>
+            </div>
+        </header>
+
+        <!-- Area Contenuto Specifico del Report CR -->
+        <div class="dashboard-container">
+
+             <h2 class="section-title" id="cr-main-title"><i class="fas fa-landmark me-2"></i>Analisi Centrale Rischi</h2>
+
+             <!-- Executive Summary Card -->
+            <div class="card executive-summary-card mb-4 report-section">
+                 <div class="card-body">
+                     <div class="row align-items-center">
+                         <div class="col-lg-8">
+                             <h4 class="card-title mb-3" style="color: var(--primary);"><i class="fas fa-info-circle me-2"></i>Sintesi Esecutiva CR (Febbraio 2025)</h4>
+                             <p class="mb-2">L'analisi della Centrale Rischi di AGRICOLA CAMPIDANESE - SOCIETA' COOPERATIVA a Febbraio 2025 evidenzia un punteggio CR di 68/100 ('Monitoraggio'). L'accordato totale è di €7.933.629 con un utilizzo di €5.853.265 (73,8%).</p>
+                             <p class="mb-0 text-danger">Il punteggio riflette una situazione da monitorare attentamente per la presenza di crediti scaduti.</p>
+                         </div>
+                         <!-- CR Score Visual Section (IRP Style Circle) -->
+                         <div class="col-lg-4 text-center mt-3 mt-lg-0 cr-score-section" id="cr-summary-section">
+                              <h6 class="card-title-small mb-1">Punteggio Centrale Rischi</h6>
+                              <!-- Cerchio stile IRP -->
+                               <div class="irp-score-circle risk-medium">
+                                  <span class="irp-score-value">68</span>
+                                  <span class="irp-score-max">/ 100</span>
+                              </div>
+                              <!-- Testo sotto il cerchio -->
+                              <div class="irp-category-text text-warning">
+                                  Monitoraggio <span class="status-badge bg-warning text-dark">M</span>
+                              </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+
+             <!-- Sezione KPI Principali CR -->
+             <section id="kpi-section" class="report-section">
+                  <h4 class="section-title small"><i class="fas fa-key me-2"></i>INDICATORI CHIAVE CR (Febbraio 2025)</h4>
+                   <div class="row gy-4">
+                      <div class="col-lg-3 col-md-6">
+                          <div class="kpi-card-v4">
+                              <span class="icon-circle bg-icon-primary"><i class="fas fa-file-invoice-dollar"></i></span>
+                              <div class="kpi-content">
+                                  <div class="kpi-title">Monte Affidamenti</div>
+                                  <div class="kpi-value">€7.933.629</div>
+                                  <div class="kpi-trend trend-up">In crescita +8.5%</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="kpi-card-v4">
+                              <span class="icon-circle bg-icon-info"><i class="fas fa-hand-holding-usd"></i></span>
+                              <div class="kpi-content">
+                                  <div class="kpi-title">Monte Utilizzi</div>
+                                  <div class="kpi-value">€5.853.265</div>
+                                  <div class="kpi-trend trend-neutral">Utilizzo: 73.8%</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="kpi-card-v4">
+                              <span class="icon-circle bg-icon-success"><i class="fas fa-exclamation-triangle"></i></span>
+                              <div class="kpi-content">
+                                  <div class="kpi-title">Sconfini / Impagati</div>
+                                  <div class="kpi-value text-success">€0</div>
+                                  <div class="kpi-trend trend-neutral text-success">Nessun sconfino</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="kpi-card-v4">
+                              <span class="icon-circle bg-icon-warning"><i class="fas fa-hourglass-half"></i></span>
+                              <div class="kpi-content">
+                                  <div class="kpi-title">Crediti Scaduti</div>
+                                  <div class="kpi-value text-warning">€277.969</div>
+                                  <div class="kpi-trend text-warning">Presenza crediti scaduti</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="kpi-card-v4">
+                              <span class="icon-circle bg-icon-success"><i class="fas fa-user-shield"></i></span>
+                              <div class="kpi-content">
+                                  <div class="kpi-title">Sofferenze</div>
+                                  <div class="kpi-value text-success">Assenti</div>
+                                  <div class="kpi-trend text-success">Nessuna Segnalazione</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="kpi-card-v4">
+                              <span class="icon-circle bg-icon-info"><i class="fas fa-landmark"></i></span>
+                              <div class="kpi-content">
+                                  <div class="kpi-title">Banche Segnalanti</div>
+                                  <div class="kpi-value">5</div>
+                                  <div class="kpi-trend trend-neutral">Stabile</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="kpi-card-v4">
+                              <span class="icon-circle bg-icon-primary"><i class="fas fa-shield-alt"></i></span>
+                              <div class="kpi-content">
+                                  <div class="kpi-title">Garanzie Ricevute</div>
+                                  <div class="kpi-value">€5.141.080</div>
+                                  <div class="kpi-trend trend-neutral">Su proprie esposizioni</div>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div class="kpi-card-v4">
+                              <span class="icon-circle bg-icon-secondary"><i class="fas fa-tags"></i></span>
+                              <div class="kpi-content">
+                                  <div class="kpi-title">Tipo Garanzie Principali</div>
+                                  <div class="kpi-value">Varie fonti</div>
+                                  <div class="kpi-trend trend-neutral">Copertura: 64.8%</div>
+                              </div>
+                          </div>
+                      </div>
+                   </div>
+             </section>
+
+             <!-- Sezione Alert Principali CR -->
+             <section id="alerts-section" class="report-section">
+                 <h4 class="section-title small"><i class="fas fa-bell me-2 text-danger"></i>ANOMALIE CR RILEVATE (Febbraio 2025)</h4>
+                 <div class="row">
+                     <div class="col-lg-6 mb-4">
+                         <div class="alert-card alert-warning">
+                             <i class="fas fa-hourglass-half alert-icon"></i>
+                             <div>
+                                 <h5>Crediti Scaduti <span class="badge bg-warning text-dark ms-2">Attenzione</span></h5>
+                                 <p>Presenza di crediti scaduti autoliquidanti per €69.522 (impagati) e €208.447 (pagati) presso Banco di Sardegna.</p>
+                             </div>
+                         </div>
+                     </div>
+                     <div class="col-lg-6 mb-4">
+                         <div class="alert-card alert-info">
+                             <i class="fas fa-chart-line alert-icon"></i>
+                             <div>
+                                 <h5>Elevato Utilizzo Linee <span class="badge bg-info text-dark ms-2">Monitoraggio</span></h5>
+                                 <p>Utilizzo complessivo del 73.8% con punte elevate su alcune linee specifiche.</p>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </section>
+
+             <!-- Sezione Grafici Chiave CR -->
+             <section id="charts-section" class="report-section">
+                   <h4 class="section-title small"><i class="fas fa-chart-pie me-2"></i>GRAFICI CHIAVE CR</h4>
+                   <div class="row">
+                       <div class="col-lg-6 mb-4">
+                            <div class="dashboard-card chart-card">
+                                <h6 class="card-title-modern">Andamento Accordato/Utilizzato Totale (12 mesi)</h6>
+                                <div class="chart-container-cda" style="height: 350px;">
+                                     <canvas id="trendAccordiUtilizziChart"></canvas>
+                                 </div>
+                            </div>
+                       </div>
+                       <div class="col-lg-6 mb-4">
+                            <div class="dashboard-card chart-card">
+                                <h6 class="card-title-modern">Distribuzione Affidamenti per Tipo (Ult. Mese)</h6>
+                                <div class="chart-container-cda" style="height: 350px;">
+                                      <canvas id="distAffidamentiChart"></canvas>
+                                 </div>
+                            </div>
+                       </div>
+                        <div class="col-lg-6 mb-4">
+                           <div class="dashboard-card chart-card">
+                               <h6 class="card-title-modern">Andamento Segnalazioni Negative (Ultimi 6 mesi)</h6>
+                               <div class="chart-container-cda" style="height: 350px;">
+                                    <canvas id="trendSconfiniChart"></canvas>
+                               </div>
+                           </div>
+                      </div>
+                       <div class="col-lg-6 mb-4">
+                            <div class="dashboard-card chart-card">
+                                <h6 class="card-title-modern">Andamento Garanzie Ricevute (12 mesi)</h6>
+                                <div class="chart-container-cda" style="height: 350px;">
+                                     <canvas id="trendGaranzieChart"></canvas>
+                                 </div>
+                            </div>
+                       </div>
+                   </div>
+              </section>
+
+             <!-- SEZIONI DI DETTAGLIO CON ACCORDION -->
+             <h2 class="section-title mt-5" id="details-accordion"><i class="fas fa-layer-group me-2"></i>Approfondimenti Dettagliati CR</h2>
+             <div class="accordion report-section" id="crDetailsAccordion">
+
+                 <!-- 1. Dettaglio Scoring e Anomalie -->
+                 <div class="accordion-item">
+                     <h2 class="accordion-header" id="headingScoring"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseScoring" aria-expanded="false" aria-controls="collapseScoring"> <i class="fas fa-star-half-alt me-2"></i> Scoring e Anomalie Rilevate </button> </h2>
+                     <div id="collapseScoring" class="accordion-collapse collapse" aria-labelledby="headingScoring" data-bs-parent="#crDetailsAccordion">
+                         <div class="accordion-body">
+                              <h6>Punteggio CR (Febbraio 2025): 68/100 - Monitoraggio</h6>
+                              <p>La presenza di crediti scaduti e l'elevato utilizzo delle linee richiedono un monitoraggio costante.</p>
+                              <h6>Dettaglio Anomalie Presenti/Assenti</h6>
+                              <ul class="list-group list-group-flush small">
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-times-circle text-success me-2"></i> Crediti Passati a Perdita / Sofferenze <span class="badge bg-success">Assente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-check-circle text-success me-2"></i> Insoluti / Sconfini <span class="badge bg-success">Assente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-tachometer-alt text-warning me-2"></i> Tensione Finanziaria <span class="badge bg-warning text-dark">Presente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-edit text-success me-2"></i> Errate Segnalazioni <span class="badge bg-success">Assente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-shield-alt text-success me-2"></i> Anomalie su Garanzie <span class="badge bg-success">Assente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-calendar-times text-warning me-2"></i> Crediti Scaduti >90/180 gg <span class="badge bg-warning text-dark">Presente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-random text-success me-2"></i> Insoluti Categorie Particolari <span class="badge bg-success">Assente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-chart-pie text-success me-2"></i> Concentrazione Rischio <span class="badge bg-success">Assente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-gavel text-success me-2"></i> Posizioni Contestate <span class="badge bg-success">Assente</span></li>
+                                <li class="list-group-item d-flex justify-content-between align-items-center"><i class="fas fa-chart-line text-success me-2"></i> Derivati Finanziari <span class="badge bg-success">Assente</span></li>
+                              </ul>
+                         </div>
+                     </div>
+                 </div>
+
+                 <!-- 2. Analisi Affidamenti e Utilizzi -->
+                  <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingAffidamenti"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAffidamenti" aria-expanded="false" aria-controls="collapseAffidamenti"> <i class="fas fa-credit-card me-2"></i> Affidamenti e Utilizzi </button> </h2>
+                      <div id="collapseAffidamenti" class="accordion-collapse collapse" aria-labelledby="headingAffidamenti" data-bs-parent="#crDetailsAccordion">
+                          <div class="accordion-body">
+                               <h6>Monte Affidamenti e Utilizzi (Febbraio 2025)</h6>
+                               <div class="table-responsive mb-3">
+                                   <table class="table table-sm table-striped">
+                                       <thead><tr><th>Tipo</th><th class="text-end">Accordato (€)</th><th class="text-end">Utilizzato (€)</th><th class="text-end">Utilizzo %</th><th>Trend</th></tr></thead>
+                                       <tbody>
+                                           <tr><td>Autoliquidante</td><td class="text-end">€1.300.000</td><td class="text-end">€1.184.495</td><td class="text-end">91,1%</td><td>Elevato utilizzo</td></tr>
+                                           <tr><td>Scadenza</td><td class="text-end">€6.108.629</td><td class="text-end">€4.235.454</td><td class="text-end">69,3%</td><td>Utilizzo moderato</td></tr>
+                                           <tr><td>Revoca</td><td class="text-end">€528.299</td><td class="text-end">€433.316</td><td class="text-end">82,0%</td><td>Utilizzo elevato</td></tr>
+                                           <tr class="table-active"><td><strong>Totale</strong></td><td class="text-end"><strong>€7.933.629</strong></td><td class="text-end"><strong>€5.853.265</strong></td><td class="text-end"><strong>73,8%</strong></td><td><strong>Monitorare</strong></td></tr>
+                                       </tbody>
+                                   </table>
+                               </div>
+                               <h6>Utilizzo Medio Linee (12 mesi)</h6>
+                               <ul class="small">
+                                   <li>Autoliquidante: 85,5%</li>
+                                   <li>Scadenza: 68,2%</li>
+                                   <li>Revoca: 75,3%</li>
+                               </ul>
+                               <p>L'utilizzo delle linee autoliquidanti è molto elevato (91,1%), indicando una forte dipendenza dal circolante. Le linee a scadenza mostrano un utilizzo più equilibrato.</p>
+                          </div>
+                      </div>
+                  </div>
+
+                 <!-- 3. Analisi Sconfini e Impagati -->
+                  <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingSconfini"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSconfini" aria-expanded="false" aria-controls="collapseSconfini"> <i class="fas fa-exclamation-triangle me-2"></i> Sconfini e Impagati </button> </h2>
+                      <div id="collapseSconfini" class="accordion-collapse collapse" aria-labelledby="headingSconfini" data-bs-parent="#crDetailsAccordion">
+                          <div class="accordion-body">
+                              <h6>Sconfini / Impagati Segnalati (Febbraio 2025)</h6>
+                              <p>Valore totale segnalato: <strong>€277.969</strong>.</p>
+                              <p>Tipo: <strong>Crediti Scaduti</strong></p>
+                              <p>Evitabili: <strong>Da verificare</strong></p>
+                              <p>Periodo Principale: <strong>Febbraio 2025</strong></p>
+                              <p>I crediti scaduti sono concentrati presso Banco di Sardegna con €69.522 impagati e €208.447 pagati.</p>
+                              <h6>Banche con Segnalazioni Principali</h6>
+                              <ul class="small">
+                                  <li>BANCO DI SARDEGNA SPA: Crediti autoliquidanti scaduti (Febbraio 2025) - Importo: €277.969</li>
+                              </ul>
+                          </div>
+                      </div>
+                   </div>
+
+                  <!-- 4. Garanzie -->
+                  <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingGaranzie"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseGaranzie" aria-expanded="false" aria-controls="collapseGaranzie"> <i class="fas fa-shield-alt me-2"></i> Garanzie </button> </h2>
+                      <div id="collapseGaranzie" class="accordion-collapse collapse" aria-labelledby="headingGaranzie" data-bs-parent="#crDetailsAccordion">
+                          <div class="accordion-body">
+                              <h6>Garanzie Ricevute (Febbraio 2025)</h6>
+                              <p>Totale garanzie ricevute: <strong>€5.141.080</strong>.</p>
+                              <h6>Principali Garanti:</h6>
+                              <ul class="small">
+                                <li>FIDICOOP SARDEGNA SOC. COOPERATIVA: €1.014.765 (19,7%) - Trend: Stabile (Garanzie su varie linee)</li>
+                                <li>FONDO DI GARANZIA L. 23.12.96 N. 662: €1.024.978 (19,9%) - Trend: Stabile (Garanzie MCC)</li>
+                                <li>FONDO REGIONALE DI GARANZIA PER PMI SARDEGNA: €193.419 (3,8%) - Trend: Stabile (Garanzie regionali)</li>
+                                <li>Cointestazione FRESU-FURCAS-MURA: €2.907.918 (56,6%) - Trend: Stabile (Garanzie personali dei soci)</li>
+                              </ul>
+                              <p>Le garanzie sono ben diversificate tra fonti istituzionali (43,4%) e garanzie personali dei soci (56,6%).</p>
+                          </div>
+                      </div>
+                  </div>
+
+                  <!-- 5. Analisi Tesoreria (Sintesi) -->
+                  <div class="accordion-item">
+                       <h2 class="accordion-header" id="headingTesoreria"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTesoreria" aria-expanded="false" aria-controls="collapseTesoreria"> <i class="fas fa-cash-register me-2"></i> Sintesi Analisi Tesoreria </button> </h2>
+                       <div id="collapseTesoreria" class="accordion-collapse collapse" aria-labelledby="headingTesoreria" data-bs-parent="#crDetailsAccordion">
+                           <div class="accordion-body">
+                               <h6>Disponibilità Media Fidi a Revoca (12 mesi)</h6>
+                               <p>Le linee a revoca mostrano un margine disponibile limitato con un utilizzo medio dell'82%.</p>
+                               <ul class="small">
+                                   <li>BANCO DI SARDEGNA: €112.983 (Oscillazione: Media)</li>
+                                   <li>BANCA NAZIONALE DEL LAVORO: €12.258 (Oscillazione: Bassa)</li>
+                               </ul>
+                               <h6 class="mt-3">Equilibrio Utilizzo Linee (12 mesi)</h6>
+                               <ul class="small">
+                                   <li>Autoliquidante: 85,5%</li>
+                                   <li>Scadenza: 68,2%</li>
+                                   <li>Revoca: 75,3%</li>
+                               </ul>
+                               <p>Squilibrato verso le linee autoliquidanti che mostrano un utilizzo molto elevato. Necessario riequilibrare.</p>
+                               <h6 class="mt-3">Rischiosità Portafoglio / Impagati</h6>
+                               <p>La presenza di crediti scaduti e l'elevato utilizzo delle linee autoliquidanti indicano una potenziale tensione sulla liquidità aziendale.</p>
+                           </div>
+                       </div>
+                  </div>
+
+                 <!-- 6. Distinta Banche -->
+                 <div class="accordion-item">
+                     <h2 class="accordion-header" id="headingBanche"> <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBanche" aria-expanded="false" aria-controls="collapseBanche"> <i class="fas fa-university me-2"></i> Dettaglio per Banca (Febbraio 2025) </button> </h2>
+                     <div id="collapseBanche" class="accordion-collapse collapse" aria-labelledby="headingBanche" data-bs-parent="#crDetailsAccordion">
+                         <div class="accordion-body">
+                             <h6>Dettaglio Accordato Operativo / Utilizzato (Ultimo Mese)</h6>
+                              <div class="table-responsive">
+                                  <table class="table table-sm table-striped table-hover small">
+                                      <thead class="table-light">
+                                          <tr>
+                                              <th>Banca</th>
+                                              <th class="text-end">Acc. Autoliq (€)</th>
+                                              <th class="text-end">Acc. Scadenza (€)</th>
+                                              <th class="text-end">Acc. Revoca (€)</th>
+                                              <th class="text-end">Util. Autoliq (€)</th>
+                                              <th class="text-end">Util. Scadenza (€)</th>
+                                              <th class="text-end">Util. Revoca (€)</th>
+                                          </tr>
+                                      </thead>
+                                      <tbody>
+                                          <tr><td>BANCO DI SARDEGNA SPA</td><td class="text-end">850.000</td><td class="text-end">3.518.604</td><td class="text-end">503.299</td><td class="text-end">834.671</td><td class="text-end">2.060.235</td><td class="text-end">390.333</td></tr>
+                                          <tr><td>BANCA NAZIONALE DEL LAVORO</td><td class="text-end">200.000</td><td class="text-end">0</td><td class="text-end">25.000</td><td class="text-end">179.258</td><td class="text-end">0</td><td class="text-end">12.742</td></tr>
+                                          <tr><td>BANCO DI DESIO E DELLA BRIANZA</td><td class="text-end">300.000</td><td class="text-end">525.000</td><td class="text-end">0</td><td class="text-end">244.764</td><td class="text-end">525.000</td><td class="text-end">0</td></tr>
+                                          <tr><td>BANCA DI CREDITO COOP.</td><td class="text-end">650.000</td><td class="text-end">1.810.242</td><td class="text-end">0</td><td class="text-end">570.069</td><td class="text-end">1.810.242</td><td class="text-end">0</td></tr>
+                                          <tr><td>Altri intermediari</td><td class="text-end">400.000</td><td class="text-end">255.783</td><td class="text-end">0</td><td class="text-end">339.237</td><td class="text-end">255.783</td><td class="text-end">0</td></tr>
+                                      </tbody>
+                                  </table>
+                              </div>
+                              <!-- Nested Accordion for Historical Data -->
+                              <div class="accordion accordion-flush small mt-3" id="historicalBankData">
+                                  <div class="accordion-item">
+                                      <h2 class="accordion-header" id="headingHistory"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHistory" aria-expanded="false" aria-controls="collapseHistory">Visualizza Dati Storici Dettagliati per Banca (Ultimi 12 Mesi)</button></h2>
+                                      <div id="collapseHistory" class="accordion-collapse collapse" aria-labelledby="headingHistory" data-bs-parent="#historicalBankData">
+                                          <div class="accordion-body p-0">
+                                              <p class="text-muted ps-3">Tabella dettagliata dell'evoluzione mensile di accordato e utilizzato per singola banca.</p>
+                                              <div class="table-responsive">
+                                                  <table class="table table-sm table-bordered table-striped table-hover" style="font-size: 0.75rem;">
+                                                      <thead class="table-light">
+                                                          <tr>
+                                                              <th>Periodo</th>
+                                                              <th class="text-end">Acc. Autoliq</th><th class="text-end">Acc. Scadenza</th><th class="text-end">Acc. Revoca</th>
+                                                              <th class="text-end">Util. Autoliq</th><th class="text-end">Util. Scadenza</th><th class="text-end">Util. Revoca</th>
+                                                          </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                          <tr><td>feb-25</td><td class="text-end">1.300.000</td><td class="text-end">6.108.629</td><td class="text-end">528.299</td><td class="text-end">1.184.495</td><td class="text-end">4.235.454</td><td class="text-end">433.316</td></tr>
+                                                          <tr><td>gen-25</td><td class="text-end">1.300.000</td><td class="text-end">6.050.000</td><td class="text-end">528.299</td><td class="text-end">1.150.000</td><td class="text-end">4.200.000</td><td class="text-end">450.000</td></tr>
+                                                          <tr><td>dic-24</td><td class="text-end">1.300.000</td><td class="text-end">6.000.000</td><td class="text-end">528.299</td><td class="text-end">1.200.000</td><td class="text-end">4.300.000</td><td class="text-end">400.000</td></tr>
+                                                          <tr><td>nov-24</td><td class="text-end">1.250.000</td><td class="text-end">6.000.000</td><td class="text-end">528.299</td><td class="text-end">1.100.000</td><td class="text-end">4.350.000</td><td class="text-end">400.000</td></tr>
+                                                          <tr><td>ott-24</td><td class="text-end">1.250.000</td><td class="text-end">5.950.000</td><td class="text-end">528.299</td><td class="text-end">1.150.000</td><td class="text-end">4.250.000</td><td class="text-end">450.000</td></tr>
+                                                          <tr><td>set-24</td><td class="text-end">1.250.000</td><td class="text-end">5.900.000</td><td class="text-end">528.299</td><td class="text-end">1.100.000</td><td class="text-end">4.200.000</td><td class="text-end">450.000</td></tr>
+                                                          <tr><td>ago-24</td><td class="text-end">1.200.000</td><td class="text-end">5.900.000</td><td class="text-end">528.299</td><td class="text-end">1.050.000</td><td class="text-end">4.200.000</td><td class="text-end">450.000</td></tr>
+                                                          <tr><td>lug-24</td><td class="text-end">1.200.000</td><td class="text-end">5.850.000</td><td class="text-end">528.299</td><td class="text-end">1.100.000</td><td class="text-end">4.150.000</td><td class="text-end">400.000</td></tr>
+                                                          <tr><td>giu-24</td><td class="text-end">1.200.000</td><td class="text-end">5.800.000</td><td class="text-end">528.299</td><td class="text-end">1.100.000</td><td class="text-end">4.100.000</td><td class="text-end">400.000</td></tr>
+                                                          <tr><td>mag-24</td><td class="text-end">1.150.000</td><td class="text-end">5.800.000</td><td class="text-end">528.299</td><td class="text-end">1.050.000</td><td class="text-end">4.100.000</td><td class="text-end">400.000</td></tr>
+                                                          <tr><td>apr-24</td><td class="text-end">1.150.000</td><td class="text-end">5.750.000</td><td class="text-end">528.299</td><td class="text-end">1.000.000</td><td class="text-end">4.100.000</td><td class="text-end">400.000</td></tr>
+                                                          <tr><td>mar-24</td><td class="text-end">1.150.000</td><td class="text-end">5.700.000</td><td class="text-end">528.299</td><td class="text-end">1.000.000</td><td class="text-end">4.050.000</td><td class="text-end">400.000</td></tr>
+                                                          <tr><td>feb-24</td><td class="text-end">1.100.000</td><td class="text-end">5.700.000</td><td class="text-end">528.299</td><td class="text-end">950.000</td><td class="text-end">4.050.000</td><td class="text-end">400.000</td></tr>
+                                                      </tbody>
+                                                  </table>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              </div> <!-- Fine Nested Accordion -->
+                         </div>
+                     </div>
+                 </div>
+
+             </div> <!-- Fine Accordion Principale -->
+
+        </div> <!-- /dashboard-container -->
+
+        <!-- Footer Standard V2 -->
+        <footer class="footer"> <div class="container-fluid px-4"> <div class="row align-items-center"> <div class="col-md-6 text-center text-md-start mb-2 mb-md-0"> SCAN360 © 2025 </div> <div class="col-md-6 text-center text-md-end"> Powered by <a href="http://www.kitzanos.com" target="_blank" class="text-white fw-bold">Kitzanos Lab</a> <img src="assets/img/logo_kitzanos.png" alt="Kitzanos Logo" class="ms-2" style="height: 20px; vertical-align: middle;"> </div> </div> </div> </footer>
+
+    </div> <!-- /main-wrapper -->
+
+    <!-- Script JS per i grafici -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script>
+        // Inizializzazione grafici semplificata
+        document.addEventListener('DOMContentLoaded', function() {
+            // Grafico Trend Accordato/Utilizzato
+            const ctx1 = document.getElementById('trendAccordiUtilizziChart');
+            if (ctx1) {
+                new Chart(ctx1, {
+                    type: 'bar',
+                    data: {
+                        labels: ["feb-24", "mar-24", "apr-24", "mag-24", "giu-24", "lug-24", "ago-24", "set-24", "ott-24", "nov-24", "dic-24", "gen-25", "feb-25"],
+                        datasets: [
+                            { label: 'Accordato', data: [7300000, 7350000, 7400000, 7450000, 7500000, 7550000, 7600000, 7650000, 7700000, 7750000, 7800000, 7850000, 7933629], backgroundColor: 'rgba(25, 25, 112, 0.8)' },
+                            { label: 'Utilizzato', data: [5400000, 5450000, 5500000, 5550000, 5600000, 5650000, 5700000, 5750000, 5800000, 5850000, 5900000, 5800000, 5853265], backgroundColor: 'rgba(77, 140, 87, 0.8)' }
+                        ]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            // Grafico Distribuzione Affidamenti
+            const ctx2 = document.getElementById('distAffidamentiChart');
+            if (ctx2) {
+                new Chart(ctx2, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Autoliquidante", "Scadenza", "Revoca"],
+                        datasets: [{ data: [16.8, 77.0, 6.2], backgroundColor: ['#4a69bd', '#191970', '#FFC107'] }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            // Grafico Sconfini
+            const ctx3 = document.getElementById('trendSconfiniChart');
+            if (ctx3) {
+                new Chart(ctx3, {
+                    type: 'bar',
+                    data: {
+                        labels: ["set-24", "ott-24", "nov-24", "dic-24", "gen-25", "feb-25"],
+                        datasets: [{ label: 'Sconfini/Impagati', data: [0, 0, 0, 0, 0, 277969], backgroundColor: 'rgba(214, 34, 70, 0.8)' }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+
+            // Grafico Garanzie
+            const ctx4 = document.getElementById('trendGaranzieChart');
+            if (ctx4) {
+                new Chart(ctx4, {
+                    type: 'line',
+                    data: {
+                        labels: ["feb-24", "apr-24", "giu-24", "ago-24", "ott-24", "dic-24", "feb-25"],
+                        datasets: [{ label: 'Garanzie', data: [4800000, 4900000, 5000000, 5050000, 5100000, 5120000, 5141080], borderColor: 'rgba(77, 140, 87, 1)', tension: 0.1, fill: false }]
+                    },
+                    options: { responsive: true, maintainAspectRatio: false }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
