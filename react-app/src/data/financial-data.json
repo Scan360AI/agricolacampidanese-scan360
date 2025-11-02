@@ -217,12 +217,105 @@
     }
   },
   "years": ["2022", "2023", "2024"],
+  "parte2": {
+    "incomeStatement": {
+      "years": ["2022", "2023", "2024"],
+      "ricavi": [837763, 1014130, 1030748],
+      "ricaviPercent": [100.0, 100.0, 100.0],
+      "valoreProduzione": [851188, 1007883, 1030748],
+      "valoreProduzionePercent": [101.6, 99.4, 100.0],
+      "valoreAggiunto": [844485, 999481, 1022062],
+      "valoreAggiuntoPercent": [100.8, 98.6, 99.2],
+      "margineContribuzione": [258841, 345223, 396343],
+      "margineContribuzionePercent": [30.9, 34.0, 38.5],
+      "ebitda": [59227, 104917, 102108],
+      "ebitdaPercent": [7.1, 10.3, 9.9],
+      "ebit": [52451, 96014, 94378],
+      "ebitPercent": [6.3, 9.5, 9.2],
+      "margineAnteGestioneFin": [36394, 68781, 79598],
+      "margineAnteGestioneFinPercent": [4.3, 6.8, 7.7],
+      "risultatoAnteImposte": [35500, 66651, 96025],
+      "risultatoAnteImpostePercent": [4.2, 6.6, 9.3],
+      "utileEsercizio": [18359, 41467, 95783],
+      "utileEsercizioPercent": [2.2, 4.1, 9.3]
+    },
+    "costStructure": {
+      "years": ["2022", "2023", "2024"],
+      "acquisti": [2178, 5749, 8686],
+      "acquistiPercent": [0.3, 0.6, 0.8],
+      "costiVariabiliServizi": [585644, 654258, 625719],
+      "costiVariabiliServiziPercent": [69.9, 64.5, 60.7],
+      "costiFissi": [199614, 240306, 294235],
+      "costiFissiPercent": [23.8, 23.7, 28.5],
+      "godimentoBeni": [29168, 41768, 51485],
+      "godimentoBeniPercent": [3.5, 4.1, 5.0],
+      "personale": [170446, 198538, 242750],
+      "personalePercent": [20.3, 19.6, 23.6],
+      "ammortamenti": [6776, 8903, 7730],
+      "ammortamentiPercent": [0.8, 0.9, 0.7],
+      "oneriDiversi": [20582, 29886, 14780],
+      "oneriDiversiPercent": [2.5, 2.9, 1.4],
+      "oneriFinanziari": [894, 2,146, 1439],
+      "oneriFinanziariPercent": [0.1, 0.2, 0.1],
+      "imposte": [17141, 25184, 242],
+      "impostePercent": [2.0, 2.5, 0.0]
+    },
+    "marginality": {
+      "years": ["2022", "2023", "2024"],
+      "valoreAggiuntoRicavi": [100.8, 98.6, 99.2],
+      "mdcRicavi": [30.9, 34.0, 38.5],
+      "ebitdaRicavi": [7.1, 10.3, 9.9],
+      "ros": [6.3, 9.5, 9.2],
+      "utileNettoRicavi": [2.2, 4.1, 9.3],
+      "breakEvenPoint": [646000, 706782, 785304],
+      "margineSicurezza": [22.9, 30.3, 23.8]
+    },
+    "personnel": {
+      "numeroDipendenti2022": 6,
+      "numeroDipendenti2024": 6,
+      "costoMedioDipendente2022": 28408,
+      "costoMedioDipendente2024": 40458,
+      "ricaviPerDipendente2022": 139627,
+      "ricaviPerDipendente2024": 171791
+    },
+    "profitability": {
+      "years": ["2022", "2023", "2024"],
+      "roe": [18.95, 29.97, 40.91],
+      "roi": [113.84, 67.88, 53.26],
+      "ros": [6.3, 9.5, 9.2],
+      "ebitdaMargin": [7.1, 10.3, 9.9],
+      "redditivityNetta": [2.2, 4.1, 9.3],
+      "turnover": [18.18, 7.17, 5.82],
+      "cashFlowRicavi": [1.4, -3.5, 6.2]
+    },
+    "leverage": {
+      "years": ["2022", "2023", "2024"],
+      "roi": [113.84, 67.88, 53.26],
+      "costoMedioDebito": [4.14, 4.93, 6.61],
+      "spread": [109.70, 62.95, 46.65],
+      "debtEquity": [0.22, 0.31, 0.00],
+      "effettoLeva": [24.13, 19.51, 0.00],
+      "roeTeorico": [137.97, 87.39, 53.26],
+      "roeEffettivo": [18.95, 29.97, 40.91]
+    },
+    "benchmark": {
+      "crescitaRicavi": { "company": 1.64, "sector": 5.00 },
+      "ebitdaMargin": { "company": 9.91, "sector": 11.50 },
+      "roi": { "company": 53.26, "sector": 18.40 },
+      "roe": { "company": 40.91, "sector": 22.70 },
+      "turnover": { "company": 5.82, "sector": 2.90 },
+      "pfnEbitda": { "company": -0.56, "sector": 1.70 },
+      "debtEquity": { "company": 0.00, "sectorMin": 0.80, "sectorMax": 1.20 },
+      "dso": { "company": 262, "sector": 95 },
+      "dpo": { "company": 222, "sector": 105 }
+    }
+  },
   "dashboard": {
     "trendRicaviEbitda": {
       "labels": ["2022", "2023", "2024"],
-      "ricavi": [835394, 1013988, 1030748],
+      "ricavi": [837763, 1014130, 1030748],
       "ebitda": [59227, 104917, 102108],
-      "ebitdaMargin": [7.09, 10.35, 9.91]
+      "ebitdaMargin": [7.1, 10.3, 9.9]
     },
     "trendPfnEbitda": {
       "labels": ["2022", "2023", "2024"],
