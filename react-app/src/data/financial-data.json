@@ -1,0 +1,262 @@
+{
+  "company": {
+    "name": "AGRICOLA CAMPIDANESE",
+    "fullName": "AGRICOLA CAMPIDANESE - Società Cooperativa",
+    "sector": "Agricoltura e Trasformazione Prodotti Agricoli",
+    "type": "Società Cooperativa",
+    "fiscalCode": "IT01234567890",
+    "address": "Via Example, 123 - 09100 Cagliari (CA)",
+    "phone": "+39 070 123456",
+    "email": "info@agricolacampidanese.it"
+  },
+  "years": ["2022", "2023", "2024"],
+  "dashboard": {
+    "trendRicaviEbitda": {
+      "labels": ["2022", "2023", "2024"],
+      "ricavi": [null, 20621793, 21213405],
+      "ebitda": [-459194, 623613, 843287],
+      "ebitdaMargin": [null, 3.0, 3.98]
+    },
+    "trendPfnEbitda": {
+      "labels": ["2022", "2023", "2024"],
+      "pfnEbitda": [null, 8.92, 6.19],
+      "soglia": [3.5, 3.5, 3.5]
+    }
+  },
+  "parte1": {
+    "mainMetrics": {
+      "labels": ["2022", "2023", "2024"],
+      "ricavi": [20452000, 20622000, 21213000],
+      "ebitda": [-459000, 624000, 843000],
+      "patrimonioNetto": [680000, 698000, 698000]
+    },
+    "currentAssetsLiabilities": {
+      "labels": ["2023", "2024"],
+      "attivoCorrente": [8033878, 5851602],
+      "passivoCorrente": [10719370, 10689441],
+      "capitaleCircolanteNetto": [-2685492, -4837839]
+    }
+  },
+  "parte2": {
+    "marginality": {
+      "labels": ["2022", "2023", "2024"],
+      "valoreAggiunto": [null, 22.0, 24.2],
+      "margineContribuzione": [null, 12.0, 12.7],
+      "ebitdaPercent": [null, 3.0, 4.0],
+      "ebitPercent": [null, 0.9, 1.95]
+    },
+    "profitabilityIndices": {
+      "labels": ["2022", "2023", "2024"],
+      "roe": [5.56, 2.82, 0.26],
+      "roi": [null, 1.32, 6.99],
+      "ros": [null, 0.9, 1.95]
+    },
+    "leverage": {
+      "labels": ["2023", "2024"],
+      "roi": [1.32, 6.99],
+      "roe": [2.82, 0.26],
+      "costoDebito": [null, 7.97]
+    },
+    "benchmarkRadar": {
+      "labels": [
+        "Crescita Ricavi",
+        "EBITDA Margin",
+        "ROI",
+        "Turnover",
+        "Costo Personale (inv)",
+        "PFN/EBITDA (inv)",
+        "D/E (inv)"
+      ],
+      "agricolaCampidanese": [102, 50, 140, 183, 120, 56, 27],
+      "mediaSettore": [100, 100, 100, 100, 100, 100, 100]
+    }
+  },
+  "parte3": {
+    "assets": {
+      "labels": [
+        "Immob. Materiali",
+        "Immob. Finanziarie",
+        "Immob. Immateriali",
+        "Magazzino",
+        "Crediti Comm.",
+        "Liquidità"
+      ],
+      "values": [4989493, 372971, 186412, 872688, 2738671, 17094]
+    },
+    "liabilities": {
+      "labels": [
+        "Patrimonio Netto",
+        "Debiti Fin. MLT",
+        "Debiti Fin. BT",
+        "Debiti Comm.",
+        "Altri Debiti"
+      ],
+      "values": [697950, 0, 5238348, 3908102, 1542992]
+    },
+    "investmentsStructure": {
+      "labels": ["2022", "2023", "2024"],
+      "immobilizzazioni": [5608045, 5898255, 5548877],
+      "creditiCommerciali": [3915699, 4675401, 2738671],
+      "rimanenze": [791281, 692266, 872688],
+      "liquidita": [568187, 282044, 17094]
+    },
+    "equityComposition": {
+      "labels": ["Capitale Sociale", "Riserve", "Utile Esercizio", "Utili a Nuovo"],
+      "values": [8500, 687621, 1828, 0]
+    },
+    "financialDebtSources": {
+      "labels": ["Patrimonio Netto", "Debiti Fin. MLT", "Debiti Fin. BT"],
+      "values": [697950, 0, 5238348]
+    },
+    "pfnTrend": {
+      "labels": ["2022", "2023", "2024"],
+      "debitiFinanziariTotali": [6682048, 5845199, 5238348],
+      "liquidita": [568187, 282044, 17094],
+      "pfn": [6113861, 5563155, 5221254]
+    }
+  },
+  "parte4": {
+    "debtSustainability": {
+      "labels": [
+        "PFN/EBITDA (inv)",
+        "D/E (inv)",
+        "DSCR",
+        "Oneri Fin./Ricavi (inv)",
+        "Cash Flow Op./Ricavi",
+        "Leanus Score"
+      ],
+      "agricolaCampidanese": [16, 13, 56, 48, 40, 2],
+      "target": [33, 50, 100, 67, 50, 75]
+    },
+    "debtCost": {
+      "labels": ["2022", "2023", "2024"],
+      "ebitda": [-459, 624, 843],
+      "capacitaTeoricaIndeb": [0, 1872, 2529],
+      "pfnAttuale": [6114, 5563, 5221]
+    }
+  },
+  "parte5": {
+    "workingCapitalCycle": {
+      "labels": [
+        "Crediti Clienti (DSO)",
+        "Magazzino (DIO)",
+        "Debiti Fornitori (DPO)",
+        "Ciclo Circolante"
+      ],
+      "agricolaCampidanese": [47, 20, 75, -8],
+      "benchmark": [75, 45, 90, 30]
+    },
+    "cashFlowWaterfall": {
+      "labels": [
+        "EBITDA",
+        "Imposte",
+        "+Δ Circ.",
+        "=CF Op.",
+        "-Invest.",
+        "=FCF",
+        "+Δ Debt",
+        "-Divid.",
+        "=Δ Cassa"
+      ],
+      "values": [843287, 0, 440239, 423899, -80407, 343492, -606851, -1591, -264950]
+    },
+    "cashFlowTrend": {
+      "labels": ["2022", "2023", "2024"],
+      "cashFlowOperativo": [632006, 1260453, 423899],
+      "cashFlowInvestimenti": [-286041, -708115, -80407],
+      "variazioneNettaCassa": [196437, -286143, -264950]
+    },
+    "cashFlowProjection": {
+      "labels": ["2024", "2025E", "2026E", "2027E", "2028E"],
+      "cashFlowOperativo": [423899, 431403, 468933, 468933, 468933],
+      "variazioneDebitiFinanziari": [-606851, 0, 0, 0, 0],
+      "liquiditaFinale": [17094, 448497, 917430, 1386363, 1855296]
+    }
+  },
+  "parte6": {
+    "zscore": {
+      "labels": ["2022", "2023", "2024"],
+      "zscore": [null, null, 2.90],
+      "sogliaSicurezza": [2.99, 2.99, 2.99],
+      "sogliaRischio": [1.81, 1.81, 1.81]
+    },
+    "riskIndicators": {
+      "labels": ["ROI", "ROS", "D/E (inv)", "Cop. Immob.", "DSO (inv)", "DPO (inv)"],
+      "agricolaCampidanese": [70, 39, 13, 13, 85, 83],
+      "target": [100, 100, 50, 100, 67, 67]
+    },
+    "sensitivity": {
+      "labels": [
+        "Ricavi",
+        "Costi Fissi",
+        "Crediti Clienti (gg)",
+        "Debiti Fornitori (gg)"
+      ],
+      "variazioneCritica": [-1.95, 23.5, 1, -30]
+    }
+  },
+  "kpis": {
+    "dashboard": [
+      {
+        "id": "ricavi",
+        "title": "Ricavi Totali 2024",
+        "value": "€21.2M",
+        "trend": "up",
+        "trendValue": "+2.9%",
+        "description": "Crescita modesta dei ricavi rispetto all'anno precedente",
+        "link": "/report/parte2-economico",
+        "icon": "fa-chart-line"
+      },
+      {
+        "id": "ebitda",
+        "title": "EBITDA 2024",
+        "value": "€843K",
+        "trend": "up",
+        "trendValue": "+35.2%",
+        "description": "Miglioramento significativo della marginalità operativa",
+        "link": "/report/parte2-economico",
+        "icon": "fa-coins"
+      },
+      {
+        "id": "ebitdaMargin",
+        "title": "EBITDA Margin",
+        "value": "3.98%",
+        "trend": "up",
+        "trendValue": "+0.98pp",
+        "description": "Incremento della redditività operativa",
+        "link": "/report/parte2-economico",
+        "icon": "fa-percentage"
+      },
+      {
+        "id": "pfn",
+        "title": "PFN",
+        "value": "€5.22M",
+        "trend": "down",
+        "trendValue": "-6.1%",
+        "description": "Riduzione dell'indebitamento netto",
+        "link": "/report/parte3-patrimoniale",
+        "icon": "fa-money-bill-wave"
+      },
+      {
+        "id": "pfnEbitda",
+        "title": "PFN/EBITDA",
+        "value": "6.19x",
+        "trend": "down",
+        "trendValue": "-30.6%",
+        "description": "Miglioramento sostenibilità debito ma ancora critico",
+        "link": "/report/parte4-bancabilita",
+        "icon": "fa-balance-scale"
+      },
+      {
+        "id": "roi",
+        "title": "ROI",
+        "value": "6.99%",
+        "trend": "up",
+        "trendValue": "+5.67pp",
+        "description": "Significativo miglioramento redditività investimenti",
+        "link": "/report/parte2-economico",
+        "icon": "fa-chart-pie"
+      }
+    ]
+  }
+}
