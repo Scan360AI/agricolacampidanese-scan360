@@ -1,262 +1,233 @@
 {
   "company": {
-    "name": "AGRICOLA CAMPIDANESE",
-    "fullName": "AGRICOLA CAMPIDANESE - Società Cooperativa",
-    "sector": "Agricoltura e Trasformazione Prodotti Agricoli",
-    "type": "Società Cooperativa",
-    "fiscalCode": "IT01234567890",
-    "address": "Via Example, 123 - 09100 Cagliari (CA)",
-    "phone": "+39 070 123456",
-    "email": "info@agricolacampidanese.it"
+    "name": "RELIVE COMMUNICATION S.R.L.",
+    "shortName": "RELIVE COMMUNICATION",
+    "sector": "ATECO 73.11 - Agenzie pubblicitarie",
+    "reportDate": "28 Aprile 2025",
+    "fiscalYear": "31/12/2024"
+  },
+  "irp": {
+    "score": 78.50,
+    "category": "B",
+    "categoryLabel": "Rischio Moderato-Basso",
+    "riskLevel": "low",
+    "components": {
+      "componentePrimaria": {
+        "score": 78.45,
+        "weight": 0.30,
+        "weighted": 23.54,
+        "indicators": {
+          "pfnEbitda": { "value": "Negativo (OK)", "score": 100.00, "weight": 0.25, "weighted": 25.00 },
+          "ebitOf": { "value": 65.59, "score": 100.00, "weight": 0.20, "weighted": 20.00 },
+          "cicloCir": { "value": 119, "score": 43.00, "weight": 0.15, "weighted": 6.45 },
+          "ebitdaRicavi": { "value": 9.91, "score": 74.10, "weight": 0.15, "weighted": 11.12 },
+          "copAttivoFisso": { "value": 10.67, "score": 100.00, "weight": 0.15, "weighted": 15.00 },
+          "dscr": { "value": 8.60, "score": 100.00, "weight": 0.10, "weighted": 10.00 }
+        }
+      },
+      "leanusScore": {
+        "scoreOriginale": 10.03,
+        "scoreLabel": "Buono",
+        "scoreNormalizzato": 87.52,
+        "weight": 0.30,
+        "weighted": 26.26
+      },
+      "ratingMCC": {
+        "pd": 1.02,
+        "fascia": "2",
+        "scoreNormalizzato": 89.80,
+        "weight": 0.25,
+        "weighted": 22.45
+      },
+      "zScoreAltman": {
+        "score": 9.48,
+        "zona": "Sicurezza",
+        "scoreNormalizzato": 95.00,
+        "weight": 0.15,
+        "weighted": 14.25
+      }
+    },
+    "adjustmentFactor": -9.25,
+    "adjustmentReason": "DSO elevato: 262 giorni"
+  },
+  "kpis": {
+    "economic": {
+      "ricavi2024": 1030748,
+      "ricavi2023": 1013988,
+      "ricavi2022": 835394,
+      "ricaviVariation": 1.64,
+      "ebitda2024": 102108,
+      "ebitda2023": 104917,
+      "ebitda2022": 59227,
+      "ebitdaVariation": -2.68,
+      "ebitdaMargin2024": 9.91,
+      "ebitdaMargin2023": 10.35,
+      "ebitdaMargin2022": 7.09,
+      "ebit2024": 94458,
+      "ebit2023": 96095,
+      "ebit2022": 54448,
+      "ebitMargin2024": 9.16,
+      "utileNetto2024": 95783,
+      "utileNetto2023": 41467,
+      "utileNetto2022": 29216,
+      "utileNettoVariation": 131.00,
+      "utileNettoMargin2024": 9.29,
+      "roi2024": 53.26,
+      "roi2023": 67.88,
+      "roi2022": 113.84,
+      "roe2024": 40.91,
+      "roe2023": 29.97,
+      "roe2022": 30.15,
+      "ros2024": 9.16,
+      "ros2023": 9.48,
+      "ros2022": 6.52
+    },
+    "patrimonial": {
+      "totaleAttivo2024": 857698,
+      "totaleAttivo2023": 687768,
+      "totaleAttivo2022": 649254,
+      "patrimonioNetto2024": 234134,
+      "patrimonioNetto2023": 138351,
+      "patrimonioNetto2022": 96884,
+      "patrimonioNettoVariation": 69.23,
+      "indiceAutonomia2024": 27.3,
+      "indiceAutonomia2023": 20.1,
+      "indiceAutonomia2022": 14.9,
+      "coperturaImmobilizzazioni2024": 10.67,
+      "coperturaImmobilizzazioni2023": 5.35,
+      "coperturaImmobilizzazioni2022": 5.92,
+      "attivitaCorrente2024": 835748,
+      "attivitaCorrente2023": 661809,
+      "passivitaCorrente2024": 621821,
+      "passivitaCorrente2023": 544551,
+      "ccn2024": 213927,
+      "ccn2023": 117258,
+      "ccnVariation": 82.45
+    },
+    "financial": {
+      "liquidita2024": 56948,
+      "liquidita2023": 40471,
+      "liquidita2022": 30849,
+      "pfn2024": -56948,
+      "pfn2023": 3051,
+      "pfn2022": -30849,
+      "pfnEbitda2024": "Negativo",
+      "deRatio2024": 0.00,
+      "deRatio2023": 0.03,
+      "deRatio2022": 0.00,
+      "dscr2024": 8.60,
+      "dscr2023": null,
+      "dscr2022": null,
+      "oneriFinanziariRicavi2024": 0.14,
+      "oneriFinanziariRicavi2023": 0.21,
+      "oneriFinanziariRicavi2022": 0.11,
+      "cashFlowOperativo2024": 63852,
+      "cashFlowOperativo2023": -35522,
+      "cashFlowOperativo2022": 11859,
+      "cashFlowOperativoRicavi2024": 6.19,
+      "freeCashFlow2024": 60047,
+      "variazioneNettaCassa2024": 16477
+    },
+    "workingCapital": {
+      "dso2024": 262,
+      "dso2023": 219,
+      "dso2022": 209,
+      "dio2024": 79,
+      "dio2023": 0,
+      "dio2022": 0,
+      "dpo2024": 222,
+      "dpo2023": 150,
+      "dpo2022": 202,
+      "cicloCircolante2024": 119,
+      "cicloCircolante2023": 69,
+      "cicloCircolante2022": 7,
+      "crediti2024": 748028,
+      "crediti2023": 614198,
+      "rimanenze2024": 1883,
+      "rimanenze2023": 0,
+      "debitiFornitori2024": 421125,
+      "debitiFornitori2023": 275094
+    }
+  },
+  "swot": {
+    "strengths": [
+      "Eccellente solidità patrimoniale con crescita significativa del PN (+69,23% nel 2024)",
+      "Elevata redditività del capitale proprio (ROE 40,91%) e degli investimenti (ROI 53,26%)",
+      "Posizione finanziaria netta cash positive (€-56.948) con azzeramento completo del debito finanziario",
+      "Buona marginalità operativa EBITDA (9,91% dei ricavi) superiore alla media di molti settori",
+      "Generazione di cassa operativa positiva (€63.852, pari al 6,19% dei ricavi)",
+      "Z-Score di Altman eccellente (9,48) che conferma solidità strutturale e bassissima probabilità di default",
+      "Rating creditizio complessivo positivo (Leanus Score \"Buono\", MCC Fascia 2)"
+    ],
+    "weaknesses": [
+      "Tempi di incasso crediti estremamente elevati (DSO 262 giorni, +43gg vs 2023), oltre 2,5x benchmark settoriale",
+      "Ciclo del circolante in forte deterioramento (119 giorni, +50gg vs 2023) che assorbe significativa liquidità",
+      "Crescita dei ricavi molto contenuta (+1,64%) inferiore alle dinamiche del settore pubblicitario",
+      "Incremento significativo dei costi fissi (+22,4%) non allineato con la crescita dei ricavi",
+      "Tempi di pagamento fornitori molto elevati (DPO 222 giorni) che potrebbero generare tensioni nei rapporti",
+      "Contenuta dimensione aziendale (ricavi €1,03M) con limitato potere contrattuale"
+    ],
+    "opportunities": [
+      "Ottimizzazione gestione crediti con potenziale liberazione di circa €320.000 di capitale circolante",
+      "Sviluppo di servizi digitali e consulenza strategica ad alto valore aggiunto",
+      "Espansione geografica o acquisizione clienti in nuovi settori economici",
+      "Utilizzo moderato della leva finanziaria (attualmente nulla) per finanziare investimenti strategici",
+      "Digitalizzazione processi interni per incrementare efficienza e scalabilità",
+      "Partnership strategiche con player complementari per ampliare il portafoglio servizi"
+    ],
+    "threats": [
+      "Elevata dipendenza da pochi clienti principali con possibile impatto critico in caso di perdita",
+      "Forte competizione nel settore pubblicitario con pressione sui margini",
+      "Evoluzione tecnologica rapida che richiede investimenti continui in competenze e strumenti",
+      "Possibile recessione economica con riduzione degli investimenti pubblicitari da parte delle imprese",
+      "Difficoltà di reperimento e retention di talenti specializzati in un mercato del lavoro competitivo",
+      "Volatilità del flusso di ricavi legata alla natura progettuale del business"
+    ]
+  },
+  "cciiIndicators": {
+    "patrimonioNetto": {
+      "value": 234134,
+      "status": "OK",
+      "threshold": "> 0",
+      "notes": "Forte crescita (+69,23%)"
+    },
+    "pfnEbitda": {
+      "value": "Negativo",
+      "status": "OK",
+      "threshold": "< 3,5",
+      "notes": "Posizione di cassa netta positiva"
+    },
+    "dscr": {
+      "value": 8.60,
+      "status": "OK",
+      "threshold": "> 1,0",
+      "notes": "Eccellente capacità di servizio del debito"
+    },
+    "liquiditaAttivitaCorrente": {
+      "value": 1.34,
+      "status": "OK",
+      "threshold": "> 1,0",
+      "notes": "Buona liquidità di breve termine"
+    },
+    "patrimonioNettoAttivo": {
+      "value": 27.3,
+      "status": "ATTENZIONE",
+      "threshold": "> 30%",
+      "notes": "Vicino alla soglia, in miglioramento costante"
+    }
   },
   "years": ["2022", "2023", "2024"],
   "dashboard": {
     "trendRicaviEbitda": {
       "labels": ["2022", "2023", "2024"],
-      "ricavi": [null, 20621793, 21213405],
-      "ebitda": [-459194, 623613, 843287],
-      "ebitdaMargin": [null, 3.0, 3.98]
+      "ricavi": [835394, 1013988, 1030748],
+      "ebitda": [59227, 104917, 102108],
+      "ebitdaMargin": [7.09, 10.35, 9.91]
     },
     "trendPfnEbitda": {
       "labels": ["2022", "2023", "2024"],
-      "pfnEbitda": [null, 8.92, 6.19],
+      "pfnEbitda": [null, 0.03, null],
       "soglia": [3.5, 3.5, 3.5]
     }
-  },
-  "parte1": {
-    "mainMetrics": {
-      "labels": ["2022", "2023", "2024"],
-      "ricavi": [20452000, 20622000, 21213000],
-      "ebitda": [-459000, 624000, 843000],
-      "patrimonioNetto": [680000, 698000, 698000]
-    },
-    "currentAssetsLiabilities": {
-      "labels": ["2023", "2024"],
-      "attivoCorrente": [8033878, 5851602],
-      "passivoCorrente": [10719370, 10689441],
-      "capitaleCircolanteNetto": [-2685492, -4837839]
-    }
-  },
-  "parte2": {
-    "marginality": {
-      "labels": ["2022", "2023", "2024"],
-      "valoreAggiunto": [null, 22.0, 24.2],
-      "margineContribuzione": [null, 12.0, 12.7],
-      "ebitdaPercent": [null, 3.0, 4.0],
-      "ebitPercent": [null, 0.9, 1.95]
-    },
-    "profitabilityIndices": {
-      "labels": ["2022", "2023", "2024"],
-      "roe": [5.56, 2.82, 0.26],
-      "roi": [null, 1.32, 6.99],
-      "ros": [null, 0.9, 1.95]
-    },
-    "leverage": {
-      "labels": ["2023", "2024"],
-      "roi": [1.32, 6.99],
-      "roe": [2.82, 0.26],
-      "costoDebito": [null, 7.97]
-    },
-    "benchmarkRadar": {
-      "labels": [
-        "Crescita Ricavi",
-        "EBITDA Margin",
-        "ROI",
-        "Turnover",
-        "Costo Personale (inv)",
-        "PFN/EBITDA (inv)",
-        "D/E (inv)"
-      ],
-      "agricolaCampidanese": [102, 50, 140, 183, 120, 56, 27],
-      "mediaSettore": [100, 100, 100, 100, 100, 100, 100]
-    }
-  },
-  "parte3": {
-    "assets": {
-      "labels": [
-        "Immob. Materiali",
-        "Immob. Finanziarie",
-        "Immob. Immateriali",
-        "Magazzino",
-        "Crediti Comm.",
-        "Liquidità"
-      ],
-      "values": [4989493, 372971, 186412, 872688, 2738671, 17094]
-    },
-    "liabilities": {
-      "labels": [
-        "Patrimonio Netto",
-        "Debiti Fin. MLT",
-        "Debiti Fin. BT",
-        "Debiti Comm.",
-        "Altri Debiti"
-      ],
-      "values": [697950, 0, 5238348, 3908102, 1542992]
-    },
-    "investmentsStructure": {
-      "labels": ["2022", "2023", "2024"],
-      "immobilizzazioni": [5608045, 5898255, 5548877],
-      "creditiCommerciali": [3915699, 4675401, 2738671],
-      "rimanenze": [791281, 692266, 872688],
-      "liquidita": [568187, 282044, 17094]
-    },
-    "equityComposition": {
-      "labels": ["Capitale Sociale", "Riserve", "Utile Esercizio", "Utili a Nuovo"],
-      "values": [8500, 687621, 1828, 0]
-    },
-    "financialDebtSources": {
-      "labels": ["Patrimonio Netto", "Debiti Fin. MLT", "Debiti Fin. BT"],
-      "values": [697950, 0, 5238348]
-    },
-    "pfnTrend": {
-      "labels": ["2022", "2023", "2024"],
-      "debitiFinanziariTotali": [6682048, 5845199, 5238348],
-      "liquidita": [568187, 282044, 17094],
-      "pfn": [6113861, 5563155, 5221254]
-    }
-  },
-  "parte4": {
-    "debtSustainability": {
-      "labels": [
-        "PFN/EBITDA (inv)",
-        "D/E (inv)",
-        "DSCR",
-        "Oneri Fin./Ricavi (inv)",
-        "Cash Flow Op./Ricavi",
-        "Leanus Score"
-      ],
-      "agricolaCampidanese": [16, 13, 56, 48, 40, 2],
-      "target": [33, 50, 100, 67, 50, 75]
-    },
-    "debtCost": {
-      "labels": ["2022", "2023", "2024"],
-      "ebitda": [-459, 624, 843],
-      "capacitaTeoricaIndeb": [0, 1872, 2529],
-      "pfnAttuale": [6114, 5563, 5221]
-    }
-  },
-  "parte5": {
-    "workingCapitalCycle": {
-      "labels": [
-        "Crediti Clienti (DSO)",
-        "Magazzino (DIO)",
-        "Debiti Fornitori (DPO)",
-        "Ciclo Circolante"
-      ],
-      "agricolaCampidanese": [47, 20, 75, -8],
-      "benchmark": [75, 45, 90, 30]
-    },
-    "cashFlowWaterfall": {
-      "labels": [
-        "EBITDA",
-        "Imposte",
-        "+Δ Circ.",
-        "=CF Op.",
-        "-Invest.",
-        "=FCF",
-        "+Δ Debt",
-        "-Divid.",
-        "=Δ Cassa"
-      ],
-      "values": [843287, 0, 440239, 423899, -80407, 343492, -606851, -1591, -264950]
-    },
-    "cashFlowTrend": {
-      "labels": ["2022", "2023", "2024"],
-      "cashFlowOperativo": [632006, 1260453, 423899],
-      "cashFlowInvestimenti": [-286041, -708115, -80407],
-      "variazioneNettaCassa": [196437, -286143, -264950]
-    },
-    "cashFlowProjection": {
-      "labels": ["2024", "2025E", "2026E", "2027E", "2028E"],
-      "cashFlowOperativo": [423899, 431403, 468933, 468933, 468933],
-      "variazioneDebitiFinanziari": [-606851, 0, 0, 0, 0],
-      "liquiditaFinale": [17094, 448497, 917430, 1386363, 1855296]
-    }
-  },
-  "parte6": {
-    "zscore": {
-      "labels": ["2022", "2023", "2024"],
-      "zscore": [null, null, 2.90],
-      "sogliaSicurezza": [2.99, 2.99, 2.99],
-      "sogliaRischio": [1.81, 1.81, 1.81]
-    },
-    "riskIndicators": {
-      "labels": ["ROI", "ROS", "D/E (inv)", "Cop. Immob.", "DSO (inv)", "DPO (inv)"],
-      "agricolaCampidanese": [70, 39, 13, 13, 85, 83],
-      "target": [100, 100, 50, 100, 67, 67]
-    },
-    "sensitivity": {
-      "labels": [
-        "Ricavi",
-        "Costi Fissi",
-        "Crediti Clienti (gg)",
-        "Debiti Fornitori (gg)"
-      ],
-      "variazioneCritica": [-1.95, 23.5, 1, -30]
-    }
-  },
-  "kpis": {
-    "dashboard": [
-      {
-        "id": "ricavi",
-        "title": "Ricavi Totali 2024",
-        "value": "€21.2M",
-        "trend": "up",
-        "trendValue": "+2.9%",
-        "description": "Crescita modesta dei ricavi rispetto all'anno precedente",
-        "link": "/report/parte2-economico",
-        "icon": "fa-chart-line"
-      },
-      {
-        "id": "ebitda",
-        "title": "EBITDA 2024",
-        "value": "€843K",
-        "trend": "up",
-        "trendValue": "+35.2%",
-        "description": "Miglioramento significativo della marginalità operativa",
-        "link": "/report/parte2-economico",
-        "icon": "fa-coins"
-      },
-      {
-        "id": "ebitdaMargin",
-        "title": "EBITDA Margin",
-        "value": "3.98%",
-        "trend": "up",
-        "trendValue": "+0.98pp",
-        "description": "Incremento della redditività operativa",
-        "link": "/report/parte2-economico",
-        "icon": "fa-percentage"
-      },
-      {
-        "id": "pfn",
-        "title": "PFN",
-        "value": "€5.22M",
-        "trend": "down",
-        "trendValue": "-6.1%",
-        "description": "Riduzione dell'indebitamento netto",
-        "link": "/report/parte3-patrimoniale",
-        "icon": "fa-money-bill-wave"
-      },
-      {
-        "id": "pfnEbitda",
-        "title": "PFN/EBITDA",
-        "value": "6.19x",
-        "trend": "down",
-        "trendValue": "-30.6%",
-        "description": "Miglioramento sostenibilità debito ma ancora critico",
-        "link": "/report/parte4-bancabilita",
-        "icon": "fa-balance-scale"
-      },
-      {
-        "id": "roi",
-        "title": "ROI",
-        "value": "6.99%",
-        "trend": "up",
-        "trendValue": "+5.67pp",
-        "description": "Significativo miglioramento redditività investimenti",
-        "link": "/report/parte2-economico",
-        "icon": "fa-chart-pie"
-      }
-    ]
   }
 }
