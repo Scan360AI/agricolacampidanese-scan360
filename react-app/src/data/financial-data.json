@@ -217,6 +217,53 @@
     }
   },
   "years": ["2022", "2023", "2024"],
+  "parte3": {
+    "balanceSheet": {
+      "years": ["2022", "2023", "2024"],
+      "assets": {
+        "attivoFissoNetto": [16377, 25861, 21936],
+        "attivoFissoNettoPercent": [2.5, 3.8, 2.6],
+        "creditiClienti": [486142, 614165, 748028],
+        "creditiClientiPercent": [74.9, 89.4, 87.3],
+        "rimanenze": [10100, 0, 1883],
+        "rimanenzePercent": [1.6, 0.0, 0.2],
+        "altriCrediti": [64361, 6675, 28459],
+        "altriCreditiPercent": [9.9, 1.0, 3.3],
+        "liquidita": [72409, 40471, 56948],
+        "liquiditaPercent": [11.2, 5.9, 6.6],
+        "totaleAttivo": [649389, 687172, 857254],
+        "totaleAttivoPercent": [100.0, 100.0, 100.0]
+      },
+      "liabilities": {
+        "debitiFornitori": [344889, 290742, 421125],
+        "debitiFornitoriPercent": [53.1, 42.3, 49.1],
+        "altriDebiti": [150151, 168423, 143318],
+        "altriDebitiPercent": [23.1, 24.5, 16.7],
+        "fondi": [35866, 46086, 58677],
+        "fondiPercent": [5.5, 6.7, 6.8],
+        "debitiFinanziari": [21599, 43570, 0],
+        "debitiFinanziariPercent": [3.3, 6.3, 0.0],
+        "patrimonioNetto": [96884, 138351, 234134],
+        "patrimonioNettoPercent": [14.9, 20.1, 27.3],
+        "totalePassivo": [649389, 687172, 857254],
+        "totalePassivoPercent": [100.0, 100.0, 100.0]
+      }
+    },
+    "pfn": {
+      "years": ["2022", "2023", "2024"],
+      "debitiFinanziari": [21599, 43570, 0],
+      "liquidita": [72409, 40471, 56948],
+      "pfn": [-50810, 3099, -56948],
+      "pfnEbitda": [null, 0.03, null]
+    },
+    "solidityIndices": {
+      "years": ["2022", "2023", "2024"],
+      "autonomiaFinanziaria": [14.9, 20.1, 27.3],
+      "coperturaImmobilizzazioni": [5.92, 5.35, 10.67],
+      "levaFinanziaria": [0.22, 0.31, 0.00],
+      "quozienteLiquidita": [8.6, 4.0, 5.5]
+    }
+  },
   "parte2": {
     "incomeStatement": {
       "years": ["2022", "2023", "2024"],
