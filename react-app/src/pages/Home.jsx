@@ -3,17 +3,89 @@ import { Link } from 'react-router-dom'
 import financialData from '../data/financial-data.json'
 
 export default function Home() {
-  const kpis = financialData.kpis.dashboard
+  const { company, irp, kpis } = financialData
+
+  const formatCurrency = (value) => {
+    if (Math.abs(value) >= 1000000) {
+      return `€${(value / 1000000).toFixed(2)}M`
+    } else if (Math.abs(value) >= 1000) {
+      return `€${(value / 1000).toFixed(0)}K`
+    }
+    return `€${value.toFixed(0)}`
+  }
+
+  const dashboardKpis = [
+    {
+      id: 'irp',
+      title: 'Indice Rischio Ponderato',
+      value: irp.score.toFixed(1) + '/100',
+      trend: 'up',
+      trendValue: `Categoria ${irp.category} - ${irp.categoryLabel}`,
+      description: 'Profilo di rischio creditizio complessivo',
+      icon: 'fa-shield-alt',
+      link: '/irp-dettaglio'
+    },
+    {
+      id: 'ricavi',
+      title: 'Ricavi 2024',
+      value: formatCurrency(kpis.economic.ricavi2024),
+      trend: kpis.economic.ricaviVariation > 0 ? 'up' : 'down',
+      trendValue: `${kpis.economic.ricaviVariation > 0 ? '+' : ''}${kpis.economic.ricaviVariation.toFixed(2)}% vs 2023`,
+      description: 'Fatturato annuale consolidato',
+      icon: 'fa-chart-line',
+      link: '/report/parte2-economico'
+    },
+    {
+      id: 'ebitda',
+      title: 'EBITDA 2024',
+      value: formatCurrency(kpis.economic.ebitda2024),
+      trend: kpis.economic.ebitdaVariation > 0 ? 'up' : 'down',
+      trendValue: `${kpis.economic.ebitdaVariation > 0 ? '+' : ''}${kpis.economic.ebitdaVariation.toFixed(2)}% - Margin ${kpis.economic.ebitdaMargin2024.toFixed(1)}%`,
+      description: 'Margine operativo lordo',
+      icon: 'fa-coins',
+      link: '/report/parte2-economico'
+    },
+    {
+      id: 'patrimonio',
+      title: 'Patrimonio Netto',
+      value: formatCurrency(kpis.patrimonial.patrimonioNetto2024),
+      trend: 'up',
+      trendValue: `+${kpis.patrimonial.patrimonioNettoVariation.toFixed(2)}% vs 2023`,
+      description: 'Solidità patrimoniale',
+      icon: 'fa-building',
+      link: '/report/parte3-patrimoniale'
+    },
+    {
+      id: 'pfn',
+      title: 'Posizione Finanziaria Netta',
+      value: formatCurrency(kpis.financial.pfn2024),
+      trend: 'up',
+      trendValue: 'Cash Positive - Zero debiti finanziari',
+      description: 'Liquidità netta disponibile',
+      icon: 'fa-money-bill-wave',
+      link: '/report/parte4-bancabilita'
+    },
+    {
+      id: 'roe',
+      title: 'ROE 2024',
+      value: `${kpis.economic.roe2024.toFixed(2)}%`,
+      trend: kpis.economic.roe2024 > kpis.economic.roe2023 ? 'up' : 'down',
+      trendValue: `ROI ${kpis.economic.roi2024.toFixed(2)}% - ROS ${kpis.economic.ros2024.toFixed(2)}%`,
+      description: 'Redditività del capitale proprio',
+      icon: 'fa-percentage',
+      link: '/report/parte2-economico'
+    }
+  ]
 
   return (
     <DashboardLayout
       title="Dashboard Esecutiva"
-      subtitle="Panoramica indicatori chiave Agricola Campidanese"
+      subtitle={`Panoramica indicatori chiave ${company.name}`}
     >
-      {/* KPI Cards */}
+      {/* KPI Cards - Netflix Style */}
       <div className="row">
-        {kpis.map((kpi) => (
-          <div key={kpi.id} className="col-md-4">
+        {dashboardKpis.map((kpi) => (
+          <div key={kpi.id} className="col-md-4 mb-4">
             <div className="dashboard-card">
               <div className="card-title-small">
                 <i className={`fas ${kpi.icon} me-2`}></i>
@@ -101,8 +173,8 @@ export default function Home() {
         </h5>
         <p style={{ marginBottom: 0 }}>
           <strong>SCAN360</strong> è il sistema di analisi strategica aziendale per{' '}
-          <strong>{financialData.company.name}</strong>. Utilizza il menu laterale per
-          navigare tra le diverse sezioni di analisi.
+          <strong>{company.name}</strong> ({company.sector}). Utilizza il menu laterale per
+          navigare tra le diverse sezioni di analisi. Report aggiornato al {company.reportDate}.
         </p>
       </div>
     </DashboardLayout>

@@ -170,10 +170,10 @@ export default function Dashboard() {
         <div className="col-md-3">
           <div className="kpi-card-v2 border-left-success">
             <div className="card-title-modern">Ricavi 2024</div>
-            <div className="kpi-value-modern">€21.2M</div>
+            <div className="kpi-value-modern">€1.03M</div>
             <div className="kpi-trend-modern trend-up">
               <span className="trend-icon">▲</span>
-              <span className="trend-value">+2.9%</span>
+              <span className="trend-value">+1.64%</span>
               <span>vs 2023</span>
             </div>
             <i className="fas fa-chart-line kpi-icon-modern-bg"></i>
@@ -181,12 +181,12 @@ export default function Dashboard() {
         </div>
 
         <div className="col-md-3">
-          <div className="kpi-card-v2 border-left-success">
+          <div className="kpi-card-v2 border-left-warning">
             <div className="card-title-modern">EBITDA 2024</div>
-            <div className="kpi-value-modern">€843K</div>
-            <div className="kpi-trend-modern trend-up">
-              <span className="trend-icon">▲</span>
-              <span className="trend-value">+35.2%</span>
+            <div className="kpi-value-modern">€102K</div>
+            <div className="kpi-trend-modern trend-down">
+              <span className="trend-icon">▼</span>
+              <span className="trend-value">-2.68%</span>
               <span>vs 2023</span>
             </div>
             <i className="fas fa-coins kpi-icon-modern-bg"></i>
@@ -194,26 +194,26 @@ export default function Dashboard() {
         </div>
 
         <div className="col-md-3">
-          <div className="kpi-card-v2 border-left-warning">
+          <div className="kpi-card-v2 border-left-success">
             <div className="card-title-modern">PFN 2024</div>
-            <div className="kpi-value-modern">€5.22M</div>
-            <div className="kpi-trend-modern trend-down">
-              <span className="trend-icon">▼</span>
-              <span className="trend-value">-6.1%</span>
-              <span>vs 2023</span>
+            <div className="kpi-value-modern">-€57K</div>
+            <div className="kpi-trend-modern trend-up">
+              <span className="trend-icon">▲</span>
+              <span className="trend-value">Cash Positive</span>
+              <span>vs €3K (2023)</span>
             </div>
             <i className="fas fa-money-bill-wave kpi-icon-modern-bg"></i>
           </div>
         </div>
 
         <div className="col-md-3">
-          <div className="kpi-card-v2 border-left-danger">
+          <div className="kpi-card-v2 border-left-success">
             <div className="card-title-modern">PFN/EBITDA</div>
-            <div className="kpi-value-modern">6.19x</div>
-            <div className="kpi-trend-modern trend-down">
-              <span className="trend-icon">▼</span>
-              <span className="trend-value">-30.6%</span>
-              <span>Migliorato</span>
+            <div className="kpi-value-modern">N/A</div>
+            <div className="kpi-trend-modern trend-up">
+              <span className="trend-icon">✓</span>
+              <span className="trend-value">Cash Positive</span>
+              <span>Eccellente</span>
             </div>
             <i className="fas fa-balance-scale kpi-icon-modern-bg"></i>
           </div>
@@ -249,10 +249,11 @@ export default function Dashboard() {
               Punti di Forza
             </h5>
             <ul>
-              <li>Crescita ricavi sostenuta (+2.9%)</li>
-              <li>Miglioramento significativo EBITDA (+35.2%)</li>
-              <li>Riduzione indebitamento netto (-6.1%)</li>
-              <li>ROI in crescita (+5.67pp a 6.99%)</li>
+              <li>PFN cash positive (€-57K) - Zero debiti finanziari</li>
+              <li>Eccellente redditività (ROE 40,91%, ROI 53,26%)</li>
+              <li>Patrimonio netto in forte crescita (+69,23%)</li>
+              <li>Margine EBITDA solido (9,91%)</li>
+              <li>IRP 78,50 - Categoria B (Rischio Moderato-Basso)</li>
             </ul>
           </div>
         </div>
@@ -264,10 +265,11 @@ export default function Dashboard() {
               Aree di Attenzione
             </h5>
             <ul>
-              <li>PFN/EBITDA ancora elevato (6.19x vs target 3.5x)</li>
-              <li>Capitale circolante netto negativo (-€4.8M)</li>
-              <li>ROE in calo (0.26% nel 2024)</li>
-              <li>Liquidità ridotta (€17K)</li>
+              <li>DSO molto elevato (262 giorni incasso crediti)</li>
+              <li>Ciclo circolante in peggioramento (119 giorni)</li>
+              <li>EBITDA in lieve calo (-2,68% vs 2023)</li>
+              <li>Crescita ricavi moderata (+1,64%)</li>
+              <li>DPO elevato (222 giorni pagamento fornitori)</li>
             </ul>
           </div>
         </div>
