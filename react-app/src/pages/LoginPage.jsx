@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../hooks/useAuth'
 
@@ -10,10 +10,11 @@ export default function LoginPage() {
   const { login, isAuthenticated } = useAuth()
 
   // Redirect if already logged in
-  if (isAuthenticated) {
-    navigate('/')
-    return null
-  }
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/')
+    }
+  }, [isAuthenticated, navigate])
 
   const handleSubmit = (e) => {
     e.preventDefault()
